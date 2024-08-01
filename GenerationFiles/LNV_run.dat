@@ -1,0 +1,31 @@
+generate_events
+
+shower=Pythia8
+detector=Delphes
+
+set use_syst False
+
+set MF1 1000
+set MS1 1500
+set MS2 1500
+set ge 0.1
+set gqd 0.1
+set gqu 0.0
+
+set WS1 Auto
+set WS2 Auto
+set WF1 Auto
+
+set xqcut 20
+set ptj 20
+set ptb 20
+set ptl 20
+set etaj 2.8
+set etal 2.5
+set ebeam1 7000
+set ebeam2 7000
+set nevents 80000
+set iseed 1
+
+set JetMatching:nJetMax 3
+
