@@ -65,6 +65,7 @@ using namespace TMath;
 
 #include "observables.h"
 #include "ran.h"
+#include "ChargeFlip.h"
 // #include "mt2_bisect.h"
 // #include "mt2w_bisect.h"
 
