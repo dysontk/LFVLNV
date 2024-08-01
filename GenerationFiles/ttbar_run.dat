@@ -1,0 +1,23 @@
+generate_events
+
+shower=Pythia8
+detector=OFF
+set use_syst False
+set automatic_html_opening False
+
+set nevents 60000
+set ebeam1 7000
+set ebeam2 7000
+set cut_decays True
+set ickkw 1
+set xqcut 20
+set JetMatching:nJetMax 2
+set ptj 20
+set ptb 20 
+set ptl 20
+set etaj 2.8
+set etal 2.5
+
+/home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/Delphes/cards/card_JF.tcl
+
+print_results

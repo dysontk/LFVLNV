@@ -1,0 +1,6 @@
+import model O2_flavor
+generate p p > j j e- e-
+add process p p > j j e+ e+
+add process p p > j j j e+ e+ 
+add process p p > j j j e- e-
+output /work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF
