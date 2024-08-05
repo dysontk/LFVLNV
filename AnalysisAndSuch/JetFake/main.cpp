@@ -72,7 +72,7 @@ using namespace TMath;
 bool VERBOSE = false; // Allows for some troubleshooting or extra detail if true.
 bool lowlepcut = false; //turns on and off Some sort of cut on the low energy lepton?????????????????????????
 
-const char* EventType = "Diboson";
+const char* EventType = "Testing";
 
 // For the simplification of simulated data in early stages,
 // we do not have branches for MET nor Muons. The following Bools are to account for this. 
@@ -366,6 +366,27 @@ int main(int argc, const char * argv[])
             // cout << "I made it past the making of vectors"<< endl;
             // Signal definition
 
+            //Now it is time to find the pair of jets that are close to W
+            if (all_jets.size() < 1) 
+            {   
+                
+                // if (VERBOSE)cout << "Not enough jets"<< endl;
+                continue;
+            }
+
+            for(int l=0; l<v_lep.size(); l++)
+            {
+                float rando = grandom->Uniform();
+                PseudoJet this_lep = v_lep[l];
+                int this_charge = this_lep.Charge(); 
+                // this_lep.reset()
+                float rate = ChargeFlipRate(this_lep.Eta(), this_lep.pt());
+                // bool WillFlip = rate > rando;
+                if (rate > rando)
+                {
+                    cout << "I should flip this"<< endl;
+                }
+            }
 
             // First make sure that there are s.s. dilep pairs
             if (v_lepP.size() < 2 && v_lepM.size() < 2) 
@@ -378,13 +399,6 @@ int main(int argc, const char * argv[])
             // cout << "all: "<< v_lep.size() << endl;
 
             // if (VERBOSE) cout << "There is an s.s. dilepton pair"<< endl;
-            //Now it is time to find the pair of jets that are close to W
-            if (all_jets.size() < 1) 
-            {   
-                
-                // if (VERBOSE)cout << "Not enough jets"<< endl;
-                continue;
-            }
             numCutCats[0]++;
 
             //All events that made it here should have s.s. dilepton pair and 2+ jets
