@@ -357,6 +357,8 @@ int main(int argc, const char * argv[])
             }
             // cout << "i'm about to sort vectors" << endl;
             sort(v_lep.begin(), v_lep.end(), sort_by_pt());
+            sort(v_lepP.begin(), v_lepP.end(), sort_by_pt());
+            sort(v_lepM.begin(), v_lepM.end(), sort_by_pt());
             sort(v_eM.begin(), v_eM.end(), sort_by_pt());
             sort(v_eP.begin(), v_eP.end(), sort_by_pt());
             sort(v_muM.begin(), v_muM.end(), sort_by_pt());
@@ -374,19 +376,40 @@ int main(int argc, const char * argv[])
                 continue;
             }
 
-            for(int l=0; l<v_lep.size(); l++)
+            vector<PseudoJet> flipToM;
+            vector<PseudoJet> flipToP;
+            
+
+            for(int l=0; l<max(v_lepP.size(), v_lepM.size()); l++)
             {
-                float rando = grandom->Uniform();
-                PseudoJet this_lep = v_lep[l];
-                int this_charge = this_lep.Charge(); 
-                // this_lep.reset()
-                float rate = ChargeFlipRate(this_lep.Eta(), this_lep.pt());
-                // bool WillFlip = rate > rando;
-                if (rate > rando)
+                if (l<v_lepP.size())
                 {
-                    cout << "I should flip this"<< endl;
+                    float randoP = gRandom->Uniform();
+                    // PseudoJet this_lepP = v_lepP[l];
+                    float rateP = ChargeFlipRate(v_lepP[l].Eta(), v_lepP[l].pt());
+                    if (rateP > randoP)
+                    {
+                        cout << "I should flip this to M"<< endl;
+                    }
                 }
+
+                if (l<v_lepM.size())
+                {
+                    float randoM = gRandom->Uniform();
+                    // PseudoJet this_lepP = v_lepP[l];
+                    float rateM = ChargeFlipRate(v_lepM[l].Eta(), v_lepM[l].pt());
+                    if (rateM > randoM)
+                    {
+                        cout << "I should flip this to P"<< endl;
+                    }
+                }
+                
+                // int this_charge = this_lep.Charge(); 
+                // this_lep.reset()
+                // bool WillFlip = rate > rando;
+                
             }
+
 
             // First make sure that there are s.s. dilep pairs
             if (v_lepP.size() < 2 && v_lepM.size() < 2) 
