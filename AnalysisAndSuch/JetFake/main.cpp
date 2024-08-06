@@ -323,7 +323,7 @@ int main(int argc, const char * argv[])
                 //Charge flip check
                 float rando = gRandom->Uniform();
                 // PseudoJet this_lepP = v_lepP[l];
-                float rate = ChargeFlipRate(etmp->Eta(), etmp->PT());
+                float rate = ChargeFlipRate(etmp->Eta, etmp->PT);
                 bool shouldFlip = false;
                 if (rate > rando)
                 {
