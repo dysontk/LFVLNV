@@ -323,11 +323,12 @@ int main(int argc, const char * argv[])
                 //Charge flip check
                 float rando = gRandom->Uniform();
                 // PseudoJet this_lepP = v_lepP[l];
-                float rate = ChargeFlipRate(etmp.Eta(), etmp.PT());
+                float rate = ChargeFlipRate(etmp->Eta(), etmp->PT());
                 bool shouldFlip = false;
-                if (rateP > randoP)
+                if (rate > rando)
                 {
-                    cout << "I should flip this to M"<< endl;
+                    cout << "I should flip this electron "<< endl;
+                    // if (etmp->Charge ==1) cout << "+" << endl;
                     shouldFlip = true;
                 }
                 
