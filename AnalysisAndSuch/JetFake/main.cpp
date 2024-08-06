@@ -328,6 +328,7 @@ int main(int argc, const char * argv[])
                 if (rate > rando)
                 {
                     cout << "I should flip this electron "<< endl;
+                    cout << "rate: " << rate << " sample: " << rando<< endl;
                     // if (etmp->Charge ==1) cout << "+" << endl;
                     shouldFlip = true;
                 }
@@ -355,16 +356,39 @@ int main(int argc, const char * argv[])
 
                 v_lep.push_back(tempEvent);
                 v_mu.push_back(tempEvent);
-                if (mutmp->Charge == 1) 
+                float rando = gRandom->Uniform();
+                // PseudoJet this_lepP = v_lepP[l];
+                float rate = ChargeFlipRate(mutmp->Eta, mutmp->PT);
+                bool shouldFlip = false;
+                if (rate > rando)
+                {
+                    cout << "I should flip this muon "<< endl;
+                    cout << "rate: " << rate << " sample: " << rando<< endl;
+                    // if (etmp->Charge ==1) cout << "+" << endl;
+                    shouldFlip = true;
+                }
+                
+                if ((mutmp->Charge == 1 && !(shouldFlip))||(mutmp->Charge==-1 && shouldFlip)) 
                 {
                     v_muP.push_back(tempEvent); // Positive 
                     v_lepP.push_back(tempEvent);
                 }
-                else
+                else 
                 {
                     v_muM.push_back(tempEvent); // Negative
                     v_lepM.push_back(tempEvent);
                 }
+
+                // if (mutmp->Charge == 1) 
+                // {
+                //     v_muP.push_back(tempEvent); // Positive 
+                //     v_lepP.push_back(tempEvent);
+                // }
+                // else
+                // {
+                //     v_muM.push_back(tempEvent); // Negative
+                //     v_lepM.push_back(tempEvent);
+                // }
 
             }
             // cout << "i'm about to sort vectors" << endl;
