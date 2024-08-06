@@ -201,6 +201,9 @@ int main(int argc, const char * argv[])
     MissingET *met;
     Jet *jet;
 
+    int numFlippede = 0;
+    int numFlippedmu = 0;
+
     // HISTOGRAMS---------------------------------------
     //                                                                  , bins, xlow, xhigh)
     // Obj. name; Vert. axis vs. Horiz. axis; images produced by this
@@ -327,10 +330,11 @@ int main(int argc, const char * argv[])
                 bool shouldFlip = false;
                 if (rate > rando)
                 {
-                    cout << "I should flip this electron "<< endl;
-                    cout << "rate: " << rate << " sample: " << rando<< endl;
+                    // cout << "I should flip this electron "<< endl;
+                    // cout << "rate: " << rate << " sample: " << rando<< endl;
                     // if (etmp->Charge ==1) cout << "+" << endl;
                     shouldFlip = true;
+                    numFlippede++;
                 }
                 
                 if ((etmp->Charge == 1 && !(shouldFlip))||(etmp->Charge==-1 && shouldFlip)) 
@@ -362,10 +366,11 @@ int main(int argc, const char * argv[])
                 bool shouldFlip = false;
                 if (rate > rando)
                 {
-                    cout << "I should flip this muon "<< endl;
-                    cout << "rate: " << rate << " sample: " << rando<< endl;
+                    // cout << "I should flip this muon "<< endl;
+                    // cout << "rate: " << rate << " sample: " << rando<< endl;
                     // if (etmp->Charge ==1) cout << "+" << endl;
                     shouldFlip = true;
+                    numFlippedmu++;
                 }
                 
                 if ((mutmp->Charge == 1 && !(shouldFlip))||(mutmp->Charge==-1 && shouldFlip)) 
@@ -664,8 +669,9 @@ int main(int argc, const char * argv[])
             strcat(FullPathMass_l2, "/images/Mass_l2_above1GeV.png");
             c1->SaveAs(FullPathMass_l2);
         }
-
-
+        
+        cout << "I flipped this many electrons "<< numFlippede << endl
+        cout << "I flipped this many muons "<< numFlippedmu << endl 
         // char FullPathMass_ll_test[100];
 
         // strcpy(FullPathMass_ll_test, ImagePath);
