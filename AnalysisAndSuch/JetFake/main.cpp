@@ -670,8 +670,8 @@ int main(int argc, const char * argv[])
             c1->SaveAs(FullPathMass_l2);
         }
         
-        cout << "I flipped this many electrons "<< numFlippede << endl
-        cout << "I flipped this many muons "<< numFlippedmu << endl 
+        cout << "I flipped this many electrons "<< numFlippede << endl;
+        cout << "I flipped this many muons "<< numFlippedmu << endl;
         // char FullPathMass_ll_test[100];
 
         // strcpy(FullPathMass_ll_test, ImagePath);
