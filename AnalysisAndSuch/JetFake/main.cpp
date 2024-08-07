@@ -72,7 +72,7 @@ using namespace TMath;
 bool VERBOSE = false; // Allows for some troubleshooting or extra detail if true.
 bool lowlepcut = false; //turns on and off Some sort of cut on the low energy lepton?????????????????????????
 
-const char* EventType = "O2F";
+const char* EventType = "LNVF";
 
 // For the simplification of simulated data in early stages,
 // we do not have branches for MET nor Muons. The following Bools are to account for this. 
