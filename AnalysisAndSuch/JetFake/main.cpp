@@ -72,7 +72,7 @@ using namespace TMath;
 bool VERBOSE = false; // Allows for some troubleshooting or extra detail if true.
 bool lowlepcut = false; //turns on and off Some sort of cut on the low energy lepton?????????????????????????
 
-const char* EventType = "Testing";
+const char* EventType = "LNVF";
 
 // For the simplification of simulated data in early stages,
 // we do not have branches for MET nor Muons. The following Bools are to account for this. 
@@ -316,6 +316,7 @@ int main(int argc, const char * argv[])
             //Electrons
             // cout << "Bout to make electrons"<< endl;
             if (VERBOSE) cout<< "numEl = " << numEl << endl;
+            if (numEl+numMu<2) continue;
             for(int e=0; e < numEl; e++)
             {
                 Electron *etmp = (Electron *) branchElectron->At(e);
@@ -446,13 +447,15 @@ int main(int argc, const char * argv[])
             //     }
                 
             // }
-
+            int lPairType = 0; // ee->0, eμ -> 1, μμ -> 2
+            bool lPairPlus = false; // false: --, true: ++
 
             // First make sure that there are s.s. dilep pairs
-            if (v_lepP.size() < 2 && v_lepM.size() < 2) 
+            if (v_lepP.size() < 2) 
             {
+                if (v_lepM.size() < 2) continue;
                 // if (VERBOSE) cout << "No s.s. dilepton pair"<< endl;
-                continue;
+                else
             } 
             // cout << "+: " << v_lepP.size() << endl;
             // cout << "-: " << v_lepM.size() << endl;
@@ -548,30 +551,30 @@ int main(int argc, const char * argv[])
                 I don't yet know where these ratios came from.
             */
 
-           int lPairType = 0; // ee->0, μμ -> 1, eμ -> 2
            double r1 = 0.18;
            double r2 = 0.31;
            if (hasMu)
            {
+                // if (v_mu[])
                 if (abs(v_lep[0].m() - 0.511*pow(10, 3)) < 0.01) // is 0.01 a good cut off for being an electron?
                 {
                     if (abs(v_lep[1].m() - 0.511*pow(10,3)) < 0.01) lPairType = 0;
-                    else lPairType = 2;
+                    else lPairType = 1;
                 }
                 else
                 {
-                    if (abs(v_lep[1].m() - 0.511*pow(10,3)) < 0.01) lPairType = 2;
-                    else lPairType = 1; 
+                    if (abs(v_lep[1].m() - 0.511*pow(10,3)) < 0.01) lPairType = 1;
+                    else lPairType = 2; 
                 }
            }
             else if (simLFV)
            {
                 double rs = gRandom->Uniform(); // random number 0-1
                 if (rs < r1) lPairType = 0; // 0-0.18 => ee
-                else lPairType = (r2 < rs) ? 2 : 1; // 0.18-0.31 =>μμ, 0.31-1 => eμ
+                else lPairType = (r2 < rs) ? 1 : 2; // 0.18-0.31 =>μμ, 0.31-1 => eμ
            }
         //    CMS Section 5 paragraph 1. This seems to be simulating something about the detector
-           int leadingThresh[3] = {25, 20, 25}; // GeV; corresponds to lPairType 0,1,2 indices
+           int leadingThresh[3] = {25, 25, 20}; // GeV; corresponds to lPairType 0,1,2 indices
            int trailingThresh[3] = {15, 10, 10};
            if ((v_lep[0].pt() < leadingThresh[lPairType] || v_lep[1].pt() < trailingThresh[lPairType])) continue;
            numCutCats[3]++;
@@ -600,7 +603,7 @@ int main(int argc, const char * argv[])
             // return 0;
         }
         cout <<"[";
-        for (int c=0; c<sizeof(numCutCats)/sizeof(int); c++) cout << numCutCats[c]<< ", ";
+        for (int c=0; c<sizeof(numCutCats)/sizeof(int); c++) cout << numCutCats[c]<< endl;
         cout << "]" << endl;
         cout << "Histo time"<< endl;
 
@@ -671,7 +674,7 @@ int main(int argc, const char * argv[])
         }
         
         cout << "I flipped this many electrons "<< numFlippede << endl;
-        cout << "I flipped this many muons "<< numFlippedmu << endl;
+        cout << "I flipped this many muons "<< numFlippedmu << endl; 
         // char FullPathMass_ll_test[100];
 
         // strcpy(FullPathMass_ll_test, ImagePath);
