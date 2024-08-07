@@ -451,11 +451,11 @@ int main(int argc, const char * argv[])
             bool lPairPlus = false; // false: --, true: ++
 
             // First make sure that there are s.s. dilep pairs
-            if (v_lepP.size() < 2) 
+            if (v_lepP.size() < 2 && v_lepM.size() < 2) 
             {
-                if (v_lepM.size() < 2) continue;
+                continue;
                 // if (VERBOSE) cout << "No s.s. dilepton pair"<< endl;
-                else
+                // else
             } 
             // cout << "+: " << v_lepP.size() << endl;
             // cout << "-: " << v_lepM.size() << endl;
