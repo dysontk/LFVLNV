@@ -36,6 +36,8 @@ int main(int argc, char** argv) {
             TObjArray* branches = tree->GetListOfBranches();
             for (int i = 0; i < branches->GetEntries(); ++i) {
                 TBranch* branch = (TBranch*)branches->At(i);
+                TClonesArray *branchMuon = treeReader->UseBranch("Muon");
+                cout << branchMuon->GetEntries()<< endl;
                 // std::cout << "  Branch name: " << branch->GetName() << std::endl;
 
                 TObjArray* leaves = branch->GetListOfLeaves();

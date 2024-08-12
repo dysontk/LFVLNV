@@ -1,7 +1,0 @@
-generate_events
-shower=Pythia8
-detector=Delphes
-
-/home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/Delphes/cards/card_JF.tcl 
-
-print_results
