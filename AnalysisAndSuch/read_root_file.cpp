@@ -8,6 +8,9 @@
 #include <TTree.h>
 #include <TBranch.h>
 #include <TLeaf.h>
+#include "ExRootTreeReader.h"
+using namespace std;
+
 
 int main(int argc, char** argv) {
     if (argc != 2) {
