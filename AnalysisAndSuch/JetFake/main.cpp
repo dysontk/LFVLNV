@@ -73,7 +73,7 @@ using namespace TMath;
 bool VERBOSE = true; // Allows for some troubleshooting or extra detail if true.
 bool lowlepcut = false; //turns on and off Some sort of cut on the low energy lepton?????????????????????????
 
-const char* EventType = "LNVF";
+const char* EventType = "W3j";
 
 // For the simplification of simulated data in early stages,
 // we do not have branches for MET nor Muons. The following Bools are to account for this. 
@@ -270,7 +270,7 @@ int main(int argc, const char * argv[])
         // Is there a reason to use Int_t as opposed to int
         for(int entry=0; entry < NumEntries; entry++)
         {
-            if (VERBOSE) cout<< "I am on Entry " << entry<< endl;
+            // if (VERBOSE) cout<< "I am on Entry " << entry<< endl;
             all_jets.clear();
             w_jet_pairs.clear();
             v_eM.clear();
@@ -295,7 +295,7 @@ int main(int argc, const char * argv[])
             else numMu = 0;
             if(hasMET) numMET = branchMET->GetEntries();
             else numMET = 0;
-            if (hasMu && VERBOSE) cout << "Muons" << numMu << endl;
+            if (numMu && VERBOSE) cout << "Muons" << numMu << endl;
             //I should diagram the rest of this out
             // I want to determine the pairs of jets that are closest to W mass
 
