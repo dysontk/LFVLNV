@@ -66,6 +66,7 @@ using namespace TMath;
 #include "observables.h"
 #include "ran.h"
 #include "ChargeFlip.h"
+
 // #include "mt2_bisect.h"
 // #include "mt2w_bisect.h"
 
@@ -294,7 +295,7 @@ int main(int argc, const char * argv[])
             else numMu = 0;
             if(hasMET) numMET = branchMET->GetEntries();
             else numMET = 0;
-            if (numMu && VERBOSE) cout << "Muons" << numMu << endl;
+            if (hasMu && VERBOSE) cout << "Muons" << numMu << endl;
             //I should diagram the rest of this out
             // I want to determine the pairs of jets that are closest to W mass
 
