@@ -6,7 +6,7 @@ detector=DELPHES
 set use_syst False
 set automatic_html_opening False
 
-set nevents 1000
+set nevents 80000
 set ebeam1 7000
 set ebeam2 7000
 set cut_decays True

@@ -24,7 +24,7 @@ set etaj 2.8
 set etal 2.5
 set ebeam1 7000
 set ebeam2 7000
-set nevents 1000
+set nevents 80000
 set iseed 1
 
 set JetMatching:nJetMax 3
