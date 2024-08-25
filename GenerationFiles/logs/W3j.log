@@ -1,0 +1,390 @@
+nohup: ignoring input
+************************************************************
+*                                                          *
+*                      W E L C O M E to                    *
+*             M A D G R A P H 5 _ a M C @ N L O            *
+*                      M A D E V E N T                     *
+*                                                          *
+*                 *                       *                *
+*                   *        * *        *                  *
+*                     * * * * 5 * * * *                    *
+*                   *        * *        *                  *
+*                 *                       *                *
+*                                                          *
+*         VERSION 3.5.4                                    *
+*                                                          *
+*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+*                                                          *
+*               Type 'help' for in-line help.              *
+*                                                          *
+************************************************************
+INFO: load configuration from /work/pi_mjrm_umass_edu/LNV_collider/Generated/W3j/Cards/me5_configuration.txt  
+INFO: load configuration from /home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/input/mg5_configuration.txt  
+INFO: load configuration from /work/pi_mjrm_umass_edu/LNV_collider/Generated/W3j/Cards/me5_configuration.txt  
+Using default text editor "vi". Set another one in ./input/mg5_configuration.txt
+Using default eps viewer "evince". Set another one in ./input/mg5_configuration.txt
+No valid web browser found. Please set in ./input/mg5_configuration.txt
+import command ./MyFiles/LFVLNV/GenerationFiles/W3j_run.dat
+generate_events
+stty: 'standard input': Inappropriate ioctl for device
+The following switches determine which programs are run:
+/===========================================================================\
+| 1. Choose the shower/hadronization program   [1m  shower[0m = [32mPythia8[0m           |
+| 2. Choose the detector simulation program    [1mdetector[0m = [32mDelphes[0m           |
+| 3. Choose an analysis package (plot/convert) [1manalysis[0m = [32mExRoot[0m            |
+| 4. Decay onshell particles                   [1m madspin[0m = [31mOFF[0m               |
+| 5. Add weights to events for new hypp.       [1mreweight[0m = [01mNot Avail.[0m        |
+\===========================================================================/
+Either type the switch number (1 to 5) to change its setting,
+Set any switch explicitly (e.g. type 'shower=OFF' at the prompt)
+Type 'help' for the list of all valid option
+Type '0', 'auto', 'done' or just press enter when you are done.
+The following switches determine which programs are run:
+/===========================================================================\
+| 1. Choose the shower/hadronization program   [1m  shower[0m = [32mPythia8[0m           |
+| 2. Choose the detector simulation program    [1mdetector[0m = [32mDelphes[0m           |
+| 3. Choose an analysis package (plot/convert) [1manalysis[0m = [32mExRoot[0m            |
+| 4. Decay onshell particles                   [1m madspin[0m = [31mOFF[0m               |
+| 5. Add weights to events for new hypp.       [1mreweight[0m = [01mNot Avail.[0m        |
+\===========================================================================/
+Either type the switch number (1 to 5) to change its setting,
+Set any switch explicitly (e.g. type 'shower=OFF' at the prompt)
+Type 'help' for the list of all valid option
+Type '0', 'auto', 'done' or just press enter when you are done.
+set use_syst False
+[1mINFO: modify parameter use_syst of the run_card.dat to False [0m
+set automatic_html_opening False
+[1;34mWARNING: invalid set command automatic_html_opening False  [0m
+INFO: Did you mean one of the following run_card options:
+auto_ptj_mjj 
+set nevents 80000
+[1mINFO: modify parameter nevents of the run_card.dat to 80000 [0m
+set ebeam1 7000
+[1mINFO: modify parameter ebeam1 of the run_card.dat to 7000.0 [0m
+set ebeam2 7000
+[1mINFO: modify parameter ebeam2 of the run_card.dat to 7000.0 [0m
+set cut_decays True
+[1mINFO: modify parameter cut_decays of the run_card.dat to True [0m
+set ickkw 1
+[1mINFO: modify parameter ickkw of the run_card.dat to 1 [0m
+set xqcut 20
+[1mINFO: modify parameter xqcut of the run_card.dat to 20.0 [0m
+set JetMatching:nJetMax 3
+[1mINFO: modify parameter jetmatching:njetmax of the pythia8_card.dat to 3 [0m
+set ptj 20
+[1mINFO: modify parameter ptj of the run_card.dat to 20.0 [0m
+set ptb 20
+[1mINFO: modify parameter ptb of the run_card.dat to 20.0 [0m
+set ptl 20
+[1mINFO: modify parameter ptl of the run_card.dat to 20.0 [0m
+set etaj 2.8
+[1mINFO: modify parameter etaj of the run_card.dat to 2.8 [0m
+set etal 2.5
+[1mINFO: modify parameter etal of the run_card.dat to 2.5 [0m
+INFO: copy /home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/Delphes/cards/card_JF.tcl as delphes_card.dat 
+Do you want to edit a card (press enter to bypass editing)?
+/------------------------------------------------------------\
+|  [31m1[0m. param   : [32mparam_card.dat[0m                               |
+|  [31m2[0m. run     : [32mrun_card.dat[0m                                 |
+|  [31m3[0m. pythia8 : [32mpythia8_card.dat[0m                             |
+|  [31m4[0m. delphes : [32mdelphes_card.dat[0m                             |
+\------------------------------------------------------------/
+ you can also
+   - enter the path to a valid card or banner.
+   - use the 'set' command to modify a parameter directly.
+     The set option works only for param_card and run_card.
+     Type 'help set' for more information on this command.
+   - call an external program (ASperGE/MadWidth/...).
+     Type 'help' for the list of available command
+ [[4m0[0m, done, 1, param, 2, run, 3, pythia8, 4, enter path, ... ]
+Do you want to edit a card (press enter to bypass editing)?
+/------------------------------------------------------------\
+|  [31m1[0m. param   : [32mparam_card.dat[0m                               |
+|  [31m2[0m. run     : [32mrun_card.dat[0m                                 |
+|  [31m3[0m. pythia8 : [32mpythia8_card.dat[0m                             |
+|  [31m4[0m. delphes : [32mdelphes_card.dat[0m                             |
+\------------------------------------------------------------/
+ you can also
+   - enter the path to a valid card or banner.
+   - use the 'set' command to modify a parameter directly.
+     The set option works only for param_card and run_card.
+     Type 'help set' for more information on this command.
+   - call an external program (ASperGE/MadWidth/...).
+     Type 'help' for the list of available command
+ [[4m0[0m, done, 1, param, 2, run, 3, pythia8, 4, enter path, ... ]
+[1;34mfound line : print_results[0m
+[1;34mThis answer is not valid for current question. Keep it for next question and use here default: EOF[0m
+INFO: Update the dependent parameter of the param_card.dat 
+Generating 80000 events with run name run_04
+survey  run_04 
+INFO: compile directory 
+[1;34mNot able to open file /work/pi_mjrm_umass_edu/LNV_collider/Generated/W3j/crossx.html since no program configured.Please set one in ./input/mg5_configuration.txt[0m
+compile Source Directory
+Using random number seed offset = 51
+INFO: Running Survey 
+Creating Jobs
+Working on SubProcesses
+INFO: Compiling for process 1/18. 
+INFO:     P3_gg_wmgqq_wm_lvl  
+INFO: Compiling for process 2/18. 
+INFO:     P3_gq_wmqqq_wm_lvl  
+INFO: Compiling for process 3/18. 
+INFO:     P3_gq_wmggq_wm_lvl  
+INFO: Compiling for process 4/18. 
+INFO:     P3_qq_wmgqq_wm_lvl  
+INFO: Compiling for process 5/18. 
+INFO:     P3_qq_wmggg_wm_lvl  
+INFO: Compiling for process 6/18. 
+INFO:     P4_gg_wpgqq_wp_lvl  
+INFO: Compiling for process 7/18. 
+INFO:     P4_gq_wpggq_wp_lvl  
+INFO: Compiling for process 8/18. 
+INFO:     P4_gq_wpqqq_wp_lvl  
+INFO: Compiling for process 9/18. 
+INFO:     P4_qq_wpgqq_wp_lvl  
+INFO: Compiling for process 10/18. 
+INFO:     P4_qq_wpggg_wp_lvl  
+INFO: Compiling for process 11/18. 
+INFO:     P1_gg_wmqq_wm_lvl  
+INFO: Compiling for process 12/18. 
+INFO:     P1_gq_wmgq_wm_lvl  
+INFO: Compiling for process 13/18. 
+INFO:     P1_qq_wmqq_wm_lvl  
+INFO: Compiling for process 14/18. 
+INFO:     P1_qq_wmgg_wm_lvl  
+INFO: Compiling for process 15/18. 
+INFO:     P2_gg_wpqq_wp_lvl  
+INFO: Compiling for process 16/18. 
+INFO:     P2_gq_wpgq_wp_lvl  
+INFO: Compiling for process 17/18. 
+INFO:     P2_qq_wpqq_wp_lvl  
+INFO: Compiling for process 18/18. 
+INFO:     P2_qq_wpgg_wp_lvl  
+INFO:     P3_gg_wmgqq_wm_lvl  
+INFO:     P3_gq_wmqqq_wm_lvl  
+INFO:     P3_gq_wmggq_wm_lvl  
+INFO:     P3_qq_wmgqq_wm_lvl  
+INFO:     P3_qq_wmggg_wm_lvl  
+INFO:     P4_gg_wpgqq_wp_lvl  
+INFO:     P4_gq_wpggq_wp_lvl  
+INFO:     P4_gq_wpqqq_wp_lvl  
+INFO:     P4_qq_wpgqq_wp_lvl  
+INFO:     P4_qq_wpggg_wp_lvl  
+INFO:     P1_gg_wmqq_wm_lvl  
+INFO:     P1_gq_wmgq_wm_lvl  
+INFO:     P1_qq_wmqq_wm_lvl  
+INFO:     P1_qq_wmgg_wm_lvl  
+INFO:     P2_gg_wpqq_wp_lvl  
+INFO:     P2_gq_wpgq_wp_lvl  
+INFO:     P2_qq_wpqq_wp_lvl  
+INFO:     P2_qq_wpgg_wp_lvl  
+INFO:  Idle: 1,  Running: 4,  Completed: 149 [ current time: 20h07 ] 
+INFO:  Idle: 0,  Running: 5,  Completed: 149 [  0.089s  ] 
+INFO:  Idle: 0,  Running: 3,  Completed: 151 [  5s  ] 
+INFO:  Idle: 0,  Running: 2,  Completed: 152 [  19.4s  ] 
+INFO:  Idle: 0,  Running: 1,  Completed: 153 [  29s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 154 [  32s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 154 [  32s  ] 
+INFO: End survey 
+refine 80000
+Creating Jobs
+INFO: Refine results to 80000 
+INFO: Generating 80000.0 unweighted events. 
+sum of cpu time of last step: 6m38s
+INFO: Effective Luminosity 30.96591051364386 pb^-1 
+INFO: need to improve 109 channels 
+- Current estimate of cross-section: 3100.1833438000003 +- 20.895740763301614
+    P3_gg_wmgqq_wm_lvl 
+    P3_gq_wmqqq_wm_lvl 
+    P3_gq_wmggq_wm_lvl 
+    P3_qq_wmgqq_wm_lvl 
+    P3_qq_wmggg_wm_lvl 
+    P4_gg_wpgqq_wp_lvl 
+    P4_gq_wpggq_wp_lvl 
+    P4_gq_wpqqq_wp_lvl 
+    P4_qq_wpgqq_wp_lvl 
+    P4_qq_wpggg_wp_lvl 
+    P1_gg_wmqq_wm_lvl 
+    P1_gq_wmgq_wm_lvl 
+    P1_qq_wmqq_wm_lvl 
+    P1_qq_wmgg_wm_lvl 
+    P2_gg_wpqq_wp_lvl 
+    P2_gq_wpgq_wp_lvl 
+    P2_qq_wpqq_wp_lvl 
+    P2_qq_wpgg_wp_lvl 
+INFO:  Idle: 137,  Running: 16,  Completed: 15 [ current time: 20h18 ] 
+INFO:  Idle: 136,  Running: 16,  Completed: 16 [  48.2s  ] 
+INFO:  Idle: 135,  Running: 16,  Completed: 17 [  1m 36s  ] 
+INFO:  Idle: 134,  Running: 16,  Completed: 18 [  2m 5s  ] 
+INFO:  Idle: 133,  Running: 16,  Completed: 19 [  3m 25s  ] 
+INFO:  Idle: 132,  Running: 16,  Completed: 20 [  3m 47s  ] 
+INFO:  Idle: 131,  Running: 16,  Completed: 21 [  4m 27s  ] 
+INFO:  Idle: 130,  Running: 16,  Completed: 22 [  4m 55s  ] 
+INFO:  Idle: 129,  Running: 16,  Completed: 23 [  5m 18s  ] 
+INFO:  Idle: 128,  Running: 16,  Completed: 24 [  5m 42s  ] 
+INFO:  Idle: 127,  Running: 16,  Completed: 25 [  5m 49s  ] 
+INFO:  Idle: 126,  Running: 16,  Completed: 26 [  6m 15s  ] 
+INFO:  Idle: 125,  Running: 16,  Completed: 27 [  6m 21s  ] 
+INFO:  Idle: 124,  Running: 16,  Completed: 28 [  7m 7s  ] 
+INFO:  Idle: 123,  Running: 16,  Completed: 29 [  7m 27s  ] 
+INFO:  Idle: 122,  Running: 16,  Completed: 30 [  7m 38s  ] 
+INFO:  Idle: 120,  Running: 16,  Completed: 32 [  8m 31s  ] 
+INFO:  Idle: 119,  Running: 16,  Completed: 33 [  10m 29s  ] 
+INFO:  Idle: 118,  Running: 16,  Completed: 34 [  10m 50s  ] 
+INFO:  Idle: 117,  Running: 16,  Completed: 35 [  11m 31s  ] 
+INFO:  Idle: 116,  Running: 16,  Completed: 36 [  13m 18s  ] 
+INFO:  Idle: 115,  Running: 16,  Completed: 37 [  13m 44s  ] 
+INFO:  Idle: 114,  Running: 16,  Completed: 38 [  14m 18s  ] 
+INFO:  Idle: 113,  Running: 16,  Completed: 39 [  14m 23s  ] 
+INFO:  Idle: 112,  Running: 16,  Completed: 40 [  15m 10s  ] 
+INFO:  Idle: 111,  Running: 16,  Completed: 41 [  15m 47s  ] 
+INFO:  Idle: 110,  Running: 16,  Completed: 42 [  16m 54s  ] 
+INFO:  Idle: 109,  Running: 16,  Completed: 43 [  18m 8s  ] 
+INFO:  Idle: 108,  Running: 16,  Completed: 44 [  18m 30s  ] 
+INFO:  Idle: 107,  Running: 16,  Completed: 45 [  19m 50s  ] 
+INFO:  Idle: 106,  Running: 16,  Completed: 46 [  20m 0s  ] 
+INFO:  Idle: 104,  Running: 16,  Completed: 48 [  20m 21s  ] 
+INFO:  Idle: 103,  Running: 16,  Completed: 49 [  21m 8s  ] 
+INFO:  Idle: 102,  Running: 16,  Completed: 50 [  21m 56s  ] 
+INFO:  Idle: 101,  Running: 16,  Completed: 51 [  22m 12s  ] 
+INFO:  Idle: 100,  Running: 16,  Completed: 52 [  22m 21s  ] 
+INFO:  Idle: 99,  Running: 16,  Completed: 53 [  22m 37s  ] 
+INFO:  Idle: 98,  Running: 16,  Completed: 54 [  23m 24s  ] 
+INFO:  Idle: 97,  Running: 16,  Completed: 55 [  23m 27s  ] 
+INFO:  Idle: 96,  Running: 16,  Completed: 56 [  23m 38s  ] 
+INFO:  Idle: 95,  Running: 16,  Completed: 57 [  24m 2s  ] 
+INFO:  Idle: 94,  Running: 16,  Completed: 58 [  24m 7s  ] 
+INFO:  Idle: 93,  Running: 16,  Completed: 59 [  24m 17s  ] 
+INFO:  Idle: 92,  Running: 16,  Completed: 60 [  25m 12s  ] 
+INFO:  Idle: 91,  Running: 16,  Completed: 61 [  25m 17s  ] 
+INFO:  Idle: 90,  Running: 16,  Completed: 62 [  26m 34s  ] 
+INFO:  Idle: 88,  Running: 16,  Completed: 64 [  26m 50s  ] 
+INFO:  Idle: 87,  Running: 16,  Completed: 65 [  27m 1s  ] 
+INFO:  Idle: 85,  Running: 16,  Completed: 67 [  27m 55s  ] 
+INFO:  Idle: 84,  Running: 16,  Completed: 68 [  28m 1s  ] 
+INFO:  Idle: 83,  Running: 16,  Completed: 69 [  28m 25s  ] 
+INFO:  Idle: 82,  Running: 16,  Completed: 70 [  28m 40s  ] 
+INFO:  Idle: 81,  Running: 16,  Completed: 71 [  28m 54s  ] 
+INFO:  Idle: 80,  Running: 16,  Completed: 72 [  29m 1s  ] 
+INFO:  Idle: 79,  Running: 16,  Completed: 73 [  29m 8s  ] 
+INFO:  Idle: 78,  Running: 16,  Completed: 74 [  29m 12s  ] 
+INFO:  Idle: 77,  Running: 16,  Completed: 75 [  29m 24s  ] 
+INFO:  Idle: 76,  Running: 16,  Completed: 76 [  29m 30s  ] 
+INFO:  Idle: 75,  Running: 16,  Completed: 77 [  29m 44s  ] 
+INFO:  Idle: 74,  Running: 16,  Completed: 78 [  30m 12s  ] 
+INFO:  Idle: 73,  Running: 16,  Completed: 79 [  30m 19s  ] 
+INFO:  Idle: 72,  Running: 16,  Completed: 80 [  30m 57s  ] 
+INFO:  Idle: 71,  Running: 16,  Completed: 81 [  31m 29s  ] 
+INFO:  Idle: 69,  Running: 16,  Completed: 83 [  31m 34s  ] 
+INFO:  Idle: 67,  Running: 16,  Completed: 85 [  32m 8s  ] 
+INFO:  Idle: 66,  Running: 16,  Completed: 86 [  32m 18s  ] 
+INFO:  Idle: 65,  Running: 16,  Completed: 87 [  32m 47s  ] 
+INFO:  Idle: 64,  Running: 16,  Completed: 88 [  32m 52s  ] 
+INFO:  Idle: 63,  Running: 16,  Completed: 89 [  33m 0s  ] 
+INFO:  Idle: 62,  Running: 16,  Completed: 90 [  33m 9s  ] 
+INFO:  Idle: 60,  Running: 16,  Completed: 92 [  33m 19s  ] 
+INFO:  Idle: 59,  Running: 16,  Completed: 93 [  34m 3s  ] 
+INFO:  Idle: 58,  Running: 16,  Completed: 94 [  34m 13s  ] 
+INFO:  Idle: 57,  Running: 16,  Completed: 95 [  34m 18s  ] 
+INFO:  Idle: 56,  Running: 16,  Completed: 96 [  35m 5s  ] 
+INFO:  Idle: 55,  Running: 16,  Completed: 97 [  35m 13s  ] 
+INFO:  Idle: 54,  Running: 16,  Completed: 98 [  35m 23s  ] 
+INFO:  Idle: 52,  Running: 16,  Completed: 100 [  35m 28s  ] 
+INFO:  Idle: 51,  Running: 16,  Completed: 101 [  35m 36s  ] 
+INFO:  Idle: 50,  Running: 16,  Completed: 102 [  35m 44s  ] 
+INFO:  Idle: 49,  Running: 16,  Completed: 103 [  35m 59s  ] 
+INFO:  Idle: 47,  Running: 16,  Completed: 105 [  36m 11s  ] 
+INFO:  Idle: 46,  Running: 16,  Completed: 106 [  36m 19s  ] 
+INFO:  Idle: 45,  Running: 16,  Completed: 107 [  36m 31s  ] 
+INFO:  Idle: 44,  Running: 16,  Completed: 108 [  36m 41s  ] 
+INFO:  Idle: 43,  Running: 16,  Completed: 109 [  37m 7s  ] 
+INFO:  Idle: 42,  Running: 16,  Completed: 110 [  37m 19s  ] 
+INFO:  Idle: 41,  Running: 16,  Completed: 111 [  37m 22s  ] 
+INFO:  Idle: 39,  Running: 16,  Completed: 113 [  37m 29s  ] 
+INFO:  Idle: 37,  Running: 16,  Completed: 115 [  37m 39s  ] 
+INFO:  Idle: 36,  Running: 16,  Completed: 116 [  37m 46s  ] 
+INFO:  Idle: 34,  Running: 16,  Completed: 118 [  37m 59s  ] 
+INFO:  Idle: 32,  Running: 16,  Completed: 120 [  38m 28s  ] 
+INFO:  Idle: 30,  Running: 16,  Completed: 122 [  38m 41s  ] 
+INFO:  Idle: 29,  Running: 16,  Completed: 123 [  38m 45s  ] 
+INFO:  Idle: 27,  Running: 16,  Completed: 125 [  38m 49s  ] 
+INFO:  Idle: 26,  Running: 16,  Completed: 126 [  39m 1s  ] 
+INFO:  Idle: 24,  Running: 16,  Completed: 128 [  39m 5s  ] 
+INFO:  Idle: 23,  Running: 16,  Completed: 129 [  39m 10s  ] 
+INFO:  Idle: 22,  Running: 16,  Completed: 130 [  41m 14s  ] 
+INFO:  Idle: 20,  Running: 16,  Completed: 132 [  41m 36s  ] 
+INFO:  Idle: 18,  Running: 16,  Completed: 134 [  41m 40s  ] 
+INFO:  Idle: 15,  Running: 16,  Completed: 137 [  41m 56s  ] 
+INFO:  Idle: 14,  Running: 16,  Completed: 138 [  42m 0s  ] 
+INFO:  Idle: 13,  Running: 16,  Completed: 139 [  42m 20s  ] 
+INFO:  Idle: 12,  Running: 16,  Completed: 140 [  42m 26s  ] 
+INFO:  Idle: 11,  Running: 16,  Completed: 141 [  42m 29s  ] 
+INFO:  Idle: 9,  Running: 16,  Completed: 143 [  42m 46s  ] 
+INFO:  Idle: 8,  Running: 16,  Completed: 144 [  42m 53s  ] 
+INFO:  Idle: 7,  Running: 16,  Completed: 145 [  43m 5s  ] 
+INFO:  Idle: 6,  Running: 16,  Completed: 146 [  43m 24s  ] 
+INFO:  Idle: 5,  Running: 16,  Completed: 147 [  43m 27s  ] 
+INFO:  Idle: 4,  Running: 16,  Completed: 148 [  43m 33s  ] 
+INFO:  Idle: 3,  Running: 16,  Completed: 149 [  43m 44s  ] 
+INFO:  Idle: 1,  Running: 16,  Completed: 151 [  43m 52s  ] 
+INFO:  Idle: 0,  Running: 16,  Completed: 152 [  43m 57s  ] 
+INFO:  Idle: 0,  Running: 15,  Completed: 153 [  44m 2s  ] 
+INFO:  Idle: 0,  Running: 14,  Completed: 154 [  44m 12s  ] 
+INFO:  Idle: 0,  Running: 13,  Completed: 155 [  44m 21s  ] 
+INFO:  Idle: 0,  Running: 11,  Completed: 157 [  44m 25s  ] 
+INFO:  Idle: 0,  Running: 8,  Completed: 160 [  45m 0s  ] 
+INFO:  Idle: 0,  Running: 7,  Completed: 161 [  45m 28s  ] 
+INFO:  Idle: 0,  Running: 6,  Completed: 162 [  45m 38s  ] 
+INFO:  Idle: 0,  Running: 5,  Completed: 163 [  46m 11s  ] 
+INFO:  Idle: 0,  Running: 4,  Completed: 164 [  46m 33s  ] 
+INFO:  Idle: 0,  Running: 3,  Completed: 165 [  47m 36s  ] 
+INFO:  Idle: 0,  Running: 2,  Completed: 166 [  47m 59s  ] 
+INFO:  Idle: 0,  Running: 1,  Completed: 167 [  50m 47s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 168 [  1h 7m  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 168 [  1h 7m  ] 
+INFO: Combining runs 
+sum of cpu time of last step: 36m23s
+INFO: finish refine 
+refine 80000 --treshold=0.9
+No need for second refine due to stability of cross-section
+INFO: Combining Events 
+INFO:  Idle: 16,  Running: 16,  Completed: 0 [ current time: 21h25 ] 
+INFO:  Idle: 15,  Running: 16,  Completed: 1 [  5.5s  ] 
+INFO:  Idle: 11,  Running: 16,  Completed: 5 [  14.7s  ] 
+INFO:  Idle: 8,  Running: 16,  Completed: 8 [  19.3s  ] 
+INFO:  Idle: 6,  Running: 16,  Completed: 10 [  25.3s  ] 
+INFO:  Idle: 4,  Running: 16,  Completed: 12 [  28.7s  ] 
+INFO:  Idle: 3,  Running: 16,  Completed: 13 [  37.8s  ] 
+INFO:  Idle: 2,  Running: 16,  Completed: 14 [  41.2s  ] 
+INFO:  Idle: 0,  Running: 16,  Completed: 16 [  45.1s  ] 
+INFO:  Idle: 0,  Running: 14,  Completed: 18 [  49.2s  ] 
+INFO:  Idle: 0,  Running: 12,  Completed: 20 [  52.8s  ] 
+INFO:  Idle: 0,  Running: 9,  Completed: 23 [  57.4s  ] 
+INFO:  Idle: 0,  Running: 6,  Completed: 26 [  1m 5s  ] 
+INFO:  Idle: 0,  Running: 4,  Completed: 28 [  1m 23s  ] 
+INFO:  Idle: 0,  Running: 3,  Completed: 29 [  1m 39s  ] 
+INFO:  Idle: 0,  Running: 2,  Completed: 30 [  1m 58s  ] 
+INFO:  Idle: 0,  Running: 1,  Completed: 31 [  2m 4s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 32 [  2m 12s  ] 
+combination of events done in 352.175253868103 s 
+  === Results Summary for run: run_04 tag: tag_1 ===
+
+     Cross-section :   3121 +- 3.333 pb
+     Nb of events :  80000
+ 
+store_events
+INFO: Storing parton level results 
+INFO: End Parton 
+reweight -from_cards
+decay_events -from_cards
+INFO: Creating root files 
+Warning in <TTree::Bronch>: Using split mode on a class: TRootWeight with a custom Streamer
+** Reading /work/pi_mjrm_umass_edu/LNV_collider/Generated/W3j/Events/run_04/unweighted_events.lhe
+** [----------------------------------------------------------------] (0.00%)** [###-------------------------------------------------------------] (6.05%)** [#######---------------------------------------------------------] (12.07%)** [##########------------------------------------------------------] (16.90%)** [##############--------------------------------------------------] (22.92%)** [##################----------------------------------------------] (28.76%)** [#####################-------------------------------------------] (33.37%)** [########################----------------------------------------] (38.58%)** [###########################-------------------------------------] (43.40%)** [###############################---------------------------------] (49.43%)** [##################################------------------------------] (54.03%)** [#####################################---------------------------] (58.66%)** [########################################------------------------] (62.85%)** [###########################################---------------------] (67.79%)** [##############################################------------------] (72.79%)** [#################################################---------------] (77.70%)** [##################################################--------------] (79.60%)** [#########################################################-------] (89.31%)** [################################################################] (100.00%)
+** Exiting...
+INFO: [92mRunning Pythia8 [arXiv:1410.3012][0m 
+Splitting .lhe event file for PY8 parallelization...
+Submitting Pythia8 jobs...
+Pythia8 shower jobs: 1 Idle, 15 Running, 0 Done [1m47s]
+Pythia8 shower jobs: 0 Idle, 16 Running, 0 Done [6m47s]
