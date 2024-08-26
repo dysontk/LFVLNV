@@ -15,7 +15,7 @@ class Events:
         self.hasCounted = []
 
         for rn in range(run_num):
-            _,output,_ = os.system(f"nohup /work/pi_mjrm_umass_edu/LNV_collider/Generated/{attempt}/bin/madevent ./MyFiles/LFVLNV/GenerationFiles/{attempt}_run.dat > MyFiles/LFVLNV/GenerationFiles/logs/{attempt}_{rn}.log 2>&1 &")
+            output = os.system(f"nohup /work/pi_mjrm_umass_edu/LNV_collider/Generated/{attempt}/bin/madevent ./MyFiles/LFVLNV/GenerationFiles/{attempt}_run.dat > MyFiles/LFVLNV/GenerationFiles/logs/{attempt}_{rn}.log 2>&1 &")
             self.pid.append(output[-7:])
             self.hasCounted.append(False)
             print(f"I've started {self.attempt}_{rn}")
@@ -23,14 +23,14 @@ class Events:
 
 
     def findStartingRunNum(self):
-        _,output,_ = os.system(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.attempt}/Events/")
+        output = os.system(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.attempt}/Events/")
 
         m = re.search(r'\d+$', output)
 
         return int(m.group()) if m else 0
     
     def checkRunning(self, run_num):
-        _,output,_ = os.system(f"ps | grep {self.pid[run_num]}")
+        output = os.system(f"ps | grep {self.pid[run_num]}")
 
         if output:
             return True
@@ -38,7 +38,7 @@ class Events:
         return False
     
     def findFileName(self, run_num):
-        _,output,_ = os.system(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.attempt}/Events/run_{run_num+self.begin_num:02d}/*delphes_events.root")
+        output = os.system(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.attempt}/Events/run_{run_num+self.begin_num:02d}/*delphes_events.root")
 
         return output
     
@@ -48,7 +48,7 @@ class Events:
             return 0
         
         self.hasCounted[run_num] = True
-        _,output,_ = os.system(f"./read_root_file {self.findFileName(run_num)}")
+        output = os.system(f"./read_root_file {self.findFileName(run_num)}")
 
         m = re.search(r'\d+$', output)
 
