@@ -1,0 +1,326 @@
+nohup: ignoring input
+************************************************************
+*                                                          *
+*                      W E L C O M E to                    *
+*             M A D G R A P H 5 _ a M C @ N L O            *
+*                      M A D E V E N T                     *
+*                                                          *
+*                 *                       *                *
+*                   *        * *        *                  *
+*                     * * * * 5 * * * *                    *
+*                   *        * *        *                  *
+*                 *                       *                *
+*                                                          *
+*         VERSION 3.5.4                                    *
+*                                                          *
+*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+*                                                          *
+*               Type 'help' for in-line help.              *
+*                                                          *
+************************************************************
+INFO: load configuration from /work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF/Cards/me5_configuration.txt  
+INFO: load configuration from /home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/input/mg5_configuration.txt  
+INFO: load configuration from /work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF/Cards/me5_configuration.txt  
+Using default text editor "vi". Set another one in ./input/mg5_configuration.txt
+Using default eps viewer "evince". Set another one in ./input/mg5_configuration.txt
+No valid web browser found. Please set in ./input/mg5_configuration.txt
+import command ./MyFiles/LFVLNV/GenerationFiles/LNVF_run.dat
+generate_events
+stty: 'standard input': Inappropriate ioctl for device
+The following switches determine which programs are run:
+/===========================================================================\
+| 1. Choose the shower/hadronization program   [1m  shower[0m = [32mPythia8[0m           |
+| 2. Choose the detector simulation program    [1mdetector[0m = [32mDelphes[0m           |
+| 3. Choose an analysis package (plot/convert) [1manalysis[0m = [32mExRoot[0m            |
+| 4. Decay onshell particles                   [1m madspin[0m = [31mOFF[0m               |
+| 5. Add weights to events for new hypp.       [1mreweight[0m = [01mNot Avail.[0m        |
+\===========================================================================/
+Either type the switch number (1 to 5) to change its setting,
+Set any switch explicitly (e.g. type 'shower=OFF' at the prompt)
+Type 'help' for the list of all valid option
+Type '0', 'auto', 'done' or just press enter when you are done.
+The following switches determine which programs are run:
+/===========================================================================\
+| 1. Choose the shower/hadronization program   [1m  shower[0m = [32mPythia8[0m           |
+| 2. Choose the detector simulation program    [1mdetector[0m = [32mDelphes[0m           |
+| 3. Choose an analysis package (plot/convert) [1manalysis[0m = [32mExRoot[0m            |
+| 4. Decay onshell particles                   [1m madspin[0m = [31mOFF[0m               |
+| 5. Add weights to events for new hypp.       [1mreweight[0m = [01mNot Avail.[0m        |
+\===========================================================================/
+Either type the switch number (1 to 5) to change its setting,
+Set any switch explicitly (e.g. type 'shower=OFF' at the prompt)
+Type 'help' for the list of all valid option
+Type '0', 'auto', 'done' or just press enter when you are done.
+set use_syst False
+[1mINFO: modify parameter use_syst of the run_card.dat to False [0m
+set MF1 1000
+[1mINFO: modify param_card information BLOCK mass with id (9000007,) set to 1000.0 [0m
+set MS1 1500
+[1mINFO: modify param_card information BLOCK mass with id (9000005,) set to 1500.0 [0m
+set MS2 1500
+[1mINFO: modify param_card information BLOCK mass with id (9000006,) set to 1500.0 [0m
+set ge 0.1
+[1mINFO: modify param_card information BLOCK lnv with id (3,) set to 0.1 [0m
+set gqd 0.1
+[1mINFO: modify param_card information BLOCK lnv with id (1,) set to 0.1 [0m
+set gqu 0.0
+[1mINFO: modify param_card information BLOCK lnv with id (2,) set to 0.0 [0m
+set WS1 Auto
+[1mINFO: modify param_card information BLOCK decay with id (9000005,) set to Auto [0m
+set WS2 Auto
+[1mINFO: modify param_card information BLOCK decay with id (9000006,) set to Auto [0m
+set WF1 Auto
+[1mINFO: modify param_card information BLOCK decay with id (9000007,) set to Auto [0m
+set xqcut 20
+[1mINFO: modify parameter xqcut of the run_card.dat to 20.0 [0m
+set ptj 20
+[1mINFO: modify parameter ptj of the run_card.dat to 20.0 [0m
+set ptb 20
+[1mINFO: modify parameter ptb of the run_card.dat to 20.0 [0m
+set ptl 20
+[1mINFO: modify parameter ptl of the run_card.dat to 20.0 [0m
+set etaj 2.8
+[1mINFO: modify parameter etaj of the run_card.dat to 2.8 [0m
+set etal 2.5
+[1mINFO: modify parameter etal of the run_card.dat to 2.5 [0m
+set ebeam1 7000
+[1mINFO: modify parameter ebeam1 of the run_card.dat to 7000.0 [0m
+set ebeam2 7000
+[1mINFO: modify parameter ebeam2 of the run_card.dat to 7000.0 [0m
+set nevents 60000
+[1mINFO: modify parameter nevents of the run_card.dat to 60000 [0m
+set iseed 1
+[1mINFO: modify parameter iseed of the run_card.dat to 1 [0m
+set JetMatching:nJetMax 3
+[1mINFO: modify parameter jetmatching:njetmax of the pythia8_card.dat to 3 [0m
+Do you want to edit a card (press enter to bypass editing)?
+/------------------------------------------------------------\
+|  [31m1[0m. param   : [32mparam_card.dat[0m                               |
+|  [31m2[0m. run     : [32mrun_card.dat[0m                                 |
+|  [31m3[0m. pythia8 : [32mpythia8_card.dat[0m                             |
+|  [31m4[0m. delphes : [32mdelphes_card.dat[0m                             |
+\------------------------------------------------------------/
+ you can also
+   - enter the path to a valid card or banner.
+   - use the 'set' command to modify a parameter directly.
+     The set option works only for param_card and run_card.
+     Type 'help set' for more information on this command.
+   - call an external program (ASperGE/MadWidth/...).
+     Type 'help' for the list of available command
+ [[4m0[0m, done, 1, param, 2, run, 3, pythia8, 4, enter path, ... ]
+[1mThe answer to the previous question is not set in your input file[0m
+[1mUse 0 value[0m
+INFO: Change particles name to pass to MG5 convention 
+************************************************************
+*                                                          *
+*                     W E L C O M E to                     *
+*              M A D G R A P H 5 _ a M C @ N L O           *
+*                                                          *
+*                                                          *
+*                 *                       *                *
+*                   *        * *        *                  *
+*                     * * * * 5 * * * *                    *
+*                   *        * *        *                  *
+*                 *                       *                *
+*                                                          *
+*         VERSION 3.5.4                 2024-04-05         *
+*                                                          *
+*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+*              http://madgraph.phys.ucl.ac.be/             *
+*                            and                           *
+*            http://amcatnlo.web.cern.ch/amcatnlo/         *
+*                                                          *
+*               Type 'help' for in-line help.              *
+*           Type 'tutorial' to learn how MG5 works         *
+*    Type 'tutorial aMCatNLO' to learn how aMC@NLO works   *
+*    Type 'tutorial MadLoop' to learn how MadLoop works    *
+*                                                          *
+************************************************************
+load MG5 configuration from input/mg5_configuration.txt 
+fastjet-config does not seem to correspond to a valid fastjet-config executable (v3+). We will use fjcore instead.
+ Please set the 'fastjet'variable to the full (absolute) /PATH/TO/fastjet-config (including fastjet-config).
+ MG5_aMC> set fastjet /PATH/TO/fastjet-config
+
+eMELA-config does not seem to correspond to a valid eMELA-config executable.
+ Please set the 'fastjet'variable to the full (absolute) /PATH/TO/eMELA-config (including eMELA-config).
+ MG5_aMC> set eMELA /PATH/TO/eMELA-config
+
+lhapdf-config does not seem to correspond to a valid lhapdf-config executable. 
+Please set the 'lhapdf' variable to the (absolute) /PATH/TO/lhapdf-config (including lhapdf-config).
+Note that you can still compile and run aMC@NLO with the built-in PDFs
+ MG5_aMC> set lhapdf /PATH/TO/lhapdf-config
+
+set lhapdf to /home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/HEPTools/lhapdf6_py3/bin/lhapdf-config
+Using default text editor "vi". Set another one in ./input/mg5_configuration.txt
+Using default eps viewer "evince". Set another one in ./input/mg5_configuration.txt
+No valid web browser found. Please set in ./input/mg5_configuration.txt
+set automatic_html_opening False --no_save
+compute_widths 9000005 9000006 9000007 --output=/work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF/Cards/param_card.dat --path=/work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF/Cards/param_card.dat --body_decay=4.0025 --precision_channel=0.01
+[1;34mPlease note that the automatic computation of the width is
+    only valid in narrow-width approximation and at tree-level.[0m
+INFO: Get two body decay from FeynRules formula 
+Results written to /work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF/Cards/param_card.dat
+INFO: get decay diagram for s1+ 
+Vertexlist of this model has not been searched.Automatically run the model.find_vertexlist()
+Found 2 stable particles
+INFO:     current estimated error: 0.10498679940668779 go to 4-body decay: 
+INFO:     stop to 4.0 body-decay. approximate error: 0.002534125410998617 
+INFO: get decay diagram for s2 
+INFO:     current estimated error: 0.2111564944267043 go to 4-body decay: 
+INFO:     stop to 4.0 body-decay. approximate error: 0.0028969663523080538 
+INFO: get decay diagram for f1 
+INFO:     current estimated error: 0.012413484812209245 go to 4-body decay: 
+INFO:     stop to 4.0 body-decay. approximate error: 0.02285849477653021 
+Pass to numerical integration for computing the widths:
+INFO: More info in temporary files:
+    /home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/tmpdcrw8e01/temp_decay/index.html 
+Results written to /work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF/Cards/param_card.dat
+[1;34mWARNING: Particle 9000007 with very small width (1.43523e-06): Learn about special handling here: https://answers.launchpad.net/mg5amcnlo/+faq/3053 [0m
+INFO: Update the dependent parameter of the param_card.dat 
+Generating 60000 events with run name run_03
+survey  run_03 
+INFO: compile directory 
+[1;34mNot able to open file /work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF/crossx.html since no program configured.Please set one in ./input/mg5_configuration.txt[0m
+compile Source Directory
+Using random number seed offset = 1
+INFO: Running Survey 
+Creating Jobs
+Working on SubProcesses
+INFO: Compiling for process 1/6. 
+INFO:     P3_gq_qqqll  
+[1;34mWARNING: The optimizer detects that you have coupling evaluated to zero: 
+GC_16 GC_20 GC_79 GC_83
+This will slow down the computation. Please consider using restricted model:
+https://answers.launchpad.net/mg5amcnlo/+faq/2312 [0m
+INFO: Compiling for process 2/6. 
+INFO:     P3_qq_gqqll  
+INFO: Compiling for process 3/6. 
+INFO:     P4_gq_qqqll  
+INFO: Compiling for process 4/6. 
+INFO:     P4_qq_gqqll  
+INFO: Compiling for process 5/6. 
+INFO:     P1_qq_qqll  
+INFO: Compiling for process 6/6. 
+INFO:     P2_qq_qqll  
+INFO:     P3_gq_qqqll  
+INFO:     P3_qq_gqqll  
+INFO:     P4_gq_qqqll  
+INFO:     P4_qq_gqqll  
+INFO:     P1_qq_qqll  
+INFO:     P2_qq_qqll  
+INFO:  Idle: 14,  Running: 16,  Completed: 14 [ current time: 00h05 ] 
+INFO:  Idle: 13,  Running: 16,  Completed: 15 [  27.1s  ] 
+INFO:  Idle: 12,  Running: 16,  Completed: 16 [  1m 12s  ] 
+INFO:  Idle: 11,  Running: 16,  Completed: 17 [  2m 29s  ] 
+INFO:  Idle: 10,  Running: 16,  Completed: 18 [  3m 3s  ] 
+INFO:  Idle: 8,  Running: 16,  Completed: 20 [  3m 39s  ] 
+INFO:  Idle: 7,  Running: 16,  Completed: 21 [  4m 15s  ] 
+INFO:  Idle: 6,  Running: 16,  Completed: 22 [  4m 42s  ] 
+INFO:  Idle: 5,  Running: 16,  Completed: 23 [  4m 50s  ] 
+INFO:  Idle: 4,  Running: 16,  Completed: 24 [  4m 57s  ] 
+INFO:  Idle: 3,  Running: 16,  Completed: 25 [  5m 17s  ] 
+INFO:  Idle: 2,  Running: 16,  Completed: 26 [  5m 45s  ] 
+INFO:  Idle: 1,  Running: 16,  Completed: 27 [  5m 51s  ] 
+INFO:  Idle: 0,  Running: 16,  Completed: 28 [  6m 23s  ] 
+INFO:  Idle: 0,  Running: 15,  Completed: 29 [  7m 9s  ] 
+INFO:  Idle: 0,  Running: 14,  Completed: 30 [  7m 34s  ] 
+INFO:  Idle: 0,  Running: 13,  Completed: 31 [  8m 16s  ] 
+INFO:  Idle: 0,  Running: 12,  Completed: 32 [  8m 47s  ] 
+INFO:  Idle: 0,  Running: 11,  Completed: 33 [  8m 52s  ] 
+INFO:  Idle: 0,  Running: 10,  Completed: 34 [  9m 11s  ] 
+INFO:  Idle: 0,  Running: 9,  Completed: 35 [  9m 29s  ] 
+INFO:  Idle: 0,  Running: 8,  Completed: 36 [  10m 52s  ] 
+INFO:  Idle: 0,  Running: 7,  Completed: 37 [  11m 37s  ] 
+INFO:  Idle: 0,  Running: 6,  Completed: 38 [  11m 47s  ] 
+INFO:  Idle: 0,  Running: 5,  Completed: 39 [  12m 24s  ] 
+INFO:  Idle: 0,  Running: 3,  Completed: 41 [  12m 43s  ] 
+INFO:  Idle: 0,  Running: 2,  Completed: 42 [  13m 2s  ] 
+INFO:  Idle: 0,  Running: 1,  Completed: 43 [  14m 3s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 44 [  14m 50s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 44 [  14m 50s  ] 
+INFO: End survey 
+refine 60000
+Creating Jobs
+INFO: Refine results to 60000 
+INFO: Generating 60000.0 unweighted events. 
+sum of cpu time of last step: 8m56s
+INFO: Effective Luminosity 189912620.27960086 pb^-1 
+INFO: need to improve 47 channels 
+- Current estimate of cross-section: 0.00037912172394860983 +- 2.5353415619788615e-05
+    P3_gq_qqqll 
+    P3_qq_gqqll 
+    P4_gq_qqqll 
+    P4_qq_gqqll 
+    P1_qq_qqll 
+    P2_qq_qqll 
+INFO:  Idle: 72,  Running: 16,  Completed: 22 [ current time: 00h24 ] 
+INFO:  Idle: 71,  Running: 16,  Completed: 23 [  8.9s  ] 
+INFO:  Idle: 70,  Running: 16,  Completed: 24 [  14.6s  ] 
+INFO:  Idle: 67,  Running: 16,  Completed: 27 [  2m 39s  ] 
+INFO:  Idle: 65,  Running: 16,  Completed: 29 [  2m 53s  ] 
+INFO:  Idle: 63,  Running: 16,  Completed: 31 [  4m 12s  ] 
+INFO:  Idle: 62,  Running: 16,  Completed: 32 [  5m 21s  ] 
+INFO:  Idle: 61,  Running: 16,  Completed: 33 [  5m 42s  ] 
+INFO:  Idle: 60,  Running: 16,  Completed: 34 [  5m 54s  ] 
+INFO:  Idle: 58,  Running: 16,  Completed: 36 [  6m 26s  ] 
+INFO:  Idle: 57,  Running: 16,  Completed: 37 [  6m 40s  ] 
+INFO:  Idle: 56,  Running: 16,  Completed: 38 [  6m 52s  ] 
+INFO:  Idle: 54,  Running: 16,  Completed: 40 [  7m 17s  ] 
+INFO:  Idle: 53,  Running: 16,  Completed: 41 [  7m 43s  ] 
+INFO:  Idle: 52,  Running: 16,  Completed: 42 [  8m 25s  ] 
+INFO:  Idle: 51,  Running: 16,  Completed: 43 [  8m 40s  ] 
+INFO:  Idle: 50,  Running: 16,  Completed: 44 [  9m 26s  ] 
+INFO:  Idle: 49,  Running: 16,  Completed: 45 [  9m 48s  ] 
+INFO:  Idle: 47,  Running: 16,  Completed: 47 [  10m 27s  ] 
+INFO:  Idle: 46,  Running: 16,  Completed: 48 [  10m 32s  ] 
+INFO:  Idle: 45,  Running: 16,  Completed: 49 [  10m 58s  ] 
+INFO:  Idle: 44,  Running: 16,  Completed: 50 [  11m 7s  ] 
+INFO:  Idle: 43,  Running: 16,  Completed: 51 [  11m 20s  ] 
+INFO:  Idle: 42,  Running: 16,  Completed: 52 [  11m 41s  ] 
+INFO:  Idle: 41,  Running: 16,  Completed: 53 [  14m 17s  ] 
+INFO:  Idle: 40,  Running: 16,  Completed: 54 [  14m 28s  ] 
+INFO:  Idle: 39,  Running: 16,  Completed: 55 [  14m 36s  ] 
+INFO:  Idle: 38,  Running: 16,  Completed: 56 [  14m 44s  ] 
+INFO:  Idle: 37,  Running: 16,  Completed: 57 [  14m 57s  ] 
+INFO:  Idle: 36,  Running: 16,  Completed: 58 [  15m 2s  ] 
+INFO:  Idle: 35,  Running: 16,  Completed: 59 [  15m 11s  ] 
+INFO:  Idle: 34,  Running: 16,  Completed: 60 [  15m 45s  ] 
+INFO:  Idle: 33,  Running: 16,  Completed: 61 [  15m 54s  ] 
+INFO:  Idle: 32,  Running: 16,  Completed: 62 [  16m 11s  ] 
+INFO:  Idle: 31,  Running: 16,  Completed: 63 [  16m 34s  ] 
+INFO:  Idle: 30,  Running: 16,  Completed: 64 [  17m 24s  ] 
+INFO:  Idle: 29,  Running: 16,  Completed: 65 [  17m 41s  ] 
+INFO:  Idle: 28,  Running: 16,  Completed: 66 [  18m 39s  ] 
+INFO:  Idle: 27,  Running: 16,  Completed: 67 [  18m 56s  ] 
+INFO:  Idle: 26,  Running: 16,  Completed: 68 [  19m 12s  ] 
+INFO:  Idle: 24,  Running: 16,  Completed: 70 [  19m 33s  ] 
+INFO:  Idle: 22,  Running: 16,  Completed: 72 [  19m 45s  ] 
+INFO:  Idle: 21,  Running: 16,  Completed: 73 [  19m 48s  ] 
+INFO:  Idle: 20,  Running: 16,  Completed: 74 [  20m 7s  ] 
+INFO:  Idle: 19,  Running: 16,  Completed: 75 [  20m 23s  ] 
+INFO:  Idle: 18,  Running: 16,  Completed: 76 [  20m 37s  ] 
+INFO:  Idle: 17,  Running: 16,  Completed: 77 [  20m 57s  ] 
+INFO:  Idle: 16,  Running: 16,  Completed: 78 [  21m 18s  ] 
+INFO:  Idle: 15,  Running: 16,  Completed: 79 [  21m 35s  ] 
+INFO:  Idle: 13,  Running: 16,  Completed: 81 [  21m 52s  ] 
+INFO:  Idle: 12,  Running: 16,  Completed: 82 [  21m 55s  ] 
+INFO:  Idle: 11,  Running: 16,  Completed: 83 [  22m 7s  ] 
+INFO:  Idle: 9,  Running: 16,  Completed: 85 [  22m 26s  ] 
+INFO:  Idle: 8,  Running: 16,  Completed: 86 [  22m 50s  ] 
+INFO:  Idle: 7,  Running: 16,  Completed: 87 [  22m 58s  ] 
+INFO:  Idle: 6,  Running: 16,  Completed: 88 [  23m 3s  ] 
+INFO:  Idle: 5,  Running: 16,  Completed: 89 [  23m 11s  ] 
+INFO:  Idle: 4,  Running: 16,  Completed: 90 [  23m 33s  ] 
+INFO:  Idle: 3,  Running: 16,  Completed: 91 [  23m 51s  ] 
+INFO:  Idle: 1,  Running: 16,  Completed: 93 [  24m 8s  ] 
+INFO:  Idle: 0,  Running: 15,  Completed: 95 [  24m 24s  ] 
+INFO:  Idle: 0,  Running: 13,  Completed: 97 [  24m 50s  ] 
+INFO:  Idle: 0,  Running: 12,  Completed: 98 [  30m 39s  ] 
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   INFO:  Idle: 0,  Running: 11,  Completed: 99 [  45m 27s  ] 
+INFO:  Idle: 0,  Running: 9,  Completed: 101 [  52m 13s  ] 
+INFO:  Idle: 0,  Running: 8,  Completed: 102 [  53m 8s  ] 
+INFO:  Idle: 0,  Running: 6,  Completed: 104 [  55m 5s  ] 
+INFO:  Idle: 0,  Running: 5,  Completed: 105 [  56m 6s  ] 
+INFO:  Idle: 0,  Running: 4,  Completed: 106 [  58m 14s  ] 
+INFO:  Idle: 0,  Running: 3,  Completed: 107 [  59m 21s  ] 

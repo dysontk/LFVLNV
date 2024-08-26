@@ -388,3 +388,72 @@ Splitting .lhe event file for PY8 parallelization...
 Submitting Pythia8 jobs...
 Pythia8 shower jobs: 1 Idle, 15 Running, 0 Done [1m47s]
 Pythia8 shower jobs: 0 Idle, 16 Running, 0 Done [6m47s]
+Pythia8 shower jobs: 0 Idle, 12 Running, 4 Done [16m37s]
+Pythia8 shower jobs: 0 Idle, 9 Running, 7 Done [17m12s]
+Pythia8 shower jobs: 0 Idle, 0 Running, 16 Done [17m49s]
+Merging results from the split PY8 runs...
+INFO: Create matching plots for Pythia8 
+[1;34mWARNING: Install gnuplot to be able to view the plots generated at :
+   /work/pi_mjrm_umass_edu/LNV_collider/Generated/W3j/HTML/run_04/tag_1_PY8_plots/central_qCut_djr_plots.gnuplot.gnuplot
+   /work/pi_mjrm_umass_edu/LNV_collider/Generated/W3j/HTML/run_04/tag_1_PY8_plots/central_qCut_pt_plots.gnuplot.gnuplot [0m
+INFO: Pythia8 shower finished after 20m12s. 
+INFO: prepare delphes run 
+INFO: Running Delphes 
+INFO: If you are interested in lhco output. please run root2lhco converter. 
+INFO:  or edit bin/internal/run_delphes3 to run the converter automatically. 
+INFO: delphes done 
+  === Results Summary for run: run_04 tag: tag_1 ===
+
+     Cross-section :   3121 +- 3.333 pb
+     Nb of events :  80000
+     Matched cross-section :   823.8 +- 4.943 pb
+     Nb of events after matching/merging :  21117
+     Nb of events after merging :  21117
+ 
+INFO: storing files of previous run 
+INFO: Storing Pythia8 files of previous run 
+INFO: Done 
+print_results
+  === Results Summary for run: run_01 tag: tag_1 ===
+
+     Cross-section :   3082 +- 17.22 pb
+     Nb of events :  1000
+     Matched cross-section :   832.3 +- 5.723 pb
+     Nb of events after matching/merging :  16010
+     Nb of events after merging :  16010
+ 
+  === Results Summary for run: run_01 tag: tag_2 ===
+
+     Cross-section :   3055 +- 17.62 pb
+     Nb of events :  1000
+     Matched cross-section :   752 +- 42.07 pb
+     Nb of events after matching/merging :  244
+     Nb of events after merging :  244
+ 
+  === Results Summary for run: run_01 tag: tag_3 ===
+
+     Cross-section :   3055 +- 17.62 pb
+     Nb of events :  1000
+     Matched cross-section :   772.9 +- 42.24 pb
+     Nb of events after matching/merging :  253
+     Nb of events after merging :  253
+ 
+  === Results Summary for run: run_02 tag: tag_1 ===
+
+     Cross-section :   3124 +- 3.34 pb
+     Nb of events :  80000
+     Matched cross-section :   822.7 +- 4.944 pb
+     Nb of events after matching/merging :  21067
+     Nb of events after merging :  21067
+ 
+  === Results Summary for run: run_04 tag: tag_1 ===
+
+     Cross-section :   3121 +- 3.333 pb
+     Nb of events :  80000
+     Matched cross-section :   823.8 +- 4.943 pb
+     Nb of events after matching/merging :  21117
+     Nb of events after merging :  21117
+ 
+quit
+INFO:  
+launch in debug mode
