@@ -6,7 +6,7 @@ class Events:
     def __init__(self, attempt, run_num):
         
         self.client = paramiko.SSHClient()
-        self.client.connect(hostname='unity')
+        self.client.connect(hostname='unity.rc.umass.edu', username='dkennedy_umass_edu',key_filename='~/.ssh/unity-privkey.key')
         self.run_num = run_num
         self.attempt = attempt
         self.pid = []
