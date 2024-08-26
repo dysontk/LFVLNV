@@ -357,3 +357,73 @@ INFO:  Idle: 0,  Running: 5,  Completed: 129 [  1h 22m  ]
 INFO:  Idle: 0,  Running: 4,  Completed: 130 [  1h 23m  ] 
 INFO:  Idle: 0,  Running: 3,  Completed: 131 [  1h 38m  ] 
 INFO:  Idle: 0,  Running: 2,  Completed: 132 [  1h 55m  ] 
+INFO:  Idle: 0,  Running: 1,  Completed: 133 [  2h 14m  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 134 [  2h 16m  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 134 [  2h 16m  ] 
+INFO: Combining runs 
+sum of cpu time of last step: 27m11s
+INFO: finish refine 
+refine 80000 --treshold=0.9
+No need for second refine due to stability of cross-section
+INFO: Combining Events 
+INFO:  Idle: 16,  Running: 16,  Completed: 0 [ current time: 22h03 ] 
+INFO:  Idle: 15,  Running: 16,  Completed: 1 [  3.1s  ] 
+INFO:  Idle: 10,  Running: 16,  Completed: 6 [  7.6s  ] 
+INFO:  Idle: 6,  Running: 16,  Completed: 10 [  12.4s  ] 
+INFO:  Idle: 2,  Running: 16,  Completed: 14 [  16.2s  ] 
+INFO:  Idle: 0,  Running: 12,  Completed: 20 [  19.9s  ] 
+INFO:  Idle: 0,  Running: 9,  Completed: 23 [  26s  ] 
+INFO:  Idle: 0,  Running: 7,  Completed: 25 [  30.8s  ] 
+INFO:  Idle: 0,  Running: 5,  Completed: 27 [  36.6s  ] 
+INFO:  Idle: 0,  Running: 4,  Completed: 28 [  49.4s  ] 
+INFO:  Idle: 0,  Running: 1,  Completed: 31 [  1m 7s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 32 [  2m 17s  ] 
+combination of events done in 251.1021921634674 s 
+  === Results Summary for run: run_02 tag: tag_1 ===
+
+     Cross-section :   0.0003784 +- 1.552e-05 pb
+     Nb of events :  80000
+ 
+store_events
+INFO: Storing parton level results 
+INFO: End Parton 
+reweight -from_cards
+decay_events -from_cards
+INFO: Creating root files 
+Warning in <TTree::Bronch>: Using split mode on a class: TRootWeight with a custom Streamer
+** Reading /work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF/Events/run_02/unweighted_events.lhe
+** [----------------------------------------------------------------] (0.00%)** [####------------------------------------------------------------] (6.65%)** [#######---------------------------------------------------------] (11.35%)** [##########------------------------------------------------------] (16.34%)** [##############--------------------------------------------------] (22.97%)** [###################---------------------------------------------] (30.25%)** [#######################-----------------------------------------] (37.21%)** [############################------------------------------------] (44.88%)** [#################################-------------------------------] (52.18%)** [######################################--------------------------] (59.86%)** [###########################################---------------------] (67.59%)** [##############################################------------------] (72.76%)** [########################################################--------] (88.62%)** [################################################################] (100.00%)
+** Exiting...
+INFO: [92mRunning Pythia8 [arXiv:1410.3012][0m 
+Splitting .lhe event file for PY8 parallelization...
+Submitting Pythia8 jobs...
+Pythia8 shower jobs: 1 Idle, 15 Running, 0 Done [1m09s]
+Pythia8 shower jobs: 0 Idle, 16 Running, 0 Done [6m09s]
+Pythia8 shower jobs: 0 Idle, 14 Running, 2 Done [14m26s]
+Pythia8 shower jobs: 0 Idle, 3 Running, 13 Done [14m55s]
+Pythia8 shower jobs: 0 Idle, 0 Running, 16 Done [15m26s]
+Merging results from the split PY8 runs...
+INFO: Create matching plots for Pythia8 
+[1;34mWARNING: Install gnuplot to be able to view the plots generated at :
+   /work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF/HTML/run_02/tag_1_PY8_plots/central_qCut_djr_plots.gnuplot.gnuplot
+   /work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF/HTML/run_02/tag_1_PY8_plots/central_qCut_pt_plots.gnuplot.gnuplot [0m
+INFO: Pythia8 shower finished after 17m29s. 
+INFO: prepare delphes run 
+INFO: Running Delphes 
+INFO: If you are interested in lhco output. please run root2lhco converter. 
+INFO:  or edit bin/internal/run_delphes3 to run the converter automatically. 
+INFO: delphes done 
+  === Results Summary for run: run_02 tag: tag_1 ===
+
+     Cross-section :   0.0003784 +- 1.552e-05 pb
+     Nb of events :  80000
+     Matched cross-section :   0.000129 +- 5.331e-06 pb
+     Nb of events after matching/merging :  27283
+     Nb of events after merging :  27283
+ 
+INFO: storing files of previous run 
+INFO: Storing Pythia8 files of previous run 
+INFO: Done 
+quit
+INFO:  
+launch in debug mode
