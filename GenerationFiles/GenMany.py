@@ -62,7 +62,7 @@ class Events:
 if __name__ == '__main__':
     
     
-    allAttempts = [Events('ttbar', 2), Events('W3j', 2)]
+    allAttempts = [Events('ttbar', 2)]
 
     # totEventsByType = {}
 
