@@ -317,10 +317,96 @@ INFO:  Idle: 1,  Running: 16,  Completed: 93 [  24m 8s  ]
 INFO:  Idle: 0,  Running: 15,  Completed: 95 [  24m 24s  ] 
 INFO:  Idle: 0,  Running: 13,  Completed: 97 [  24m 50s  ] 
 INFO:  Idle: 0,  Running: 12,  Completed: 98 [  30m 39s  ] 
-                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   INFO:  Idle: 0,  Running: 11,  Completed: 99 [  45m 27s  ] 
-INFO:  Idle: 0,  Running: 9,  Completed: 101 [  52m 13s  ] 
-INFO:  Idle: 0,  Running: 8,  Completed: 102 [  53m 8s  ] 
-INFO:  Idle: 0,  Running: 6,  Completed: 104 [  55m 5s  ] 
-INFO:  Idle: 0,  Running: 5,  Completed: 105 [  56m 6s  ] 
-INFO:  Idle: 0,  Running: 4,  Completed: 106 [  58m 14s  ] 
-INFO:  Idle: 0,  Running: 3,  Completed: 107 [  59m 21s  ] 
+INFO:  Idle: 0,  Running: 11,  Completed: 99 [  31m 52s  ] 
+INFO:  Idle: 0,  Running: 10,  Completed: 100 [  35m 16s  ] 
+INFO:  Idle: 0,  Running: 8,  Completed: 102 [  38m 41s  ] 
+INFO:  Idle: 0,  Running: 7,  Completed: 103 [  39m 29s  ] 
+INFO:  Idle: 0,  Running: 6,  Completed: 104 [  42m 2s  ] 
+INFO:  Idle: 0,  Running: 5,  Completed: 105 [  42m 57s  ] 
+INFO:  Idle: 0,  Running: 3,  Completed: 107 [  48m 3s  ] 
+INFO:  Idle: 0,  Running: 2,  Completed: 108 [  1h 40m  ] 
+INFO:  Idle: 0,  Running: 1,  Completed: 109 [  1h 42m  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 110 [  3h 9m  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 110 [  3h 9m  ] 
+INFO: Combining runs 
+sum of cpu time of last step: 21m17s
+INFO: finish refine 
+refine 60000 --treshold=0.9
+No need for second refine due to stability of cross-section
+INFO: Combining Events 
+INFO:  Idle: 16,  Running: 16,  Completed: 0 [ current time: 03h33 ] 
+INFO:  Idle: 13,  Running: 16,  Completed: 3 [  3.3s  ] 
+[1;34mWARNING: program /usr/bin/python3 /work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF/bin/internal/madevent_interface.py combine_events_partial /work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF/Events/run_03/partials10.lhe.gz /work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF/Events/run_03/run_03_tag_1_banner.txt 0.00037799761144982787 /work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF/SubProcesses/P3_qq_gqqll/G17.16 /work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF/SubProcesses/P3_qq_gqqll/G17.17 /work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF/SubProcesses/P3_qq_gqqll/G17.23 launch ends with non zero status: 1. Stop all computation [0m
+INFO:  Idle: 11,  Running: 14,  Completed: 7 [  6.3s  ] 
+nning: 0,  Completed: 110 [  2h 26m  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 110 [  2h 26m  ] 
+INFO: Combining runs 
+sum of cpu time of last step: 26m19s
+INFO: finish refine 
+refine 60000 --treshold=0.9
+No need for second refine due to stability of cross-section
+INFO: Combining Events 
+INFO:  Idle: 16,  Running: 16,  Completed: 0 [ current time: 01h27 ] 
+INFO:  Idle: 15,  Running: 16,  Completed: 1 [  4.2s  ] 
+INFO:  Idle: 9,  Running: 16,  Completed: 7 [  10.8s  ] 
+INFO:  Idle: 4,  Running: 16,  Completed: 12 [  13.8s  ] 
+INFO:  Idle: 1,  Running: 16,  Completed: 15 [  17.9s  ] 
+INFO:  Idle: 0,  Running: 15,  Completed: 17 [  22.1s  ] 
+INFO:  Idle: 0,  Running: 10,  Completed: 22 [  25.4s  ] 
+INFO:  Idle: 0,  Running: 8,  Completed: 24 [  29.2s  ] 
+INFO:  Idle: 0,  Running: 6,  Completed: 26 [  33s  ] 
+INFO:  Idle: 0,  Running: 5,  Completed: 27 [  38.5s  ] 
+INFO:  Idle: 0,  Running: 3,  Completed: 29 [  55.7s  ] 
+INFO:  Idle: 0,  Running: 1,  Completed: 31 [  1m 15s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 32 [  1m 42s  ] 
+combination of events done in 288.8391344547272 s 
+  === Results Summary for run: run_03 tag: tag_1 ===
+
+     Cross-section :   0.0003787 +- 1.552e-05 pb
+     Nb of events :  60000
+ 
+store_events
+INFO: Storing parton level results 
+INFO: End Parton 
+reweight -from_cards
+decay_events -from_cards
+INFO: Creating root files 
+Warning in <TTree::Bronch>: Using split mode on a class: TRootWeight with a custom Streamer
+** Reading /work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF/Events/run_03/unweighted_events.lhe
+** [----------------------------------------------------------------] (0.00%)** [#---------------------------------------------------------------] (2.81%)** [##--------------------------------------------------------------] (4.20%)** [###-------------------------------------------------------------] (5.20%)** [####------------------------------------------------------------] (6.68%)** [#####-----------------------------------------------------------] (8.07%)** [######----------------------------------------------------------] (9.76%)** [#######---------------------------------------------------------] (11.15%)** [########--------------------------------------------------------] (12.54%)** [#########-------------------------------------------------------] (15.32%)** [###########-----------------------------------------------------] (17.99%)** [############----------------------------------------------------] (19.74%)** [#############---------------------------------------------------] (20.47%)** [##############--------------------------------------------------] (22.69%)** [###############-------------------------------------------------] (23.67%)** [################------------------------------------------------] (25.16%)** [#################-----------------------------------------------] (26.72%)** [##################----------------------------------------------] (29.23%)** [###################---------------------------------------------] (30.62%)** [#####################-------------------------------------------] (32.85%)** [######################------------------------------------------] (34.79%)** [#######################-----------------------------------------] (36.76%)** [########################----------------------------------------] (37.81%)** [#########################---------------------------------------] (40.35%)** [##########################--------------------------------------] (42.11%)** [###########################-------------------------------------] (42.77%)** [############################------------------------------------] (44.20%)** [#############################-----------------------------------] (45.36%)** [##############################----------------------------------] (47.31%)** [###############################---------------------------------] (49.54%)** [################################--------------------------------] (50.09%)** [#################################-------------------------------] (52.20%)** [##################################------------------------------] (53.28%)** [###################################-----------------------------] (55.44%)** [####################################----------------------------] (56.33%)** [#####################################---------------------------] (58.44%)** [######################################--------------------------] (59.83%)** [#######################################-------------------------] (61.55%)** [########################################------------------------] (63.45%)** [##########################################----------------------] (65.72%)** [###########################################---------------------] (68.16%)** [############################################--------------------] (70.15%)** [##############################################------------------] (72.35%)** [################################################----------------] (75.13%)** [#################################################---------------] (78.11%)** [##################################################--------------] (78.63%)** [###################################################-------------] (80.63%)** [####################################################------------] (82.09%)** [#####################################################-----------] (83.48%)** [######################################################----------] (84.87%)** [#######################################################---------] (86.26%)** [########################################################--------] (89.04%)** [##########################################################------] (90.90%)** [###########################################################-----] (92.98%)** [############################################################----] (94.59%)** [#############################################################---] (95.71%)** [##############################################################--] (97.27%)** [###############################################################-] (99.76%)** [################################################################] (100.00%)
+** Exiting...
+INFO: compile directory 
+compile Source Directory
+INFO: [92mRunning Pythia8 [arXiv:1410.3012][0m 
+Splitting .lhe event file for PY8 parallelization...
+Submitting Pythia8 jobs...
+Pythia8 shower jobs: 1 Idle, 15 Running, 0 Done [8m25s]
+Pythia8 shower jobs: 0 Idle, 16 Running, 0 Done [13m25s]
+Pythia8 shower jobs: 0 Idle, 15 Running, 1 Done [20m49s]
+Pythia8 shower jobs: 0 Idle, 8 Running, 8 Done [21m14s]
+Pythia8 shower jobs: 0 Idle, 0 Running, 16 Done [21m41s]
+Merging results from the split PY8 runs...
+INFO: Create matching plots for Pythia8 
+[1;34mWARNING: Install gnuplot to be able to view the plots generated at :
+   /work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF/HTML/run_03/tag_1_PY8_plots/central_qCut_djr_plots.gnuplot.gnuplot
+   /work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF/HTML/run_03/tag_1_PY8_plots/central_qCut_pt_plots.gnuplot.gnuplot [0m
+INFO: Pythia8 shower finished after 27m08s. 
+INFO: prepare delphes run 
+INFO: Running Delphes 
+INFO: If you are interested in lhco output. please run root2lhco converter. 
+INFO:  or edit bin/internal/run_delphes3 to run the converter automatically. 
+INFO: delphes done 
+  === Results Summary for run: run_03 tag: tag_1 ===
+
+     Cross-section :   0.0003787 +- 1.552e-05 pb
+     Nb of events :  60000
+     Matched cross-section :   0.0001294 +- 5.354e-06 pb
+     Nb of events after matching/merging :  20500
+     Nb of events after merging :  20500
+ 
+INFO: storing files of previous run 
+INFO: Storing Pythia8 files of previous run 
+INFO: Done 
+quit
+INFO:  
+launch in debug mode

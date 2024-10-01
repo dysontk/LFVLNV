@@ -310,3 +310,61 @@ INFO: Create matching plots for Pythia8
 INFO: Pythia8 shower finished after 37m24s. 
 INFO: prepare delphes run 
 INFO: Running Delphes 
+INFO: If you are interested in lhco output. please run root2lhco converter. 
+INFO:  or edit bin/internal/run_delphes3 to run the converter automatically. 
+INFO: delphes done 
+  === Results Summary for run: run_05 tag: tag_1 ===
+
+     Cross-section :   184.1 +- 0.272 pb
+     Nb of events :  60000
+     Matched cross-section :   45.52 +- 0.3311 pb
+     Nb of events after matching/merging :  14837
+     Nb of events after merging :  14837
+ 
+INFO: storing files of previous run 
+INFO: Storing Pythia8 files of previous run 
+INFO: Done 
+print_results
+  === Results Summary for run: run_01 tag: tag_1 ===
+
+     Cross-section :   184.2 +- 0.7319 pb
+     Nb of events :  997
+     Matched cross-section :   46.26 +- 2.563 pb
+     Nb of events after matching/merging :  246
+     Nb of events after merging :  246
+ 
+  === Results Summary for run: run_01 tag: tag_2 ===
+
+     Cross-section :   184.2 +- 0.7319 pb
+     Nb of events :  997
+     Matched cross-section :   41.78 +- 2.449 pb
+     Nb of events after matching/merging :  226
+     Nb of events after merging :  226
+ 
+  === Results Summary for run: run_02 tag: tag_1 ===
+
+     Cross-section :   184 +- 0.7388 pb
+     Nb of events :  995
+     Matched cross-section :   45.87 +- 2.53 pb
+     Nb of events after matching/merging :  248
+     Nb of events after merging :  248
+ 
+  === Results Summary for run: run_04 tag: tag_1 ===
+
+     Cross-section :   184.2 +- 0.2454 pb
+     Nb of events :  80000
+     Matched cross-section :   45.25 +- 0.2868 pb
+     Nb of events after matching/merging :  19651
+     Nb of events after merging :  19651
+ 
+  === Results Summary for run: run_05 tag: tag_1 ===
+
+     Cross-section :   184.1 +- 0.272 pb
+     Nb of events :  60000
+     Matched cross-section :   45.52 +- 0.3311 pb
+     Nb of events after matching/merging :  14837
+     Nb of events after merging :  14837
+ 
+quit
+INFO:  
+launch in debug mode

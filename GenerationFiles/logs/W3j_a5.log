@@ -358,3 +358,133 @@ INFO:  Idle: 0,  Running: 5,  Completed: 128 [  38m 0s  ]
 INFO:  Idle: 0,  Running: 4,  Completed: 129 [  38m 42s  ] 
 INFO:  Idle: 0,  Running: 3,  Completed: 130 [  43m 46s  ] 
 INFO:  Idle: 0,  Running: 2,  Completed: 131 [  47m 59s  ] 
+INFO:  Idle: 0,  Running: 1,  Completed: 132 [  2h 15m  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 133 [  2h 22m  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 133 [  2h 22m  ] 
+INFO: Combining runs 
+sum of cpu time of last step: 36m20s
+INFO: finish refine 
+refine 60000 --treshold=0.9
+No need for second refine due to stability of cross-section
+INFO: Combining Events 
+INFO:  Idle: 16,  Running: 16,  Completed: 0 [ current time: 01h24 ] 
+INFO:  Idle: 15,  Running: 16,  Completed: 1 [  3.1s  ] 
+INFO:  Idle: 11,  Running: 16,  Completed: 5 [  11s  ] 
+INFO:  Idle: 9,  Running: 16,  Completed: 7 [  15s  ] 
+INFO:  Idle: 5,  Running: 16,  Completed: 11 [  20.7s  ] 
+INFO:  Idle: 4,  Running: 16,  Completed: 12 [  25.6s  ] 
+INFO:  Idle: 3,  Running: 16,  Completed: 13 [  29s  ] 
+INFO:  Idle: 0,  Running: 16,  Completed: 16 [  32.3s  ] 
+INFO:  Idle: 0,  Running: 14,  Completed: 18 [  41.5s  ] 
+INFO:  Idle: 0,  Running: 13,  Completed: 19 [  44.7s  ] 
+INFO:  Idle: 0,  Running: 5,  Completed: 27 [  1m 8s  ] 
+INFO:  Idle: 0,  Running: 4,  Completed: 28 [  1m 11s  ] 
+INFO:  Idle: 0,  Running: 2,  Completed: 30 [  1m 30s  ] 
+INFO:  Idle: 0,  Running: 1,  Completed: 31 [  1m 41s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 32 [  2m 16s  ] 
+combination of events done in 379.52267360687256 s 
+  === Results Summary for run: run_05 tag: tag_1 ===
+
+     Cross-section :   3114 +- 3.933 pb
+     Nb of events :  60000
+ 
+store_events
+INFO: Storing parton level results 
+INFO: End Parton 
+reweight -from_cards
+decay_events -from_cards
+INFO: Creating root files 
+Warning in <TTree::Bronch>: Using split mode on a class: TRootWeight with a custom Streamer
+** Reading /work/pi_mjrm_umass_edu/LNV_collider/Generated/W3j/Events/run_05/unweighted_events.lhe
+** [----------------------------------------------------------------] (0.00%)** [####------------------------------------------------------------] (6.42%)** [########--------------------------------------------------------] (12.88%)** [###########-----------------------------------------------------] (17.70%)** [##############--------------------------------------------------] (22.52%)** [##################----------------------------------------------] (28.95%)** [######################------------------------------------------] (35.26%)** [#########################---------------------------------------] (40.19%)** [############################------------------------------------] (45.09%)** [################################--------------------------------] (51.07%)** [####################################----------------------------] (56.31%)** [########################################------------------------] (62.69%)** [############################################--------------------] (69.06%)** [###############################################-----------------] (73.93%)** [###################################################-------------] (79.94%)** [######################################################----------] (85.71%)** [##########################################################------] (91.61%)** [##############################################################--] (97.79%)** [################################################################] (100.00%)
+** Exiting...
+INFO: [92mRunning Pythia8 [arXiv:1410.3012][0m 
+Splitting .lhe event file for PY8 parallelization...
+Submitting Pythia8 jobs...
+Pythia8 shower jobs: 1 Idle, 15 Running, 0 Done [1m35s]
+Pythia8 shower jobs: 0 Idle, 16 Running, 0 Done [6m35s]
+Pythia8 shower jobs: 0 Idle, 15 Running, 1 Done [11m44s]
+Pythia8 shower jobs: 0 Idle, 14 Running, 2 Done [12m11s]
+Pythia8 shower jobs: 0 Idle, 13 Running, 3 Done [12m24s]
+Pythia8 shower jobs: 0 Idle, 12 Running, 4 Done [12m39s]
+Pythia8 shower jobs: 0 Idle, 11 Running, 5 Done [12m57s]
+Pythia8 shower jobs: 0 Idle, 10 Running, 6 Done [13m16s]
+Pythia8 shower jobs: 0 Idle, 9 Running, 7 Done [15m21s]
+Pythia8 shower jobs: 0 Idle, 7 Running, 9 Done [16m25s]
+Pythia8 shower jobs: 0 Idle, 4 Running, 12 Done [17m00s]
+Pythia8 shower jobs: 0 Idle, 1 Running, 15 Done [17m38s]
+Pythia8 shower jobs: 0 Idle, 0 Running, 16 Done [18m17s]
+Merging results from the split PY8 runs...
+INFO: Create matching plots for Pythia8 
+[1;34mWARNING: Install gnuplot to be able to view the plots generated at :
+   /work/pi_mjrm_umass_edu/LNV_collider/Generated/W3j/HTML/run_05/tag_1_PY8_plots/central_qCut_djr_plots.gnuplot.gnuplot
+   /work/pi_mjrm_umass_edu/LNV_collider/Generated/W3j/HTML/run_05/tag_1_PY8_plots/central_qCut_pt_plots.gnuplot.gnuplot [0m
+INFO: Pythia8 shower finished after 27m46s. 
+INFO: prepare delphes run 
+INFO: Running Delphes 
+INFO: If you are interested in lhco output. please run root2lhco converter. 
+INFO:  or edit bin/internal/run_delphes3 to run the converter automatically. 
+INFO: delphes done 
+  === Results Summary for run: run_05 tag: tag_1 ===
+
+     Cross-section :   3114 +- 3.933 pb
+     Nb of events :  60000
+     Matched cross-section :   822.9 +- 5.701 pb
+     Nb of events after matching/merging :  15856
+     Nb of events after merging :  15856
+ 
+INFO: storing files of previous run 
+INFO: Storing Pythia8 files of previous run 
+INFO: Done 
+print_results
+  === Results Summary for run: run_01 tag: tag_1 ===
+
+     Cross-section :   3082 +- 17.22 pb
+     Nb of events :  1000
+     Matched cross-section :   832.3 +- 5.723 pb
+     Nb of events after matching/merging :  16010
+     Nb of events after merging :  16010
+ 
+  === Results Summary for run: run_01 tag: tag_2 ===
+
+     Cross-section :   3055 +- 17.62 pb
+     Nb of events :  1000
+     Matched cross-section :   752 +- 42.07 pb
+     Nb of events after matching/merging :  244
+     Nb of events after merging :  244
+ 
+  === Results Summary for run: run_01 tag: tag_3 ===
+
+     Cross-section :   3055 +- 17.62 pb
+     Nb of events :  1000
+     Matched cross-section :   772.9 +- 42.24 pb
+     Nb of events after matching/merging :  253
+     Nb of events after merging :  253
+ 
+  === Results Summary for run: run_02 tag: tag_1 ===
+
+     Cross-section :   3124 +- 3.34 pb
+     Nb of events :  80000
+     Matched cross-section :   822.7 +- 4.944 pb
+     Nb of events after matching/merging :  21067
+     Nb of events after merging :  21067
+ 
+  === Results Summary for run: run_04 tag: tag_1 ===
+
+     Cross-section :   3121 +- 3.333 pb
+     Nb of events :  80000
+     Matched cross-section :   823.8 +- 4.943 pb
+     Nb of events after matching/merging :  21117
+     Nb of events after merging :  21117
+ 
+  === Results Summary for run: run_05 tag: tag_1 ===
+
+     Cross-section :   3114 +- 3.933 pb
+     Nb of events :  60000
+     Matched cross-section :   822.9 +- 5.701 pb
+     Nb of events after matching/merging :  15856
+     Nb of events after merging :  15856
+ 
+quit
+INFO:  
+launch in debug mode
