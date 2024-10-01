@@ -1,91 +1,138 @@
 import subprocess
 import re
+from dataclasses import dataclass, asdict
+import time
 
-class Events:
+def run_command(command):
+    output = subprocess.check_output(command, shell=True, encoding='utf8', stderr=subprocess.STDOUT)
+    print(f"Output of command '{command}' is '{output}'")
+    return output
 
-    def __init__(self, attempt, run_num):
-        
-        # self.client = paramiko.SSHClient()
-        # self.client.connect(hostname='unity.rc.umass.edu', username='dkennedy_umass_edu',key_filename='~/.ssh/unity-privkey.key')
-        self.run_num = run_num
-        self.attempt = attempt
-        self.pid = []
-        self.begin_num = self.findStartingRunNum()
-        self.totEvents = 0
-        self.hasCounted = []
+@dataclass
+class EventConfig:
+    event: str
+    instance_count: int
 
-        for rn in range(run_num):
-            output = subprocess.check_output(f"nohup /work/pi_mjrm_umass_edu/LNV_collider/Generated/{attempt}/bin/madevent ./MyFiles/LFVLNV/GenerationFiles/{attempt}_run.dat > MyFiles/LFVLNV/GenerationFiles/logs/{attempt}_{rn}.log 2>&1 &", shell=True)
-            self.pid.append(output[-7:])
-            self.hasCounted.append(False)
-            print(f"I've started {self.attempt}_{rn}")
-            print(self.pid)
+class Event:
 
+    def __init__(self, event, instance, base_file_num):
+        self.event = event
+        self.proc = None
+        self.instance = instance
+        self.base_file_num = base_file_num
+        self.log = None
 
-    def findStartingRunNum(self):
-        output = subprocess.check_output(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.attempt}/Events/", shell=True)
+        self.start_process()
 
-        m = re.search(r'\d+$', output)
+    def __del__(self):
+        if self.log is not None:
+            close(self.log)
 
-        return int(m.group()) if m else 0
+    def start_process(self):
+        self.log = open(f"MyFiles/LFVLNV/GenerationFiles/logs/{self.event}_{self.instance}.log", "a")
+        self.proc = subprocess.Popen(f"/work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.event}/bin/madevent ./MyFiles/LFVLNV/GenerationFiles/{self.event}_run.dat", stdout=log, stderr=log, shell=True)
     
-    def checkRunning(self, run_num):
-        output = subprocess.check_output(f"ps | grep {self.pid[run_num]}", shell=True)
-
-        if output:
+    @property
+    def is_running(self):
+        if self.proc.Poll() is None:
             return True
-        
         return False
     
-    def findFileName(self, run_num):
-        output = subprocess.check_output(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.attempt}/Events/run_{run_num+self.begin_num:02d}/*delphes_events.root", shell=True)
+    @property
+    def output_filename(self):
+        output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.event}/Events/run_{self.instance+self.base_file_num:02d}/*delphes_events.root")
 
         return output
     
-    def check_nEvents(self, run_num):
-
-        if self.hasCounted[run_num]:
+    @property
+    def generated_count(self):
+        if self.is_running:
             return 0
-        
-        self.hasCounted[run_num] = True
-        output = subprocess.check_output(f"./read_root_file {self.findFileName(run_num)}", shell=True)
+        output = run_command(f"./read_root_file {self.output_filename}")
+        m = re.search(r'\d+$', output)
+        return int(m.group()) if m else 0 
+
+    def print_info(self):
+        if self.is_running:
+            print(f"{self.event} #{self.instance} is running with PID {self.pid}")
+        else:
+            print(f"{self.event} #{self.instance} completed with {self.generated_count} generated events")
+
+
+class EventHandler:
+
+    def __init__(self, event, instance_count):
+        self.instance_count = instance_count
+        self.event = event
+        begin_num = self._find_base_num()
+        self.events = []
+
+        for rn in range(instance_count):
+            self.events.append(Event(event, rn, begin_num))
+
+
+    def _find_base_num(self):
+        return 0
+        output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.event}/Events/")
 
         m = re.search(r'\d+$', output)
+        base_num = int(m.group()) if m else 0
+        print(f"Base num for event {self.event} is {base_num}")
 
-        out = int(m.group()) if m else 0
+        return base_num
+    
+    @property
+    def is_running(self):
+        for e in self.events:
+            if e.is_running:
+                return True        
+        return False
 
-        self.totEvents += out
-        return out
+    @property
+    def generated_count(self):
+        count = 0
+        for e in self.events:
+            count = count + e.generated_count
+        return count
+
+    def print_info(self):
+        print(f"*** EVENT {self.event} ***")
+        for e in self.events:
+            e.print_info()
+        print(f"Total events generated: {self.generated_count}")
     
 
+class AllEventHandler:
+
+    def __init__(self, event_config):
+        self.events = []
+
+        for cfg in event_config:
+            self.events.append(EventHandler(**asdict(cfg)))
+    
+    @property
+    def is_running(self):
+        for e in self.events:
+            if e.is_running:
+                return True        
+        return False
+
+    def print_info(self):
+        print("")
+        for e in self.events:
+            e.print_info()
 
 if __name__ == '__main__':
     
-    
-    allAttempts = [Events('ttbar', 2)]
+    allAttemptsConfig = [EventConfig('ttbar', 2)]
+    allAttempts = AllEventHandler(allAttemptsConfig)
+    allAttempts.print_info()
 
     # totEventsByType = {}
 
-    running = True
+    while allAttempts.is_running:
 
-    while running:
-
-        running = False
-        for att in allAttempts:
-
-            for runNum in range(att.run_num):
-                # Within this loop, all attempts are of the same event type
-                    if not att.checkRunning(runNum):
-
-                        thisNum = att.check_nEvents(runNum)
-                        print(att.attempt, att.run_num, ": ", thisNum)
-
-                    else:
-                        running = True
-
-                        
-
-
-    for at in allAttempts:
-        print(at.attempt, ": ", at.totEvents)
+        allAttempts.print_info()
+        time.sleep(15)
+        
         
