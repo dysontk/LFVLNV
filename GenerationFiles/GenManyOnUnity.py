@@ -72,7 +72,7 @@ class EventHandler:
 
 
     def _find_base_num(self):
-        return 0
+        # return 0
         output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.event}/Events/")
 
         m = re.search(r'\d+$', output)
