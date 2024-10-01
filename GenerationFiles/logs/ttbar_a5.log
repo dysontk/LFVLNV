@@ -1,0 +1,370 @@
+nohup: ignoring input
+************************************************************
+*                                                          *
+*                      W E L C O M E to                    *
+*             M A D G R A P H 5 _ a M C @ N L O            *
+*                      M A D E V E N T                     *
+*                                                          *
+*                 *                       *                *
+*                   *        * *        *                  *
+*                     * * * * 5 * * * *                    *
+*                   *        * *        *                  *
+*                 *                       *                *
+*                                                          *
+*         VERSION 3.5.4                                    *
+*                                                          *
+*    The MadGraph5_aMC@NLO Development Team - Find us at   *
+*    https://server06.fynu.ucl.ac.be/projects/madgraph     *
+*                                                          *
+*               Type 'help' for in-line help.              *
+*                                                          *
+************************************************************
+INFO: load configuration from /work/pi_mjrm_umass_edu/LNV_collider/Generated/ttbar/Cards/me5_configuration.txt  
+INFO: load configuration from /home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/input/mg5_configuration.txt  
+INFO: load configuration from /work/pi_mjrm_umass_edu/LNV_collider/Generated/ttbar/Cards/me5_configuration.txt  
+Using default text editor "vi". Set another one in ./input/mg5_configuration.txt
+Using default eps viewer "evince". Set another one in ./input/mg5_configuration.txt
+No valid web browser found. Please set in ./input/mg5_configuration.txt
+import command ./MyFiles/LFVLNV/GenerationFiles/ttbar_run.dat
+generate_events
+stty: 'standard input': Inappropriate ioctl for device
+The following switches determine which programs are run:
+/===========================================================================\
+| 1. Choose the shower/hadronization program   [1m  shower[0m = [32mPythia8[0m           |
+| 2. Choose the detector simulation program    [1mdetector[0m = [32mDelphes[0m           |
+| 3. Choose an analysis package (plot/convert) [1manalysis[0m = [32mExRoot[0m            |
+| 4. Decay onshell particles                   [1m madspin[0m = [31mOFF[0m               |
+| 5. Add weights to events for new hypp.       [1mreweight[0m = [01mNot Avail.[0m        |
+\===========================================================================/
+Either type the switch number (1 to 5) to change its setting,
+Set any switch explicitly (e.g. type 'shower=OFF' at the prompt)
+Type 'help' for the list of all valid option
+Type '0', 'auto', 'done' or just press enter when you are done.
+The following switches determine which programs are run:
+/===========================================================================\
+| 1. Choose the shower/hadronization program   [1m  shower[0m = [32mPythia8[0m           |
+| 2. Choose the detector simulation program    [1mdetector[0m = [32mDelphes[0m           |
+| 3. Choose an analysis package (plot/convert) [1manalysis[0m = [32mExRoot[0m            |
+| 4. Decay onshell particles                   [1m madspin[0m = [31mOFF[0m               |
+| 5. Add weights to events for new hypp.       [1mreweight[0m = [01mNot Avail.[0m        |
+\===========================================================================/
+Either type the switch number (1 to 5) to change its setting,
+Set any switch explicitly (e.g. type 'shower=OFF' at the prompt)
+Type 'help' for the list of all valid option
+Type '0', 'auto', 'done' or just press enter when you are done.
+set use_syst False
+[1mINFO: modify parameter use_syst of the run_card.dat to False [0m
+set automatic_html_opening False
+[1;34mWARNING: invalid set command automatic_html_opening False  [0m
+INFO: Did you mean one of the following run_card options:
+auto_ptj_mjj 
+set nevents 60000
+[1mINFO: modify parameter nevents of the run_card.dat to 60000 [0m
+set ebeam1 7000
+[1mINFO: modify parameter ebeam1 of the run_card.dat to 7000.0 [0m
+set ebeam2 7000
+[1mINFO: modify parameter ebeam2 of the run_card.dat to 7000.0 [0m
+set cut_decays True
+[1mINFO: modify parameter cut_decays of the run_card.dat to True [0m
+set ickkw 1
+[1mINFO: modify parameter ickkw of the run_card.dat to 1 [0m
+set xqcut 20
+[1mINFO: modify parameter xqcut of the run_card.dat to 20.0 [0m
+set JetMatching:nJetMax 2
+[1mINFO: modify parameter jetmatching:njetmax of the pythia8_card.dat to 2 [0m
+set ptj 20
+[1mINFO: modify parameter ptj of the run_card.dat to 20.0 [0m
+set ptb 20
+[1mINFO: modify parameter ptb of the run_card.dat to 20.0 [0m
+set ptl 20
+[1mINFO: modify parameter ptl of the run_card.dat to 20.0 [0m
+set etaj 2.8
+[1mINFO: modify parameter etaj of the run_card.dat to 2.8 [0m
+set etal 2.5
+[1mINFO: modify parameter etal of the run_card.dat to 2.5 [0m
+INFO: copy /home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/Delphes/cards/card_JF.tcl as delphes_card.dat 
+Do you want to edit a card (press enter to bypass editing)?
+/------------------------------------------------------------\
+|  [31m1[0m. param   : [32mparam_card.dat[0m                               |
+|  [31m2[0m. run     : [32mrun_card.dat[0m                                 |
+|  [31m3[0m. pythia8 : [32mpythia8_card.dat[0m                             |
+\------------------------------------------------------------/
+ you can also
+   - enter the path to a valid card or banner.
+   - use the 'set' command to modify a parameter directly.
+     The set option works only for param_card and run_card.
+     Type 'help set' for more information on this command.
+   - call an external program (ASperGE/MadWidth/...).
+     Type 'help' for the list of available command
+ [[4m0[0m, done, 1, param, 2, run, 3, pythia8, enter path]
+Do you want to edit a card (press enter to bypass editing)?
+/------------------------------------------------------------\
+|  [31m1[0m. param   : [32mparam_card.dat[0m                               |
+|  [31m2[0m. run     : [32mrun_card.dat[0m                                 |
+|  [31m3[0m. pythia8 : [32mpythia8_card.dat[0m                             |
+\------------------------------------------------------------/
+ you can also
+   - enter the path to a valid card or banner.
+   - use the 'set' command to modify a parameter directly.
+     The set option works only for param_card and run_card.
+     Type 'help set' for more information on this command.
+   - call an external program (ASperGE/MadWidth/...).
+     Type 'help' for the list of available command
+ [[4m0[0m, done, 1, param, 2, run, 3, pythia8, enter path]
+[1;34mfound line : print_results[0m
+[1;34mThis answer is not valid for current question. Keep it for next question and use here default: EOF[0m
+INFO: Update the dependent parameter of the param_card.dat 
+Generating 60000 events with run name run_05
+survey  run_05 
+INFO: compile directory 
+[1;34mNot able to open file /work/pi_mjrm_umass_edu/LNV_collider/Generated/ttbar/crossx.html since no program configured.Please set one in ./input/mg5_configuration.txt[0m
+compile Source Directory
+Using random number seed offset = 69
+INFO: Running Survey 
+Creating Jobs
+Working on SubProcesses
+INFO: Compiling for process 1/10. 
+INFO:     P3_gg_ttxg_t_wpb_wp_qq_tx_wmbx_wm_lvl  
+INFO: Compiling for process 2/10. 
+INFO:     P3_gq_ttxq_t_wpb_wp_qq_tx_wmbx_wm_lvl  
+INFO: Compiling for process 3/10. 
+INFO:     P3_qq_ttxg_t_wpb_wp_qq_tx_wmbx_wm_lvl  
+INFO: Compiling for process 4/10. 
+INFO:     P4_gg_ttxg_t_wpb_wp_lvl_tx_wmbx_wm_qq  
+INFO: Compiling for process 5/10. 
+INFO:     P4_gq_ttxq_t_wpb_wp_lvl_tx_wmbx_wm_qq  
+INFO: Compiling for process 6/10. 
+INFO:     P4_qq_ttxg_t_wpb_wp_lvl_tx_wmbx_wm_qq  
+INFO: Compiling for process 7/10. 
+INFO:     P1_gg_ttx_t_wpb_wp_qq_tx_wmbx_wm_lvl  
+INFO: Compiling for process 8/10. 
+INFO:     P1_qq_ttx_t_wpb_wp_qq_tx_wmbx_wm_lvl  
+INFO: Compiling for process 9/10. 
+INFO:     P2_gg_ttx_t_wpb_wp_lvl_tx_wmbx_wm_qq  
+INFO: Compiling for process 10/10. 
+INFO:     P2_qq_ttx_t_wpb_wp_lvl_tx_wmbx_wm_qq  
+INFO:     P3_gg_ttxg_t_wpb_wp_qq_tx_wmbx_wm_lvl  
+INFO:     P3_gq_ttxq_t_wpb_wp_qq_tx_wmbx_wm_lvl  
+INFO:     P3_qq_ttxg_t_wpb_wp_qq_tx_wmbx_wm_lvl  
+INFO:     P4_gg_ttxg_t_wpb_wp_lvl_tx_wmbx_wm_qq  
+INFO:     P4_gq_ttxq_t_wpb_wp_lvl_tx_wmbx_wm_qq  
+INFO:     P4_qq_ttxg_t_wpb_wp_lvl_tx_wmbx_wm_qq  
+INFO:     P1_gg_ttx_t_wpb_wp_qq_tx_wmbx_wm_lvl  
+INFO:     P1_qq_ttx_t_wpb_wp_qq_tx_wmbx_wm_lvl  
+INFO:     P2_gg_ttx_t_wpb_wp_lvl_tx_wmbx_wm_qq  
+INFO:     P2_qq_ttx_t_wpb_wp_lvl_tx_wmbx_wm_qq  
+INFO:  Idle: 25,  Running: 16,  Completed: 49 [ current time: 22h42 ] 
+INFO:  Idle: 24,  Running: 16,  Completed: 50 [  4s  ] 
+INFO:  Idle: 22,  Running: 16,  Completed: 52 [  11.4s  ] 
+INFO:  Idle: 19,  Running: 16,  Completed: 55 [  17.5s  ] 
+INFO:  Idle: 17,  Running: 16,  Completed: 57 [  24.1s  ] 
+INFO:  Idle: 14,  Running: 16,  Completed: 60 [  27.9s  ] 
+INFO:  Idle: 13,  Running: 16,  Completed: 61 [  38.1s  ] 
+INFO:  Idle: 12,  Running: 16,  Completed: 62 [  41.8s  ] 
+INFO:  Idle: 11,  Running: 16,  Completed: 63 [  45.9s  ] 
+INFO:  Idle: 9,  Running: 16,  Completed: 65 [  50.2s  ] 
+INFO:  Idle: 6,  Running: 16,  Completed: 68 [  56.3s  ] 
+INFO:  Idle: 3,  Running: 16,  Completed: 71 [  1m 5s  ] 
+INFO:  Idle: 2,  Running: 16,  Completed: 72 [  1m 9s  ] 
+INFO:  Idle: 0,  Running: 16,  Completed: 74 [  1m 18s  ] 
+INFO:  Idle: 0,  Running: 13,  Completed: 77 [  1m 22s  ] 
+INFO:  Idle: 0,  Running: 11,  Completed: 79 [  1m 25s  ] 
+INFO:  Idle: 0,  Running: 9,  Completed: 81 [  1m 31s  ] 
+INFO:  Idle: 0,  Running: 7,  Completed: 83 [  1m 42s  ] 
+INFO:  Idle: 0,  Running: 5,  Completed: 85 [  1m 58s  ] 
+INFO:  Idle: 0,  Running: 3,  Completed: 87 [  2m 3s  ] 
+INFO:  Idle: 0,  Running: 1,  Completed: 89 [  2m 14s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 90 [  2m 33s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 90 [  2m 33s  ] 
+INFO: End survey 
+refine 60000
+Creating Jobs
+INFO: Refine results to 60000 
+INFO: Generating 60000.0 unweighted events. 
+sum of cpu time of last step: 2m07s
+INFO: Effective Luminosity 390.7244768152992 pb^-1 
+INFO: need to improve 33 channels 
+- Current estimate of cross-section: 184.27307290000002 +- 0.7162383993647276
+    P3_gg_ttxg_t_wpb_wp_qq_tx_wmbx_wm_lvl 
+    P3_gq_ttxq_t_wpb_wp_qq_tx_wmbx_wm_lvl 
+    P3_qq_ttxg_t_wpb_wp_qq_tx_wmbx_wm_lvl 
+    P4_gg_ttxg_t_wpb_wp_lvl_tx_wmbx_wm_qq 
+    P4_gq_ttxq_t_wpb_wp_lvl_tx_wmbx_wm_qq 
+    P4_qq_ttxg_t_wpb_wp_lvl_tx_wmbx_wm_qq 
+    P1_gg_ttx_t_wpb_wp_qq_tx_wmbx_wm_lvl 
+    P1_qq_ttx_t_wpb_wp_qq_tx_wmbx_wm_lvl 
+    P2_gg_ttx_t_wpb_wp_lvl_tx_wmbx_wm_qq 
+    P2_qq_ttx_t_wpb_wp_lvl_tx_wmbx_wm_qq 
+INFO:  Idle: 70,  Running: 16,  Completed: 2 [ current time: 22h46 ] 
+INFO:  Idle: 69,  Running: 16,  Completed: 3 [  8.5s  ] 
+INFO:  Idle: 68,  Running: 16,  Completed: 4 [  18.8s  ] 
+INFO:  Idle: 66,  Running: 16,  Completed: 6 [  25.2s  ] 
+INFO:  Idle: 65,  Running: 16,  Completed: 7 [  32s  ] 
+INFO:  Idle: 64,  Running: 16,  Completed: 8 [  36.9s  ] 
+INFO:  Idle: 63,  Running: 16,  Completed: 9 [  41.4s  ] 
+INFO:  Idle: 62,  Running: 16,  Completed: 10 [  48.6s  ] 
+INFO:  Idle: 61,  Running: 16,  Completed: 11 [  57s  ] 
+INFO:  Idle: 60,  Running: 16,  Completed: 12 [  1m 1s  ] 
+INFO:  Idle: 59,  Running: 16,  Completed: 13 [  1m 6s  ] 
+INFO:  Idle: 58,  Running: 16,  Completed: 14 [  1m 13s  ] 
+INFO:  Idle: 57,  Running: 16,  Completed: 15 [  1m 35s  ] 
+INFO:  Idle: 55,  Running: 16,  Completed: 17 [  1m 46s  ] 
+INFO:  Idle: 54,  Running: 16,  Completed: 18 [  2m 5s  ] 
+INFO:  Idle: 53,  Running: 16,  Completed: 19 [  2m 10s  ] 
+INFO:  Idle: 52,  Running: 16,  Completed: 20 [  2m 20s  ] 
+INFO:  Idle: 51,  Running: 16,  Completed: 21 [  2m 23s  ] 
+INFO:  Idle: 50,  Running: 16,  Completed: 22 [  2m 32s  ] 
+INFO:  Idle: 48,  Running: 16,  Completed: 24 [  2m 42s  ] 
+INFO:  Idle: 47,  Running: 16,  Completed: 25 [  2m 50s  ] 
+INFO:  Idle: 46,  Running: 16,  Completed: 26 [  3m 10s  ] 
+INFO:  Idle: 45,  Running: 16,  Completed: 27 [  3m 27s  ] 
+INFO:  Idle: 44,  Running: 16,  Completed: 28 [  3m 53s  ] 
+INFO:  Idle: 43,  Running: 16,  Completed: 29 [  3m 57s  ] 
+INFO:  Idle: 42,  Running: 16,  Completed: 30 [  4m 1s  ] 
+INFO:  Idle: 41,  Running: 16,  Completed: 31 [  4m 9s  ] 
+INFO:  Idle: 40,  Running: 16,  Completed: 32 [  4m 12s  ] 
+INFO:  Idle: 39,  Running: 16,  Completed: 33 [  4m 30s  ] 
+INFO:  Idle: 38,  Running: 16,  Completed: 34 [  4m 38s  ] 
+INFO:  Idle: 36,  Running: 16,  Completed: 36 [  4m 46s  ] 
+INFO:  Idle: 33,  Running: 16,  Completed: 39 [  4m 51s  ] 
+INFO:  Idle: 31,  Running: 16,  Completed: 41 [  4m 55s  ] 
+INFO:  Idle: 29,  Running: 16,  Completed: 43 [  4m 59s  ] 
+INFO:  Idle: 28,  Running: 16,  Completed: 44 [  5m 18s  ] 
+INFO:  Idle: 24,  Running: 16,  Completed: 48 [  5m 28s  ] 
+INFO:  Idle: 23,  Running: 16,  Completed: 49 [  5m 36s  ] 
+INFO:  Idle: 19,  Running: 16,  Completed: 53 [  5m 39s  ] 
+INFO:  Idle: 18,  Running: 16,  Completed: 54 [  5m 43s  ] 
+INFO:  Idle: 16,  Running: 16,  Completed: 56 [  5m 48s  ] 
+INFO:  Idle: 14,  Running: 16,  Completed: 58 [  5m 53s  ] 
+INFO:  Idle: 12,  Running: 16,  Completed: 60 [  5m 57s  ] 
+INFO:  Idle: 10,  Running: 16,  Completed: 62 [  6m 0s  ] 
+INFO:  Idle: 7,  Running: 16,  Completed: 65 [  6m 4s  ] 
+INFO:  Idle: 5,  Running: 16,  Completed: 67 [  6m 8s  ] 
+INFO:  Idle: 3,  Running: 16,  Completed: 69 [  6m 18s  ] 
+INFO:  Idle: 0,  Running: 16,  Completed: 72 [  6m 22s  ] 
+INFO:  Idle: 0,  Running: 12,  Completed: 76 [  6m 25s  ] 
+INFO:  Idle: 0,  Running: 9,  Completed: 79 [  6m 30s  ] 
+INFO:  Idle: 0,  Running: 7,  Completed: 81 [  6m 43s  ] 
+INFO:  Idle: 0,  Running: 6,  Completed: 82 [  6m 47s  ] 
+INFO:  Idle: 0,  Running: 4,  Completed: 84 [  6m 50s  ] 
+INFO:  Idle: 0,  Running: 3,  Completed: 85 [  6m 54s  ] 
+INFO:  Idle: 0,  Running: 2,  Completed: 86 [  7m 3s  ] 
+INFO:  Idle: 0,  Running: 1,  Completed: 87 [  7m 54s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 88 [  8m 26s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 88 [  8m 26s  ] 
+INFO: Combining runs 
+sum of cpu time of last step: 5m05s
+INFO: finish refine 
+refine 60000 --treshold=0.9
+No need for second refine due to stability of cross-section
+INFO: Combining Events 
+INFO:  Idle: 16,  Running: 16,  Completed: 0 [ current time: 22h56 ] 
+INFO:  Idle: 15,  Running: 16,  Completed: 1 [  7.2s  ] 
+INFO:  Idle: 12,  Running: 16,  Completed: 4 [  12s  ] 
+INFO:  Idle: 10,  Running: 16,  Completed: 6 [  16.5s  ] 
+INFO:  Idle: 7,  Running: 16,  Completed: 9 [  19.5s  ] 
+INFO:  Idle: 5,  Running: 16,  Completed: 11 [  23.6s  ] 
+INFO:  Idle: 4,  Running: 16,  Completed: 12 [  27.1s  ] 
+INFO:  Idle: 1,  Running: 16,  Completed: 15 [  40s  ] 
+INFO:  Idle: 0,  Running: 16,  Completed: 16 [  45.6s  ] 
+INFO:  Idle: 0,  Running: 12,  Completed: 20 [  51.1s  ] 
+INFO:  Idle: 0,  Running: 11,  Completed: 21 [  58.5s  ] 
+INFO:  Idle: 0,  Running: 9,  Completed: 23 [  1m 4s  ] 
+INFO:  Idle: 0,  Running: 8,  Completed: 24 [  1m 15s  ] 
+INFO:  Idle: 0,  Running: 6,  Completed: 26 [  1m 19s  ] 
+INFO:  Idle: 0,  Running: 5,  Completed: 27 [  1m 24s  ] 
+INFO:  Idle: 0,  Running: 3,  Completed: 29 [  2m 8s  ] 
+INFO:  Idle: 0,  Running: 2,  Completed: 30 [  2m 26s  ] 
+INFO:  Idle: 0,  Running: 1,  Completed: 31 [  3m 26s  ] 
+INFO:  Idle: 0,  Running: 0,  Completed: 32 [  4m 26s  ] 
+combination of events done in 3457.096342086792 s 
+  === Results Summary for run: run_05 tag: tag_1 ===
+
+     Cross-section :   184.1 +- 0.272 pb
+     Nb of events :  60000
+ 
+store_events
+INFO: Storing parton level results 
+INFO: End Parton 
+reweight -from_cards
+decay_events -from_cards
+INFO: Creating root files 
+Warning in <TTree::Bronch>: Using split mode on a class: TRootWeight with a custom Streamer
+** Reading /work/pi_mjrm_umass_edu/LNV_collider/Generated/ttbar/Events/run_05/unweighted_events.lhe
+** [----------------------------------------------------------------] (0.00%)** [#---------------------------------------------------------------] (1.98%)** [##--------------------------------------------------------------] (3.94%)** [###-------------------------------------------------------------] (5.90%)** [####------------------------------------------------------------] (7.67%)** [#####-----------------------------------------------------------] (9.15%)** [######----------------------------------------------------------] (10.80%)** [#######---------------------------------------------------------] (12.42%)** [#########-------------------------------------------------------] (14.63%)** [##########------------------------------------------------------] (16.32%)** [###########-----------------------------------------------------] (17.67%)** [############----------------------------------------------------] (19.13%)** [#############---------------------------------------------------] (21.59%)** [###############-------------------------------------------------] (23.55%)** [################------------------------------------------------] (25.22%)** [#################-----------------------------------------------] (26.65%)** [##################----------------------------------------------] (29.25%)** [###################---------------------------------------------] (30.99%)** [#####################-------------------------------------------] (34.01%)** [#######################-----------------------------------------] (36.30%)** [########################----------------------------------------] (38.26%)** [#########################---------------------------------------] (40.22%)** [##########################--------------------------------------] (42.18%)** [############################------------------------------------] (44.14%)** [#############################-----------------------------------] (46.10%)** [##############################----------------------------------] (48.07%)** [################################--------------------------------] (50.03%)** [#################################-------------------------------] (51.99%)** [##################################------------------------------] (53.28%)** [###################################-----------------------------] (54.93%)** [####################################----------------------------] (56.98%)** [#####################################---------------------------] (59.17%)** [######################################--------------------------] (60.81%)** [########################################------------------------] (63.18%)** [###########################################---------------------] (67.31%)** [############################################--------------------] (69.84%)** [##############################################------------------] (73.32%)** [################################################----------------] (75.85%)** [###################################################-------------] (80.53%)** [#####################################################-----------] (83.51%)** [########################################################--------] (88.95%)** [############################################################----] (95.25%)** [################################################################] (100.00%)
+** Exiting...
+INFO: [92mRunning Pythia8 [arXiv:1410.3012][0m 
+Splitting .lhe event file for PY8 parallelization...
+Submitting Pythia8 jobs...
+Pythia8 shower jobs: 1 Idle, 15 Running, 0 Done [5m00s]
+Pythia8 shower jobs: 0 Idle, 16 Running, 0 Done [10m00s]
+Pythia8 shower jobs: 0 Idle, 15 Running, 1 Done [23m51s]
+Pythia8 shower jobs: 0 Idle, 11 Running, 5 Done [24m38s]
+Pythia8 shower jobs: 0 Idle, 6 Running, 10 Done [25m27s]
+Pythia8 shower jobs: 0 Idle, 0 Running, 16 Done [26m18s]
+Merging results from the split PY8 runs...
+INFO: Create matching plots for Pythia8 
+[1;34mWARNING: Install gnuplot to be able to view the plots generated at :
+   /work/pi_mjrm_umass_edu/LNV_collider/Generated/ttbar/HTML/run_05/tag_1_PY8_plots/central_qCut_djr_plots.gnuplot.gnuplot
+   /work/pi_mjrm_umass_edu/LNV_collider/Generated/ttbar/HTML/run_05/tag_1_PY8_plots/central_qCut_pt_plots.gnuplot.gnuplot [0m
+INFO: Pythia8 shower finished after 37m24s. 
+INFO: prepare delphes run 
+INFO: Running Delphes 
+INFO: If you are interested in lhco output. please run root2lhco converter. 
+INFO:  or edit bin/internal/run_delphes3 to run the converter automatically. 
+INFO: delphes done 
+  === Results Summary for run: run_05 tag: tag_1 ===
+
+     Cross-section :   184.1 +- 0.272 pb
+     Nb of events :  60000
+     Matched cross-section :   45.52 +- 0.3311 pb
+     Nb of events after matching/merging :  14837
+     Nb of events after merging :  14837
+ 
+INFO: storing files of previous run 
+INFO: Storing Pythia8 files of previous run 
+INFO: Done 
+print_results
+  === Results Summary for run: run_01 tag: tag_1 ===
+
+     Cross-section :   184.2 +- 0.7319 pb
+     Nb of events :  997
+     Matched cross-section :   46.26 +- 2.563 pb
+     Nb of events after matching/merging :  246
+     Nb of events after merging :  246
+ 
+  === Results Summary for run: run_01 tag: tag_2 ===
+
+     Cross-section :   184.2 +- 0.7319 pb
+     Nb of events :  997
+     Matched cross-section :   41.78 +- 2.449 pb
+     Nb of events after matching/merging :  226
+     Nb of events after merging :  226
+ 
+  === Results Summary for run: run_02 tag: tag_1 ===
+
+     Cross-section :   184 +- 0.7388 pb
+     Nb of events :  995
+     Matched cross-section :   45.87 +- 2.53 pb
+     Nb of events after matching/merging :  248
+     Nb of events after merging :  248
+ 
+  === Results Summary for run: run_04 tag: tag_1 ===
+
+     Cross-section :   184.2 +- 0.2454 pb
+     Nb of events :  80000
+     Matched cross-section :   45.25 +- 0.2868 pb
+     Nb of events after matching/merging :  19651
+     Nb of events after merging :  19651
+ 
+  === Results Summary for run: run_05 tag: tag_1 ===
+
+     Cross-section :   184.1 +- 0.272 pb
+     Nb of events :  60000
+     Matched cross-section :   45.52 +- 0.3311 pb
+     Nb of events after matching/merging :  14837
+     Nb of events after merging :  14837
+ 
+quit
+INFO:  
+launch in debug mode
