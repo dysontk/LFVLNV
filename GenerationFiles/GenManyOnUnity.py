@@ -39,8 +39,8 @@ class Run:
     def start_process(self):
         # print(run_command(f"ls logs"))
         # logFileName = 
-        self.log = open(f"logs/{self.eventType}/attempt_{self.run_num}.log", "w")
-        print("I am about to Generate events.", "The output of the madgraph generation can be found in:", f"logs/{self.eventType}/attempt_{self.run_num}.log", sep='\n')
+        self.log = open(f"logs/{self.eventType}/attempt_{self.run_num:02d}.log", "w")
+        print("I am about to Generate events.", "The output of the madgraph generation can be found in:", f"logs/{self.eventType}/attempt_{self.run_num:02d}.log", sep='\n')
         self.proc = subprocess.Popen(f"/work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.eventType}/bin/madevent {self.eventType}_run.dat", stdout=self.log, stderr=self.log, shell=True)
     
     @property
