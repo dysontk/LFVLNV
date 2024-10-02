@@ -22,11 +22,11 @@ class Event:
         self.base_file_num = base_file_num
         self.log = None
 
-        self.start_process()
+        # self.start_process() Move this to 
 
     def __del__(self):
         if self.log is not None:
-            close(self.log)
+            self.log.close()
 
     def start_process(self):
         print(run_command(f"ls logs"))
@@ -41,17 +41,23 @@ class Event:
     
     @property
     def output_filename(self):
-        output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.event}/Events/run_{self.instance+self.base_file_num:02d}/*delphes_events.root")
-
+        try:
+            output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.event}/Events/run_{self.instance+self.base_file_num:02d}/*delphes_events.root")
+        except FileNotFoundError:
+            print("Generation Failed")
+            return 0
         return output
     
     @property
     def generated_count(self):
         if self.is_running:
             return 0
-        output = run_command(f"./read_root_file {self.output_filename}")
-        m = re.search(r'\d+$', output)
-        return int(m.group()) if m else 0 
+        gendFileName = self.output_filename
+        if gendFileName:
+            output = run_command(f"./read_root_file {gendFileName}")
+            m = re.search(r'\d+$', output)
+            return int(m.group()) if m else 0 
+        else return 0
 
     def print_info(self):
         if self.is_running:
@@ -69,7 +75,10 @@ class EventHandler:
         self.events = []
 
         for rn in range(instance_count):
-            self.events.append(Event(event, rn, begin_num))
+            thisEvent = Event(event, rn, begin_num)
+            thisEvent.start_process()
+            thisEvent.proc.wait()
+            self.events.append(thisEvent)
 
 
     def _find_base_num(self):
