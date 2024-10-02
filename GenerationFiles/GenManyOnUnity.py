@@ -56,8 +56,8 @@ class Run:
         except FileNotFoundError:
             print("Generation Failed")
             return 0
-        else:
-            print("Generation Failed", 'Some error other than FileNotFoundError', sep='\n')
+        # else:
+        #     print("Generation Failed", 'Some error other than FileNotFoundError', sep='\n')
         return output
     
     @property
@@ -156,7 +156,7 @@ class AllRunHandler:
 
 if __name__ == '__main__':
     # RunConfig('ttbar', 1), RunConfig('W3j', 1), RunConfig('LNVF', 1), RunConfig('WZ2j', 1)
-    allAttemptsConfig = [RunConfig('ZZ2j', 1)]
+    allAttemptsConfig = [RunConfig('ttbar', 1), RunConfig('W3j', 1), RunConfig('LNVF', 1), RunConfig('WZ2j', 1), RunConfig('ZZ2j', 1)]
     allAttempts = AllRunHandler(allAttemptsConfig)
     allAttempts.print_info()
 
