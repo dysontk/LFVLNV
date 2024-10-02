@@ -9,14 +9,14 @@ def run_command(command):
     return output
 
 @dataclass
-class EventConfig:
-    event: str
+class RunConfig:
+    eventType: str
     instance_count: int
 
-class Event:
+class Run:
 
-    def __init__(self, event, instance, base_file_num):
-        self.event = event
+    def __init__(self, eventType, instance, base_file_num):
+        self.eventType = eventType
         self.proc = None
         self.base_file_num = base_file_num
         self.instance = instance
@@ -32,9 +32,9 @@ class Event:
     def start_process(self):
         # print(run_command(f"ls logs"))
         # logFileName = 
-        self.log = open(f"logs/{self.event}/attempt_{self.run_num}.log", "w")
-        print("I am about to Generate events.", "The output of the madgraph generation can be found in:", f"logs/{self.event}/attempt_{self.run_num}.log", sep='\n')
-        self.proc = subprocess.Popen(f"/work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.event}/bin/madevent {self.event}_run.dat", stdout=self.log, stderr=self.log, shell=True)
+        self.log = open(f"logs/{self.eventType}/attempt_{self.run_num}.log", "w")
+        print("I am about to Generate events.", "The output of the madgraph generation can be found in:", f"logs/{self.eventType}/attempt_{self.run_num}.log", sep='\n')
+        self.proc = subprocess.Popen(f"/work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.eventType}/bin/madevent {self.eventType}_run.dat", stdout=self.log, stderr=self.log, shell=True)
     
     @property
     def is_running(self):
@@ -45,7 +45,7 @@ class Event:
     @property
     def output_filename(self):
         try:
-            output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.event}/Events/run_{self.instance+self.base_file_num:02d}/*delphes_events.root")
+            output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.eventType}/Events/run_{self.instance+self.base_file_num:02d}/*delphes_events.root")
         except FileNotFoundError:
             print("Generation Failed")
             return 0
@@ -56,7 +56,7 @@ class Event:
         if self.is_running:
             return 0
         gendFileName = self.output_filename
-        print('test2')
+        # print('test2')
         if gendFileName:
             output = run_command(f"../AnalysisAndSuch/read_root_file {gendFileName}")
             m = re.search(r'\d+$', output)
@@ -66,89 +66,89 @@ class Event:
 
     def print_info(self):
         if self.is_running:
-            print(f"{self.event} #{self.run_num} is running.")
+            print(f"{self.eventType} #{self.run_num} is running.")
         else:
-            print("test1")
-            print(f"{self.event} #{self.instance} completed with {self.generated_count} generated events")
+            # print("test1")
+            print(f"{self.eventType} #{self.instance} completed with {self.generated_count} generated events")
 
 
-class EventHandler:
+class RunHandler:
 
-    def __init__(self, event, instance_count):
+    def __init__(self, eventType, instance_count):
         self.instance_count = instance_count
-        self.event = event
+        self.eventType = eventType
         begin_num = self._find_base_num()
         self.events = []
 
-        for rn in range(instance_count-1):
-            thisEvent = Event(event, rn, begin_num)
-            thisEvent.start_process()
-            thisEvent.print_info()
-            thisEvent.proc.wait()
-            self.events.append(thisEvent)
+        for rn in range(instance_count):
+            thisRun = Run(eventType, rn, begin_num)
+            thisRun.start_process()
+            thisRun.print_info()
+            thisRun.proc.wait()
+            self.events.append(thisRun)
 
 
     def _find_base_num(self):
         # return 0
-        output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.event}/Events/")
+        output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.eventType}/Events/")
 
         m = re.search(r'\d+$', output)
         base_num = int(m.group()) if m else 0
-        print(f"Base num for event {self.event} is {base_num}")
+        print(f"Base num for event {self.eventType} is {base_num}")
 
         return base_num
     
     @property
     def is_running(self):
-        for e in self.events:
-            if e.is_running:
+        for evnt in self.events:
+            if evnt.is_running:
                 return True        
         return False
 
     @property
     def generated_count(self):
         count = 0
-        for e in self.events:
-            count =+ e.generated_count
+        for evnt in self.events:
+            count =+ evnt.generated_count
         return count
 
     def print_info(self):
-        print(f"*** EVENT {self.event} ***") #change wording
-        for e in self.events:
-            print(f"For run {e.run_num} attempt {e.instance}", ":")
-            e.print_info()
-            print('test3')
+        print(f"*** EVENT {self.eventType} ***") #change wording
+        for evnt in self.events:
+            print(f"For run {evnt.run_num} attempt {evnt.instance}", ":")
+            evnt.print_info()
+            # print('test3')
         print(f"Total events generated: {self.generated_count}")
     
 
-class AllEventHandler:
+class AllRunHandler:
 
-    def __init__(self, event_config):
+    def __init__(self, run_config):
         self.events = []
 
-        for cfg in event_config:
-            self.events.append(EventHandler(**asdict(cfg)))
+        for cfg in run_config:
+            self.events.append(RunHandler(**asdict(cfg)))
     
     @property
     def is_running(self):
-        for e in self.events:
-            if e.is_running:
+        for evnt in self.events:
+            if evnt.is_running:
                 return True        
         return False
 
     def print_info(self):
         print("")
-        for e in self.events:
-            e.print_info()
+        for evnt in self.events:
+            evnt.print_info()
 
 if __name__ == '__main__':
     
-    allAttemptsConfig = [EventConfig('ttbar', 1)]
-    allAttempts = AllEventHandler(allAttemptsConfig)
+    allAttemptsConfig = [RunConfig('ttbar', 1)]
+    allAttempts = AllRunHandler(allAttemptsConfig)
     allAttempts.print_info()
 
     # totEventsByType = {}
-
+    print("test")
     while allAttempts.is_running:
 
         allAttempts.print_info()
