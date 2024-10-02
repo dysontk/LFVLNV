@@ -1,6 +1,0 @@
-generate p p > w- z j, z > l+ l-, w- > l- vl~
-add process p p > w+ z j, z > l+ l-, w+ > l+ vl
-add process p p > w- z j j, z > l+ l-, w- > l- vl~
-add process p p > w+ z j j, z > l+ l-, w+ > l+ vl
-output /work/pi_mjrm_umass_edu/LNV_collider/Generated/WZ2j
-
