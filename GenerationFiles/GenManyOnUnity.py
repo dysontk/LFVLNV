@@ -29,7 +29,8 @@ class Event:
             close(self.log)
 
     def start_process(self):
-        self.log = open(f"MyFiles/LFVLNV/GenerationFiles/logs/{self.event}_{self.instance}.log", "a")
+        print(run_command(f"ls MyFiles/LFVLNV/GenerationFiles/logs"))
+        self.log = open(f"MyFiles/LFVLNV/GenerationFiles/logs/{self.event}_{self.instance}.log", "a") #The file doesn't already exist
         self.proc = subprocess.Popen(f"/work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.event}/bin/madevent ./MyFiles/LFVLNV/GenerationFiles/{self.event}_run.dat", stdout=log, stderr=log, shell=True)
     
     @property
@@ -54,7 +55,7 @@ class Event:
 
     def print_info(self):
         if self.is_running:
-            print(f"{self.event} #{self.instance} is running with PID {self.pid}")
+            print(f"{self.event} #{self.instance} is running.")
         else:
             print(f"{self.event} #{self.instance} completed with {self.generated_count} generated events")
 
@@ -92,11 +93,11 @@ class EventHandler:
     def generated_count(self):
         count = 0
         for e in self.events:
-            count = count + e.generated_count
+            count =+ e.generated_count
         return count
 
     def print_info(self):
-        print(f"*** EVENT {self.event} ***")
+        print(f"*** EVENT {self.event} ***") #change wording
         for e in self.events:
             e.print_info()
         print(f"Total events generated: {self.generated_count}")
