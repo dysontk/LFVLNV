@@ -4,8 +4,12 @@ from dataclasses import dataclass, asdict
 import time
 
 def run_command(command):
-    output = subprocess.check_output(command, shell=True, encoding='utf8', stderr=subprocess.STDOUT)
-    print(f"Output of command '{command}' is",  f'{output}', sep='\n')
+    try:
+        output = subprocess.check_output(command, shell=True, encoding='utf8', stderr=subprocess.STDOUT)
+        print(f"Output of command '{command}' is",  f'{output}', sep='\n')
+    except subprocess.CalledProcessError:
+        print("Error. Generation probably failed")
+        output = string(f"Something when wrong when running {command}")
     return output
 
 @dataclass
@@ -52,6 +56,8 @@ class Run:
         except FileNotFoundError:
             print("Generation Failed")
             return 0
+        else:
+            print("Generation Failed", 'Some error other than FileNotFoundError', sep='\n')
         return output
     
     @property
