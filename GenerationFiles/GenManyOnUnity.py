@@ -5,7 +5,7 @@ import time
 
 def run_command(command):
     output = subprocess.check_output(command, shell=True, encoding='utf8', stderr=subprocess.STDOUT)
-    print(f"Output of command '{command}' is",  '{output}', sep='\n')
+    print(f"Output of command '{command}' is",  f'{output}', sep='\n')
     return output
 
 @dataclass
@@ -56,6 +56,7 @@ class Event:
         if self.is_running:
             return 0
         gendFileName = self.output_filename
+        print('test2')
         if gendFileName:
             output = run_command(f"../AnalysisAndSuch/read_root_file {gendFileName}")
             m = re.search(r'\d+$', output)
@@ -67,6 +68,7 @@ class Event:
         if self.is_running:
             print(f"{self.event} #{self.run_num} is running.")
         else:
+            print("test1")
             print(f"{self.event} #{self.instance} completed with {self.generated_count} generated events")
 
 
@@ -113,8 +115,9 @@ class EventHandler:
     def print_info(self):
         print(f"*** EVENT {self.event} ***") #change wording
         for e in self.events:
-            print("For attempt ", e.instance, ":")
+            print(f"For run {e.run_num} attempt {e.instance}, ":")
             e.print_info()
+            print('test3')
         print(f"Total events generated: {self.generated_count}")
     
 
