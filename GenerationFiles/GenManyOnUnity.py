@@ -29,9 +29,9 @@ class Event:
             close(self.log)
 
     def start_process(self):
-        print(run_command(f"ls MyFiles/LFVLNV/GenerationFiles/logs"))
-        self.log = open(f"MyFiles/LFVLNV/GenerationFiles/logs/{self.event}_{self.instance}.log", "a") #The file doesn't already exist
-        self.proc = subprocess.Popen(f"/work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.event}/bin/madevent ./MyFiles/LFVLNV/GenerationFiles/{self.event}_run.dat", stdout=log, stderr=log, shell=True)
+        print(run_command(f"ls logs"))
+        self.log = open(f"logs/{self.event}_{self.instance}.log", "a") #The file doesn't already exist
+        self.proc = subprocess.Popen(f"/work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.event}/bin/madevent {self.event}_run.dat", stdout=log, stderr=log, shell=True)
     
     @property
     def is_running(self):
