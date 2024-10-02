@@ -5,7 +5,7 @@ import time
 
 def run_command(command):
     output = subprocess.check_output(command, shell=True, encoding='utf8', stderr=subprocess.STDOUT)
-    print(f"Output of command '{command}' is '{output}'")
+    print(f"Output of command '{command}' is",  '{output}', sep='\n')
     return output
 
 @dataclass
@@ -33,7 +33,7 @@ class Event:
         # print(run_command(f"ls logs"))
         # logFileName = 
         self.log = open(f"logs/{self.event}/attempt_{self.run_num}.log", "w")
-        print("I am about to Generate events.", "The output of the madgraph generation can be found in:", "logs/{self.event}/attempt_{self.run_num}.log", sep='\n')
+        print("I am about to Generate events.", "The output of the madgraph generation can be found in:", f"logs/{self.event}/attempt_{self.run_num}.log", sep='\n')
         self.proc = subprocess.Popen(f"/work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.event}/bin/madevent {self.event}_run.dat", stdout=self.log, stderr=self.log, shell=True)
     
     @property
@@ -57,7 +57,7 @@ class Event:
             return 0
         gendFileName = self.output_filename
         if gendFileName:
-            output = run_command(f"../AnalysisFiles/read_root_file {gendFileName}")
+            output = run_command(f"../AnalysisAndSuch/read_root_file {gendFileName}")
             m = re.search(r'\d+$', output)
             return int(m.group()) if m else 0 
         else:
@@ -65,7 +65,7 @@ class Event:
 
     def print_info(self):
         if self.is_running:
-            print(f"{self.event} #{self.instance} is running.")
+            print(f"{self.event} #{self.run_num} is running.")
         else:
             print(f"{self.event} #{self.instance} completed with {self.generated_count} generated events")
 
