@@ -115,7 +115,7 @@ class EventHandler:
     def print_info(self):
         print(f"*** EVENT {self.event} ***") #change wording
         for e in self.events:
-            print(f"For run {e.run_num} attempt {e.instance}, ":")
+            print(f"For run {e.run_num} attempt {e.instance}", ":")
             e.print_info()
             print('test3')
         print(f"Total events generated: {self.generated_count}")
