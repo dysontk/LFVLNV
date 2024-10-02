@@ -35,7 +35,7 @@ class Event:
     
     @property
     def is_running(self):
-        if self.proc.Poll() is None:
+        if self.proc.poll() is None:
             return True
         return False
     
