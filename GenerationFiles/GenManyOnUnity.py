@@ -48,7 +48,7 @@ class Run:
     @property
     def output_filename(self):
         try:
-            output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.eventType}/Events/run_{self.instance+self.base_file_num:02d}/*delphes_events.root")
+            output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.eventType}/Events/run_{self.run_num:02d}/*delphes_events.root")
         except FileNotFoundError:
             print("Generation Failed")
             return 0
@@ -146,8 +146,8 @@ class AllRunHandler:
             evnt.print_info()
 
 if __name__ == '__main__':
-    
-    allAttemptsConfig = [RunConfig('ttbar', 1), RunConfig('W3j', 1), RunConfig('LNVF', 1), RunConfig('ZZ2j', 1), RunConfig('WZ2j', 1)]
+    # RunConfig('ttbar', 1), RunConfig('W3j', 1), RunConfig('LNVF', 1), 
+    allAttemptsConfig = [RunConfig('ZZ2j', 1), RunConfig('WZ2j', 1)]
     allAttempts = AllRunHandler(allAttemptsConfig)
     allAttempts.print_info()
 
