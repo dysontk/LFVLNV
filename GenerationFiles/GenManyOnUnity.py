@@ -23,6 +23,9 @@ class Run:
         self.run_num = self.instance+self.base_file_num
         self.log = None
 
+        print("base num: ", self.base_file_num)
+        print("run num:", self.run_num)
+
         # self.start_process() Move this to 
 
     def __del__(self):
@@ -76,12 +79,13 @@ class RunHandler:
 
     def __init__(self, eventType, instance_count):
         self.instance_count = instance_count
+        print(self.instance_count)
         self.eventType = eventType
         begin_num = self._find_base_num()
         self.events = []
 
         for rn in range(instance_count):
-            thisRun = Run(eventType, rn, begin_num)
+            thisRun = Run(eventType, rn+1, begin_num)
             thisRun.start_process()
             thisRun.print_info()
             thisRun.proc.wait()
@@ -148,7 +152,7 @@ if __name__ == '__main__':
     allAttempts.print_info()
 
     # totEventsByType = {}
-    print("test")
+    # print("test")
     while allAttempts.is_running:
 
         allAttempts.print_info()
