@@ -9,7 +9,7 @@ def run_command(command):
         print(f"Output of command '{command}' is",  f'{output}', sep='\n')
     except subprocess.CalledProcessError:
         print("Error. Generation probably failed")
-        output = string(f"Something when wrong when running {command}")
+        output = str(f"Something when wrong when running {command}")
     return output
 
 @dataclass
