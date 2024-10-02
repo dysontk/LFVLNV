@@ -78,6 +78,7 @@ class EventHandler:
         for rn in range(instance_count):
             thisEvent = Event(event, rn, begin_num)
             thisEvent.start_process()
+            thisEvent.print_info()
             thisEvent.proc.wait()
             self.events.append(thisEvent)
 
