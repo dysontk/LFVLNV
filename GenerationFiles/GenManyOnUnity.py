@@ -18,8 +18,9 @@ class Event:
     def __init__(self, event, instance, base_file_num):
         self.event = event
         self.proc = None
-        self.instance = instance
         self.base_file_num = base_file_num
+        self.instance = instance
+        self.run_num = self.instance+self.base_file_num
         self.log = None
 
         # self.start_process() Move this to 
@@ -29,8 +30,10 @@ class Event:
             self.log.close()
 
     def start_process(self):
-        print(run_command(f"ls logs"))
-        self.log = open(f"logs/{self.event}_{self.instance}.log", "a") #The file doesn't already exist
+        # print(run_command(f"ls logs"))
+        logFileName = 
+        self.log = open(f"logs/{self.event}/attempt_{self.run_num}.log", "w")
+        print("I am about to Generate events.", "The output of the madgraph generation can be found in:", "logs/{self.event}/attempt_{self.run_num}.log", sep='\n')
         self.proc = subprocess.Popen(f"/work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.event}/bin/madevent {self.event}_run.dat", stdout=self.log, stderr=self.log, shell=True)
     
     @property
@@ -54,7 +57,7 @@ class Event:
             return 0
         gendFileName = self.output_filename
         if gendFileName:
-            output = run_command(f"./read_root_file {gendFileName}")
+            output = run_command(f"../AnalysisFiles/read_root_file {gendFileName}")
             m = re.search(r'\d+$', output)
             return int(m.group()) if m else 0 
         else:
@@ -110,6 +113,7 @@ class EventHandler:
     def print_info(self):
         print(f"*** EVENT {self.event} ***") #change wording
         for e in self.events:
+            print("For attempt ", e.instance, ":")
             e.print_info()
         print(f"Total events generated: {self.generated_count}")
     
@@ -136,7 +140,7 @@ class AllEventHandler:
 
 if __name__ == '__main__':
     
-    allAttemptsConfig = [EventConfig('ttbar', 2)]
+    allAttemptsConfig = [EventConfig('ttbar', 1)]
     allAttempts = AllEventHandler(allAttemptsConfig)
     allAttempts.print_info()
 
