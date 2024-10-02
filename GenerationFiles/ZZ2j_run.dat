@@ -1,0 +1,21 @@
+generate_events
+
+shower=Pythia8
+detector=Delphes
+
+set use_syst False
+set automatic_html_opening False
+
+set nevents 100
+set ebeam1 6500
+set ebeam2 6500
+set cut_decays True
+set ickkw 1
+set xqcut 20
+set ptj 20
+set ptb 20 
+set ptl 20
+set etaj 2.8
+set etal 2.5
+
+print_results
