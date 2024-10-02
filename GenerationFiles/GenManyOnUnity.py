@@ -80,7 +80,7 @@ class EventHandler:
         begin_num = self._find_base_num()
         self.events = []
 
-        for rn in range(instance_count):
+        for rn in range(instance_count-1):
             thisEvent = Event(event, rn, begin_num)
             thisEvent.start_process()
             thisEvent.print_info()
