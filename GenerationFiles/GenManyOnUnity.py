@@ -95,7 +95,7 @@ class RunHandler:
             thisRun.start_process()
             thisRun.print_info()
             thisRun.proc.wait()
-            print(f"{self.eventType} attempt {self.instance_count} complete (run {self.instance_count+begin_num})")
+            print(f"{self.eventType} attempt {rn+1} complete (run {rn+1+begin_num})")
             self.events.append(thisRun)
 
 
