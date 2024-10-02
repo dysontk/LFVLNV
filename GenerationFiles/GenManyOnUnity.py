@@ -89,6 +89,7 @@ class RunHandler:
             thisRun.start_process()
             thisRun.print_info()
             thisRun.proc.wait()
+            print(f"{self.eventType} attempt {self.instance_count} complete (run {self.instance_count+begin_num})")
             self.events.append(thisRun)
 
 
@@ -131,7 +132,9 @@ class AllRunHandler:
         self.events = []
 
         for cfg in run_config:
+            print(f"initializing {cfg.eventType} runs")
             self.events.append(RunHandler(**asdict(cfg)))
+            
     
     @property
     def is_running(self):
