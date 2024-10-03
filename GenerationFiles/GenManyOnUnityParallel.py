@@ -3,10 +3,11 @@ import re
 from dataclasses import dataclass, asdict
 import time
 
-def run_command(command):
+def run_command(command, verbose=True):
     try:
         output = subprocess.check_output(command, shell=True, encoding='utf8', stderr=subprocess.STDOUT)
-        print(f"Output of command '{command}' is",  f'{output}', sep='\n')
+        if verbose:
+            print(f"Output of command '{command}' is",  f'{output}', sep='\n')
     except subprocess.CalledProcessError:
         print("Error. Generation probably failed")
         output = str(f"Something when wrong when running {command}")
@@ -96,12 +97,13 @@ class RunHandler:
             # thisRun.print_info()
             # thisRun.proc.wait()
             # print(f"{self.eventType} attempt {rn+1} complete (run {rn+1+begin_num})")
+            print(f"Attempt {rn} starting")
             self.events.append(Run(eventType, rn+1, begin_num))
 
 
     def _find_base_num(self):
         # return 0
-        output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.eventType}/Events/")
+        output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.eventType}/Events/", verbose=False)
 
         m = re.search(r'\d+$', output)
         base_num = int(m.group()) if m else 0
@@ -140,6 +142,7 @@ class AllRunHandler:
         for cfg in run_config:
             print(f"initializing {cfg.eventType} runs")
             self.events.append(RunHandler(**asdict(cfg)))
+        print("All Generation Started")
             
     
     @property
@@ -158,6 +161,7 @@ if __name__ == '__main__':
     # RunConfig('ttbar', 1), RunConfig('W3j', 1), RunConfig('LNVF', 1), RunConfig('WZ2j', 1)RunConfig('LNVF', 10), RunConfig('WZ2j', 1), RunConfig('ZZ2j', 1)
     allAttemptsConfig = [RunConfig('ttbar', 2), RunConfig('W3j', 2)]
     allAttempts = AllRunHandler(allAttemptsConfig)
+    print("boutta print in main")
     allAttempts.print_info()
 
     # totEventsByType = {}
