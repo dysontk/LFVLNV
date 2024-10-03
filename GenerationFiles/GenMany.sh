@@ -6,4 +6,4 @@
 #SBATCH -t 01:00:00  # Job time limit
 #SBATCH -o slurm-%j.out  # %j = job ID
 
-python3 GenManyOnUnity.py
+python3 /home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/MyFiles/LFVLNV/GenerationFiles/GenManyOnUnity.py
