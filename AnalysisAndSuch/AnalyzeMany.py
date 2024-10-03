@@ -12,7 +12,7 @@ def run_command(command):
 
 if __name__=='__main__':
 
-    list_of_data_types = ['LNVF']
+    list_of_data_types = ['LNVF', 'WZ2j']
     AnalyzeCommand = './JetFake/main '
 
     list_of_files = []
