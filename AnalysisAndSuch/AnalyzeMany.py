@@ -26,5 +26,5 @@ if __name__=='__main__':
     for file in list_of_files:
         Analyze += file
 
-    # print(AnalyzeCommand)
+    print('Running: ', Analyze, sep='\n')
     run_command(Analyze)
