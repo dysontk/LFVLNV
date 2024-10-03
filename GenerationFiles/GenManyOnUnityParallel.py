@@ -42,7 +42,7 @@ class Run:
         # logFileName = 
         self.log = open(f"logs/{self.eventType}/attempt_{self.run_num:02d}.log", "w")
         print("I am about to Generate events.", "The output of the madgraph generation can be found in:", f"logs/{self.eventType}/attempt_{self.run_num:02d}.log", sep='\n')
-        self.proc = subprocess.Popen(f"/work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.eventType}/bin/madevent {self.eventType}_run.dat", stdout=self.log, stderr=self.log, shell=True)
+        self.proc = subprocess.Popen(f"/work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.eventType}/bin/madevent /home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/MyFiles/LFVLNV/GenerationFiles{self.eventType}_run.dat", stdout=self.log, stderr=self.log, shell=True)
     
     @property
     def is_running(self):
@@ -68,7 +68,7 @@ class Run:
         gendFileName = self.output_filename
         # print('test2')
         if gendFileName:
-            output = run_command(f"../AnalysisAndSuch/read_root_file {gendFileName}")
+            output = run_command(f"/home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/MyFiles/LFVLNV/AnalysisAndSuch/read_root_file {gendFileName}")
             m = re.search(r'\d+$', output)
             return int(m.group()) if m else 0 
         else:
