@@ -156,7 +156,7 @@ class AllRunHandler:
 
 if __name__ == '__main__':
     # RunConfig('ttbar', 1), RunConfig('W3j', 1), RunConfig('LNVF', 1), RunConfig('WZ2j', 1)RunConfig('LNVF', 10), RunConfig('WZ2j', 1), RunConfig('ZZ2j', 1)
-    allAttemptsConfig = [RunConfig('ttbar', 3), RunConfig('W3j', 3), RunConfig('LNVF', 3), RunConfig('WZ2j', 1), RunConfig('ZZ2j', 1)]
+    allAttemptsConfig = [RunConfig('ttbar', 2), RunConfig('W3j', 2)]
     allAttempts = AllRunHandler(allAttemptsConfig)
     allAttempts.print_info()
 
