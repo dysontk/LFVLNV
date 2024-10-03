@@ -13,7 +13,7 @@ def run_command(command):
 if __name__=='__main__':
 
     list_of_data_types = ['LNVF', 'WZ2j']
-    AnalyzeCommand = './JetFake/main '
+    Analyze = './JetFake/main '
 
     list_of_files = []
 
@@ -24,6 +24,7 @@ if __name__=='__main__':
 
 
     for file in list_of_files:
-        AnalyzeCommand += file
+        Analyze += file
 
-    print(AnalyzeCommand)
+    # print(AnalyzeCommand)
+    run_command(Analyze)
