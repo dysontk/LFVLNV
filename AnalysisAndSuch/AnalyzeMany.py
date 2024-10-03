@@ -20,7 +20,7 @@ if __name__=='__main__':
     for dtyp in list_of_data_types:
         theseFiles = run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{dtyp}/Events/*/*delphes_events.root')
         list_of_files.append(theseFiles.replace('\n', ' '))
-        print(theseFiles.replace('\n', ' '))
+        # print(theseFiles.replace('\n', ' '))
 
 
     for file in list_of_files:
