@@ -1,5 +1,5 @@
 import sys
-sys.path.append('/home/dysontravis/Research/LFVLNV/GenerationFiles/')
+sys.path.append(os.path.abspath('/home/dysontravis/Research/LFVLNV/GenerationFiles/'))
 import GenManyOnUnity.py as GMOU
 
 # def find_
