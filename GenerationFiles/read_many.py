@@ -19,7 +19,7 @@ import GenManyOnUnity as GMOU
 
 # def find_
 
-def countEvents(eventTypes)
+def countEvents(eventTypes):
     eventTypes = ['LNVF', 'ttbar', 'W3j', 'WZ2j', 'ZZ2j']
     eventCounts = []
 
