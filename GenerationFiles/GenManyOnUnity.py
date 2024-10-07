@@ -166,13 +166,14 @@ if __name__ == '__main__':
     eventTypes = ['LNVF'] #, 'ttbar', 'W3j', 'WZ2j', 'ZZ2j']
     numgend = np.array(read_many.countEvents(eventTypes))
     print(numgend)
-    runs2Basked = np.array(int(((200_000-i)/0.23)/60_000) for i in numgend)
+    # runNum = int((200_000-i)/(0.23*60_000)) for i in 
+    runs2Basked = np.array([int(((200_000-i)/0.23)/60_000) for i in numgend])
     # runs2Basked = toBGend/
     print(runs2Basked)
-    allAttemptsConfig = []
-    for j in range(len(eventTypes)):
-        allAttemptsConfig.append(RunConfig(eventTypes[j], runs2Basked[j]))
-        print(eventTypes[j], ": ", runs2Basked[j])
+    # allAttemptsConfig = []
+    # for j in range(len(eventTypes)):
+    #     allAttemptsConfig.append(RunConfig(eventTypes[j], runs2Basked[j]))
+    #     print(eventTypes[j], ": ", runs2Basked[j])
     
 
     # RunConfig('ttbar', 1), RunConfig('W3j', 1), RunConfig('LNVF', 1), RunConfig('WZ2j', 1)RunConfig('LNVF', 10), RunConfig('WZ2j', 1), RunConfig('ZZ2j', 1)
