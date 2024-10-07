@@ -12,6 +12,11 @@ def run_command(command):
         output = str(f"Something when wrong when running {command}")
     return output
 
+def find_num_gend(fi):
+        output = run_command(f"./read_root_file {fi}")
+        m = re.search(r'\d+$', output)
+        return int(m.group()) if m else 0
+
 @dataclass
 class RunConfig:
     eventType: str
