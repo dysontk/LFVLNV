@@ -2,7 +2,8 @@ import subprocess
 import re
 from dataclasses import dataclass, asdict
 import time
-
+import read_many
+import numpy as np
 def run_command(command):
     try:
         output = subprocess.check_output(command, shell=True, encoding='utf8', stderr=subprocess.STDOUT)
@@ -161,16 +162,27 @@ class AllRunHandler:
             evnt.print_info()
 
 if __name__ == '__main__':
+
+    eventTypes = ['LNVF', 'ttbar', 'W3j', 'WZ2j', 'ZZ2j']
+    numgend = np.arraw(read_many.countEvents(eventTypes))
+
+    runs2Basked = np.array(int(((200_000-i)/0.23)/60_000) for i in numgend)
+    # runs2Basked = toBGend/
+    
+    allAttemptsConfig = []
+    for j in range(len(eventTypes)):
+        allAttemptsConfig.append(RunConfig(eventTypes[j], runs2Basked[j]))
+        print(eventTypes[j], ": ", runs2Basked[j])
+    
+
     # RunConfig('ttbar', 1), RunConfig('W3j', 1), RunConfig('LNVF', 1), RunConfig('WZ2j', 1)RunConfig('LNVF', 10), RunConfig('WZ2j', 1), RunConfig('ZZ2j', 1)
-    allAttemptsConfig = [RunConfig('ttbar', 6), RunConfig('W3j', 7), RunConfig('LNVF', 9), RunConfig('WZ2j', 2), RunConfig('ZZ2j', 1)]
-    allAttempts = AllRunHandler(allAttemptsConfig)
-    allAttempts.print_info()
+    # allAttemptsConfig = [RunConfig('ttbar', 6), RunConfig('W3j', 7), RunConfig('LNVF', 9), RunConfig('WZ2j', 2), RunConfig('ZZ2j', 1)]
+    # allAttempts = AllRunHandler(allAttemptsConfig)
+    # allAttempts.print_info()
 
-    # totEventsByType = {}
-    # print("test")
-    while allAttempts.is_running:
+    # while allAttempts.is_running:
 
-        allAttempts.print_info()
-        time.sleep(15)
+    #     allAttempts.print_info()
+    #     time.sleep(15)
         
         
