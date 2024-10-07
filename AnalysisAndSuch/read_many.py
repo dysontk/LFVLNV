@@ -1,6 +1,6 @@
 import sys
 sys.path.insert(1, '/home/dysontravis/Research/LFVLNV/GenerationFiles/')
-import GenManyOnUnity as GMOU
+import GenManyOnUnity.py as GMOU
 
 # def find_
 
