@@ -19,8 +19,7 @@ import GenManyOnUnity as GMOU
 
 # def find_
 
-if __name__ == '__main__':
-
+def countEvents(eventTypes)
     eventTypes = ['LNVF', 'ttbar', 'W3j', 'WZ2j', 'ZZ2j']
     eventCounts = []
 
@@ -34,3 +33,10 @@ if __name__ == '__main__':
         to_print += str(eventCounts[eventTypes.index(typ)])
     
     print(to_print)
+    output eventCounts
+
+if __name__ == '__main__':
+
+    eventTypes = ['LNVF', 'ttbar', 'W3j', 'WZ2j', 'ZZ2j']
+    
+    countEvents(eventTypes)
