@@ -168,6 +168,8 @@ if __name__ == '__main__':
     print(numgend)
     # runNum = int((200_000-i)/(0.23*60_000)) for i in 
     runs2Basked = np.array([int(((200_000-i)/0.23)/60_000) for i in numgend])
+    runs2Basked = np.array([0])
+    runs2Basked = np.array([1 if not rn else rn for rn in runs2Basked])
     # runs2Basked = toBGend/
     print(runs2Basked)
     # allAttemptsConfig = []
