@@ -33,7 +33,7 @@ def countEvents(eventTypes):
         to_print += str(eventCounts[eventTypes.index(typ)])
     
     print(to_print)
-    output eventCounts
+    return eventCounts
 
 if __name__ == '__main__':
 
