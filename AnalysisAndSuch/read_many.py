@@ -9,6 +9,7 @@ def run_command(command):
     except subprocess.CalledProcessError:
         print("Error. Generation probably failed")
         output = str(f"Something when wrong when running {command}")
+        print(output)
     return output
 
 def find_num_gend(fi):
@@ -20,7 +21,7 @@ def find_num_gend(fi):
 
 if __name__ == '__main__':
 
-    eventTypes = ['ttbar']
+    eventTypes = ['LNVF']
     eventCounts = []
 
     to_print = 'Number of Events Generated:'
