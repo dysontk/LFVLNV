@@ -14,7 +14,7 @@ def run_command(command):
     return output
 
 def find_num_gend(fi):
-        output = run_command(f"./read_root_file {fi}")
+        output = run_command(f"./home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/MyFiles/LFVLNV/AnalysisAndSuch/read_root_file {fi}")
         m = re.search(r'\d+$', output)
         return int(m.group()) if m else 0
 
