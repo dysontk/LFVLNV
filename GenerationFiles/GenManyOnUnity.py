@@ -96,7 +96,7 @@ class RunHandler:
         self.eventType = eventType
         begin_num = self._find_base_num()
         self.events = []
-        return 0
+        # return 0
 
         for rn in range(instance_count):
             thisRun = Run(eventType, rn+1, begin_num)
@@ -164,7 +164,7 @@ class AllRunHandler:
 
 if __name__ == '__main__':
 
-    eventTypes = ['LNVF'] #, 'ttbar', 'W3j', 'WZ2j', 'ZZ2j']
+    eventTypes = ['LNVF', 'ttbar', 'W3j', 'WZ2j', 'ZZ2j']
     numgend = np.array(read_many.countEvents(eventTypes))
     runs2Basked = np.array([1 if not i else int(((200_000-i)/0.23)/60_000) for i in numgend])
     print("Runs to be asked: ")
@@ -184,4 +184,5 @@ if __name__ == '__main__':
     #     allAttempts.print_info()
     #     time.sleep(15)
         
+    # edit this to run, check how many have gend, then repeat until 200k... no truncate how many are asked for once 200k is reached. 
         
