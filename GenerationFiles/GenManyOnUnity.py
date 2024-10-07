@@ -163,7 +163,7 @@ class AllRunHandler:
 
 if __name__ == '__main__':
 
-    eventTypes = ['LNVF', 'ttbar', 'W3j', 'WZ2j', 'ZZ2j']
+    eventTypes = ['LNVF'] #, 'ttbar', 'W3j', 'WZ2j', 'ZZ2j']
     numgend = np.array(read_many.countEvents(eventTypes))
     print(numgend)
     runs2Basked = np.array(int(((200_000-i)/0.23)/60_000) for i in numgend)
