@@ -165,13 +165,8 @@ if __name__ == '__main__':
 
     eventTypes = ['LNVF'] #, 'ttbar', 'W3j', 'WZ2j', 'ZZ2j']
     numgend = np.array(read_many.countEvents(eventTypes))
-    print(numgend)
-    # runNum = int((200_000-i)/(0.23*60_000)) for i in 
     runs2Basked = np.array([1 if not i else int(((200_000-i)/0.23)/60_000) for i in numgend])
-    # runs2Basked = np.array([0])
-    # runs2Basked = np.array([1 if not rn else rn for rn in runs2Basked])
-    # runs2Basked = toBGend/
-    print(runs2Basked)
+    print("Runs to be asked: ")
     allAttemptsConfig = []
     for j in range(len(eventTypes)):
         allAttemptsConfig.append(RunConfig(eventTypes[j], runs2Basked[j]))
@@ -180,12 +175,12 @@ if __name__ == '__main__':
 
     # RunConfig('ttbar', 1), RunConfig('W3j', 1), RunConfig('LNVF', 1), RunConfig('WZ2j', 1)RunConfig('LNVF', 10), RunConfig('WZ2j', 1), RunConfig('ZZ2j', 1)
     # allAttemptsConfig = [RunConfig('ttbar', 6), RunConfig('W3j', 7), RunConfig('LNVF', 9), RunConfig('WZ2j', 2), RunConfig('ZZ2j', 1)]
-    # allAttempts = AllRunHandler(allAttemptsConfig)
-    # allAttempts.print_info()
+    allAttempts = AllRunHandler(allAttemptsConfig)
+    allAttempts.print_info()
 
-    # while allAttempts.is_running:
+    while allAttempts.is_running:
 
-    #     allAttempts.print_info()
-    #     time.sleep(15)
+        allAttempts.print_info()
+        time.sleep(15)
         
         
