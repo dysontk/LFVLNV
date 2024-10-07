@@ -21,7 +21,7 @@ def find_num_gend(fi):
 
 if __name__ == '__main__':
 
-    eventTypes = ['LNVF']
+    eventTypes = ['LNVF', 'ttbar', 'W3j', 'WZ2j', 'ZZ2j']
     eventCounts = []
 
     to_print = 'Number of Events Generated:'
