@@ -30,6 +30,6 @@ if __name__ == '__main__':
         eventCounts.append(0)
         for ThisFile in files:
             eventCounts[-1]+= find_num_gend(ThisFile)
-        to_print += eventCounts[eventTypes.index(typ)]
+        to_print += str(eventCounts[eventTypes.index(typ)])
     
     print(to_print)
