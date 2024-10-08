@@ -23,6 +23,7 @@ def find_num_gend(fi):
 class RunConfig:
     eventType: str
     instance_count: int
+    prev_nEvents: int
 
 class Run:
 
@@ -90,21 +91,29 @@ class Run:
 
 class RunHandler:
 
-    def __init__(self, eventType, instance_count):
-        self.instance_count = instance_count
+    def __init__(self, eventType, n_runs, prev_gend):
+        self.n_runs = n_runs
         print(self.instance_count)
         self.eventType = eventType
         begin_num = self._find_base_num()
-        self.events = []
-        # return 0
-
-        for rn in range(instance_count):
+        self.runs = []
+        self.tot_nevents
+        self.runs_gend = 0    
+        
+        for rn in range(n_runs):
             thisRun = Run(eventType, rn+1, begin_num)
             thisRun.start_process()
             thisRun.print_info()
             thisRun.proc.wait()
             print(f"{self.eventType} attempt {rn+1} complete (run {rn+1+begin_num})")
-            self.events.append(thisRun)
+            self.runs.append(thisRun)
+            self.tot_nevents += thisRun.generated_count
+            if self.tot_nevents > 100_000:
+                self.runs_gend = rn
+                print(f"There are over 200k events for {self.eventType}. \nEnding Generation there")
+                break
+        self.runs_gend = n_runs
+            
 
 
     def _find_base_num(self):
@@ -119,15 +128,15 @@ class RunHandler:
     
     @property
     def is_running(self):
-        for evnt in self.events:
-            if evnt.is_running:
+        for rn in self.runs:
+            if rn.is_running:
                 return True        
         return False
 
     @property
     def generated_count(self):
         count = 0
-        for evnt in self.events:
+        for rn in self.runs:
             count =+ evnt.generated_count
         return count
 
@@ -143,17 +152,19 @@ class RunHandler:
 class AllRunHandler:
 
     def __init__(self, run_config):
-        self.events = []
+        self.runs = []
+        # self.tot_events = Nevents0
 
         for cfg in run_config:
             print(f"initializing {cfg.eventType} runs")
-            self.events.append(RunHandler(**asdict(cfg)))
+            self.runs.append(RunHandler(**asdict(cfg)))
+            # self.tot_events += 
             
     
     @property
     def is_running(self):
-        for evnt in self.events:
-            if evnt.is_running:
+        for rn in self.runs:
+            if rn.is_running:
                 return True        
         return False
 
@@ -170,7 +181,7 @@ if __name__ == '__main__':
     print("Runs to be asked: ")
     allAttemptsConfig = []
     for j in range(len(eventTypes)):
-        allAttemptsConfig.append(RunConfig(eventTypes[j], runs2Basked[j]))
+        allAttemptsConfig.append(RunConfig(eventTypes[j], runs2Basked[j], numgend[j]))
         print(eventTypes[j], ": ", runs2Basked[j])
     
 
