@@ -46,5 +46,5 @@ if __name__ == '__main__':
 
     eventTypes = ['ttbar', 'W3j', 'WZ2j', 'ZZ2j']
     
-    how_many_runs('ttbar', 'event_counts.txt')
+    how_many_runs('ttbar')
     # countEvents(eventTypes)
