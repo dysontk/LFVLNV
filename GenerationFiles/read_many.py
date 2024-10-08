@@ -53,5 +53,5 @@ if __name__ == '__main__':
 
     eventTypes = ['ttbar', 'W3j', 'WZ2j', 'ZZ2j']
     
-    most_recent_run_num('ttbar')
+    print(most_recent_run_num('ttbar'))
     # countEvents(eventTypes)
