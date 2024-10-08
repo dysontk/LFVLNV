@@ -22,6 +22,7 @@ import GenManyOnUnity as GMOU
 def how_many_runs(eventType):
     runs = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{eventType}/Events/')
     print(runs)
+    print("hi")
     
 
 def countEvents(eventTypes, outfile):
