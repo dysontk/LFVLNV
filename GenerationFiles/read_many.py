@@ -20,8 +20,8 @@ import GenManyOnUnity as GMOU
 # def find_
 
 def how_many_runs(eventType):
-    runs = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{eventType}/Events/')
-    print(runs)
+    runs = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{eventType}/Events/').split('\n')
+    runs = runs[:len(runs)/2]
     print("hi")
     
 
