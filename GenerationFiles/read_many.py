@@ -66,7 +66,7 @@ def read_num_events(InFil):
 if __name__ == '__main__':
 
     fullRecheck = False
-    eventTypes = ['ttbar', 'W3j', 'WZ2j', 'ZZ2j']
+    eventTypes = ['ZZ2j']
     fullCheckTypes = []
     need_to_full_check = []
     for i in range(len(eventTypes)):
