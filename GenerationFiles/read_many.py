@@ -19,12 +19,16 @@ import GenManyOnUnity as GMOU
 
 # def find_
 
-def how_many_runs(eventType):
-    runs = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{eventType}/Events/').split('\n')
+def find_number_in_string(strin):
+    return re.findall('\d+', strin)
+
+def most_recent_run_num(eventType):
+    runs = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{eventType}/Events/').split('\n')[:-1]
     # print(len(runs))
     print(runs)
+    return find_number_in_string(runs[-1])
     # runs = runs[:len(runs)/2]
-    print("hi")
+    # print("hi")
     
 
 def countEvents(eventTypes, outfile):
