@@ -19,7 +19,12 @@ import GenManyOnUnity as GMOU
 
 # def find_
 
-def countEvents(eventTypes):
+def how_many_runs(eventType):
+    runs = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{typ}/Events/')
+    print(runs)
+    
+
+def countEvents(eventTypes, outfile):
     # eventTypes = ['LNVF', 'ttbar', 'W3j', 'WZ2j', 'ZZ2j']
     eventCounts = []
 
@@ -37,6 +42,9 @@ def countEvents(eventTypes):
 
 if __name__ == '__main__':
 
+    fullRecheck = False
+
     eventTypes = ['ttbar', 'W3j', 'WZ2j', 'ZZ2j']
     
-    countEvents(eventTypes)
+    how_many_runs('ttbar', 'event_counts.txt')
+    # countEvents(eventTypes)
