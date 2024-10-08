@@ -101,6 +101,10 @@ class RunHandler:
         self.runs_gend = 0    
         
         for rn in range(n_runs):
+            if self.tot_nevents > 10_000:
+                self.runs_gend = rn
+                print(f"There are over 200k events for {self.eventType}. \nEnding Generation there")
+                break
             thisRun = Run(eventType, rn+1, begin_num)
             thisRun.start_process()
             thisRun.print_info()
@@ -108,10 +112,6 @@ class RunHandler:
             print(f"{self.eventType} attempt {rn+1} complete (run {rn+1+begin_num})")
             self.runs.append(thisRun)
             self.tot_nevents += thisRun.generated_count
-            if self.tot_nevents > 100_000:
-                self.runs_gend = rn
-                print(f"There are over 200k events for {self.eventType}. \nEnding Generation there")
-                break
         self.runs_gend = n_runs
             
 
@@ -175,7 +175,12 @@ class AllRunHandler:
 
 if __name__ == '__main__':
 
-    eventTypes = ['LNVF', 'ttbar', 'W3j', 'WZ2j', 'ZZ2j']
+    eventTypes = [#'LNVF', 
+                #   'ttbar', 
+                  'W3j', 
+                #   'WZ2j', 
+                #   'ZZ2j'
+                  ]
     numgend = np.array(read_many.countEvents(eventTypes))
     runs2Basked = np.array([1 if not i else int(((200_000-i)/0.23)/60_000) for i in numgend])
     print("Runs to be asked: ")
