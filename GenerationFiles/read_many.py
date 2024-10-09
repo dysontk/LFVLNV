@@ -78,7 +78,7 @@ if __name__ == '__main__':
 
     file_info = read_num_events(infile)
     print(file_info)
-    if not file_info:
+    if file_info:
         for typ in eventTypes:
             for TYP in file_info:
                 if TYP[0]!=typ:
