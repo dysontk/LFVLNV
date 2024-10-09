@@ -93,7 +93,7 @@ if __name__ == '__main__':
                     else:
                         print(f'No need to full check {typ}')
                         need_to_full_check.append([typ, 0])
-            if not_asked_for:
+            if not not_asked_for:
                 print(f'{TYP} was not asked for but is currently in the document')
                 need_to_full_check.append([TYP[0], 0])
                 
