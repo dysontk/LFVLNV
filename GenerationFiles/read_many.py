@@ -95,14 +95,16 @@ if __name__ == '__main__':
     
         
     # for i in range(len(need_to_full_check)):
-    #     if need_to_full_check[i]:
+    #     if need_to_full_check[i][1]:
     #         eventTypes[i] = ''
     #     else:
     #         continue
     
-    # outfile = open('event_counts.txt', 'w')    
-    # print(eventTypes)
+    outfile = open('event_counts.txt', 'w')    
+    print(eventTypes)
 
+    need_to_full_check = np.array(need_to_full_check)
+    print(need_to_full_check[:,0])
     # countEvents(eventTypes, outfile)
 
     # print("hi", file_info)
