@@ -102,5 +102,6 @@ if __name__ == '__main__':
         if not need_to_full_check[i]:
             to_write = ''
             for j in range(3):
+                print(file_info[i][j])
                 to_write += str(file_info[i][j]) + ','
             outfile.write(to_write+'\n')
