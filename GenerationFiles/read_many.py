@@ -111,88 +111,44 @@ if __name__ == '__main__':
         fullRecheck = 1
     
     need_to_full_check = create_dict(eventTypes, file_info, True)
-    # if not fullRecheck:
-    #     for TYP in file_info:
-    #         not_asked_for = False
-    #         for typ in eventTypes:
-    #             if TYP[0] == typ:
-    #                 not_asked_for = True
-    #                 curr_run_max = most_recent_run_num(typ)
-    #                 if curr_run_max != TYP[1]:
-    #                     need_to_full_check.update({typ, 1})
-    #                     print(f"For {TYP[0]} Records show {TYP[1]} runs", f"There are {curr_run_max}")
-    #                 else:
-    #                     print(f'No need to full check {typ}')
-    #                     need_to_full_check.update({typ: 0})
-    #         if not not_asked_for:
-    #             print(f'{TYP} was not asked for but is currently in the document')
-    #             need_to_full_check.update({TYP[0]: 0})
-                
 
     if fullRecheck:
         for key in need_to_full_check:
             need_to_full_check[key] = 1
         print("Will recheck all")
     print(need_to_full_check)
-    
-        
-    # for i in range(len(need_to_full_check)):
-    #     if need_to_full_check[i][1]:
-    #         eventTypes[i] = ''
-    #     else:
-    #         continue
-    # print(file_info)
-    outfile = open('event_counts.txt', 'w')    
-    # print(eventTypes)
-    # outfile.write("hi")
-    # need_to_full_check = np.array(need_to_full_check)
-    # need_to_check_arr = np.array(shape=(len(need_to_full_check), 2))
-    # print(need_to_full_check[:,0])
 
+    outfile = open('event_counts.txt', 'w')    
     '''
     Yeah so countEvents() takes in a list of event types and counts the total events for each
     It then writes that information to the outfile (OF) like so:
     <type>,<highest run number>,<total n events>\n
     '''
-    # temp = []
-    # for i in range(len(need_to_full_check)):
-    #     print(int(need_to_full_check[i,1]))
-    #     # print(need_to_full_check[])
-    #     if int(need_to_full_check[i,1]):
-    #         temp.append(need_to_full_check[i,0])
-               
-    # print(temp)
+   
     print([ky if int(need_to_full_check[ky]) else '' for ky in need_to_full_check])
-    # print()
-
     for t in need_to_full_check:
-        # print(t[1])
-        # print(type(t[1]))
         print(t, ": ", "Recounting" if int(need_to_full_check[t]) else "No Recount Needed")
     newCounts = countEvents([ky if int(need_to_full_check[ky]) else '' for ky in need_to_full_check], outfile) 
-    # print(newCounts)
     '''
     Because outfile is write only, it deletes (I believe) the contents. 
     So if there are any events that we did not recheck then that info would be lost.
     The next bit writes the file info for whatever event types we did not need to recheck
     '''    
-    i=0
-    for K in need_to_full_check:
-        if not int(need_to_full_check[K]):
-            # print(f"{need_to_full_check[i][0]} was not recounted. Reprinting info now")
-            print(f'{K} : {need_to_full_check[K]}') # This prints the old counts which were not rechecked
-            to_write = ''
-            for j in range(3):
-                # print(file_info[i][j])
-                to_write += str(file_info[i][j])
-                to_write += ',' if j<2 else '\n'
-                # if j > 3
+    print(need_to_full_check)
+    print(file_info)
+    # i=0
+    # for K in need_to_full_check:
+    #     if not int(need_to_full_check[K]):
+    #         print(f'{K} : {need_to_full_check[K]}') # This prints the old counts which were not rechecked
+    #         to_write = ''
+    #         for j in range(3):
+    #             to_write += str(file_info[i][j])
+    #             to_write += ',' if j<2 else '\n'
+    #         outfile.write(to_write)
+    #     i += 1
 
-            outfile.write(to_write)
-        i += 1
-
-    for t in newCounts:
-        if t[0] != '':
-            print(f'{t[0]} : {t[1]}') # this prints the new counts
+    # for t in newCounts:
+    #     if t[0] != '':
+    #         print(f'{t[0]} : {t[1]}') # this prints the new counts
     infile.close()
     outfile.close()
