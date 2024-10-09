@@ -88,7 +88,7 @@ if __name__ == '__main__':
                     curr_run_max = most_recent_run_num(typ)
                     if curr_run_max != TYP[1]:
                         need_to_full_check[eventTypes.index(typ)] = (f'{typ}', 1)
-                        print(f"Records show {TYP[1]} runs", f"There are {curr_run_max}")
+                        print(f"For {TYP[0]} Records show {TYP[1]} runs", f"There are {curr_run_max}")
                     else:
                         print(f'No need to full check {typ}')
 
@@ -125,6 +125,10 @@ if __name__ == '__main__':
                
     # print(temp)
     # print([need_to_full_check[i,0] if int(need_to_full_check[i,1]) else '' for i in range(len(need_to_full_check))])
+    print()
+
+    for t in need_to_full_check:
+        print(t[0], ": ", "Recounting" if t[1] else "No Recount Needed")
     countEvents([need_to_full_check[i,0] if int(need_to_full_check[i,1]) else '' for i in range(len(need_to_full_check))], outfile) 
 
     '''
