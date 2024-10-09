@@ -115,12 +115,12 @@ if __name__ == '__main__':
     <type>,<highest run number>,<total n events>\n
     '''
     # temp = [i if not need_to_full_check[i,1] else '' for i in range(len(need_to_full_check))]
-    for i in range(len(need_to_full_check)):
-        print(type(need_to_full_check[i,1]))
+    # for i in range(len(need_to_full_check)):
+    #     print(type(need_to_full_check[i,1]))
         # if need_to_full_check[i,1]:
             
     print(temp)
-    print([need_to_full_check[i,0] if need_to_full_check[i,1] else '' for i in range(len(need_to_full_check))])
+    print([need_to_full_check[i,0] if bool(need_to_full_check[i,1]) else '' for i in range(len(need_to_full_check))])
     # countEvents([need_to_full_check[i,0] if need_to_full_check[i,1] else continue for i in range(len(need_to_full_check))], outfile) 
 
     '''
