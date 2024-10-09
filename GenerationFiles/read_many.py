@@ -70,31 +70,37 @@ def read_num_events(InFil):
 
 if __name__ == '__main__':
 
-    fullRecheck = 0
-    eventTypes = ['ZZ2j', 'WZ2j', 'LNVF', 'W3j']
+    fullRecheck = 1
+    eventTypes = ['ZZ2j', 'WZ2j', 'LNVF']
     fullCheckTypes = []
     need_to_full_check = []
-    for i in range(len(eventTypes)):
-        need_to_full_check.append((eventTypes[i], 1))
+    # for i in range(len(eventTypes)):
+        # need_to_full_check.append((eventTypes[i], 1))
     infile = open('event_counts.txt', 'r')
 
     file_info = read_num_events(infile)
     print(file_info)
     if file_info:
-        for typ in eventTypes:
-            for TYP in file_info:
-                if TYP[0]!=typ:
-                    continue
-                else:
+        for TYP in file_info:
+            not_asked_for = False
+            for typ in eventTypes:
+                if TYP[0] == typ:
+                    not_asked_for = True
                     curr_run_max = most_recent_run_num(typ)
                     if curr_run_max != TYP[1]:
-                        need_to_full_check[eventTypes.index(typ)] = (f'{typ}', 1)
+                        need_to_full_check.append([typ, 1])
                         print(f"For {TYP[0]} Records show {TYP[1]} runs", f"There are {curr_run_max}")
                     else:
                         print(f'No need to full check {typ}')
-                        need_to_full_check[eventTypes.index(typ)] = (f'{typ}', 0)
+                        need_to_full_check.append([typ, 0])
+            if not_asked_for:
+                print(f'{TYP} was not asked for but is currently in the document')
+                need_to_full_check.append([TYP[0], 0])
+                
 
     else:
+        # if fullRecheck:
+            # need_to_full_check[eventTypes.index(typ)] = (f'{typ}', 1)
         print(f'File empty')
         for i in range(len(need_to_full_check)):
             need_to_full_check[i] = (need_to_full_check[i][0], 1)
