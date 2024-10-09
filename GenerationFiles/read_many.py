@@ -154,6 +154,6 @@ if __name__ == '__main__':
             outfile.write(to_write)
 
     for t in newCounts:
-        print(f'{t[i][0]} : {t[i][1]}')
+        print(f'{t[0]} : {t[1]}')
     infile.close()
     outfile.close()
