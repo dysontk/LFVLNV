@@ -71,7 +71,7 @@ def read_num_events(InFil):
 if __name__ == '__main__':
 
     fullRecheck = 0
-    eventTypes = ['ZZ2j', 'WZ2j', 'LNVF']
+    eventTypes = ['ZZ2j', 'WZ2j', 'LNVF', 'W3j']
     fullCheckTypes = []
     need_to_full_check = []
     for i in range(len(eventTypes)):
@@ -145,8 +145,8 @@ if __name__ == '__main__':
             print(f"{need_to_full_check[i][0]} was not recounted. Reprinting info now")
             to_write = ''
             for j in range(3):
-                print(file_info[i][j])
-                to_write += str(file_info[i][j]) + ',' if j<3 else ''
+                # print(file_info[i][j])
+                to_write += str(file_info[i][j]) + ',' if j<2 else ''
                 # if j > 3
 
             outfile.write(to_write+'\n')
