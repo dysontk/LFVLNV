@@ -119,7 +119,7 @@ if __name__ == '__main__':
     #     print(type(need_to_full_check[i,1]))
         # if need_to_full_check[i,1]:
             
-    print(temp)
+    # print(temp)/
     print([need_to_full_check[i,0] if bool(need_to_full_check[i,1]) else '' for i in range(len(need_to_full_check))])
     # countEvents([need_to_full_check[i,0] if need_to_full_check[i,1] else continue for i in range(len(need_to_full_check))], outfile) 
 
