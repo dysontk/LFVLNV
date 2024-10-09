@@ -39,7 +39,7 @@ def countEvents(eventTypes, OF):
     # to_write =
     to_print = 'Number of Events Generated:'
     for typ in eventTypes:
-        eventCounts.append([{typ},0])
+        eventCounts.append([typ,0])
         if typ == '':
             continue
         # to_write = 
