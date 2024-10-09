@@ -87,7 +87,7 @@ if __name__ == '__main__':
                 else:
                     curr_run_max = most_recent_run_num(typ)
                     if curr_run_max != TYP[1]:
-                        need_to_full_check[eventTypes.index(typ)][1] = 1
+                        need_to_full_check[eventTypes.index(typ)] = (f'{typ}', 1)
                         print(f"Records show {TYP[1]} runs", f"There are {curr_run_max}")
                     else:
                         print(f'No need to full check {typ}')
