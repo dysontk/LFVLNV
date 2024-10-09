@@ -92,6 +92,8 @@ if __name__ == '__main__':
                     else:
                         print(f'No need to full check {typ}')
 
+    else:
+        print(f'File empty')
     print(need_to_full_check)
     
         
@@ -102,17 +104,17 @@ if __name__ == '__main__':
     #         continue
     
     outfile = open('event_counts.txt', 'w')    
-    print(eventTypes)
+    # print(eventTypes)
 
     need_to_full_check = np.array(need_to_full_check)
-    print(need_to_full_check[:,0])
-    # countEvents(eventTypes, outfile)
+    # print(need_to_full_check[:,0])
+    countEvents(need_to_full_check[:,0], outfile)
 
     # print("hi", file_info)
-    # for i in range(len(need_to_full_check)):
-    #     if not need_to_full_check[i]:
-    #         to_write = ''
-    #         for j in range(3):
-    #             print(file_info[i][j])
-    #             to_write += str(file_info[i][j]) + ','
-    #         outfile.write(to_write+'\n')
+    for i in range(len(need_to_full_check)):
+        if not need_to_full_check[i]:
+            to_write = ''
+            for j in range(3):
+                print(file_info[i][j])
+                to_write += str(file_info[i][j]) + ','
+            outfile.write(to_write+'\n')
