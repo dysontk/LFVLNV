@@ -24,7 +24,7 @@ def find_number_in_string(strin):
     return re.findall('\d+', strin)
 
 def most_recent_run_num(eventType):
-    runs = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{eventType}/Events/').split('\n')[:-1]
+    runs = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{eventType}/Events/', False).split('\n')[:-1]
     # print(len(runs))
     # print(truns)
     return find_number_in_string(runs[-1])[0]
@@ -39,14 +39,14 @@ def countEvents(eventTypes, OF):
     # to_write =
     to_print = 'Number of Events Generated:'
     for typ in eventTypes:
+        eventCounts.append(0)
         if typ == '':
             continue
         # to_write = 
         to_print += '\n' + typ + ': '
-        files = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{typ}/Events/*/*delphes_events.root').split('\n')
-        eventCounts.append(0)
+        files = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{typ}/Events/*/*delphes_events.root', False).split('\n')
         for ThisFile in files:
-            eventCounts[-1]+= GMOU.find_num_gend(ThisFile)
+            eventCounts[-1]+= GMOU.find_num_gend(ThisFile, False)
         NEVENTS = eventCounts[eventTypes.index(typ)]
         to_print += str(NEVENTS)
         # to_write += 
