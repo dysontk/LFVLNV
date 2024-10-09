@@ -74,7 +74,7 @@ if __name__ == '__main__':
     fullCheckTypes = []
     need_to_full_check = []
     for i in range(len(eventTypes)):
-        need_to_full_check.append((eventTypes[i], 0))
+        need_to_full_check.append((eventTypes[i], 1))
     infile = open('event_counts.txt', 'r')
 
     file_info = read_num_events(infile)
@@ -91,6 +91,7 @@ if __name__ == '__main__':
                         print(f"For {TYP[0]} Records show {TYP[1]} runs", f"There are {curr_run_max}")
                     else:
                         print(f'No need to full check {typ}')
+                        need_to_full_check[eventTypes.index(typ)] = (f'{typ}', 0)
 
     else:
         print(f'File empty')
@@ -136,10 +137,10 @@ if __name__ == '__main__':
     So if there are any events that we did not recheck then that info would be lost.
     The next bit writes the file info for whatever event types we did not need to recheck
     '''    
-    # for i in range(len(need_to_full_check)):
-    #     if not need_to_full_check[i][1]:
-    #         to_write = ''
-    #         for j in range(3):
-    #             print(file_info[i][j])
-    #             to_write += str(file_info[i][j]) + ','
-    #         outfile.write(to_write+'\n')
+    for i in range(len(need_to_full_check)):
+        if not need_to_full_check[i][1]:
+            to_write = ''
+            for j in range(3):
+                print(file_info[i][j])
+                to_write += str(file_info[i][j]) + ','
+            outfile.write(to_write+'\n')
