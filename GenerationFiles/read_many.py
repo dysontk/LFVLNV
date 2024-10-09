@@ -76,17 +76,17 @@ if __name__ == '__main__':
     file_info = read_num_events(infile)
     print(file_info)
 
-    # for typ in eventTypes:
-    #     for TYP in file_info:
-    #         if TYP[0]!=typ:
-    #             continue
-    #         else:
-    #             curr_run_max = most_recent_run_num(typ)
-    #             if curr_run_max != TYP[1]:
-    #                 need_to_full_check[eventTypes.index(typ)] = True
-    #                 print(f"Records show {TYP[1]} runs", f"There are {curr_run_max}")
-    #             else:
-    #                 print(f'No need to full check {typ}')
+    for typ in eventTypes:
+        for TYP in file_info:
+            if TYP[0]!=typ:
+                continue
+            else:
+                curr_run_max = most_recent_run_num(typ)
+                if curr_run_max != TYP[1]:
+                    need_to_full_check[eventTypes.index(typ)] = True
+                    print(f"Records show {TYP[1]} runs", f"There are {curr_run_max}")
+                else:
+                    print(f'No need to full check {typ}')
     
     # for i in range(len(need_to_full_check)):
     #     if need_to_full_check[i]:
