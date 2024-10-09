@@ -58,7 +58,7 @@ def countEvents(eventTypes, OF):
 def read_num_events(InFil):
     lines = infile.readlines()
     for l in range(len(lines)):
-        lines[l] = lines[l].split(',')
+        lines[l] = lines[l].strip().split(',')
     print(lines)
     return lines
 
