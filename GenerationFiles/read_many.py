@@ -67,6 +67,31 @@ def read_num_events(InFil):
     print(lines)
     return lines
 
+def create_dict(L1, L2ish, verbs=False):
+
+    dic = {}
+    for l1 in L1:
+        dic.update({l:1})
+        if verbs:
+            print(f'{l1} added to dictionary')
+    for l2 in L2ish:
+        curr_run_max = most_recent_run_num(l2[0])
+        for key in dic:
+            if l2[0] == key:
+                if curr_run_max == l2[1]:
+                    dic[key] = 0 # This says "don't recount if the file (l2[1]) has the same max run number as ls gives"
+                    if verbs:
+                        print(f'No need to recount {key}')
+                else:
+                    if verbs:
+                        print(f'Will recount {key}')
+                    continue
+            else:
+                dic.update({l2[0]:0})
+                if verbs:
+                    print(f'{l2[0]} was in the file but not asked for')
+    return dic
+
 
 if __name__ == '__main__':
 
@@ -84,26 +109,26 @@ if __name__ == '__main__':
         print("file empty.")
         fullRecheck = 1
     
-    if not fullRecheck:
-        for TYP in file_info:
-            not_asked_for = False
-            for typ in eventTypes:
-                if TYP[0] == typ:
-                    not_asked_for = True
-                    curr_run_max = most_recent_run_num(typ)
-                    if curr_run_max != TYP[1]:
-                        need_to_full_check.update({typ, 1})
-                        print(f"For {TYP[0]} Records show {TYP[1]} runs", f"There are {curr_run_max}")
-                    else:
-                        print(f'No need to full check {typ}')
-                        need_to_full_check.update({typ: 0})
-            if not not_asked_for:
-                print(f'{TYP} was not asked for but is currently in the document')
-                need_to_full_check.update({TYP[0]: 0})
+    need_to_full_check = create_dict(eventTypes, file_info), True)
+    # if not fullRecheck:
+    #     for TYP in file_info:
+    #         not_asked_for = False
+    #         for typ in eventTypes:
+    #             if TYP[0] == typ:
+    #                 not_asked_for = True
+    #                 curr_run_max = most_recent_run_num(typ)
+    #                 if curr_run_max != TYP[1]:
+    #                     need_to_full_check.update({typ, 1})
+    #                     print(f"For {TYP[0]} Records show {TYP[1]} runs", f"There are {curr_run_max}")
+    #                 else:
+    #                     print(f'No need to full check {typ}')
+    #                     need_to_full_check.update({typ: 0})
+    #         if not not_asked_for:
+    #             print(f'{TYP} was not asked for but is currently in the document')
+    #             need_to_full_check.update({TYP[0]: 0})
                 
 
-    else:
-        # if fullRecheck:
+    if fullRecheck:
         for key in need_to_full_check:
             need_to_full_check[key] = 1
         print("Will recheck all")
