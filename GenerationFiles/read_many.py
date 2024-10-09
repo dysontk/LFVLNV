@@ -39,14 +39,14 @@ def countEvents(eventTypes, OF):
     # to_write =
     to_print = 'Number of Events Generated:'
     for typ in eventTypes:
-        eventCounts.append(0)
+        eventCounts.append([{typ},0])
         if typ == '':
             continue
         # to_write = 
         to_print += '\n' + typ + ': '
         files = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{typ}/Events/*/*delphes_events.root', False).split('\n')
         for ThisFile in files:
-            eventCounts[-1]+= GMOU.find_num_gend(ThisFile, False)
+            eventCounts[-1][1]+= GMOU.find_num_gend(ThisFile, False)
         NEVENTS = eventCounts[eventTypes.index(typ)]
         to_print += str(NEVENTS)
         # to_write += 
@@ -133,7 +133,7 @@ if __name__ == '__main__':
         # print(t[1])
         # print(type(t[1]))
         print(t[0], ": ", "Recounting" if int(t[1]) else "No Recount Needed")
-    countEvents([need_to_full_check[i,0] if int(need_to_full_check[i,1]) else '' for i in range(len(need_to_full_check))], outfile) 
+    newCounts = countEvents([need_to_full_check[i,0] if int(need_to_full_check[i,1]) else '' for i in range(len(need_to_full_check))], outfile) 
 
     '''
     Because outfile is write only, it deletes (I believe) the contents. 
@@ -142,7 +142,8 @@ if __name__ == '__main__':
     '''    
     for i in range(len(need_to_full_check)):
         if not int(need_to_full_check[i][1]):
-            print(f"{need_to_full_check[i][0]} was not recounted. Reprinting info now")
+            # print(f"{need_to_full_check[i][0]} was not recounted. Reprinting info now")
+            print(f'{need_to_full_check[i][0]} : {need_to_full_check[i][1]}')
             to_write = ''
             for j in range(3):
                 # print(file_info[i][j])
@@ -151,3 +152,8 @@ if __name__ == '__main__':
                 # if j > 3
 
             outfile.write(to_write)
+
+    for t in newCounts:
+        print(f'{t[i][0]} : {t[i][1]}')
+    infile.close()
+    outfile.close()
