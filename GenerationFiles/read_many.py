@@ -74,22 +74,23 @@ def create_dict(L1, L2ish, verbs=False):
         dic.update({l1:1})
         if verbs:
             print(f'{l1} added to dictionary')
-    for l2 in L2ish:
-        curr_run_max = most_recent_run_num(l2[0])
-        for key in dic:
-            if l2[0] == key:
-                if curr_run_max == l2[1]:
-                    dic[key] = 0 # This says "don't recount if the file (l2[1]) has the same max run number as ls gives"
-                    if verbs:
-                        print(f'No need to recount {key}')
+    if l2:
+        for l2 in L2ish:
+            curr_run_max = most_recent_run_num(l2[0])
+            for key in dic:
+                if l2[0] == key:
+                    if curr_run_max == l2[1]:
+                        dic[key] = 0 # This says "don't recount if the file (l2[1]) has the same max run number as ls gives"
+                        if verbs:
+                            print(f'No need to recount {key}')
+                    else:
+                        if verbs:
+                            print(f'Will recount {key}')
+                        continue
                 else:
+                    dic.update({l2[0]:0})
                     if verbs:
-                        print(f'Will recount {key}')
-                    continue
-            else:
-                dic.update({l2[0]:0})
-                if verbs:
-                    print(f'{l2[0]} was in the file but not asked for')
+                        print(f'{l2[0]} was in the file but not asked for')
     return dic
 
 
