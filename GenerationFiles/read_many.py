@@ -98,6 +98,7 @@ if __name__ == '__main__':
 
     countEvents(eventTypes, outfile)
 
+    print("hi")
     for i in range(len(need_to_full_check)):
         if not need_to_full_check[i]:
             to_write = ''
