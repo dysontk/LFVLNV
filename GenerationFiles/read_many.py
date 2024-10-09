@@ -94,6 +94,8 @@ if __name__ == '__main__':
 
     else:
         print(f'File empty')
+        for i in range(len(need_to_full_check)):
+            need_to_full_check[i,1] = 1
     print(need_to_full_check)
     
         
