@@ -146,7 +146,8 @@ if __name__ == '__main__':
             to_write = ''
             for j in range(3):
                 # print(file_info[i][j])
-                to_write += str(file_info[i][j]) + ',' if j<2 else ''
+                to_write += str(file_info[i][j])
+                to_write += ',' if j<2 else '\n'
                 # if j > 3
 
-            outfile.write(to_write+'\n')
+            outfile.write(to_write)
