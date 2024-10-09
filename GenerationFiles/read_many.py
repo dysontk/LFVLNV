@@ -102,30 +102,30 @@ if __name__ == '__main__':
     #         eventTypes[i] = ''
     #     else:
     #         continue
-    print(file_info)
+    # print(file_info)
     outfile = open('event_counts.txt', 'w')    
     # print(eventTypes)
-    outfile.write("hi")
+    # outfile.write("hi")
     
-    # need_to_full_check = np.array(need_to_full_check)
-    # # print(need_to_full_check[:,0])
+    need_to_full_check = np.array(need_to_full_check)
+    # print(need_to_full_check[:,0])
 
-    # '''
-    # Yeah so countEvents() takes in a list of event types and counts the total events for each
-    # It then writes that information to the outfile (OF) like so:
-    # <type>,<highest run number>,<total n events>\n
-    # '''
-    # countEvents(list(need_to_full_check[:,0]), outfile) 
+    '''
+    Yeah so countEvents() takes in a list of event types and counts the total events for each
+    It then writes that information to the outfile (OF) like so:
+    <type>,<highest run number>,<total n events>\n
+    '''
+    countEvents(list(need_to_full_check[:,0]), outfile) 
 
-    # '''
-    # Because outfile is write only, it deletes (I believe) the contents. 
-    # So if there are any events that we did not recheck then that info would be lost.
-    # The next bit writes the file info for whatever event types we did not need to recheck
-    # '''    
-    # for i in range(len(need_to_full_check)):
-    #     if not need_to_full_check[i][1]:
-    #         to_write = ''
-    #         for j in range(3):
-    #             print(file_info[i][j])
-    #             to_write += str(file_info[i][j]) + ','
-    #         outfile.write(to_write+'\n')
+    '''
+    Because outfile is write only, it deletes (I believe) the contents. 
+    So if there are any events that we did not recheck then that info would be lost.
+    The next bit writes the file info for whatever event types we did not need to recheck
+    '''    
+    for i in range(len(need_to_full_check)):
+        if not need_to_full_check[i][1]:
+            to_write = ''
+            for j in range(3):
+                print(file_info[i][j])
+                to_write += str(file_info[i][j]) + ','
+            outfile.write(to_write+'\n')
