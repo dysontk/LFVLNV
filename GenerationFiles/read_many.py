@@ -70,39 +70,40 @@ if __name__ == '__main__':
     fullCheckTypes = []
     need_to_full_check = []
     for i in range(len(eventTypes)):
-        need_to_full_check.append(False)
+        need_to_full_check.append((eventTypes[i], False))
     infile = open('event_counts.txt', 'r')
 
     file_info = read_num_events(infile)
-
-    for typ in eventTypes:
-        for TYP in file_info:
-            if TYP[0]!=typ:
-                continue
-            else:
-                curr_run_max = most_recent_run_num(typ)
-                if curr_run_max != TYP[1]:
-                    need_to_full_check[eventTypes.index(typ)] = True
-                    print(f"Records show {TYP[1]} runs", f"There are {curr_run_max}")
-                else:
-                    print(f'No need to full check {typ}')
+    print(file_info)
     
-    for i in range(len(need_to_full_check)):
-        if need_to_full_check[i]:
-            eventTypes[i] = ''
-        else:
-            continue
+    # for typ in eventTypes:
+    #     for TYP in file_info:
+    #         if TYP[0]!=typ:
+    #             continue
+    #         else:
+    #             curr_run_max = most_recent_run_num(typ)
+    #             if curr_run_max != TYP[1]:
+    #                 need_to_full_check[eventTypes.index(typ)] = True
+    #                 print(f"Records show {TYP[1]} runs", f"There are {curr_run_max}")
+    #             else:
+    #                 print(f'No need to full check {typ}')
     
-    outfile = open('event_counts.txt', 'w')    
-    print(eventTypes)
+    # for i in range(len(need_to_full_check)):
+    #     if need_to_full_check[i]:
+    #         eventTypes[i] = ''
+    #     else:
+    #         continue
+    
+    # outfile = open('event_counts.txt', 'w')    
+    # print(eventTypes)
 
-    countEvents(eventTypes, outfile)
+    # countEvents(eventTypes, outfile)
 
-    print("hi", file_info)
-    for i in range(len(need_to_full_check)):
-        if not need_to_full_check[i]:
-            to_write = ''
-            for j in range(3):
-                print(file_info[i][j])
-                to_write += str(file_info[i][j]) + ','
-            outfile.write(to_write+'\n')
+    # print("hi", file_info)
+    # for i in range(len(need_to_full_check)):
+    #     if not need_to_full_check[i]:
+    #         to_write = ''
+    #         for j in range(3):
+    #             print(file_info[i][j])
+    #             to_write += str(file_info[i][j]) + ','
+    #         outfile.write(to_write+'\n')
