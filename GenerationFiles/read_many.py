@@ -57,7 +57,7 @@ def countEvents(eventTypes, OF):
 
 def read_num_events(InFil):
     lines = infile.readlines()
-    if lines = []:
+    if lines == []:
         print(f"{InFil} is empty")
         return 0
     for l in range(len(lines)):
