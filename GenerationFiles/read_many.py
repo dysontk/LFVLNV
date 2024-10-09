@@ -70,7 +70,7 @@ def read_num_events(InFil):
 
 if __name__ == '__main__':
 
-    fullRecheck = 1
+    fullRecheck = 0
     eventTypes = ['ZZ2j', 'WZ2j', 'LNVF']
     # fullCheckTypes = []
     need_to_full_check = {}
@@ -84,8 +84,8 @@ if __name__ == '__main__':
         print("file empty.")
         fullRecheck = 1
     
-    if fullRecheck:
-        for TYP in file_info and not fullRecheck:
+    if not fullRecheck:
+        for TYP in file_info:
             not_asked_for = False
             for typ in eventTypes:
                 if TYP[0] == typ:
