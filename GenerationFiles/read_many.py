@@ -140,7 +140,7 @@ if __name__ == '__main__':
     The next bit writes the file info for whatever event types we did not need to recheck
     '''    
     for i in range(len(need_to_full_check)):
-        if not need_to_full_check[i][1]:
+        if not int(need_to_full_check[i][1]):
             print(f"{need_to_full_check[i][0]} was not recounted. Reprinting info now")
             to_write = ''
             for j in range(3):
