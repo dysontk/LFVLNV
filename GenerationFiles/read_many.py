@@ -139,6 +139,7 @@ if __name__ == '__main__':
     '''    
     for i in range(len(need_to_full_check)):
         if not need_to_full_check[i][1]:
+            print(f"{need_to_full_check[i][0]} was not recounted. Reprinting info now")
             to_write = ''
             for j in range(3):
                 print(file_info[i][j])
