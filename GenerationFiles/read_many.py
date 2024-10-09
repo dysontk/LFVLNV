@@ -108,11 +108,11 @@ if __name__ == '__main__':
 
     need_to_full_check = np.array(need_to_full_check)
     # print(need_to_full_check[:,0])
-    countEvents(need_to_full_check[:,0], outfile)
+    countEvents(list(need_to_full_check[:,0]), outfile)
 
     # print("hi", file_info)
     for i in range(len(need_to_full_check)):
-        if not need_to_full_check[i]:
+        if not need_to_full_check[i][1]:
             to_write = ''
             for j in range(3):
                 print(file_info[i][j])
