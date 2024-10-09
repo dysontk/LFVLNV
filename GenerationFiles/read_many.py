@@ -114,7 +114,7 @@ if __name__ == '__main__':
     It then writes that information to the outfile (OF) like so:
     <type>,<highest run number>,<total n events>\n
     '''
-    temp = [need_to_full_check[i,0] for i in range(len(need_to_full_check))]
+    temp = [i if need_to_full_check[i,1] else '' for i in range(len(need_to_full_check))]
     # for i in range(len(need_to_full_check)):
     #     print(need_to_full_check[i,1])
     #     if need_to_full_check[i,1]:
