@@ -123,7 +123,7 @@ if __name__ == '__main__':
                
     # print(temp)
     # print([need_to_full_check[i,0] if int(need_to_full_check[i,1]) else '' for i in range(len(need_to_full_check))])
-    countEvents([need_to_full_check[i,0] if int(need_to_full_check[i,1]) else '' for i in range(len(need_to_full_check)), outfile) 
+    countEvents([need_to_full_check[i,0] if int(need_to_full_check[i,1]) else '' for i in range(len(need_to_full_check))], outfile) 
 
     '''
     Because outfile is write only, it deletes (I believe) the contents. 
