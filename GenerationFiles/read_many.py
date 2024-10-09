@@ -129,7 +129,9 @@ if __name__ == '__main__':
     print()
 
     for t in need_to_full_check:
-        print(t[0], ": ", "Recounting" if t[1] else "No Recount Needed")
+        print(t[1])
+        print(type(t[1]))
+        print(t[0], ": ", "Recounting" if int(t[1]) else "No Recount Needed")
     countEvents([need_to_full_check[i,0] if int(need_to_full_check[i,1]) else '' for i in range(len(need_to_full_check))], outfile) 
 
     '''
