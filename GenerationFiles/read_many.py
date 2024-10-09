@@ -51,6 +51,7 @@ def countEvents(eventTypes, OF):
         to_print += str(NEVENTS)
         # to_write += 
         print(f"finished counting {typ}")
+        print(typ + ',' + most_recent_run_num(typ) + ',' + str(NEVENTS) + '\n')
         OF.write(typ + ',' + most_recent_run_num(typ) + ',' + str(NEVENTS) + '\n')
 
     
@@ -97,7 +98,7 @@ def create_dict(L1, L2ish, verbs=False):
 if __name__ == '__main__':
 
     fullRecheck = 0
-    eventTypes = ['ZZ2j', 'WZ2j', 'LNVF']
+    eventTypes = ['ZZ2j']
     # fullCheckTypes = []
     need_to_full_check = {}
     # for i in range(len(eventTypes)):
