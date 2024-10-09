@@ -4,18 +4,21 @@ from dataclasses import dataclass, asdict
 import time
 import read_many
 import numpy as np
-def run_command(command):
+global VERBOSE = False
+def run_command(command, verbs=True):
     try:
         output = subprocess.check_output(command, shell=True, encoding='utf8', stderr=subprocess.STDOUT)
-        print(f"Output of command '{command}' is",  f'{output}', sep='\n')
+        if verbs:
+            print(f"Output of command '{command}' is",  f'{output}', sep='\n')
     except subprocess.CalledProcessError:
-        print("Error. Generation probably failed")
         output = str(f"Something when wrong when running {command}")
-        print(output)
+        if verbs:
+            print("Error. Generation probably failed")
+            print(output)
     return output
 
-def find_num_gend(fi):
-        output = run_command(f"/home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/MyFiles/LFVLNV/AnalysisAndSuch/read_root_file {fi}")
+def find_num_gend(fi, verbs=True):
+        output = run_command(f"/home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/MyFiles/LFVLNV/AnalysisAndSuch/read_root_file {fi}", verbs)
         m = re.search(r'\d+$', output)
         return int(m.group()) if m else 0
 
@@ -60,7 +63,7 @@ class Run:
     @property
     def output_filename(self):
         try:
-            output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.eventType}/Events/run_{self.run_num:02d}/*delphes_events.root")
+            output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.eventType}/Events/run_{self.run_num:02d}/*delphes_events.root", VERBOSE)
         except FileNotFoundError:
             print("Generation Failed")
             return 0
@@ -75,7 +78,7 @@ class Run:
         gendFileName = self.output_filename
         # print('test2')
         if gendFileName:
-            output = run_command(f"/home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/MyFiles/LFVLNV/AnalysisAndSuch/read_root_file {gendFileName}")
+            output = run_command(f"/home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/MyFiles/LFVLNV/AnalysisAndSuch/read_root_file {gendFileName}", VERBOSE)
             m = re.search(r'\d+$', output)
             return int(m.group()) if m else 0 
         else:
@@ -118,7 +121,7 @@ class RunHandler:
 
     def _find_base_num(self):
         # return 0
-        output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.eventType}/Events/")
+        output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.eventType}/Events/", VERBOSE)
 
         m = re.search(r'\d+$', output)
         base_num = int(m.group()) if m else 0
