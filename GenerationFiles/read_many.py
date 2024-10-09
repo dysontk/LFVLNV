@@ -24,7 +24,7 @@ def find_number_in_string(strin):
     return re.findall('\d+', strin)
 
 def most_recent_run_num(eventType):
-    runs = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{eventType}/Events/', False).split('\n')[:-1]
+    runs = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{eventType}/Events/', True).split('\n')[:-1]
     # print(len(runs))
     # print(truns)
     return find_number_in_string(runs[-1])[0]
