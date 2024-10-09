@@ -71,7 +71,7 @@ def create_dict(L1, L2ish, verbs=False):
 
     dic = {}
     for l1 in L1:
-        dic.update({l:1})
+        dic.update({l1:1})
         if verbs:
             print(f'{l1} added to dictionary')
     for l2 in L2ish:
