@@ -109,7 +109,7 @@ if __name__ == '__main__':
         print("file empty.")
         fullRecheck = 1
     
-    need_to_full_check = create_dict(eventTypes, file_info), True)
+    need_to_full_check = create_dict(eventTypes, file_info, True)
     # if not fullRecheck:
     #     for TYP in file_info:
     #         not_asked_for = False
