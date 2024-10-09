@@ -114,6 +114,8 @@ if __name__ == '__main__':
     It then writes that information to the outfile (OF) like so:
     <type>,<highest run number>,<total n events>\n
     '''
+    for i in range(len(need_to_full_check)):
+        print(need_to_full_check[i,1])
     print([need_to_full_check[i,0] if need_to_full_check[i,1] else '' for i in range(len(need_to_full_check))])
     # countEvents([need_to_full_check[i,0] if need_to_full_check[i,1] else continue for i in range(len(need_to_full_check))], outfile) 
 
