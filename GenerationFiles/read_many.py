@@ -96,10 +96,10 @@ if __name__ == '__main__':
                         print(f"For {TYP[0]} Records show {TYP[1]} runs", f"There are {curr_run_max}")
                     else:
                         print(f'No need to full check {typ}')
-                        need_to_full_check.update({typ, 0})
+                        need_to_full_check.update({typ: 0})
             if not not_asked_for:
                 print(f'{TYP} was not asked for but is currently in the document')
-                need_to_full_check.update({TYP[0], 0})
+                need_to_full_check.update({TYP[0]: 0})
                 
 
     else:
