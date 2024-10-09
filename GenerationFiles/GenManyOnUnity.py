@@ -4,7 +4,7 @@ from dataclasses import dataclass, asdict
 import time
 import read_many
 import numpy as np
-global VERBOSE = False
+VERBOSE = False
 def run_command(command, verbs=True):
     try:
         output = subprocess.check_output(command, shell=True, encoding='utf8', stderr=subprocess.STDOUT)
