@@ -116,8 +116,9 @@ if __name__ == '__main__':
     '''
     temp = []
     for i in range(len(need_to_full_check)):
-        print(bool(need_to_full_check[i,1]))
-        if bool(need_to_full_check[i,1]):
+        print(int(need_to_full_check[i,1]))
+        # print(need_to_full_check[])
+        if int(need_to_full_check[i,1]):
             temp.append(need_to_full_check[i,0])
                
     print(temp)
