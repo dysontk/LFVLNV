@@ -95,7 +95,7 @@ if __name__ == '__main__':
     else:
         print(f'File empty')
         for i in range(len(need_to_full_check)):
-            need_to_full_check[i][1] = 1
+            need_to_full_check[i] = (need_to_full_check[i][0], 1)
     print(need_to_full_check)
     
         
