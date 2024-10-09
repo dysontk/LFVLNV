@@ -50,6 +50,7 @@ def countEvents(eventTypes, OF):
         NEVENTS = eventCounts[eventTypes.index(typ)]
         to_print += str(NEVENTS)
         # to_write += 
+        print(f"finished counting {typ}")
         OF.write(typ + ',' + most_recent_run_num(typ) + ',' + str(NEVENTS) + '\n')
 
     
@@ -145,5 +146,7 @@ if __name__ == '__main__':
             to_write = ''
             for j in range(3):
                 print(file_info[i][j])
-                to_write += str(file_info[i][j]) + ','
+                to_write += str(file_info[i][j]) + ',' if j<3 else ''
+                # if j > 3
+
             outfile.write(to_write+'\n')
