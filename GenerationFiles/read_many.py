@@ -69,12 +69,12 @@ def read_num_events(InFil):
 
 if __name__ == '__main__':
 
-    fullRecheck = False
+    fullRecheck = 0
     eventTypes = ['ZZ2j', 'WZ2j', 'LNVF']
     fullCheckTypes = []
     need_to_full_check = []
     for i in range(len(eventTypes)):
-        need_to_full_check.append((eventTypes[i], False))
+        need_to_full_check.append((eventTypes[i], 0))
     infile = open('event_counts.txt', 'r')
 
     file_info = read_num_events(infile)
@@ -87,7 +87,7 @@ if __name__ == '__main__':
                 else:
                     curr_run_max = most_recent_run_num(typ)
                     if curr_run_max != TYP[1]:
-                        need_to_full_check[eventTypes.index(typ)][1] = True
+                        need_to_full_check[eventTypes.index(typ)][1] = 1
                         print(f"Records show {TYP[1]} runs", f"There are {curr_run_max}")
                     else:
                         print(f'No need to full check {typ}')
