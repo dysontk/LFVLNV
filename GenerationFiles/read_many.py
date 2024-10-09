@@ -77,6 +77,7 @@ def create_dict(L1, L2ish, verbs=False):
             print(f'{l1} added to dictionary')
     if L2ish:
         for l2 in L2ish:
+            print(l2)
             curr_run_max = most_recent_run_num(l2[0])
             for key in dic:
                 if l2[0] == key:
