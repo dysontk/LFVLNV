@@ -58,7 +58,7 @@ def countEvents(eventTypes, OF):
 def read_num_events(InFil):
     lines = infile.readlines()
     for l in range(len(lines)):
-        lines[l] = lines[l].split()
+        lines[l] = lines[l].split(',')
     print(lines)
     return lines
 
@@ -75,7 +75,7 @@ if __name__ == '__main__':
 
     file_info = read_num_events(infile)
     print(file_info)
-    
+
     # for typ in eventTypes:
     #     for TYP in file_info:
     #         if TYP[0]!=typ:
