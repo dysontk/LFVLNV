@@ -134,7 +134,7 @@ if __name__ == '__main__':
         # print(type(t[1]))
         print(t[0], ": ", "Recounting" if int(t[1]) else "No Recount Needed")
     newCounts = countEvents([need_to_full_check[i,0] if int(need_to_full_check[i,1]) else '' for i in range(len(need_to_full_check))], outfile) 
-
+    # print(newCounts)
     '''
     Because outfile is write only, it deletes (I believe) the contents. 
     So if there are any events that we did not recheck then that info would be lost.
@@ -154,6 +154,7 @@ if __name__ == '__main__':
             outfile.write(to_write)
 
     for t in newCounts:
-        print(f'{t[0]} : {t[1]}')
+        if t[0] != '':
+            print(f'{t[0]} : {t[1]}')
     infile.close()
     outfile.close()
