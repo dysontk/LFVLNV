@@ -85,9 +85,12 @@ def create_dict(L1, L2ish, verbs=False):
     if L2ish != [['']]:
         for l2 in L2ish:
             # print(l2)
+            asked_for = False
             curr_run_max = most_recent_run_num(l2[0])
             for key in dic:
+                print("Hey", l2[0], key,sep='\n')
                 if l2[0] == key:
+                    asked_for = True
                     if curr_run_max == l2[1]:
                         dic[key] = 0 # This says "don't recount if the file (l2[1]) has the same max run number as ls gives"
                         if verbs:
@@ -96,17 +99,17 @@ def create_dict(L1, L2ish, verbs=False):
                         if verbs:
                             print(f'Will recount {key}')
                         continue
-                else:
-                    dic.update({l2[0]:0})
-                    if verbs:
-                        print(f'{l2[0]} was in the file but not asked for')
+            if not asked_for:
+                dic.update({l2[0]:0})
+                if verbs:
+                    print(f'{l2[0]} was in the file but not asked for')
     return dic
 
 
 if __name__ == '__main__':
 
     fullRecheck = 0
-    eventTypes = ['ZZ2j', 'WZ2j']
+    eventTypes = ['ZZ2j']
     # fullCheckTypes = []
     need_to_full_check = {}
     # for i in range(len(eventTypes)):
