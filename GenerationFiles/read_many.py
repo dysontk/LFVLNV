@@ -97,7 +97,7 @@ def create_dict(L1, L2ish, verbs=False): #L2ish -- file_info, L1 -- from what is
             asked_for = False
             curr_run_max = most_recent_run_num(l2[0])
             for key in dic:
-                print("Hey", l2[0], key,sep='\n')
+                # print("Hey", l2[0], key,sep='\n')
                 if l2[0] == key:
                     asked_for = True
                     if curr_run_max == l2[1]:
@@ -117,8 +117,8 @@ def create_dict(L1, L2ish, verbs=False): #L2ish -- file_info, L1 -- from what is
 
 if __name__ == '__main__':
 
-    fullRecheck = 0
-    eventTypes = ['ZZ2j', 'W3j']
+    fullRecheck = 1
+    eventTypes = ['ZZ2j', 'WZ2j', 'ttbar', 'W3j', 'LNVF']
     # fullCheckTypes = []
     need_to_full_check = {}
     # for i in range(len(eventTypes)):
@@ -163,7 +163,7 @@ if __name__ == '__main__':
     for K in need_to_full_check:
         if not int(need_to_full_check[K]):
             print(f'These weren\'t re checked, {K} : {need_to_full_check[K]}') # This prints the old counts which were not rechecked
-            to_write = K + ',' + old_r_dict[K] + ',' + old_e_dict[K]            
+            to_write = K + ',' + old_r_dict[K] + ',' + old_e_dict[K] + '\n'          
             print('Old writing \n', to_write)
             outfile.write(to_write)
         i += 1
