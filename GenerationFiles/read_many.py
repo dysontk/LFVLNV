@@ -98,7 +98,7 @@ def create_dict(L1, L2ish, verbs=False): #L2ish -- file_info, L1 -- from what is
             # print(l2)
             asked_for = False
             curr_run_max = most_recent_run_num(l2[0])
-            print(l2)
+            print("found current runs ", l2, sep='\n')
             new_run_dict.update({l2[0]:curr_run_max})
             for key in dic:
                 # print("Hey", l2[0], key,sep='\n')
