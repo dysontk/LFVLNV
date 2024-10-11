@@ -197,6 +197,7 @@ if __name__ == '__main__':
         new_num = int((200_000-numgend[typ])/(typeEfficiency[typ] * 60_000))
         runs2Basked.update({typ: new_num if new_num > 0 else 0})
     print("Runs to be asked: ", runs2Basked, sep='\n')
+    print("numgend: ", numgend, sep='\n')
     allAttemptsConfig = []
     for typ in range(len(eventTypes)):
         allAttemptsConfig.append(RunConfig(typ, runs2Basked[typ], numgend[typ]))
