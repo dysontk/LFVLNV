@@ -45,7 +45,7 @@ def countEvents(eventTypes, OF):
         eventCounts.update({typ:0})
         # to_write = 
         to_print += '\n' + typ + ': '
-        files = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{typ}/Events/*/*delphes_events.root', False).split('\n')
+        files = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{typ}/Events/*/*delphes_events.root', True).split('\n')
         for ThisFile in files:
             eventCounts[typ]+= GMOU.find_num_gend(ThisFile, False)
         NEVENTS = eventCounts[typ]
@@ -133,18 +133,18 @@ if __name__ == '__main__':
     for t in need_to_full_check:
         print(t, ": ", "Recounting" if int(need_to_full_check[t]) else "No Recount Needed")
     newCounts = countEvents([ky if int(need_to_full_check[ky]) else '' for ky in need_to_full_check], outfile) 
-    print(newCounts)
+    # print(newCounts)
     '''
     Because outfile is write only, it deletes (I believe) the contents. 
     So if there are any events that we did not recheck then that info would be lost.
     The next bit writes the file info for whatever event types we did not need to recheck
     '''    
-    print(need_to_full_check)
-    print(file_info)
+    # print(need_to_full_check)
+    # print(file_info)
     i=0
     for K in need_to_full_check:
         if not int(need_to_full_check[K]):
-            print(f'{K} : {need_to_full_check[K]}') # This prints the old counts which were not rechecked
+            print(f'These weren\'t re checked, {K} : {need_to_full_check[K]}') # This prints the old counts which were not rechecked
             to_write = ''
             for j in range(3):
                 to_write += str(file_info[i][j])
@@ -154,7 +154,7 @@ if __name__ == '__main__':
         i += 1
 
     for t in newCounts:
-        if t[0] != '':
-            print(f'{t} : {newCounts[t]}') # this prints the new counts
+        if newCounts[t]] != '':
+            # print(f'{t} : {newCounts[t]}') # this prints the new counts
     infile.close()
     outfile.close()
