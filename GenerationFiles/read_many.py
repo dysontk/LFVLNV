@@ -185,10 +185,7 @@ if __name__ == '__main__':
     
     # need_to_full_check = create_dict(eventTypes, file_info, True)
     old_e_dict, old_r_dict, need_to_full_check, new_r_dict = quick_check(eventTypes, infile)
-    print("old e: ", old_e_dict)
-    print("old r: ", old_r_dict)
-    print("need : ", need_to_full_check)
-    print("new r: ", new_r_dict)
+    
     if fullRecheck:
         for key in need_to_full_check:
             need_to_full_check[key] = 1
@@ -203,6 +200,11 @@ if __name__ == '__main__':
     <type>,<highest run number>,<total n events>\n
     '''
     newCounts = checkWhatever(need_to_full_check, outfile, False)
+    print("old e: ", old_e_dict)
+    print("old r: ", old_r_dict)
+    print("need : ", need_to_full_check)
+    print("new r: ", new_r_dict)
+    print("new e: ", newCounts)
     # print([ky if int(need_to_full_check[ky]) else '' for ky in need_to_full_check])
     # for t in need_to_full_check:
     #     print(t, ": ", "Recounting" if int(need_to_full_check[t]) else "No Recount Needed")
