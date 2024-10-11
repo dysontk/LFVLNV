@@ -90,6 +90,7 @@ def create_dict(L1, L2ish, verbs=False): #L2ish -- file_info, L1 -- from what is
     new_run_dict = {}
     for l1 in L1:
         dic.update({l1:1})
+        new_run_dict.update({l1:most_recent_run_num(l1)})
         if verbs:
             print(f'{l1} added to dictionary')
     # print(f"L2ish, {L2ish}")
@@ -99,6 +100,7 @@ def create_dict(L1, L2ish, verbs=False): #L2ish -- file_info, L1 -- from what is
             asked_for = False
             curr_run_max = most_recent_run_num(l2[0])
             print("found current runs ", l2, sep='\n')
+            # new_run_dict.update({l2[0]:curr_run_max})
             new_run_dict.update({l2[0]:curr_run_max})
             for key in dic:
                 # print("Hey", l2[0], key,sep='\n')
