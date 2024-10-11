@@ -154,7 +154,8 @@ if __name__ == '__main__':
         i += 1
 
     for t in newCounts:
-        if newCounts[t]] != '':
-            # print(f'{t} : {newCounts[t]}') # this prints the new counts
+        if newCounts[t] != '':
+            print(f'{t} : {newCounts[t]}') # this prints the new counts
+            # outfile.write(f'{t},{}')
     infile.close()
     outfile.close()
