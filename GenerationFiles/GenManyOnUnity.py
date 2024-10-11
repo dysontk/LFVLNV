@@ -96,7 +96,7 @@ class RunHandler:
 
     def __init__(self, eventType, n_runs, prev_gend):
         self.n_runs = n_runs
-        print(self.instance_count)
+        # print(self.instance_count)
         self.eventType = eventType
         begin_num = self._find_base_num()
         self.runs = []
