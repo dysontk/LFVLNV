@@ -126,24 +126,26 @@ def quick_check(eventTyps, infil, verb=False):
     # need_to_full_check = {}
 
     file_info = read_num_events(infil)
-    print(file_info)
-    old_r_dict, old_e_dict = lines_to_rdict(file_info)
     # print(file_info)
-    if not file_info:
-        if verb:
-            print("file empty.")
-        fullRecheck = 1
-    
-    need_to_full_check, new_r = create_dict(eventTyps, file_info, verb)
+    if file_info:
+        old_r_dict, old_e_dict = lines_to_rdict(file_info)
+    # print(file_info)
+        if not file_info:
+            if verb:
+                print("file empty.")
+            fullRecheck = 1
+        
+        need_to_full_check, new_r = create_dict(eventTyps, file_info, verb)
 
-    if fullRecheck:
-        for key in need_to_full_check:
-            need_to_full_check[key] = 1
-        if verb:
-            print("Will recheck all")
-    print(need_to_full_check)
-
-    return old_e_dict, old_r_dict, need_to_full_check, new_r
+        if fullRecheck:
+            for key in need_to_full_check:
+                need_to_full_check[key] = 1
+            if verb:
+                print("Will recheck all")
+        print(need_to_full_check)
+        return old_e_dict, old_r_dict, need_to_full_check, new_r
+    else:
+        return 0
 
 def checkWhatever(need2, outfil, verbo):
     if verbo:
@@ -173,15 +175,33 @@ def WriteItAll(olde, oldr, newe, needy, newr, outf):
 
     return 1
 
+def what_to_do_if_empty(ev_t):
+    needy, newr = {}, {}
+    for typ in ev_t:
+        needy.update({typ:1})
+        newr.update({typ:most_recent_run_num(typ)})
+    return needy, newr
+
 def redoCounts(eT, fullcheck=0):
     infile = open('/home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/MyFiles/LFVLNV/GenerationFiles/event_counts.txt', 'r')
-    old_e_dict, old_r_dict, need_to_full_check, new_r_dict = quick_check(eT, infile)
-    
-    if fullcheck:
+    quick_out = quick_check(eT, infile)
+    is_empty = False
+    if quick_out:
+        old_e_dict, old_r_dict, need_to_full_check, new_r_dict = quick_out
+    else:
+        is_empty = True
+        old_e_dict = {}
+        old_r_dict = {}
+        need_to_full_check, new_r_dict = what_to_do_if_empty(eT)
+        
+
+    if fullcheck or is_empty:
         for key in need_to_full_check:
             need_to_full_check[key] = 1
         print("Will recheck all")
     infile.close()
+
+
 
     outfile = open('event_counts.txt', 'w')    
     '''
