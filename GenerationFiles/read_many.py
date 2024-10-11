@@ -118,7 +118,7 @@ def create_dict(L1, L2ish, verbs=False): #L2ish -- file_info, L1 -- from what is
 if __name__ == '__main__':
 
     fullRecheck = 0
-    eventTypes = ['ZZ2j', 'WZ2j']
+    eventTypes = ['ZZ2j', 'W3j']
     # fullCheckTypes = []
     need_to_full_check = {}
     # for i in range(len(eventTypes)):
