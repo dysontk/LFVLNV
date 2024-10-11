@@ -199,7 +199,7 @@ if __name__ == '__main__':
     print("Runs to be asked: ", runs2Basked, sep='\n')
     allAttemptsConfig = []
     for typ in range(len(eventTypes)):
-        allAttemptsConfig.append(RunConfig(ty, runs2Basked[ty], numgend[ty]))
+        allAttemptsConfig.append(RunConfig(typ, runs2Basked[typ], numgend[typ]))
         # print(eventTypes[j], ": ", runs2Basked[j])
     print(allAttemptsConfig)
     
