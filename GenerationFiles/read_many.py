@@ -99,7 +99,8 @@ def create_dict(L1, L2ish, verbs=False): #L2ish -- file_info, L1 -- from what is
             # print(l2)
             asked_for = False
             curr_run_max = most_recent_run_num(l2[0])
-            print("found current runs ", l2, sep='\n')
+            if verbs:
+                print("found current runs ", l2, sep='\n')
             # new_run_dict.update({l2[0]:curr_run_max})
             new_run_dict.update({l2[0]:curr_run_max})
             for key in dic:
@@ -128,15 +129,17 @@ def quick_check(eventTyps, infil, verb=False):
     old_r_dict, old_e_dict = lines_to_rdict(file_info)
     # print(file_info)
     if not file_info:
-        print("file empty.")
+        if verb:
+            print("file empty.")
         fullRecheck = 1
     
-    need_to_full_check, new_r = create_dict(eventTyps, file_info, True)
+    need_to_full_check, new_r = create_dict(eventTyps, file_info, verb)
 
     if fullRecheck:
         for key in need_to_full_check:
             need_to_full_check[key] = 1
-        print("Will recheck all")
+        if verb:
+            print("Will recheck all")
     print(need_to_full_check)
 
     return old_e_dict, old_r_dict, need_to_full_check, new_r
@@ -145,7 +148,8 @@ def checkWhatever(need2, outfil, verbo):
     if verbo:
         print([ky if int(need2[ky]) else '' for ky in need2])
     for t in need2:
-        print(t, ": ", "Recounting" if int(need2[t]) else "No Recount Needed")
+        if verbo:
+            print(t, ": ", "Recounting" if int(need2[t]) else "No Recount Needed")
     newCounts = countEvents([ky if int(need2[ky]) else '' for ky in need2], outfil)
     return newCounts
 
@@ -155,15 +159,15 @@ def WriteItAll(olde, oldr, newe, needy, newr, outf):
     i=0
     for K in needy:
         if not int(needy[K]):
-            print(f'These weren\'t re checked, {K} : {needy[K]}') # This prints the old counts which were not rechecked
+            # print(f'These weren\'t re checked, {K} : {needy[K]}') # This prints the old counts which were not rechecked
             to_write = K + ',' + oldr[K] + ',' + olde[K] + '\n'          
-            print('Old writing \n', to_write)
+            # print('Old writing \n', to_write)
             outf.write(to_write)
         i += 1
 
     for t in newe:
         if newe[t] != '':
-            print(f'{t} : {newe[t]}') # this prints the new counts
+            # print(f'{t} : {newe[t]}') # this prints the new counts
             outf.write(t+','+ str(newe[t]) + ','+ str(newr[t]) + '\n')
 
     return 1
@@ -193,7 +197,7 @@ if __name__ == '__main__':
         for key in need_to_full_check:
             need_to_full_check[key] = 1
         print("Will recheck all")
-    print(need_to_full_check)
+    # print(need_to_full_check)
     infile.close()
 
     outfile = open('event_counts.txt', 'w')    
@@ -203,11 +207,11 @@ if __name__ == '__main__':
     <type>,<highest run number>,<total n events>\n
     '''
     newCounts = checkWhatever(need_to_full_check, outfile, False)
-    print("old e: ", old_e_dict)
-    print("old r: ", old_r_dict)
-    print("need : ", need_to_full_check)
-    print("new r: ", new_r_dict)
-    print("new e: ", newCounts)
+    # print("old e: ", old_e_dict)
+    # print("old r: ", old_r_dict)
+    # print("need : ", need_to_full_check)
+    # print("new r: ", new_r_dict)
+    # print("new e: ", newCounts)
     # print([ky if int(need_to_full_check[ky]) else '' for ky in need_to_full_check])
     # for t in need_to_full_check:
     #     print(t, ": ", "Recounting" if int(need_to_full_check[t]) else "No Recount Needed")
