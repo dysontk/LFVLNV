@@ -67,6 +67,10 @@ def read_num_events(InFil):
     for l in range(len(lines)):
         lines[l] = lines[l].strip().split(',')
     print(lines)
+    try:
+        int(lines[2])
+    except ValueError:
+        lines[2] = '0'
     return lines
 
 def create_dict(L1, L2ish, verbs=False):
@@ -101,7 +105,7 @@ def create_dict(L1, L2ish, verbs=False):
 if __name__ == '__main__':
 
     fullRecheck = 0
-    eventTypes = ['ZZ2j']
+    eventTypes = ['ZZ2j', 'WZ2j']
     # fullCheckTypes = []
     need_to_full_check = {}
     # for i in range(len(eventTypes)):
