@@ -115,16 +115,9 @@ def create_dict(L1, L2ish, verbs=False): #L2ish -- file_info, L1 -- from what is
                     print(f'{l2[0]} was in the file but not asked for')
     return dic
 
-
-if __name__ == '__main__':
-
+def quick_check(eventTyps, infil, verb=False):
     fullRecheck = 0
-    eventTypes = ['ZZ2j', 'WZ2j', 'ttbar', 'W3j', 'LNVF']
-    # fullCheckTypes = []
     need_to_full_check = {}
-    # for i in range(len(eventTypes)):
-        # need_to_full_check.append((eventTypes[i], 1))
-    infile = open('event_counts.txt', 'r')
 
     file_info = read_num_events(infile)
     old_r_dict, old_e_dict = lines_to_rdict(file_info)
@@ -141,37 +134,94 @@ if __name__ == '__main__':
         print("Will recheck all")
     print(need_to_full_check)
 
+    return old_e_dict, old_r_dict, need_to_full_check
+
+def checkWhatever(need2, outfil, verbo):
+    if verbo:
+        print([ky if int(need2[ky]) else '' for ky in need2])
+    for t in need2:
+        print(t, ": ", "Recounting" if int(need2[t]) else "No Recount Needed")
+    newCounts = countEvents([ky if int(need2[ky]) else '' for ky in need2], outfil)
+    return newCounts
+
+def WriteItAll(olde, oldr, newe, needy, outf):
+    i=0
+    for K in needy:
+        if not int(needy[K]):
+            print(f'These weren\'t re checked, {K} : {needy[K]}') # This prints the old counts which were not rechecked
+            to_write = K + ',' + oldr[K] + ',' + olde[K] + '\n'          
+            print('Old writing \n', to_write)
+            outf.write(to_write)
+        i += 1
+
+    for t in newe:
+        if newe[t] != '':
+            print(f'{t} : {newe[t]}') # this prints the new counts
+
+    return 1
+
+
+if __name__ == '__main__':
+
+    fullRecheck = 0
+    eventTypes = ['ZZ2j', 'WZ2j', 'ttbar', 'W3j', 'LNVF']
+    # fullCheckTypes = []
+    # need_to_full_check = {}
+    # for i in range(len(eventTypes)):
+        # need_to_full_check.append((eventTypes[i], 1))
+    infile = open('event_counts.txt', 'r')
+
+    # file_info = read_num_events(infile)
+    # old_r_dict, old_e_dict = lines_to_rdict(file_info)
+    # print(file_info)
+    # if not file_info:
+    #     print("file empty.")
+    #     fullRecheck = 1
+    
+    # need_to_full_check = create_dict(eventTypes, file_info, True)
+    old_e_dict, old_r_dict, need_to_full_check = quick_check(eventTypes, infile)
+    print("old e: ", old_e_dict)
+    print("old r: ", old_r_dict)
+    print("need : ", need_to_full_check)
+    if fullRecheck:
+        for key in need_to_full_check:
+            need_to_full_check[key] = 1
+        print("Will recheck all")
+    print(need_to_full_check)
+    infile.close()
+
     outfile = open('event_counts.txt', 'w')    
     '''
     Yeah so countEvents() takes in a list of event types and counts the total events for each
     It then writes that information to the outfile (OF) like so:
     <type>,<highest run number>,<total n events>\n
     '''
-   
-    print([ky if int(need_to_full_check[ky]) else '' for ky in need_to_full_check])
-    for t in need_to_full_check:
-        print(t, ": ", "Recounting" if int(need_to_full_check[t]) else "No Recount Needed")
-    newCounts = countEvents([ky if int(need_to_full_check[ky]) else '' for ky in need_to_full_check], outfile) 
+    newCounts = checkWhatever(need_to_full_check, outfile, False)
+    # print([ky if int(need_to_full_check[ky]) else '' for ky in need_to_full_check])
+    # for t in need_to_full_check:
+    #     print(t, ": ", "Recounting" if int(need_to_full_check[t]) else "No Recount Needed")
+    # newCounts = countEvents([ky if int(need_to_full_check[ky]) else '' for ky in need_to_full_check], outfile) 
     # print(newCounts)
     '''
     Because outfile is write only, it deletes (I believe) the contents. 
     So if there are any events that we did not recheck then that info would be lost.
     The next bit writes the file info for whatever event types we did not need to recheck
     '''    
-    # print(need_to_full_check)
-    # print(file_info)
-    i=0
-    for K in need_to_full_check:
-        if not int(need_to_full_check[K]):
-            print(f'These weren\'t re checked, {K} : {need_to_full_check[K]}') # This prints the old counts which were not rechecked
-            to_write = K + ',' + old_r_dict[K] + ',' + old_e_dict[K] + '\n'          
-            print('Old writing \n', to_write)
-            outfile.write(to_write)
-        i += 1
 
-    for t in newCounts:
-        if newCounts[t] != '':
-            print(f'{t} : {newCounts[t]}') # this prints the new counts
-            # outfile.write(f'{t},{}')
-    infile.close()
+    WriteItAll(old_e_dict, old_r_dict, newCounts, need_to_full_check, outfile)
+    # print(need_to_full_check)
+    # # print(file_info)
+    # i=0
+    # for K in need_to_full_check:
+    #     if not int(need_to_full_check[K]):
+    #         print(f'These weren\'t re checked, {K} : {need_to_full_check[K]}') # This prints the old counts which were not rechecked
+    #         to_write = K + ',' + old_r_dict[K] + ',' + old_e_dict[K] + '\n'          
+    #         print('Old writing \n', to_write)
+    #         outfile.write(to_write)
+    #     i += 1
+
+    # for t in newCounts:
+    #     if newCounts[t] != '':
+    #         print(f'{t} : {newCounts[t]}') # this prints the new counts
+    #         # outfile.write(f'{t},{}')
     outfile.close()
