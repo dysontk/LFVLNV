@@ -185,6 +185,7 @@ if __name__ == '__main__':
                 #   'ZZ2j'
                   ]
     numgend = np.array(read_many.countEvents(eventTypes))
+    print(numgend, type(numgend), sep='\n')
     runs2Basked = np.array([1 if not i else int(((200_000-i)/0.23)/60_000) for i in numgend])
     print("Runs to be asked: ", runs2Basked, sep='\n')
     allAttemptsConfig = []
