@@ -45,7 +45,7 @@ def countEvents(eventTypes, OF=''):
         eventCounts.update({typ:0})
         # to_write = 
         to_print += '\n' + typ + ': '
-        files = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{typ}/Events/*/*delphes_events.root', True).split('\n')
+        files = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{typ}/Events/*/*delphes_events.root', False).split('\n')
         for ThisFile in files:
             eventCounts[typ]+= GMOU.find_num_gend(ThisFile, False)
         NEVENTS = eventCounts[typ]
@@ -118,7 +118,7 @@ def create_dict(L1, L2ish, verbs=False): #L2ish -- file_info, L1 -- from what is
 
 if __name__ == '__main__':
 
-    fullRecheck = 1
+    fullRecheck = 0
     eventTypes = ['ZZ2j', 'WZ2j', 'ttbar', 'W3j', 'LNVF']
     # fullCheckTypes = []
     need_to_full_check = {}
