@@ -24,7 +24,7 @@ def find_number_in_string(strin):
     return re.findall('\d+', strin)
 
 def most_recent_run_num(eventType):
-    runs = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{eventType}/Events/', True).split('\n')[:-1]
+    runs = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{eventType}/Events/', False).split('\n')[:-1]
     # print(len(runs))
     # print(truns)
     return find_number_in_string(runs[-1])[0]
@@ -45,7 +45,7 @@ def countEvents(eventTypes, OF):
         eventCounts.update({typ:0})
         # to_write = 
         to_print += '\n' + typ + ': '
-        files = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{typ}/Events/*/*delphes_events.root', True).split('\n')
+        files = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{typ}/Events/*/*delphes_events.root', False).split('\n')
         for ThisFile in files:
             eventCounts[typ]+= GMOU.find_num_gend(ThisFile, False)
         NEVENTS = eventCounts[typ]
@@ -83,7 +83,7 @@ def lines_to_rdict(lins):
     # print(run_dict)
     return run_dict, event_dict
 
-def create_dict(L1, L2ish, verbs=False):
+def create_dict(L1, L2ish, verbs=False): #L2ish -- file_info, L1 -- from what is asked
 
     dic = {}
     for l1 in L1:
@@ -118,7 +118,7 @@ def create_dict(L1, L2ish, verbs=False):
 if __name__ == '__main__':
 
     fullRecheck = 0
-    eventTypes = ['ZZ2j']
+    eventTypes = ['ZZ2j', 'WZ2j']
     # fullCheckTypes = []
     need_to_full_check = {}
     # for i in range(len(eventTypes)):
@@ -127,7 +127,7 @@ if __name__ == '__main__':
 
     file_info = read_num_events(infile)
     old_r_dict, old_e_dict = lines_to_rdict(file_info)
-    print(file_info)
+    # print(file_info)
     if not file_info:
         print("file empty.")
         fullRecheck = 1
