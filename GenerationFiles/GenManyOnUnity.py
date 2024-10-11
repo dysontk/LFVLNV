@@ -189,18 +189,19 @@ if __name__ == '__main__':
                   'W3j': 0.23,
                   'WZ2j': 0.23,
                   'ZZ2j': 0.23}
-    numgend = read_many.countEvents(eventTypes)
-    print(numgend, type(numgend), sep='\n')
-    # runs2Basked = np.array([1 if not i else int(((200_000-i)/0.23)/60_000) for i in numgend])
+    event_count_dict, run_count_dict = read_many.countEvents(eventTypes)
+    # print(event_count_dict, type(event_count_dict), sep='\n')
+    # runs2Basked = np.array([1 if not i else int(((200_000-i)/0.23)/60_000) for i in event_count_dict])
     runs2Basked = {}
-    for typ in numgend:
-        new_num = int((200_000-numgend[typ])/(typeEfficiency[typ] * 60_000))
+    for typ in event_count_dict:
+        new_num = int((200_000-event_count_dict[typ])/(typeEfficiency[typ] * 60_000))
         runs2Basked.update({typ: new_num if new_num > 0 else 0})
     print("Runs to be asked: ", runs2Basked, sep='\n')
-    print("numgend: ", numgend, sep='\n')
+    print("event count: ", event_count_dict, sep='\n')
+    print("run count", run_command, sep='\n')
     allAttemptsConfig = []
     for typ in range(len(eventTypes)):
-        allAttemptsConfig.append(RunConfig(typ, runs2Basked[typ], numgend[typ]))
+        allAttemptsConfig.append(RunConfig(typ, runs2Basked[typ], event_count_dict[typ]))
         # print(eventTypes[j], ": ", runs2Basked[j])
     print(allAttemptsConfig)
     
