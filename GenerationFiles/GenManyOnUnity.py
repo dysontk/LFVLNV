@@ -184,9 +184,17 @@ if __name__ == '__main__':
                 #   'WZ2j', 
                 #   'ZZ2j'
                   ]
-    numgend = np.array(read_many.countEvents(eventTypes))
+    typeEfficiency = {'LNVF': 0.23,
+                  'ttbar': 0.23,
+                  'W3j': 0.23,
+                  'WZ2j': 0.23,
+                  'ZZ2j': 0.23}
+    numgend = read_many.countEvents(eventTypes)
     print(numgend, type(numgend), sep='\n')
-    runs2Basked = np.array([1 if not i else int(((200_000-i)/0.23)/60_000) for i in numgend])
+    # runs2Basked = np.array([1 if not i else int(((200_000-i)/0.23)/60_000) for i in numgend])
+    runs2Basked = {}
+    for typ in numgend:
+        runs2Basked.update({typ: int((200_000-numgend[typ])/(typeEfficiency[typ] * 60_000))})
     print("Runs to be asked: ", runs2Basked, sep='\n')
     allAttemptsConfig = []
     for j in range(len(eventTypes)):
