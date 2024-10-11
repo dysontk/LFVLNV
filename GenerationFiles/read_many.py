@@ -174,10 +174,10 @@ def WriteItAll(olde, oldr, newe, needy, newr, outf):
     return 1
 
 def redoCounts(eT, fullcheck=0):
-    infile = open('event_counts.txt', 'r')
+    infile = open('/home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/MyFiles/LFVLNV/GenerationFiles/event_counts.txt', 'r')
     old_e_dict, old_r_dict, need_to_full_check, new_r_dict = quick_check(eT, infile)
     
-    if fullRecheck:
+    if fullcheck:
         for key in need_to_full_check:
             need_to_full_check[key] = 1
         print("Will recheck all")
