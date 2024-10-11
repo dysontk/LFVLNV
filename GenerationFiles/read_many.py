@@ -126,6 +126,7 @@ def quick_check(eventTyps, infil, verb=False):
     # need_to_full_check = {}
 
     file_info = read_num_events(infil)
+    print(file_info)
     old_r_dict, old_e_dict = lines_to_rdict(file_info)
     # print(file_info)
     if not file_info:
