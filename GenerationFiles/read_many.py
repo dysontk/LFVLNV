@@ -67,10 +67,11 @@ def read_num_events(InFil):
     for l in range(len(lines)):
         lines[l] = lines[l].strip().split(',')
     print(lines)
-    try:
-        int(lines[2])
-    except ValueError:
-        lines[2] = '0'
+    for lin in lines:
+        try:
+            int(lin[2])
+        except ValueError:
+            lin[2] = '0'
     return lines
 
 def create_dict(L1, L2ish, verbs=False):
