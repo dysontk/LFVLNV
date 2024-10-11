@@ -161,7 +161,7 @@ def WriteItAll(olde, oldr, newe, needy, newr, outf):
     for t in newe:
         if newe[t] != '':
             print(f'{t} : {newe[t]}') # this prints the new counts
-            outf.write(t+','+ newe[t] + ','+ newr[t] + '\n')
+            outf.write(t+','+ str(newe[t]) + ','+ str(newr[t]) + '\n')
 
     return 1
 
