@@ -178,11 +178,11 @@ class AllRunHandler:
 
 if __name__ == '__main__':
 
-    eventTypes = [#'LNVF', 
-                #   'ttbar', 
+    eventTypes = ['LNVF', 
+                  'ttbar', 
                   'W3j', 
-                #   'WZ2j', 
-                #   'ZZ2j'
+                  'WZ2j', 
+                  'ZZ2j'
                   ]
     typeEfficiency = {'LNVF': 0.23,
                   'ttbar': 0.23,
@@ -203,7 +203,10 @@ if __name__ == '__main__':
     for typ in eventTypes:
         allAttemptsConfig.append(RunConfig(typ, runs2Basked[typ], event_count_dict[typ]))
         # print(eventTypes[j], ": ", runs2Basked[j])
-    print(allAttemptsConfig)
+    # print(allAttemptsConfig)
+
+    for config in allAttemptsConfig:
+        print(f'{config.event_type}: {config.instance_count}: {config.prev_nEvents}')
     
 
     # RunConfig('ttbar', 1), RunConfig('W3j', 1), RunConfig('LNVF', 1), RunConfig('WZ2j', 1)RunConfig('LNVF', 10), RunConfig('WZ2j', 1), RunConfig('ZZ2j', 1)
