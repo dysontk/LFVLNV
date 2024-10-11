@@ -188,6 +188,7 @@ if __name__ == '__main__':
     print("old e: ", old_e_dict)
     print("old r: ", old_r_dict)
     print("need : ", need_to_full_check)
+    print("new r: ", new_r_dict)
     if fullRecheck:
         for key in need_to_full_check:
             need_to_full_check[key] = 1
