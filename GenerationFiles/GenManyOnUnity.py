@@ -194,12 +194,14 @@ if __name__ == '__main__':
     # runs2Basked = np.array([1 if not i else int(((200_000-i)/0.23)/60_000) for i in numgend])
     runs2Basked = {}
     for typ in numgend:
-        runs2Basked.update({typ: int((200_000-numgend[typ])/(typeEfficiency[typ] * 60_000))})
+        new_num = int((200_000-numgend[typ])/(typeEfficiency[typ] * 60_000))
+        runs2Basked.update({typ: new_num if new_num > 0 else 0})
     print("Runs to be asked: ", runs2Basked, sep='\n')
     allAttemptsConfig = []
-    for j in range(len(eventTypes)):
-        allAttemptsConfig.append(RunConfig(eventTypes[j], runs2Basked[j], numgend[j]))
-        print(eventTypes[j], ": ", runs2Basked[j])
+    for typ in range(len(eventTypes)):
+        allAttemptsConfig.append(RunConfig(ty, runs2Basked[ty], numgend[ty]))
+        # print(eventTypes[j], ": ", runs2Basked[j])
+    print(allAttemptsConfig)
     
 
     # RunConfig('ttbar', 1), RunConfig('W3j', 1), RunConfig('LNVF', 1), RunConfig('WZ2j', 1)RunConfig('LNVF', 10), RunConfig('WZ2j', 1), RunConfig('ZZ2j', 1)
