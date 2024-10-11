@@ -200,7 +200,7 @@ if __name__ == '__main__':
     print("event count: ", event_count_dict, sep='\n')
     print("run count", run_command, sep='\n')
     allAttemptsConfig = []
-    for typ in range(len(eventTypes)):
+    for typ in eventTypes:
         allAttemptsConfig.append(RunConfig(typ, runs2Basked[typ], event_count_dict[typ]))
         # print(eventTypes[j], ": ", runs2Basked[j])
     print(allAttemptsConfig)
