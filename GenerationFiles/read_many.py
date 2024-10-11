@@ -53,8 +53,8 @@ def countEvents(eventTypes, OF=''):
         # to_write += 
         print(f"finished counting {typ}")
         print(typ + ',' + most_recent_run_num(typ) + ',' + str(NEVENTS) + '\n')
-        if OF != '':
-            OF.write(typ + ',' + most_recent_run_num(typ) + ',' + str(NEVENTS) + '\n')
+        # if OF != '':
+        #     OF.write(typ + ',' + most_recent_run_num(typ) + ',' + str(NEVENTS) + '\n')
 
     
     print(to_print)
@@ -87,6 +87,7 @@ def lines_to_rdict(lins):
 def create_dict(L1, L2ish, verbs=False): #L2ish -- file_info, L1 -- from what is asked
 
     dic = {}
+    new_run_dict = {}
     for l1 in L1:
         dic.update({l1:1})
         if verbs:
@@ -97,6 +98,7 @@ def create_dict(L1, L2ish, verbs=False): #L2ish -- file_info, L1 -- from what is
             # print(l2)
             asked_for = False
             curr_run_max = most_recent_run_num(l2[0])
+            new_run_dict.update({l2[0]:curr_run_max})
             for key in dic:
                 # print("Hey", l2[0], key,sep='\n')
                 if l2[0] == key:
@@ -113,20 +115,20 @@ def create_dict(L1, L2ish, verbs=False): #L2ish -- file_info, L1 -- from what is
                 dic.update({l2[0]:0})
                 if verbs:
                     print(f'{l2[0]} was in the file but not asked for')
-    return dic
+    return dic, new_run_dict
 
 def quick_check(eventTyps, infil, verb=False):
     fullRecheck = 0
-    need_to_full_check = {}
+    # need_to_full_check = {}
 
-    file_info = read_num_events(infile)
+    file_info = read_num_events(infil)
     old_r_dict, old_e_dict = lines_to_rdict(file_info)
     # print(file_info)
     if not file_info:
         print("file empty.")
         fullRecheck = 1
     
-    need_to_full_check = create_dict(eventTypes, file_info, True)
+    need_to_full_check, new_r = create_dict(eventTyps, file_info, True)
 
     if fullRecheck:
         for key in need_to_full_check:
@@ -134,7 +136,7 @@ def quick_check(eventTyps, infil, verb=False):
         print("Will recheck all")
     print(need_to_full_check)
 
-    return old_e_dict, old_r_dict, need_to_full_check
+    return old_e_dict, old_r_dict, need_to_full_check, new_r
 
 def checkWhatever(need2, outfil, verbo):
     if verbo:
@@ -144,7 +146,9 @@ def checkWhatever(need2, outfil, verbo):
     newCounts = countEvents([ky if int(need2[ky]) else '' for ky in need2], outfil)
     return newCounts
 
-def WriteItAll(olde, oldr, newe, needy, outf):
+def WriteItAll(olde, oldr, newe, needy, newr, outf):
+    print("printing updated counts")
+
     i=0
     for K in needy:
         if not int(needy[K]):
@@ -157,6 +161,7 @@ def WriteItAll(olde, oldr, newe, needy, outf):
     for t in newe:
         if newe[t] != '':
             print(f'{t} : {newe[t]}') # this prints the new counts
+            outf.write(t+','+ newe[t] + ','+ newr[t] + '\n')
 
     return 1
 
@@ -179,7 +184,7 @@ if __name__ == '__main__':
     #     fullRecheck = 1
     
     # need_to_full_check = create_dict(eventTypes, file_info, True)
-    old_e_dict, old_r_dict, need_to_full_check = quick_check(eventTypes, infile)
+    old_e_dict, old_r_dict, need_to_full_check, new_r_dict = quick_check(eventTypes, infile)
     print("old e: ", old_e_dict)
     print("old r: ", old_r_dict)
     print("need : ", need_to_full_check)
@@ -208,7 +213,7 @@ if __name__ == '__main__':
     The next bit writes the file info for whatever event types we did not need to recheck
     '''    
 
-    WriteItAll(old_e_dict, old_r_dict, newCounts, need_to_full_check, outfile)
+    WriteItAll(old_e_dict, old_r_dict, newCounts, need_to_full_check, new_r_dict, outfile)
     # print(need_to_full_check)
     # # print(file_info)
     # i=0
