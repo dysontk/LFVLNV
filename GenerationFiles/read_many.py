@@ -74,6 +74,15 @@ def read_num_events(InFil):
             lin[2] = '0'
     return lines
 
+def lines_to_rdict(lins):
+    run_dict = {}
+    event_dict = {}
+    for lin in lins:
+        run_dict.update({lin[0]:lin[1]})
+        event_dict.update({lin[0]:lin[2]})
+    # print(run_dict)
+    return run_dict, event_dict
+
 def create_dict(L1, L2ish, verbs=False):
 
     dic = {}
@@ -117,6 +126,7 @@ if __name__ == '__main__':
     infile = open('event_counts.txt', 'r')
 
     file_info = read_num_events(infile)
+    old_r_dict, old_e_dict = lines_to_rdict(file_info)
     print(file_info)
     if not file_info:
         print("file empty.")
@@ -153,11 +163,8 @@ if __name__ == '__main__':
     for K in need_to_full_check:
         if not int(need_to_full_check[K]):
             print(f'These weren\'t re checked, {K} : {need_to_full_check[K]}') # This prints the old counts which were not rechecked
-            to_write = ''
-            for j in range(3):
-                to_write += str(file_info[i][j])
-                to_write += ',' if j<2 else '\n'
-            print(to_write)
+            to_write = K + ',' + old_r_dict[K] + ',' + old_e_dict[K]            
+            print('Old writing \n', to_write)
             outfile.write(to_write)
         i += 1
 
