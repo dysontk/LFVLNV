@@ -33,7 +33,7 @@ def most_recent_run_num(eventType):
     
 # change this to use a dictionary output to make it easier to handle all togher
 
-def countEvents(eventTypes, OF):
+def countEvents(eventTypes, OF=''):
     # eventTypes = ['LNVF', 'ttbar', 'W3j', 'WZ2j', 'ZZ2j']
     eventCounts = {}
 
@@ -53,7 +53,8 @@ def countEvents(eventTypes, OF):
         # to_write += 
         print(f"finished counting {typ}")
         print(typ + ',' + most_recent_run_num(typ) + ',' + str(NEVENTS) + '\n')
-        OF.write(typ + ',' + most_recent_run_num(typ) + ',' + str(NEVENTS) + '\n')
+        if OF != '':
+            OF.write(typ + ',' + most_recent_run_num(typ) + ',' + str(NEVENTS) + '\n')
 
     
     print(to_print)
