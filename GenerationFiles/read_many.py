@@ -45,7 +45,7 @@ def countEvents(eventTypes, OF=''):
         eventCounts.update({typ:0})
         # to_write = 
         to_print += '\n' + typ + ': '
-        files = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{typ}/Events/*/*delphes_events.root', False).split('\n')
+        files = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{typ}/Events/*/*delphes_events.root', True).split('\n')
         for ThisFile in files:
             eventCounts[typ]+= GMOU.find_num_gend(ThisFile, False)
         NEVENTS = eventCounts[typ]
