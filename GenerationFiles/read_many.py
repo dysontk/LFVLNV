@@ -172,32 +172,14 @@ def WriteItAll(olde, oldr, newe, needy, newr, outf):
 
     return 1
 
-
-if __name__ == '__main__':
-
-    fullRecheck = 0
-    eventTypes = ['ZZ2j', 'WZ2j', 'ttbar', 'W3j', 'LNVF']
-    # fullCheckTypes = []
-    # need_to_full_check = {}
-    # for i in range(len(eventTypes)):
-        # need_to_full_check.append((eventTypes[i], 1))
+def redoCounts(eT, fullcheck=0):
     infile = open('event_counts.txt', 'r')
-
-    # file_info = read_num_events(infile)
-    # old_r_dict, old_e_dict = lines_to_rdict(file_info)
-    # print(file_info)
-    # if not file_info:
-    #     print("file empty.")
-    #     fullRecheck = 1
-    
-    # need_to_full_check = create_dict(eventTypes, file_info, True)
-    old_e_dict, old_r_dict, need_to_full_check, new_r_dict = quick_check(eventTypes, infile)
+    old_e_dict, old_r_dict, need_to_full_check, new_r_dict = quick_check(eT, infile)
     
     if fullRecheck:
         for key in need_to_full_check:
             need_to_full_check[key] = 1
         print("Will recheck all")
-    # print(need_to_full_check)
     infile.close()
 
     outfile = open('event_counts.txt', 'w')    
@@ -207,16 +189,6 @@ if __name__ == '__main__':
     <type>,<highest run number>,<total n events>\n
     '''
     newCounts = checkWhatever(need_to_full_check, outfile, False)
-    # print("old e: ", old_e_dict)
-    # print("old r: ", old_r_dict)
-    # print("need : ", need_to_full_check)
-    # print("new r: ", new_r_dict)
-    # print("new e: ", newCounts)
-    # print([ky if int(need_to_full_check[ky]) else '' for ky in need_to_full_check])
-    # for t in need_to_full_check:
-    #     print(t, ": ", "Recounting" if int(need_to_full_check[t]) else "No Recount Needed")
-    # newCounts = countEvents([ky if int(need_to_full_check[ky]) else '' for ky in need_to_full_check], outfile) 
-    # print(newCounts)
     '''
     Because outfile is write only, it deletes (I believe) the contents. 
     So if there are any events that we did not recheck then that info would be lost.
@@ -224,6 +196,13 @@ if __name__ == '__main__':
     '''    
 
     WriteItAll(old_e_dict, old_r_dict, newCounts, need_to_full_check, new_r_dict, outfile)
+    outfile.close()
+
+if __name__ == '__main__':
+
+    fullRecheck = 0
+    eventTypes = ['ZZ2j', 'WZ2j', 'ttbar', 'W3j', 'LNVF']
+    redoCounts(eventTypes, fullRecheck)    
     # print(need_to_full_check)
     # # print(file_info)
     # i=0
@@ -239,4 +218,3 @@ if __name__ == '__main__':
     #     if newCounts[t] != '':
     #         print(f'{t} : {newCounts[t]}') # this prints the new counts
     #         # outfile.write(f'{t},{}')
-    outfile.close()
