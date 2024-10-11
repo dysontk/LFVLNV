@@ -197,6 +197,7 @@ def redoCounts(eT, fullcheck=0):
 
     WriteItAll(old_e_dict, old_r_dict, newCounts, need_to_full_check, new_r_dict, outfile)
     outfile.close()
+    return newCounts, new_r_dict
 
 if __name__ == '__main__':
 
