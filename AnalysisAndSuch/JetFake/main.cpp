@@ -73,7 +73,7 @@ using namespace TMath;
 bool VERBOSE = true; // Allows for some troubleshooting or extra detail if true.
 bool lowlepcut = false; //turns on and off Some sort of cut on the low energy lepton?????????????????????????
 
-const char* EventType = "W3j";
+// const char* EventType = "W3j";
 
 // For the simplification of simulated data in early stages,
 // we do not have branches for MET nor Muons. The following Bools are to account for this. 
@@ -144,6 +144,72 @@ Bool PreselectionCuts(vector<PseudoJet> leptons) // This function intakes the ve
 
 }
 
+Bool HMSR1Cuts(vector<PseudoJet> leptons, vector<PseudoJet> Jets, vector<PseudoJet> MET, bool has_MET)
+{
+    // The proceeding three cuts are the definition of High Mass Signal Region 1 (HM SR1)
+            // CMS Table 1
+            // Each jet must be above 25 GeV pt
+            int numJet2 = Jets.size();
+            // if (VERBOSE) cout << "Is the length of jet vector the same as branch size? " << (numJet2 == numJet)<< endl;
+            int htsum = 0;
+            if (Jets[0].pt()<=25) 
+            {
+                return false;
+            }
+            // cout << "Here"<< endl;
+            for (int i=0; i < numJet2; i++)
+            {
+                double this_pt = all_jets[i].pt();
+                htsum += this_pt;
+                // if( this_pt < 25) continue;
+            }
+
+            for (int j=0; j < v_lep.size(); j++)
+            {
+                htsum += v_lep[j].pt();
+            }
+            // Ratio of missing Trans. momentum^2 and total PT less than 15 GeV
+            if (has_MET)
+            {
+                // cout << v_MET.size()<< endl;
+                if (pow(MET[0].pt(),2)/htsum > 15) continue;
+            }
+            // For the next part, I need to find Δm_Wj which is the inv mass of
+            // the pair of jets with inv mass closes to M_W
+            int JLowPairInd[2] = {0,0};
+            double LowDiff = 1000;
+            // cout << all_jets.size()<< endl;
+            for(int j1=0; j1<Jets.size(); j1++)
+            {
+                for(int j2=j1; j2<Jets.size(); j2++)
+                {
+                    // cout << "Current Pair (" << j1 << "," << j2<< ")"<< endl;
+                    double thisDiff = abs((Jets[j1]+Jets[j2]).m()-80.4);
+                    // cout << "Inv M is off from W by " << thisDiff << endl;
+                    // cout << "Low diff: " << LowDiff << endl;
+                    if (thisDiff < LowDiff)
+                    {
+                        LowDiff = thisDiff;
+                        JLowPairInd[0] = j1;
+                        JLowPairInd[1] = j2;
+                    }
+                    else continue;
+                }
+            }
+            // if (!JLowPairInd[0] && !JLowPairInd[1])
+            // {
+            //     cout << "For some reason, I couldn't pick a smallest"<< endl;
+            // }
+            w_jet_pairs.push_back(all_jets[JLowPairInd[0]]);
+            w_jet_pairs.push_back(all_jets[JLowPairInd[1]]);
+            double M_Wj = (w_jet_pairs[0]+w_jet_pairs[1]).m();
+            if (M_Wj < 30 || M_Wj > 150) 
+            {
+                return false;
+            }
+            else return true;
+}
+
 double WhatToPlot(TH1F *Hist, int Params[3], double value)
 {
     double HalfbWidth = (Params[2]-Params[1])/(2*Params[0]);
@@ -170,9 +236,13 @@ int main(int argc, const char * argv[])
     //Pulls and arranges data as needed.
     TChain chain("Delphes");
 
-    for(int i=1; i<argc; i++)
+    EventType = argv[1];
+    cout << argv[1]<< endl;
+
+    for(int i=2; i<argc; i++)
     {
         chain.Add(argv[i]);
+        cout << argv[i]<< endl;
     }
 
     ExRootTreeReader *treeReader = new ExRootTreeReader(&chain);
@@ -294,7 +364,13 @@ int main(int argc, const char * argv[])
             if(hasMu) numMu = branchMuon->GetEntries(); 
             else numMu = 0;
             if(hasMET) numMET = branchMET->GetEntries();
-            else numMET = 0;
+            else 
+            {
+                numMET = 0;
+                PseudoJet TEMP_event;
+                TEMP_event.reset((0).Px, (0).Py, (0).Pz, (0).E())
+                v_MET.push_back(TEMP_event)
+            }
             if (VERBOSE) cout << "Muons" << numMu << endl;
             //I should diagram the rest of this out
             // I want to determine the pairs of jets that are closest to W mass
@@ -447,67 +523,69 @@ int main(int argc, const char * argv[])
             if (!PreselectionCuts(v_lep)) continue; // Preselection returns false if the event should be rejected.
             numCutCats[1]++;
             
-            // High Mass SR 1
-            // The preceeding three cuts are the definition of High Mass Signal Region 1 (HM SR1)
-            // CMS Table 1
-            // Each jet must be above 25 GeV pt
-            int numJet2 = all_jets.size();
-            // if (VERBOSE) cout << "Is the length of jet vector the same as branch size? " << (numJet2 == numJet)<< endl;
-            int htsum = 0;
-            if (all_jets[0].pt()<=25) continue;
-            // cout << "Here"<< endl;
-            for (int i=0; i < numJet2; i++)
-            {
-                double this_pt = all_jets[i].pt();
-                htsum += this_pt;
-                // if( this_pt < 25) continue;
-            }
-
-            for (int j=0; j < v_lep.size(); j++)
-            {
-                htsum += v_lep[j].pt();
-            }
-            // Ratio of missing Trans. momentum^2 and total PT less than 15 GeV
-            if (hasMET)
-            {
-                // cout << v_MET.size()<< endl;
-                if (pow(v_MET[0].pt(),2)/htsum > 15) continue;
-            }
-            // For the next part, I need to find Δm_Wj which is the inv mass of
-            // the pair of jets with inv mass closes to M_W
-            int JLowPairInd[2] = {0,0};
-            double LowDiff = 1000;
-            // cout << all_jets.size()<< endl;
-            for(int j1=0; j1<all_jets.size(); j1++)
-            {
-                for(int j2=j1; j2<all_jets.size(); j2++)
-                {
-                    // cout << "Current Pair (" << j1 << "," << j2<< ")"<< endl;
-                    double thisDiff = abs((all_jets[j1]+all_jets[j2]).m()-80.4);
-                    // cout << "Inv M is off from W by " << thisDiff << endl;
-                    // cout << "Low diff: " << LowDiff << endl;
-                    if (thisDiff < LowDiff)
-                    {
-                        LowDiff = thisDiff;
-                        JLowPairInd[0] = j1;
-                        JLowPairInd[1] = j2;
-                    }
-                    else continue;
-                }
-            }
-            // if (!JLowPairInd[0] && !JLowPairInd[1])
+            // High Mass SR 1-------------------------------------------------------------------------------------------------------------------------
+            // // The proceeding three cuts are the definition of High Mass Signal Region 1 (HM SR1)
+            // // CMS Table 1
+            if (!HMSR1Cuts(v_lep, all_jets, v_MET, hasMET)) continue;
+            
+            // // Each jet must be above 25 GeV pt
+            // int numJet2 = all_jets.size();
+            // // if (VERBOSE) cout << "Is the length of jet vector the same as branch size? " << (numJet2 == numJet)<< endl;
+            // int htsum = 0;
+            // if (all_jets[0].pt()<=25) continue;
+            // // cout << "Here"<< endl;
+            // for (int i=0; i < numJet2; i++)
             // {
-            //     cout << "For some reason, I couldn't pick a smallest"<< endl;
+            //     double this_pt = all_jets[i].pt();
+            //     htsum += this_pt;
+            //     // if( this_pt < 25) continue;
             // }
-            w_jet_pairs.push_back(all_jets[JLowPairInd[0]]);
-            w_jet_pairs.push_back(all_jets[JLowPairInd[1]]);
-            double M_Wj = (w_jet_pairs[0]+w_jet_pairs[1]).m();
-            if (M_Wj < 30 || M_Wj > 150) continue;
+
+            // for (int j=0; j < v_lep.size(); j++)
+            // {
+            //     htsum += v_lep[j].pt();
+            // }
+            // // Ratio of missing Trans. momentum^2 and total PT less than 15 GeV
+            // if (hasMET)
+            // {
+            //     // cout << v_MET.size()<< endl;
+            //     if (pow(v_MET[0].pt(),2)/htsum > 15) continue;
+            // }
+            // // For the next part, I need to find Δm_Wj which is the inv mass of
+            // // the pair of jets with inv mass closes to M_W
+            // int JLowPairInd[2] = {0,0};
+            // double LowDiff = 1000;
+            // // cout << all_jets.size()<< endl;
+            // for(int j1=0; j1<all_jets.size(); j1++)
+            // {
+            //     for(int j2=j1; j2<all_jets.size(); j2++)
+            //     {
+            //         // cout << "Current Pair (" << j1 << "," << j2<< ")"<< endl;
+            //         double thisDiff = abs((all_jets[j1]+all_jets[j2]).m()-80.4);
+            //         // cout << "Inv M is off from W by " << thisDiff << endl;
+            //         // cout << "Low diff: " << LowDiff << endl;
+            //         if (thisDiff < LowDiff)
+            //         {
+            //             LowDiff = thisDiff;
+            //             JLowPairInd[0] = j1;
+            //             JLowPairInd[1] = j2;
+            //         }
+            //         else continue;
+            //     }
+            // }
+            // // if (!JLowPairInd[0] && !JLowPairInd[1])
+            // // {
+            // //     cout << "For some reason, I couldn't pick a smallest"<< endl;
+            // // }
+            // w_jet_pairs.push_back(all_jets[JLowPairInd[0]]);
+            // w_jet_pairs.push_back(all_jets[JLowPairInd[1]]);
+            // double M_Wj = (w_jet_pairs[0]+w_jet_pairs[1]).m();
+            // if (M_Wj < 30 || M_Wj > 150) continue;
 
             numCutCats[2]++;
             // We have concluded the HMSR1 cuts
 
-            // Here come the Miscellaneous Cuts
+            // Here come the Miscellaneous Cuts-------------------------------------------------------------------------------------------------------------------------
             // First, we want angularly well separated events
             // ΔR information from CMS Sec. 4.1 & 4.2
             // Uncommented these for trouble shooting. They should come back
