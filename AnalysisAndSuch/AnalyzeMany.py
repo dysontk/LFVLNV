@@ -61,7 +61,10 @@ def get_significance(cutNum):
             continue
         else:
             B += BorS[typ]
-    return cutNum['LNVF']/(cutNum['LNVF']+B)**(1/2)
+    
+    print("LNVF", BorS['LNVF'])
+    print("B", B)
+    return BorS['LNVF']/(BorS['LNVF']+B)**(1/2)
 
 
 def main():
