@@ -759,7 +759,7 @@ int main(int argc, const char * argv[])
         cout << "I flipped this many electrons "<< numFlippede << endl;
         cout << "I flipped this many muons "<< numFlippedmu << endl; 
 
-        cout << "Events by Cut"
+        cout << "Events by Cut"<< endl;
         cout << NumEntries << endl;
         for (int c=0; c<sizeof(numCutCats)/sizeof(int); c++) cout << numCutCats[c]<< endl;
         // cout << "]" << endl;
