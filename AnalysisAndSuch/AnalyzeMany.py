@@ -65,13 +65,16 @@ def get_significance(cutNum):
 
 
 def main():
-    list_of_data_types = ['LNVF', 'WZ2j']
+    list_of_data_types = ['LNVF', 'WZ2j', 'ZZ2j', 'W3j', 'ttbar']
     
     nEventsByCuts = multi_analysis(list_of_data_types)
 
     sig_arr = get_significance(nEventsByCuts)
 
-    print(sig_arr)
+    # print(sig_arr)
+
+    for i in range(len(sig_arr)):
+        print(f'Cut {i}: {sig_arr[i]}')
 
 if __name__=='__main__':
     main()
