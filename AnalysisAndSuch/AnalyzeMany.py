@@ -46,12 +46,15 @@ def get_significance(cutNum):
               'ttbar':22.74} #pb
     intd_lumin = 0.139 #pb^-1
     
-    BorS = {}
+    effCrossX = {}
     
     for typ in cutNum:
-        BorS.update({typ:np.array([(ev_count/cutNum[typ][0]*crossX[typ]*intd_lumin) for ev_count in cutNum[typ]])})
+        effCrossX.update({typ:np.array([(ev_count/cutNum[typ][0]) for ev_count in cutNum[typ]])})
 
-    print(BorS)
+    print(effCrossX)
+    BorS = {}
+    for X in effCrossX:
+        BorS.update(effCrossX[X]*crossX[X]*intd_lumin)
     
     B = np.zeros(len(BorS['LNVF']))
     # S = 0
