@@ -1,5 +1,6 @@
 import subprocess
 import numpy as np
+import re
 
 def run_command(command, verbs=True):
     try:
