@@ -196,7 +196,7 @@ Bool HMSR1Cuts(vector<PseudoJet> leptons, vector<PseudoJet> Jets, vector<PseudoJ
 
             for (int j=0; j < leptons.size(); j++)
             {
-                htsum += v_lep[j].pt();
+                htsum += leptons[j].pt();
             }
             // Ratio of missing Trans. momentum^2 and total PT less than 15 GeV
             if (has_MET)
@@ -399,8 +399,8 @@ int main(int argc, const char * argv[])
             {
                 numMET = 0;
                 PseudoJet TEMP_event;
-                TEMP_event.reset(0, 0, 0, 0)
-                v_MET.push_back(TEMP_event)
+                TEMP_event.reset(0, 0, 0, 0);
+                v_MET.push_back(TEMP_event);
             }
             if (VERBOSE) cout << "Muons" << numMu << endl;
             //I should diagram the rest of this out
@@ -558,7 +558,7 @@ int main(int argc, const char * argv[])
             // // The proceeding three cuts are the definition of High Mass Signal Region 1 (HM SR1)
             // // CMS Table 1
             if (!HMSR1Cuts(v_lep, all_jets, v_MET, hasMET)) continue;
-            w_jet_pairs = WPairing(all_jets)
+            w_jet_pairs = WPairing(all_jets);
             // // Each jet must be above 25 GeV pt
             // int numJet2 = all_jets.size();
             // // if (VERBOSE) cout << "Is the length of jet vector the same as branch size? " << (numJet2 == numJet)<< endl;
