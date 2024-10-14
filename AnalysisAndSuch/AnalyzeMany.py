@@ -54,7 +54,7 @@ def get_significance(cutNum):
     print(effCrossX)
     BorS = {}
     for X in effCrossX:
-        BorS.update(effCrossX[X]*crossX[X]*intd_lumin)
+        BorS.update({X:effCrossX[X]*crossX[X]*intd_lumin})
     
     B = np.zeros(len(BorS['LNVF']))
     # S = 0
