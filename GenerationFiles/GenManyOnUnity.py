@@ -52,7 +52,8 @@ class Run:
         # logFileName = 
         self.log = open(f"/home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/MyFiles/LFVLNV/GenerationFiles/logs/{self.eventType}/attempt_{self.run_num:02d}.log", "w")
         print("I am about to Generate events.", "The output of the madgraph generation can be found in:", f"logs/{self.eventType}/attempt_{self.run_num:02d}.log", sep='\n')
-        self.proc = subprocess.Popen(f"/work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.eventType}/bin/madevent /home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/MyFiles/LFVLNV/GenerationFiles/{self.eventType}_run.dat", stdout=self.log, stderr=self.log, shell=True)
+        # self.proc = subprocess.Popen(f"/work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.eventType}/bin/madevent /home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/MyFiles/LFVLNV/GenerationFiles/{self.eventType}_run.dat", stdout=self.log, stderr=self.log, shell=True)
+        self.proc = "I have finidhes"
     
     @property
     def is_running(self):
@@ -94,16 +95,16 @@ class Run:
 
 class RunHandler:
 
-    def __init__(self, eventType, n_runs, prev_gend):
-        self.n_runs = n_runs
+    def __init__(self, eventType, instance_count, prev_nEvents):
+        self.n_runs = instance_count
         # print(self.instance_count)
         self.eventType = eventType
         begin_num = self._find_base_num()
         self.runs = []
         self.tot_nevents
-        self.runs_gend = prev_gend    
+        self.runs_gend = prev_nEvents    
         
-        for rn in range(n_runs):
+        for rn in range(self.n_runs):
             if self.tot_nevents > 10_000:
                 self.runs_gend = rn
                 print(f"There are over 200k events for {self.eventType}. \nEnding Generation there")
