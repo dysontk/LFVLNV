@@ -161,7 +161,8 @@ def checkWhatever(need2, outfil, verbo):
 
 def WriteItAll(olde, oldr, newe, needy, newr, outf):
     print("printing updated counts")
-
+    fin_r_dict = {}
+    fin_e_dict = {}
     i=0
     for K in needy:
         if not int(needy[K]):
@@ -170,6 +171,8 @@ def WriteItAll(olde, oldr, newe, needy, newr, outf):
             # print('Old writing \n', to_write)
             outf.write(to_write)
             print(to_write)
+            fin_r_dict.update({K:oldr[K]})
+            fin_e_dict.update({K:olde[K]})
         i += 1
 
     for t in newe:
@@ -177,8 +180,10 @@ def WriteItAll(olde, oldr, newe, needy, newr, outf):
             # print(f'{t} : {newe[t]}') # this prints the new counts
             outf.write(t+','+ str(newe[t]) + ','+ str(newr[t]) + '\n')
             print(to_write)
+            fin_r_dict.update({K:newr[t]})
+            fin_e_dict.update({K:newe[t]})
 
-    return 1
+    return fin_r_dict, fin_e_dict
 
 def what_to_do_if_empty(ev_t):
     needy, newr = {}, {}
@@ -222,9 +227,9 @@ def redoCounts(eT, fullcheck=0):
     The next bit writes the file info for whatever event types we did not need to recheck
     '''    
 
-    WriteItAll(old_e_dict, old_r_dict, newCounts, need_to_full_check, new_r_dict, outfile)
+    final_r_count, final_evnt_count = WriteItAll(old_e_dict, old_r_dict, newCounts, need_to_full_check, new_r_dict, outfile)
     outfile.close()
-    return newCounts, new_r_dict
+    return final_r_count, final_evnt_count
 
 if __name__ == '__main__':
 
