@@ -29,7 +29,7 @@ def multi_analysis(typList):
     cutNumbers = {}
     for e_typ in typList:
         print(e_typ)
-        cutNumbers.update(e{_typ:single_analysis(e_typ)})
+        cutNumbers.update({e_typ:single_analysis(e_typ)})
     
     return cutNumbers
 
