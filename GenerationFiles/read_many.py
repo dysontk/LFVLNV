@@ -121,7 +121,7 @@ def create_dict(L1, L2ish, verbs=False): #L2ish -- file_info, L1 -- from what is
                     print(f'{l2[0]} was in the file but not asked for')
     return dic, new_run_dict
 
-def quick_check(eventTyps, infil, verb=False):
+def quick_check(eventTyps, infil, verb=True):
     fullRecheck = 0
     # need_to_full_check = {}
 
@@ -192,6 +192,7 @@ def redoCounts(eT, fullcheck=0):
         is_empty = True
         old_e_dict = {}
         old_r_dict = {}
+        print("File is empty. Will count all")
         need_to_full_check, new_r_dict = what_to_do_if_empty(eT)
         
 
