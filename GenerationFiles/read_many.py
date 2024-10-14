@@ -94,9 +94,9 @@ def create_dict(L1, L2ish, verbs=False): #L2ish -- file_info, L1 -- from what is
         if verbs:
             print(f'{l1} added to dictionary')
     # print(f"L2ish, {L2ish}")
-    print("before checking the file, the dictionaries are")
-    print(dic)
-    print(new_run_dict)
+    # print("before checking the file, the dictionaries are")
+    # print(dic)
+    # print(new_run_dict)
     if L2ish != [['']]:
         for l2 in L2ish:
             # print(l2)
@@ -124,7 +124,7 @@ def create_dict(L1, L2ish, verbs=False): #L2ish -- file_info, L1 -- from what is
                     print(f'{l2[0]} was in the file but not asked for')
     return dic, new_run_dict
 
-def quick_check(eventTyps, infil, verb=True):
+def quick_check(eventTyps, infil, verb=False):
     fullRecheck = 0
     # need_to_full_check = {}
 
@@ -169,12 +169,14 @@ def WriteItAll(olde, oldr, newe, needy, newr, outf):
             to_write = K + ',' + oldr[K] + ',' + olde[K] + '\n'          
             # print('Old writing \n', to_write)
             outf.write(to_write)
+            print(to_write)
         i += 1
 
     for t in newe:
         if newe[t] != '':
             # print(f'{t} : {newe[t]}') # this prints the new counts
             outf.write(t+','+ str(newe[t]) + ','+ str(newr[t]) + '\n')
+            print(to_write)
 
     return 1
 
