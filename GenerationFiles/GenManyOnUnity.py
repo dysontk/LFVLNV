@@ -187,7 +187,7 @@ def HowManyRuns(event_count_dic):
                   'WZ2j': 0.23,
                   'ZZ2j': 0.23}
     runs2Basked = {typ: math.ceil((200_000-int(event_count_dic[typ]))/(typeEfficiency[typ] * 60_000)) for typ in event_count_dic}
-    runs2Basked = {typ: 0 if runs2Basked[typ] < 0 else runs2Basked[typ]}
+    runs2Basked = {typ: 0 if runs2Basked[typ] < 0 else runs2Basked[typ] for typ in runs2Basked}
     return runs2Basked
 
 if __name__ == '__main__':
