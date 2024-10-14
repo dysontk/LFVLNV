@@ -195,7 +195,7 @@ if __name__ == '__main__':
     # runs2Basked = np.array([1 if not i else int(((200_000-i)/0.23)/60_000) for i in event_count_dict])
     runs2Basked = {}
     for typ in event_count_dict:
-        new_num = int((200_000-event_count_dict[typ])/(typeEfficiency[typ] * 60_000))
+        new_num = int((200_000-int(event_count_dict[typ]))/(typeEfficiency[typ] * 60_000))
         runs2Basked.update({typ: new_num if new_num > 0 else 0})
     print("Runs to be asked: ", runs2Basked, sep='\n')
     print("event count: ", event_count_dict, sep='\n')
