@@ -688,9 +688,6 @@ int main(int argc, const char * argv[])
 
             // return 0;
         }
-        cout <<"[";
-        for (int c=0; c<sizeof(numCutCats)/sizeof(int); c++) cout << numCutCats[c]<< endl;
-        cout << "]" << endl;
         cout << "Histo time"<< endl;
 
         TStyle *st1 = new TStyle("st1","my style");
@@ -761,6 +758,11 @@ int main(int argc, const char * argv[])
         
         cout << "I flipped this many electrons "<< numFlippede << endl;
         cout << "I flipped this many muons "<< numFlippedmu << endl; 
+
+        cout << "Events by Cut"
+        cout << NumEntries << endl;
+        for (int c=0; c<sizeof(numCutCats)/sizeof(int); c++) cout << numCutCats[c]<< endl;
+        // cout << "]" << endl;
         // char FullPathMass_ll_test[100];
 
         // strcpy(FullPathMass_ll_test, ImagePath);
