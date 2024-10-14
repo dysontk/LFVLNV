@@ -94,6 +94,9 @@ def create_dict(L1, L2ish, verbs=False): #L2ish -- file_info, L1 -- from what is
         if verbs:
             print(f'{l1} added to dictionary')
     # print(f"L2ish, {L2ish}")
+    print("before checking the file, the dictionaries are")
+    print(dic)
+    print(new_run_dict)
     if L2ish != [['']]:
         for l2 in L2ish:
             # print(l2)
