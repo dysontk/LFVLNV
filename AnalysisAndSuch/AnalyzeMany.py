@@ -34,7 +34,7 @@ def multi_analysis(typList):
     return cutNumbers
 
 
-def get_significance(cutNum)
+def get_significance(cutNum):
     
     crossX = {'LNVF':0.0001279,
               'WZ2j':0.09764,
