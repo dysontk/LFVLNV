@@ -144,6 +144,36 @@ Bool PreselectionCuts(vector<PseudoJet> leptons) // This function intakes the ve
 
 }
 
+vector<PseudoJet> WPairing(vector<PseudoJet> Jets, double LowDiff=1000)
+{
+    // For the next part, I need to find Δm_Wj which is the inv mass of
+    // the pair of jets with inv mass closes to M_W
+    int JLowPairInd[2] = {0,0};
+    // double LowDiff = 1000;
+    // cout << all_jets.size()<< endl;
+    for(int j1=0; j1<Jets.size(); j1++)
+    {
+        for(int j2=j1; j2<Jets.size(); j2++)
+        {
+            // cout << "Current Pair (" << j1 << "," << j2<< ")"<< endl;
+            double thisDiff = abs((Jets[j1]+Jets[j2]).m()-80.4);
+            // cout << "Inv M is off from W by " << thisDiff << endl;
+            // cout << "Low diff: " << LowDiff << endl;
+            if (thisDiff < LowDiff)
+            {
+                LowDiff = thisDiff;
+                JLowPairInd[0] = j1;
+                JLowPairInd[1] = j2;
+            }
+            else continue;
+        }
+    }
+    vector<PseudoJet> W_pair;
+    W_pair.push_back(Jets[JLowPairInd[0]]);
+    W_pair.push_back(Jets[JLowPairInd[1]]);
+    return W_pair;
+}
+
 Bool HMSR1Cuts(vector<PseudoJet> leptons, vector<PseudoJet> Jets, vector<PseudoJet> MET, bool has_MET)
 {
     // The proceeding three cuts are the definition of High Mass Signal Region 1 (HM SR1)
@@ -159,12 +189,12 @@ Bool HMSR1Cuts(vector<PseudoJet> leptons, vector<PseudoJet> Jets, vector<PseudoJ
             // cout << "Here"<< endl;
             for (int i=0; i < numJet2; i++)
             {
-                double this_pt = all_jets[i].pt();
+                double this_pt = Jets[i].pt();
                 htsum += this_pt;
                 // if( this_pt < 25) continue;
             }
 
-            for (int j=0; j < v_lep.size(); j++)
+            for (int j=0; j < leptons.size(); j++)
             {
                 htsum += v_lep[j].pt();
             }
@@ -172,36 +202,37 @@ Bool HMSR1Cuts(vector<PseudoJet> leptons, vector<PseudoJet> Jets, vector<PseudoJ
             if (has_MET)
             {
                 // cout << v_MET.size()<< endl;
-                if (pow(MET[0].pt(),2)/htsum > 15) continue;
+                if (pow(MET[0].pt(),2)/htsum > 15) return false;
             }
             // For the next part, I need to find Δm_Wj which is the inv mass of
             // the pair of jets with inv mass closes to M_W
-            int JLowPairInd[2] = {0,0};
-            double LowDiff = 1000;
-            // cout << all_jets.size()<< endl;
-            for(int j1=0; j1<Jets.size(); j1++)
-            {
-                for(int j2=j1; j2<Jets.size(); j2++)
-                {
-                    // cout << "Current Pair (" << j1 << "," << j2<< ")"<< endl;
-                    double thisDiff = abs((Jets[j1]+Jets[j2]).m()-80.4);
-                    // cout << "Inv M is off from W by " << thisDiff << endl;
-                    // cout << "Low diff: " << LowDiff << endl;
-                    if (thisDiff < LowDiff)
-                    {
-                        LowDiff = thisDiff;
-                        JLowPairInd[0] = j1;
-                        JLowPairInd[1] = j2;
-                    }
-                    else continue;
-                }
-            }
-            // if (!JLowPairInd[0] && !JLowPairInd[1])
+            // int JLowPairInd[2] = {0,0};
+            // double LowDiff = 1000;
+            // // cout << all_jets.size()<< endl;
+            // for(int j1=0; j1<Jets.size(); j1++)
             // {
-            //     cout << "For some reason, I couldn't pick a smallest"<< endl;
+            //     for(int j2=j1; j2<Jets.size(); j2++)
+            //     {
+            //         // cout << "Current Pair (" << j1 << "," << j2<< ")"<< endl;
+            //         double thisDiff = abs((Jets[j1]+Jets[j2]).m()-80.4);
+            //         // cout << "Inv M is off from W by " << thisDiff << endl;
+            //         // cout << "Low diff: " << LowDiff << endl;
+            //         if (thisDiff < LowDiff)
+            //         {
+            //             LowDiff = thisDiff;
+            //             JLowPairInd[0] = j1;
+            //             JLowPairInd[1] = j2;
+            //         }
+            //         else continue;
+            //     }
             // }
-            w_jet_pairs.push_back(all_jets[JLowPairInd[0]]);
-            w_jet_pairs.push_back(all_jets[JLowPairInd[1]]);
+            // // if (!JLowPairInd[0] && !JLowPairInd[1])
+            // // {
+            // //     cout << "For some reason, I couldn't pick a smallest"<< endl;
+            // // }
+            // w_jet_pairs.push_back(Jets[JLowPairInd[0]]);
+            // w_jet_pairs.push_back(Jets[JLowPairInd[1]]);
+            vector<PseudoJet> w_jet_pairs = WPairing(Jets);
             double M_Wj = (w_jet_pairs[0]+w_jet_pairs[1]).m();
             if (M_Wj < 30 || M_Wj > 150) 
             {
@@ -236,7 +267,7 @@ int main(int argc, const char * argv[])
     //Pulls and arranges data as needed.
     TChain chain("Delphes");
 
-    EventType = argv[1];
+    const char* EventType = argv[1];
     cout << argv[1]<< endl;
 
     for(int i=2; i<argc; i++)
@@ -368,7 +399,7 @@ int main(int argc, const char * argv[])
             {
                 numMET = 0;
                 PseudoJet TEMP_event;
-                TEMP_event.reset((0).Px, (0).Py, (0).Pz, (0).E())
+                TEMP_event.reset(0, 0, 0, 0)
                 v_MET.push_back(TEMP_event)
             }
             if (VERBOSE) cout << "Muons" << numMu << endl;
@@ -527,7 +558,7 @@ int main(int argc, const char * argv[])
             // // The proceeding three cuts are the definition of High Mass Signal Region 1 (HM SR1)
             // // CMS Table 1
             if (!HMSR1Cuts(v_lep, all_jets, v_MET, hasMET)) continue;
-            
+            w_jet_pairs = WPairing(all_jets)
             // // Each jet must be above 25 GeV pt
             // int numJet2 = all_jets.size();
             // // if (VERBOSE) cout << "Is the length of jet vector the same as branch size? " << (numJet2 == numJet)<< endl;
@@ -635,8 +666,8 @@ int main(int argc, const char * argv[])
            numCutCats[3]++;
 
             
-            w_jet_pairs.push_back(all_jets[JLowPairInd[0]]);
-            w_jet_pairs.push_back(all_jets[JLowPairInd[1]]);
+            // w_jet_pairs.push_back(all_jets[JLowPairInd[0]]);
+            // w_jet_pairs.push_back(all_jets[JLowPairInd[1]]);
             if (VERBOSE) cout << "I'm filling the histograms now"<< endl;
             MW2j->Fill((w_jet_pairs[0]+w_jet_pairs[1]).m());
             MW2j2l->Fill((w_jet_pairs[0]+w_jet_pairs[1]+v_lep[0]+v_lep[1]).m());
