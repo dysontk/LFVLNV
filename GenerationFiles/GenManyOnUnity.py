@@ -101,7 +101,7 @@ class RunHandler:
         self.eventType = eventType
         begin_num = self._find_base_num()
         self.runs = []
-        self.tot_nevents = prev_nEvents
+        self.tot_nevents = int(prev_nEvents)
         self.runs_gend = 0    
         
         for rn in range(self.n_runs):
