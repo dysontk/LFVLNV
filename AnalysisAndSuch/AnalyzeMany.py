@@ -46,7 +46,7 @@ def get_significance(cutNum):
     BorS = {}
     
     for typ in cutNum:
-        BorS.update({typ:np.array[(ev_count/cutNum[typ][0]*crossX[typ]*intd_lumin) for ev_count in cutNum[typ]]})
+        BorS.update({typ:np.array([(ev_count/cutNum[typ][0]*crossX[typ]*intd_lumin) for ev_count in cutNum[typ]])})
 
     print(BorS)
     
