@@ -101,7 +101,7 @@ class RunHandler:
         begin_num = self._find_base_num()
         self.runs = []
         self.tot_nevents
-        self.runs_gend = 0    
+        self.runs_gend = prev_gend    
         
         for rn in range(n_runs):
             if self.tot_nevents > 10_000:
