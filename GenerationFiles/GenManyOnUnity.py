@@ -202,17 +202,17 @@ if __name__ == '__main__':
     event_count_dict, run_count_dict = read_many.redoCounts(eventTypes, 0)
     print(event_count_dict, type(event_count_dict), sep='\n')
     # runs2Basked = np.array([1 if not i else int(((200_000-i)/0.23)/60_000) for i in event_count_dict])
-    runs2Basked = {}
-    for typ in event_count_dict:
-        new_num = (200_000-int(event_count_dict[typ]))/(typeEfficiency[typ] * 60_000)
-        new_num = new_num if new_num > 0 else math.ceil(new_num)
-        # if new_num < 0:
-        #     new_num = 0
-        # elif new_num < 1:
-        #     new_num = 1
-        # else:
-        #     new_num = int(new_num)
-        runs2Basked.update({typ: new_num if new_num > 0 else 0})
+    runs2Basked = HowManyRuns(event_count_dict)
+    # for typ in event_count_dict:
+    #     new_num = (200_000-int(event_count_dict[typ]))/(typeEfficiency[typ] * 60_000)
+    #     new_num = new_num if new_num > 0 else math.ceil(new_num)
+    #     # if new_num < 0:
+    #     #     new_num = 0
+    #     # elif new_num < 1:
+    #     #     new_num = 1
+    #     # else:
+    #     #     new_num = int(new_num)
+    #     runs2Basked.update({typ: new_num if new_num > 0 else 0})
     print("Runs to be asked: ", runs2Basked, sep='\n')
     print("event count: ", event_count_dict, sep='\n')
     print("run count", run_command, sep='\n')
