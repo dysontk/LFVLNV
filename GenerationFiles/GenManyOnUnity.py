@@ -101,8 +101,8 @@ class RunHandler:
         self.eventType = eventType
         begin_num = self._find_base_num()
         self.runs = []
-        self.tot_nevents
-        self.runs_gend = prev_nEvents    
+        self.tot_nevents = prev_nEvents
+        self.runs_gend = 0    
         
         for rn in range(self.n_runs):
             if self.tot_nevents > 10_000:
@@ -117,7 +117,7 @@ class RunHandler:
             self.runs.append(thisRun)
             self.tot_nevents += thisRun.generated_count
         self.runs_gend = n_runs
-            
+        
 
 
     def _find_base_num(self):
