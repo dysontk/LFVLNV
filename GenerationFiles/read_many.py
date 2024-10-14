@@ -110,7 +110,7 @@ def create_dict(L1, L2ish, verbs=False): #L2ish -- file_info, L1 -- from what is
                 # print("Hey", l2[0], key,sep='\n')
                 if l2[0] == key:
                     asked_for = True
-                    if curr_run_max == l2[1]:
+                    if curr_run_max == l2[2]:
                         dic[key] = 0 # This says "don't recount if the file (l2[1]) has the same max run number as ls gives"
                         if verbs:
                             print(f'No need to recount {key}')
