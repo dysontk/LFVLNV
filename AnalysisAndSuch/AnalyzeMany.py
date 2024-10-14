@@ -1,22 +1,26 @@
 import subprocess
 import numpy as np
 
-def run_command(command):
+def run_command(command, verbs=True):
     try:
         output = subprocess.check_output(command, shell=True, encoding='utf8', stderr=subprocess.STDOUT)
-        print(f"Output of command '{command}' is",  f'{output}', sep='\n')
+        if verbs:
+            print(f"Output of command '{command}' is",  f'{output}', sep='\n')
     except subprocess.CalledProcessError:
-        # print("Error. Generation probably failed")
-        output = str(f"ERROR: Something when wrong when running {command}")
+        output = str(f"Something when wrong when running {command}")
+        if verbs:
+            print("Error. Generation probably failed")
+            print(output)
     return output
 
 def find_files(typ):
-    return run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{dtyp}/Events/*/*delphes_events.root').replace('\n', ' ')
+    return run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{dtyp}/Events/*/*delphes_events.root', False).replace('\n', ' ')
 
 def single_analysis(typ):
-    from_analysis = run_command(f'/home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/MyFiles/LFVLNV/AnalysisAndSuch/JetFake/main {typ} '+ find_files(typ))
+    from_analysis = run_command(f'/home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/MyFiles/LFVLNV/AnalysisAndSuch/JetFake/main {typ} '+ find_files(typ), False)
 
     theNumbersProcessing = re.search(r'Cut\n+\d+\n+\d+\n+\d+\n+\d+\n+\d+\n').group()
+    print(theNumbersProcessing)
     return [int(number) for number in theNumbersProcessing]
 
 
@@ -24,6 +28,7 @@ def multi_analysis(typList):
 
     cutNumbers = {}
     for e_typ in typList:
+        print(e_typ)
         cutNumbers.update(e{_typ:single_analysis(e_typ)})
     
     return cutNumbers
@@ -42,6 +47,8 @@ def get_significance(cutNum)
     
     for typ in cutNum:
         BorS.update({typ:np.array[ev_count/cutNum[typ][0]*crossX[typ]*intd_lumin for ev_count in cutNum[typ]]})
+
+    print(BorS)
     
     B = np.zeros(len(BorS['LNVF']))
     # S = 0
