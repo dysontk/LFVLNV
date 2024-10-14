@@ -53,8 +53,8 @@ class Run:
         # logFileName = 
         self.log = open(f"/home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/MyFiles/LFVLNV/GenerationFiles/logs/{self.eventType}/attempt_{self.run_num:02d}.log", "w")
         print("I am about to Generate events.", "The output of the madgraph generation can be found in:", f"logs/{self.eventType}/attempt_{self.run_num:02d}.log", sep='\n')
-        # self.proc = subprocess.Popen(f"/work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.eventType}/bin/madevent /home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/MyFiles/LFVLNV/GenerationFiles/{self.eventType}_run.dat", stdout=self.log, stderr=self.log, shell=True)
-        self.proc = "I have finidhes"
+        self.proc = subprocess.Popen(f"/work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.eventType}/bin/madevent /home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/MyFiles/LFVLNV/GenerationFiles/{self.eventType}_run.dat", stdout=self.log, stderr=self.log, shell=True)
+        # self.proc = "I have finidhes"
     
     @property
     def is_running(self):
@@ -106,7 +106,7 @@ class RunHandler:
         self.runs_gend = 0   
         
         for rn in range(self.n_runs):
-            if self.tot_nevents < 10_000:
+            if self.tot_nevents < 200_000:
                 
                 thisRun = Run(eventType, rn+1, begin_num)
                 thisRun.start_process()
