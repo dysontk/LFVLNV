@@ -102,21 +102,23 @@ class RunHandler:
         begin_num = self._find_base_num()
         self.runs = []
         self.tot_nevents = int(prev_nEvents)
-        self.runs_gend = 0    
+        self.runs_gend = 0   
         
         for rn in range(self.n_runs):
-            if self.tot_nevents > 10_000:
-                self.runs_gend = rn
-                print(f"There are over 200k events for {self.eventType}. \nEnding Generation there")
+            if self.tot_nevents < 10_000:
+                
+                thisRun = Run(eventType, rn+1, begin_num)
+                thisRun.start_process()
+                thisRun.print_info()
+                thisRun.proc.wait()
+                print(f"{self.eventType} attempt {rn+1} complete (run {rn+1+begin_num})")
+                self.runs.append(thisRun)
+                self.tot_nevents += thisRun.generated_count
+                self.runs_gend += 1
+            else:
+                # self.runs_gend = rn
+                print(f"There are over 10k events for {self.eventType}. \nEnding Event Generation")
                 break
-            thisRun = Run(eventType, rn+1, begin_num)
-            thisRun.start_process()
-            thisRun.print_info()
-            thisRun.proc.wait()
-            print(f"{self.eventType} attempt {rn+1} complete (run {rn+1+begin_num})")
-            self.runs.append(thisRun)
-            self.tot_nevents += thisRun.generated_count
-        self.runs_gend = n_runs
         
 
 
