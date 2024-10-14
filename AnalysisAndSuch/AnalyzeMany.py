@@ -14,7 +14,7 @@ def run_command(command, verbs=True):
     return output
 
 def find_files(typ):
-    return run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{dtyp}/Events/*/*delphes_events.root', False).replace('\n', ' ')
+    return run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{typ}/Events/*/*delphes_events.root', False).replace('\n', ' ')
 
 def single_analysis(typ):
     from_analysis = run_command(f'/home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/MyFiles/LFVLNV/AnalysisAndSuch/JetFake/main {typ} '+ find_files(typ), False)
