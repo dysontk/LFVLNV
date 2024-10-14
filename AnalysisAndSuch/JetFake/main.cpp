@@ -268,7 +268,7 @@ int main(int argc, const char * argv[])
     TChain chain("Delphes");
 
     const char* EventType = argv[1];
-    cout << argv[1]<< endl;
+    cout << EventType<< endl;
 
     for(int i=2; i<argc; i++)
     {
