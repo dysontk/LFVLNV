@@ -36,7 +36,7 @@ def most_recent_run_num(eventType):
 def countEvents(eventTypes, OF=''):
     # eventTypes = ['LNVF', 'ttbar', 'W3j', 'WZ2j', 'ZZ2j']
     eventCounts = {}
-
+    print(eventTypes)
     # to_write =
     to_print = 'Number of Events Generated:'
     for typ in eventTypes:
