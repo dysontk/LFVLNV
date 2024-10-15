@@ -51,7 +51,7 @@ def countEvents(eventTypes, OF=''):
             # eventCounts[typ]+= GMOU.find_num_gend(ThisFile, False)
             nEvents += 0
         # NEVENTS = eventCounts[typ]
-        to_print += str(NEVENTS)
+        to_print += str(nEvents)
         # to_write += 
         print(f"finished counting {typ}")
         runs = most_recent_run_num(typ)
