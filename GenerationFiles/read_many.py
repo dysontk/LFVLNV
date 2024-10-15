@@ -89,12 +89,17 @@ def read_num_events(InFil):
 
 def create_dict(wanted, in_doc, verbs=False): #L2ish -- file_info, L1 -- from what is asked
     from_doc = in_doc
-    for typ in wanted:
-        if from_doc.count(typ):
-            curr_run_max = most_recent_run_num(typ)
-            from_doc[typ].update({'recount':0 if curr_run_max==from_doc[typ]['runs'] else 1})
-        else:
-            from_doc.update({typ:{'runs':0,'events':0,'recount':1}})
+    if from_doc:
+        for typ in wanted:
+            if from_doc.count(typ):
+                curr_run_max = most_recent_run_num(typ)
+                from_doc[typ].update({'recount':0 if curr_run_max==from_doc[typ]['runs'] else 1})
+            else:
+                from_doc.update({typ:{'runs':0,'events':0,'recount':1}})
+    else:
+        from_doc = {}
+        for typ in wanted:
+            from_doc.update({typ::{'runs':0,'events':0,'recount':1}})
 
     return from_doc
 
