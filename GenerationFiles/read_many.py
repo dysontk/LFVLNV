@@ -40,24 +40,28 @@ def countEvents(eventTypes, OF=''):
     # to_write =
     to_print = 'Number of Events Generated:'
     for typ in eventTypes:
+        nEvents = 0
         if typ == '':
             continue
-        eventCounts.update({typ:0})
+        # eventCounts.update({typ:0})
         # to_write = 
         to_print += '\n' + typ + ': '
         files = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{typ}/Events/*/*delphes_events.root', False).split('\n')
         for ThisFile in files:
-            eventCounts[typ]+= GMOU.find_num_gend(ThisFile, False)
-        NEVENTS = eventCounts[typ]
+            # eventCounts[typ]+= GMOU.find_num_gend(ThisFile, False)
+            nEvents += 0
+        # NEVENTS = eventCounts[typ]
         to_print += str(NEVENTS)
         # to_write += 
         print(f"finished counting {typ}")
-        print(typ + ',' + most_recent_run_num(typ) + ',' + str(NEVENTS) + '\n')
+        runs = most_recent_run_num(typ)
+        print(typ + ',' + runs + ',' + str(nEvents) + '\n')
         # if OF != '':
         #     OF.write(typ + ',' + most_recent_run_num(typ) + ',' + str(NEVENTS) + '\n')
-
+        eventCounts.update({typ:{'runs':runs, 'events':nEvents, 'recount':0}})
     
     print(to_print)
+    print(eventCounts)
     return eventCounts
 
 def read_num_events(InFil):
@@ -69,23 +73,8 @@ def read_num_events(InFil):
     for l in range(len(lines)):
         thisLine = lines[l].strip().split(',')
         lineDict.update({thisLine[0]:{'runs':thisLine[1], 'events':thisLine[2]}})
-    print(lineDict)      
-    # print(lineDict)
-    # for lin in lines:
-    #     try:
-    #         int(lin[2])
-    #     except ValueError:
-    #         lin[2] = '0'
+    print(lineDict)
     return lineDict
-
-# def lines_to_rdict(lins):
-#     run_dict = {}
-#     event_dict = {}
-#     for lin in lins:
-#         run_dict.update({lin:lins[lin][0]})
-#         event_dict.update({lin:lins[lin][1]})
-#     # print(run_dict)
-#     return run_dict, event_dict
 
 def create_dict(wanted, in_doc, verbs=False): #L2ish -- file_info, L1 -- from what is asked
     from_doc = in_doc
@@ -119,7 +108,7 @@ def quick_check(eventTyps, infil, verb=False):
 
         if fullRecheck:
             for key in eventType_dict:
-                eventType_dict[key]['recount'] = 1
+                eventTFype_dict[key]['recount'] = 1
             if verb:
                 print("Will recheck all")
         print(eventType_dict)
@@ -173,7 +162,8 @@ def redoCounts(eT, fullcheck=0):
     outfile = open('event_counts.txt', 'w')    
     newCounts = countPrep(quick_out, outfile, False)
     for typ in newCounts:
-        quick_out[typ].update({'events':newCounts[typ]})
+        quick_out[typ].update({'events':newCounts[typ]['events']})
+        quick_out[typ].update({'runs':newCounts[typ]['runs']})
     final_dict = WriteItAll(quick_out, outfile)
     outfile.close()
     return final_dict
