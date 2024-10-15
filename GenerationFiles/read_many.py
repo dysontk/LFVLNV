@@ -108,7 +108,7 @@ def quick_check(eventTyps, infil, verb=False):
 
         if fullRecheck:
             for key in eventType_dict:
-                eventTFype_dict[key]['recount'] = 1
+                eventType_dict[key]['recount'] = 1
             if verb:
                 print("Will recheck all")
         print(eventType_dict)
