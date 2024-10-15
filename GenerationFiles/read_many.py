@@ -170,7 +170,7 @@ def redoCounts(eT, fullcheck=0):
 
 if __name__ == '__main__':
 
-    fullRecheck = 0
+    fullRecheck = 1
     eventTypes = ['ZZ2j', 'WZ2j', 'ttbar', 'W3j', 'LNVF']
     redoCounts(eventTypes, fullRecheck)    
     # print(need_to_full_check)
