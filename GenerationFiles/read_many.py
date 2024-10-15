@@ -103,7 +103,8 @@ def quick_check(eventTyps, infil, verb=False):
         if verb:
             print("file empty.")
         fullRecheck = 1
-        
+        return 0
+    else:
         eventType_dict = create_dict(eventTyps, file_info, verb)
 
         if fullRecheck:
@@ -113,8 +114,6 @@ def quick_check(eventTyps, infil, verb=False):
                 print("Will recheck all")
         print(eventType_dict)
         return eventType_dict
-    else:
-        return 0
 
 def countPrep(in_dict, outfil, verbo):
     if verbo:
