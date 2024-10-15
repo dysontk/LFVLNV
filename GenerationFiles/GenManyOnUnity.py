@@ -228,7 +228,7 @@ if __name__ == '__main__':
 
     # RunConfig('ttbar', 1), RunConfig('W3j', 1), RunConfig('LNVF', 1), RunConfig('WZ2j', 1)RunConfig('LNVF', 10), RunConfig('WZ2j', 1), RunConfig('ZZ2j', 1)
     # allAttemptsConfig = [RunConfig('ttbar', 6), RunConfig('W3j', 7), RunConfig('LNVF', 9), RunConfig('WZ2j', 2), RunConfig('ZZ2j', 1)]
-    allAttempts = AllRunHandler(allAttemptsConfig)
+    # allAttempts = AllRunHandler(allAttemptsConfig)
     # allAttempts.print_info()
 
     # while allAttempts.is_running:
