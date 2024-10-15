@@ -103,43 +103,6 @@ def create_dict(wanted, in_doc, verbs=False): #L2ish -- file_info, L1 -- from wh
 
     return from_doc
 
-    # dic = {}
-    # new_run_dict = {}
-    # for l1 in L1:
-    #     dic.update({l1:1})
-    #     new_run_dict.update({l1:most_recent_run_num(l1)})
-    #     if verbs:
-    #         print(f'{l1} added to dictionary')
-    # # print(f"L2ish, {L2ish}")
-    # # print("before checking the file, the dictionaries are")
-    # # print(dic)
-    # # print(new_run_dict)
-    # if L2ish != [['']]:
-    #     for l2 in L2ish:
-    #         # print(l2)
-    #         asked_for = False
-    #         curr_run_max = most_recent_run_num(l2[0])
-    #         if verbs:
-    #             print("found current runs ", l2, sep='\n')
-    #         # new_run_dict.update({l2[0]:curr_run_max})
-    #         new_run_dict.update({l2[0]:curr_run_max})
-    #         for key in dic:
-    #             # print("Hey", l2[0], key,sep='\n')
-    #             if l2[0] == key:
-    #                 asked_for = True
-    #                 if curr_run_max == l2[2]:
-    #                     dic[key] = 0 # This says "don't recount if the file (l2[1]) has the same max run number as ls gives"
-    #                     if verbs:
-    #                         print(f'No need to recount {key}')
-    #                 else:
-    #                     if verbs:
-    #                         print(f'Will recount {key}')
-    #                     continue
-    #         if not asked_for:
-    #             dic.update({l2[0]:0})
-    #             if verbs:
-    #                 print(f'{l2[0]} was in the file but not asked for')
-    # return dic, new_run_dict
 
 def quick_check(eventTyps, infil, verb=False):
     fullRecheck = 0
@@ -208,6 +171,8 @@ def redoCounts(eT, fullcheck=0):
     infile.close()
     outfile = open('event_counts.txt', 'w')    
     newCounts = countPrep(quick_out, outfile, False)
+    for typ in newCounts:
+        quick_out[typ].update({'events':newCounts[typ]})
     final_dict = WriteItAll(quick_out, outfile)
     outfile.close()
     return final_dict
