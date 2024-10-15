@@ -215,8 +215,9 @@ if __name__ == '__main__':
     # print(allAttemptsConfig)
 
     for config in allAttemptsConfig:
+        print(f'{config.instance+event_count_dict[config.eventType]['runs']}')
         print(f'{config.eventType}: {config.instance_count}: {config.prev_nEvents}')
-        print(f'{config.eventType} has {config.instance} and will end up with {config.instance+event_count_dict[config.eventType]['runs']}')
+        print(f'{config.eventType} has {config.instance} and will end up with ')
     
 
     # RunConfig('ttbar', 1), RunConfig('W3j', 1), RunConfig('LNVF', 1), RunConfig('WZ2j', 1)RunConfig('LNVF', 10), RunConfig('WZ2j', 1), RunConfig('ZZ2j', 1)
