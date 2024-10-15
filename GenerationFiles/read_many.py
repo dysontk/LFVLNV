@@ -80,7 +80,7 @@ def create_dict(wanted, in_doc, verbs=False): #L2ish -- file_info, L1 -- from wh
     from_doc = in_doc
     if from_doc:
         for typ in wanted:
-            if from_doc.keys().count(typ):
+            if list(from_doc.keys()).count(typ):
                 curr_run_max = most_recent_run_num(typ)
                 from_doc[typ].update({'recount':0 if curr_run_max==from_doc[typ]['runs'] else 1})
             else:
