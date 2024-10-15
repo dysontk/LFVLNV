@@ -186,7 +186,7 @@ def HowManyRuns(event_count_dic):
                   'W3j': 0.23,
                   'WZ2j': 0.23,
                   'ZZ2j': 0.23}
-    print(event_count_dic)
+    # print(event_count_dic)
     runs2Basked = {typ: math.ceil((200_000-int(event_count_dic[typ]['events']))/(typeEfficiency[typ] * 60_000)) for typ in event_count_dic}
     runs2Basked = {typ: 0 if runs2Basked[typ] < 0 else runs2Basked[typ] for typ in runs2Basked}
     return runs2Basked
@@ -210,12 +210,13 @@ if __name__ == '__main__':
     print("run count", run_command, sep='\n')
     allAttemptsConfig = []
     for typ in eventTypes:
-        allAttemptsConfig.append(RunConfig(typ, runs2Basked[typ], event_count_dict[typ]))
+        allAttemptsConfig.append(RunConfig(typ, runs2Basked[typ], event_count_dict[typ]['events']))
         # print(eventTypes[j], ": ", runs2Basked[j])
     # print(allAttemptsConfig)
 
     for config in allAttemptsConfig:
         print(f'{config.eventType}: {config.instance_count}: {config.prev_nEvents}')
+        print(f'{config.eventType} has {config.instance} and will end up with {config.instance+event_count_dict[config.eventType]['runs']}')
     
 
     # RunConfig('ttbar', 1), RunConfig('W3j', 1), RunConfig('LNVF', 1), RunConfig('WZ2j', 1)RunConfig('LNVF', 10), RunConfig('WZ2j', 1), RunConfig('ZZ2j', 1)
