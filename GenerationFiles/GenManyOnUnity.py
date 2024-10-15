@@ -199,7 +199,7 @@ if __name__ == '__main__':
                   'ZZ2j'
                   ]
     print("Hi")
-    event_count_dict, run_count_dict = read_many.redoCounts(eventTypes, 0)
+    event_count_dict = read_many.redoCounts(eventTypes, 0)
     print(event_count_dict, type(event_count_dict), sep='\n')
     # runs2Basked = np.array([1 if not i else int(((200_000-i)/0.23)/60_000) for i in event_count_dict])
     runs2Basked = HowManyRuns(event_count_dict)
@@ -223,7 +223,7 @@ if __name__ == '__main__':
     # print(allAttemptsConfig)
 
     for config in allAttemptsConfig:
-        print(f'{config.eventType}: {config.instance_count}: {config.prev_nEvents}'    )
+        print(f'{config.eventType}: {config.instance_count}: {config.prev_nEvents}')
     
 
     # RunConfig('ttbar', 1), RunConfig('W3j', 1), RunConfig('LNVF', 1), RunConfig('WZ2j', 1)RunConfig('LNVF', 10), RunConfig('WZ2j', 1), RunConfig('ZZ2j', 1)
