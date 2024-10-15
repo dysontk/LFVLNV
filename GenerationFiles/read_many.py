@@ -3,33 +3,14 @@ import sys, os, subprocess, re
 import GenManyOnUnity as GMOU
 import numpy as np
 
-# def run_command(command):
-#     try:
-#         output = subprocess.check_output(command, shell=True, encoding='utf8', stderr=subprocess.STDOUT)
-#         print(f"Output of command '{command}' is",  f'{output}', sep='\n')
-#     except subprocess.CalledProcessError:
-#         print("Error. Generation probably failed")
-#         output = str(f"Something when wrong when running {command}")
-#         print(output)
-#     return output
-
-# def find_num_gend(fi):
-#         output = run_command(f"./read_root_file {fi}")
-#         m = re.search(r'\d+$', output)
-#         return int(m.group()) if m else 0
-
-# def find_
 
 def find_number_in_string(strin):
     return re.findall('\d+', strin)
 
 def most_recent_run_num(eventType):
     runs = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{eventType}/Events/', False).split('\n')[:-1]
-    # print(len(runs))
-    # print(truns)
     return find_number_in_string(runs[-1])[0]
-    # runs = runs[:len(runs)/2]
-    # print("hi")
+
     
 # change this to use a dictionary output to make it easier to handle all togher
 
@@ -43,21 +24,17 @@ def countEvents(eventTypes, OF=''):
         nEvents = 0
         if typ == '':
             continue
-        # eventCounts.update({typ:0})
-        # to_write = 
+
         to_print += '\n' + typ + ': '
         files = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{typ}/Events/*/*delphes_events.root', False).split('\n')
+
         for ThisFile in files:
-            # eventCounts[typ]+= GMOU.find_num_gend(ThisFile, False)
             nEvents += GMOU.find_num_gend(ThisFile, False)
-        # NEVENTS = eventCounts[typ]
+
         to_print += str(nEvents)
-        # to_write += 
         print(f"finished counting {typ}")
         runs = most_recent_run_num(typ)
         print(typ + ',' + runs + ',' + str(nEvents) + '\n')
-        # if OF != '':
-        #     OF.write(typ + ',' + most_recent_run_num(typ) + ',' + str(NEVENTS) + '\n')
         eventCounts.update({typ:{'runs':runs, 'events':nEvents, 'recount':0}})
     
     print(to_print)
@@ -95,10 +72,8 @@ def create_dict(wanted, in_doc, verbs=False): #L2ish -- file_info, L1 -- from wh
 
 def quick_check(eventTyps, infil, verb=False):
     fullRecheck = 0
-    # need_to_full_check = {}
 
     file_info = read_num_events(infil)
-    # print(file_info)
     if not file_info:
         if verb:
             print("file empty.")
@@ -142,7 +117,6 @@ def what_to_do_if_empty(ev_t):
     full_dict = {}
     for typ in ev_t:
         full_dict.update({typ:{'runs':0, 'events':0, 'recount':1}})
-        # newr.update({typ:most_recent_run_num(typ)})
     return full_dict
 
 def redoCounts(eT, fullcheck=0):
@@ -172,18 +146,4 @@ if __name__ == '__main__':
     fullRecheck = 0
     eventTypes = ['ZZ2j', 'WZ2j', 'ttbar', 'W3j', 'LNVF']
     redoCounts(eventTypes, fullRecheck)    
-    # print(need_to_full_check)
-    # # print(file_info)
-    # i=0
-    # for K in need_to_full_check:
-    #     if not int(need_to_full_check[K]):
-    #         print(f'These weren\'t re checked, {K} : {need_to_full_check[K]}') # This prints the old counts which were not rechecked
-    #         to_write = K + ',' + old_r_dict[K] + ',' + old_e_dict[K] + '\n'          
-    #         print('Old writing \n', to_write)
-    #         outfile.write(to_write)
-    #     i += 1
-
-    # for t in newCounts:
-    #     if newCounts[t] != '':
-    #         print(f'{t} : {newCounts[t]}') # this prints the new counts
-    #         # outfile.write(f'{t},{}')
+   

@@ -220,16 +220,7 @@ if __name__ == '__main__':
         print(f'{config.eventType} has {config.instance_count} and will end up with ')
         print(config.instance_count+int(event_count_dict[config.eventType]['runs']))
 
+    allAttempts = AllRunHandler(allAttemptsConfig)
 
-    # RunConfig('ttbar', 1), RunConfig('W3j', 1), RunConfig('LNVF', 1), RunConfig('WZ2j', 1)RunConfig('LNVF', 10), RunConfig('WZ2j', 1), RunConfig('ZZ2j', 1)
-    # allAttemptsConfig = [RunConfig('ttbar', 6), RunConfig('W3j', 7), RunConfig('LNVF', 9), RunConfig('WZ2j', 2), RunConfig('ZZ2j', 1)]
-    # allAttempts = AllRunHandler(allAttemptsConfig)
-    # allAttempts.print_info()
-
-    # while allAttempts.is_running:
-
-    #     allAttempts.print_info()
-    #     time.sleep(15)
-        
     # edit this to run, check how many have gend, then repeat until 200k... no truncate how many are asked for once 200k is reached. 
         
