@@ -99,7 +99,7 @@ def create_dict(wanted, in_doc, verbs=False): #L2ish -- file_info, L1 -- from wh
     else:
         from_doc = {}
         for typ in wanted:
-            from_doc.update({typ::{'runs':0,'events':0,'recount':1}})
+            from_doc.update({typ:{'runs':0,'events':0,'recount':1}})
 
     return from_doc
 
