@@ -186,7 +186,8 @@ def HowManyRuns(event_count_dic):
                   'W3j': 0.23,
                   'WZ2j': 0.23,
                   'ZZ2j': 0.23}
-    runs2Basked = {typ: math.ceil((200_000-int(event_count_dic[typ]))/(typeEfficiency[typ] * 60_000)) for typ in event_count_dic}
+    print(event_count_dic)
+    runs2Basked = {typ: math.ceil((200_000-int(event_count_dic[typ]['events']))/(typeEfficiency[typ] * 60_000)) for typ in event_count_dic}
     runs2Basked = {typ: 0 if runs2Basked[typ] < 0 else runs2Basked[typ] for typ in runs2Basked}
     return runs2Basked
 
@@ -203,16 +204,7 @@ if __name__ == '__main__':
     print(event_count_dict, type(event_count_dict), sep='\n')
     # runs2Basked = np.array([1 if not i else int(((200_000-i)/0.23)/60_000) for i in event_count_dict])
     runs2Basked = HowManyRuns(event_count_dict)
-    # for typ in event_count_dict:
-    #     new_num = (200_000-int(event_count_dict[typ]))/(typeEfficiency[typ] * 60_000)
-    #     new_num = new_num if new_num > 0 else math.ceil(new_num)
-    #     # if new_num < 0:
-    #     #     new_num = 0
-    #     # elif new_num < 1:
-    #     #     new_num = 1
-    #     # else:
-    #     #     new_num = int(new_num)
-    #     runs2Basked.update({typ: new_num if new_num > 0 else 0})
+    
     print("Runs to be asked: ", runs2Basked, sep='\n')
     print("event count: ", event_count_dict, sep='\n')
     print("run count", run_command, sep='\n')
