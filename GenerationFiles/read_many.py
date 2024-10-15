@@ -179,7 +179,7 @@ def WriteItAll(eventsAndInfo, outf):
     for ev in eventsAndInfo:
         to_write += ev + ','
         for info in eventsAndInfo[ev]:
-            to_write += eventsAndInfo[ev][info] + ','
+            to_write += str(eventsAndInfo[ev][info]) + ','
         to_write = to_write[:-1] + '\n'
     print(to_write)
     outf.write(to_write)
