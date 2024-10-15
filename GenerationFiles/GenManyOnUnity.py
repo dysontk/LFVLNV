@@ -215,7 +215,8 @@ if __name__ == '__main__':
     # print(allAttemptsConfig)
 
     for config in allAttemptsConfig:
-        print(f'{config.instance+event_count_dict[config.eventType]['runs']}')
+        # print(f'{config.instance+event_count_dict[config.eventType]['runs']}')
+        print(f'{config.eventType}')
         print(f'{config.eventType}: {config.instance_count}: {config.prev_nEvents}')
         print(f'{config.eventType} has {config.instance} and will end up with ')
     
