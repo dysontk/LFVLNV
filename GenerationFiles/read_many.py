@@ -62,67 +62,79 @@ def countEvents(eventTypes, OF=''):
 
 def read_num_events(InFil):
     lines = InFil.readlines()
+    lineDict = {}
     if lines == []:
         print(f"{InFil} is empty")
         return 0
     for l in range(len(lines)):
-        lines[l] = lines[l].strip().split(',')
-    print(lines)
-    for lin in lines:
-        try:
-            int(lin[2])
-        except ValueError:
-            lin[2] = '0'
-    return lines
+        thisLine = lines[l].strip().split(',')
+        lineDict.update({thisLine[0]:{'runs':thisLine[1], 'events':thisLine[2]}})
+    print(lineDict)      
+    # print(lineDict)
+    # for lin in lines:
+    #     try:
+    #         int(lin[2])
+    #     except ValueError:
+    #         lin[2] = '0'
+    return lineDict
 
-def lines_to_rdict(lins):
-    run_dict = {}
-    event_dict = {}
-    for lin in lins:
-        run_dict.update({lin[0]:lin[1]})
-        event_dict.update({lin[0]:lin[2]})
-    # print(run_dict)
-    return run_dict, event_dict
+# def lines_to_rdict(lins):
+#     run_dict = {}
+#     event_dict = {}
+#     for lin in lins:
+#         run_dict.update({lin:lins[lin][0]})
+#         event_dict.update({lin:lins[lin][1]})
+#     # print(run_dict)
+#     return run_dict, event_dict
 
-def create_dict(L1, L2ish, verbs=False): #L2ish -- file_info, L1 -- from what is asked
+def create_dict(wanted, in_doc, verbs=False): #L2ish -- file_info, L1 -- from what is asked
+    from_doc = in_doc
+    for typ in wanted:
+        if from_doc.count(typ):
+            curr_run_max = most_recent_run_num(typ)
+            from_doc[typ].update({'recount':0 if curr_run_max==from_doc[typ]['runs'] else 1})
+        else:
+            from_doc.update({typ:{'runs':0,'events':0,'recount':1}})
 
-    dic = {}
-    new_run_dict = {}
-    for l1 in L1:
-        dic.update({l1:1})
-        new_run_dict.update({l1:most_recent_run_num(l1)})
-        if verbs:
-            print(f'{l1} added to dictionary')
-    # print(f"L2ish, {L2ish}")
-    # print("before checking the file, the dictionaries are")
-    # print(dic)
-    # print(new_run_dict)
-    if L2ish != [['']]:
-        for l2 in L2ish:
-            # print(l2)
-            asked_for = False
-            curr_run_max = most_recent_run_num(l2[0])
-            if verbs:
-                print("found current runs ", l2, sep='\n')
-            # new_run_dict.update({l2[0]:curr_run_max})
-            new_run_dict.update({l2[0]:curr_run_max})
-            for key in dic:
-                # print("Hey", l2[0], key,sep='\n')
-                if l2[0] == key:
-                    asked_for = True
-                    if curr_run_max == l2[2]:
-                        dic[key] = 0 # This says "don't recount if the file (l2[1]) has the same max run number as ls gives"
-                        if verbs:
-                            print(f'No need to recount {key}')
-                    else:
-                        if verbs:
-                            print(f'Will recount {key}')
-                        continue
-            if not asked_for:
-                dic.update({l2[0]:0})
-                if verbs:
-                    print(f'{l2[0]} was in the file but not asked for')
-    return dic, new_run_dict
+    return from_doc
+
+    # dic = {}
+    # new_run_dict = {}
+    # for l1 in L1:
+    #     dic.update({l1:1})
+    #     new_run_dict.update({l1:most_recent_run_num(l1)})
+    #     if verbs:
+    #         print(f'{l1} added to dictionary')
+    # # print(f"L2ish, {L2ish}")
+    # # print("before checking the file, the dictionaries are")
+    # # print(dic)
+    # # print(new_run_dict)
+    # if L2ish != [['']]:
+    #     for l2 in L2ish:
+    #         # print(l2)
+    #         asked_for = False
+    #         curr_run_max = most_recent_run_num(l2[0])
+    #         if verbs:
+    #             print("found current runs ", l2, sep='\n')
+    #         # new_run_dict.update({l2[0]:curr_run_max})
+    #         new_run_dict.update({l2[0]:curr_run_max})
+    #         for key in dic:
+    #             # print("Hey", l2[0], key,sep='\n')
+    #             if l2[0] == key:
+    #                 asked_for = True
+    #                 if curr_run_max == l2[2]:
+    #                     dic[key] = 0 # This says "don't recount if the file (l2[1]) has the same max run number as ls gives"
+    #                     if verbs:
+    #                         print(f'No need to recount {key}')
+    #                 else:
+    #                     if verbs:
+    #                         print(f'Will recount {key}')
+    #                     continue
+    #         if not asked_for:
+    #             dic.update({l2[0]:0})
+    #             if verbs:
+    #                 print(f'{l2[0]} was in the file but not asked for')
+    # return dic, new_run_dict
 
 def quick_check(eventTyps, infil, verb=False):
     fullRecheck = 0
@@ -130,106 +142,70 @@ def quick_check(eventTyps, infil, verb=False):
 
     file_info = read_num_events(infil)
     # print(file_info)
-    if file_info:
-        old_r_dict, old_e_dict = lines_to_rdict(file_info)
-    # print(file_info)
-        if not file_info:
-            if verb:
-                print("file empty.")
-            fullRecheck = 1
+    if not file_info:
+        if verb:
+            print("file empty.")
+        fullRecheck = 1
         
-        need_to_full_check, new_r = create_dict(eventTyps, file_info, verb)
+        eventType_dict = create_dict(eventTyps, file_info, verb)
 
         if fullRecheck:
-            for key in need_to_full_check:
-                need_to_full_check[key] = 1
+            for key in eventType_dict:
+                eventType_dict[key]['recount'] = 1
             if verb:
                 print("Will recheck all")
-        print(need_to_full_check)
-        return old_e_dict, old_r_dict, need_to_full_check, new_r
+        print(eventType_dict)
+        return eventType_dict
     else:
         return 0
 
-def checkWhatever(need2, outfil, verbo):
+def countPrep(in_dict, outfil, verbo):
     if verbo:
-        print([ky if int(need2[ky]) else '' for ky in need2])
-    for t in need2:
+        print(in_dict)
+    for t in in_dict:
         if verbo:
-            print(t, ": ", "Recounting" if int(need2[t]) else "No Recount Needed")
-    newCounts = countEvents([ky if int(need2[ky]) else '' for ky in need2], outfil)
+            print(t, ": ", "Recounting" if in_dict[t]['recount'] else "No Recount Needed")
+    newCounts = countEvents([ky if in_dict[t]['recount'] else '' for ky in need2], outfil)
     return newCounts
 
-def WriteItAll(olde, oldr, newe, needy, newr, outf):
+def WriteItAll(eventsAndInfo, outf):
     print("printing updated counts")
-    fin_r_dict = {}
-    fin_e_dict = {}
-    i=0
-    for K in needy:
-        if not int(needy[K]):
-            # print(f'These weren\'t re checked, {K} : {needy[K]}') # This prints the old counts which were not rechecked
-            to_write = K + ',' + oldr[K] + ',' + olde[K] + '\n'          
-            # print('Old writing \n', to_write)
-            outf.write(to_write)
-            print(to_write)
-            fin_r_dict.update({K:oldr[K]})
-            fin_e_dict.update({K:olde[K]})
-        i += 1
+    to_write = ''
+    for ev in eventsAndInfo:
+        to_write += ev + ','
+        for info in eventsAndInfo[ev]:
+            to_write += eventsAndInfo[ev] + ','
+        to_write = to_write[:-1] + '\n'
+    print(to_write)
+    outf.write(to_write)
 
-    for t in newe:
-        if newe[t] != '':
-            # print(f'{t} : {newe[t]}') # this prints the new counts
-            outf.write(t+','+ str(newe[t]) + ','+ str(newr[t]) + '\n')
-            print(to_write)
-            fin_r_dict.update({K:newr[t]})
-            fin_e_dict.update({K:newe[t]})
-
-    return fin_r_dict, fin_e_dict
+    return eventsAndInfo
 
 def what_to_do_if_empty(ev_t):
-    needy, newr = {}, {}
+    full_dict = {}
     for typ in ev_t:
-        needy.update({typ:1})
-        newr.update({typ:most_recent_run_num(typ)})
-    return needy, newr
+        full_dict.update({typ:{'runs':0, 'events':0, 'recount':1}})
+        # newr.update({typ:most_recent_run_num(typ)})
+    return full_dict
 
 def redoCounts(eT, fullcheck=0):
     infile = open('/home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/MyFiles/LFVLNV/GenerationFiles/event_counts.txt', 'r')
     quick_out = quick_check(eT, infile)
     is_empty = False
-    if quick_out:
-        old_e_dict, old_r_dict, need_to_full_check, new_r_dict = quick_out
-    else:
+    if not quick_out:
         is_empty = True
-        old_e_dict = {}
-        old_r_dict = {}
-        print("File is empty. Will count all")
-        need_to_full_check, new_r_dict = what_to_do_if_empty(eT)
+        quick_out = what_to_do_if_empty(eT)
         
-
     if fullcheck or is_empty:
-        for key in need_to_full_check:
-            need_to_full_check[key] = 1
+        for key in quick_out:
+            quick_out[key]['recount'] = 1
         print("Will recheck all")
     infile.close()
-
-
-
     outfile = open('event_counts.txt', 'w')    
-    '''
-    Yeah so countEvents() takes in a list of event types and counts the total events for each
-    It then writes that information to the outfile (OF) like so:
-    <type>,<highest run number>,<total n events>\n
-    '''
-    newCounts = checkWhatever(need_to_full_check, outfile, False)
-    '''
-    Because outfile is write only, it deletes (I believe) the contents. 
-    So if there are any events that we did not recheck then that info would be lost.
-    The next bit writes the file info for whatever event types we did not need to recheck
-    '''    
-
-    final_r_count, final_evnt_count = WriteItAll(old_e_dict, old_r_dict, newCounts, need_to_full_check, new_r_dict, outfile)
+    newCounts = countPrep(quick_out, outfile, False)
+    final_dict = WriteItAll(quick_out, outfile)
     outfile.close()
-    return final_r_count, final_evnt_count
+    return final_dict
 
 if __name__ == '__main__':
 
