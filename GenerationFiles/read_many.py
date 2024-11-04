@@ -29,7 +29,7 @@ def countEvents(eventTypes, OF=''):
         files = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{typ}/Events/*/*delphes_events.root', False).split('\n')
 
         for ThisFile in files:
-            nEvents += GMOU.find_num_gend(ThisFile, True)
+            nEvents += GMOU.find_num_gend(ThisFile, False)
 
         to_print += str(nEvents)
         print(f"finished counting {typ}")
