@@ -194,12 +194,12 @@ def HowManyRuns(event_count_dic):
 if __name__ == '__main__':
 
     eventTypes = ['LNVF', 
-                  'ttbar', 
-                  'W3j', 
-                  'WZ2j', 
-                  'ZZ2j'
+                #   'ttbar', 
+                #   'W3j', 
+                #   'WZ2j', 
+                #   'ZZ2j'
                   ]
-    print("Hi")
+    # print("Hi")
     event_count_dict = read_many.redoCounts(eventTypes, 0)
     print(event_count_dict, type(event_count_dict), sep='\n')
     # runs2Basked = np.array([1 if not i else int(((200_000-i)/0.23)/60_000) for i in event_count_dict])
