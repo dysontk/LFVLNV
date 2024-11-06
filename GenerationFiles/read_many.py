@@ -134,7 +134,7 @@ def redoCounts(eT, fullcheck=0):
             quick_out[key]['recount'] = 1
         print("Will recheck all")
     infile.close()
-    outfile = open('event_counts.txt', 'w')    
+    outfile = open('/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/event_counts.txt', 'w')    
     newCounts = countPrep(quick_out, outfile, True)
     for typ in newCounts:
         quick_out[typ].update({'events':newCounts[typ]['events']})
