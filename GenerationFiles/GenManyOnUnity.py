@@ -199,7 +199,7 @@ if __name__ == '__main__':
                 #   'WZ2j', 
                 #   'ZZ2j'
                   ]
-    # print("Hi")
+    print("Hi")
     event_count_dict = read_many.redoCounts(eventTypes, 0)
     print("hi")
     print(event_count_dict, type(event_count_dict), sep='\n')
