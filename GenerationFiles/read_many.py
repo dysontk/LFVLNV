@@ -122,7 +122,7 @@ def what_to_do_if_empty(ev_t):
 
 def redoCounts(eT, fullcheck=0):
     infile = open('/home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/MyFiles/LFVLNV/GenerationFiles/event_counts.txt', 'r')
-    quick_out = quick_check(eT, infile)
+    quick_out = quick_check(eT, infile, verb=True)
     is_empty = False
     if not quick_out:
         is_empty = True
