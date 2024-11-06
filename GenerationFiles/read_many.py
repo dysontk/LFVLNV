@@ -38,7 +38,7 @@ def countEvents(eventTypes, OF=''):
         to_print += str(nEvents)
         print(f"finished counting {typ}")
         runs = most_recent_run_num(typ)
-        print(typ + ',' + runs + ',' + str(nEvents) + '\n')
+        print(typ + ',' + str(runs) + ',' + str(nEvents) + '\n')
         eventCounts.update({typ:{'runs':runs, 'events':nEvents, 'recount':0}})
     
     print(to_print)
