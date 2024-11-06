@@ -93,6 +93,7 @@ def quick_check(eventTyps, infil, verb=False):
 
 def countPrep(in_dict, outfil, verbo):
     if verbo:
+        print("here")
         print(in_dict)
     for t in in_dict:
         if verbo:
@@ -121,7 +122,7 @@ def what_to_do_if_empty(ev_t):
     return full_dict
 
 def redoCounts(eT, fullcheck=0):
-    infile = open('/home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/MyFiles/LFVLNV/GenerationFiles/event_counts.txt', 'r')
+    infile = open('/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/event_counts.txt', 'r')
     quick_out = quick_check(eT, infile, verb=True)
     is_empty = False
     if not quick_out:
