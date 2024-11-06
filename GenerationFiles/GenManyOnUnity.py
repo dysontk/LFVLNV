@@ -220,7 +220,7 @@ if __name__ == '__main__':
         print(f'{config.eventType} has {event_count_dict[config.eventType]["runs"]} and will end up with ')
         print(config.instance_count+int(event_count_dict[config.eventType]['runs']))
 
-    allAttempts = AllRunHandler(allAttemptsConfig)
+    # allAttempts = AllRunHandler(allAttemptsConfig)
 
     # edit this to run, check how many have gend, then repeat until 200k... no truncate how many are asked for once 200k is reached. 
         
