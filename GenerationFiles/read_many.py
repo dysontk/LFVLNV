@@ -97,6 +97,7 @@ def countPrep(in_dict, outfil, verbo):
         print(in_dict)
     for t in in_dict:
         if verbo:
+            print(in_dict)
             print(t, ": ", "Recounting" if in_dict[t]['recount'] else "No Recount Needed")
     newCounts = countEvents([ky if in_dict[ky]['recount'] else '' for ky in in_dict], outfil)
     return newCounts
