@@ -76,7 +76,7 @@ def combineHistos(eTypes):
     histoPath = '/work/pi_mjrm_umass_edu/LNV_collider/AnalysisOutput/'
 
     histotypes = {'WjPair':'Mass_2jW',
-                  'bothLeps_Wj': 'Mass_2jW2l'
+                  'bothLeps_Wj': 'Mass_2jW2l',
                   'leadingLep_Wj': 'Mass_2jW1l0',
                   'subleadingLep_Wj': 'Mass_2jW1l1',
                   'bothLeps': 'Mass_l2'}
