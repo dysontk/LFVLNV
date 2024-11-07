@@ -1,6 +1,7 @@
 import subprocess
 import numpy as np
 import re
+import ROOT
 
 def run_command(command, verbs=True):
     try:
@@ -18,7 +19,7 @@ def find_files(typ):
     return run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{typ}/Events/*/*delphes_events.root', False).replace('\n', ' ')
 
 def single_analysis(typ):
-    from_analysis = run_command(f'/home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/MyFiles/LFVLNV/AnalysisAndSuch/JetFake/main {typ} '+ find_files(typ), False)
+    from_analysis = run_command(f'/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/AnalysisAndSuch/JetFake/main {typ} '+ find_files(typ), False)
 
     theNumbersProcessing = re.search(r'Cut\n+\d+\n+\d+\n+\d+\n+\d+\n+\d+\n', from_analysis).group().split('\n')[1:-1]
     print(theNumbersProcessing)
@@ -70,17 +71,63 @@ def get_significance(cutNum):
     return BorS['LNVF']/(BorS['LNVF']+B)**(1/2)
 
 
+def combineHistos(eTypes):
+
+    histoPath = '/work/pi_mjrm_umass_edu/LNV_collider/AnalysisOutput/'
+
+    histotypes = {'WjPair':'Mass_2jW',
+                  'bothLeps_Wj': 'Mass_2jW2l'
+                  'leadingLep_Wj': 'Mass_2jW1l0',
+                  'subleadingLep_Wj': 'Mass_2jW1l1',
+                  'bothLeps': 'Mass_l2'}
+    histotypes2 = {'WjPair': Mass_2jW,
+                  'bothLeps_Wj': Mass_2jW2l,
+                  'leadingLep_Wj': Mass_2jW1l0,
+                  'subleadingLep_Wj': Mass_2jW1l1,
+                  'bothLeps': Mass_l2}
+    # histoBounds = {'WjPair':,
+    #               'bothLeps_Wj': 'Mass_2jW2l'
+    #               'leadingLep_Wj': 'Mass_2jW1l0',
+    #               'subleadingLep_Wj': 'Mass_2jW1l1',
+    #               'bothLeps': 'Mass_l2'}
+    stacks = {}
+    for hTyp in histotypes:
+        thisStack = ROOT.THStack(hTyp, histotypes[hTyp])
+        for typ in eTypes:
+            thisPath = histoPath + typ + '/plots/' + histotypes[hTyp] + '.root'
+            thisHistFile = ROOT.TFile.Open("thisPath", "READ")
+            thisHist = thisHistFile.histotypes2[hTyp]
+            thisStack.add(thisHist)
+        stacks.update({hTyp:thisStack})
+        canvas = ROOT.TCanvas("canvas")
+        canvas.cd()
+        canvas.Print(histoPath+'/plots/'+hTyp + '.png')
+        # canvas.Print()
+    return stacks
+
+
+
+        # WjPair, leadingLep_Wj, subleadingLep_Wj, bothLeps
+
+        
+
+
+
 def main():
     list_of_data_types = ['LNVF', 'WZ2j', 'ZZ2j', 'W3j', 'ttbar']
+
     
     nEventsByCuts = multi_analysis(list_of_data_types)
 
     sig_arr = get_significance(nEventsByCuts)
 
     # print(sig_arr)
+    stacks = combineHistos(list_of_data_types)
 
     for i in range(len(sig_arr)):
         print(f'Cut {i}: {sig_arr[i]}')
+
+    
 
 if __name__=='__main__':
     main()
