@@ -702,16 +702,17 @@ int main(int argc, const char * argv[])
         cout << "Histo time"<< endl;
 
         TStyle *st1 = new TStyle("st1","my style");
+        cout << "hi"
         st1->SetOptStat(111111111);
-        st1->cd();  //this becomes now the current style gStyle
         cout << "707"<< endl;
+        st1->cd();  //this becomes now the current style gStyle
         TCanvas *c1 = new TCanvas("c1", "ROOT Canvas", 900, 20, 540, 550);
-        cout << "709"<< endl;
+
         const char* ImagePath = "/work/pi_mjrm_umass_edu/LNV_collider/AnalysisOutput/";
-        cout << "711"<< endl;
+
         char FullPathM2jW[100];
         char FullPathM2jW_root[100];
-        cout << "714"<< endl;
+
         strcpy(FullPathM2jW, ImagePath);
         strcat(FullPathM2jW, EventType);
         strcat(FullPathM2jW_root, FullPathM2jW);
