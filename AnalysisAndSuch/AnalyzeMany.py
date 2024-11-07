@@ -5,7 +5,7 @@ import ROOT
 
 def run_command(command, verbs=True):
     try:
-        output = subprocess.check_output(command, shell=True, encoding='utf8', stderr=subprocess.STDOUT)
+        output = subprocess.check_output(command, shell=True, encoding='latin-1', stderr=subprocess.STDOUT)
         if verbs:
             print(f"Output of command '{command}' is",  f'{output}', sep='\n')
     except subprocess.CalledProcessError:
