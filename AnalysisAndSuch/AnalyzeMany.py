@@ -20,6 +20,7 @@ def find_files(typ):
 
 def single_analysis(typ):
     from_analysis = run_command(f'/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/AnalysisAndSuch/JetFake/main {typ} '+ find_files(typ), True)
+    print("FROM ANALYSIS")
     print(from_analysis)
     theNumbersProcessing = re.search(r'Cut\n+\d+\n+\d+\n+\d+\n+\d+\n+\d+\n', from_analysis).group().split('\n')[1:-1]
     print(theNumbersProcessing)
