@@ -276,7 +276,17 @@ int main(int argc, const char * argv[])
         cout << argv[i]<< endl;
     }
 
-    ExRootTreeReader *treeReader = new ExRootTreeReader(&chain);
+    // ExRootTreeReader *treeReader = new ExRootTreeReader(&chain);
+    // Long64_t NumEntries = treeReader->GetEntries();
+    // cout << "There are "<< NumEntries <<" Entries." <<endl;
+    // TClonesArray *branchJet = treeReader->UseBranch("Jet"); 
+    // TClonesArray *branchElectron = treeReader->UseBranch("Electron");
+    // TClonesArray *branchMuon;
+    // if (hasMu) branchMuon = treeReader->UseBranch("Muon");
+    // TClonesArray *branchMET;
+    // if (hasMET) branchMET = treeReader->UseBranch("MET");
+
+    TTreeReader *treeReader = new TTreeReader(&chain);
     Long64_t NumEntries = treeReader->GetEntries();
     cout << "There are "<< NumEntries <<" Entries." <<endl;
     TClonesArray *branchJet = treeReader->UseBranch("Jet"); 
@@ -285,6 +295,7 @@ int main(int argc, const char * argv[])
     if (hasMu) branchMuon = treeReader->UseBranch("Muon");
     TClonesArray *branchMET;
     if (hasMET) branchMET = treeReader->UseBranch("MET");
+
 
 
     TRootLHEFEvent *event;
