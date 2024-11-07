@@ -194,10 +194,10 @@ def HowManyRuns(event_count_dic):
 if __name__ == '__main__':
 
     eventTypes = ['LNVF', 
-                #   'ttbar', 
-                #   'W3j', 
-                #   'WZ2j', 
-                #   'ZZ2j'
+                  'ttbar', 
+                  'W3j', 
+                  'WZ2j', 
+                  'ZZ2j'
                   ]
     print("Hi")
     event_count_dict = read_many.redoCounts(eventTypes, 0)
