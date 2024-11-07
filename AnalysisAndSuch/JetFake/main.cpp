@@ -712,7 +712,7 @@ int main(int argc, const char * argv[])
         cout << "Made it. Gotta save it"<< endl;
         c1->SaveAs(FullPathM2jW);
         unique_ptr<TFile> MW2j_rootfile( TFile::Open(FullPathM2jW_root, "RECREATE"));
-        MW2j_rootfile->WriteObjext(&MW2j, "MW2j");
+        MW2j_rootfile->WriteObject(&MW2j, "MW2j");
 
         char FullPathM2jW2l[100];
         char FullPathM2jW2l_root[100];
@@ -726,7 +726,7 @@ int main(int argc, const char * argv[])
         MW2j2l->Draw();
         c1->SaveAs(FullPathM2jW2l);
         unique_ptr<TFile> MW2j2l_rootfile( TFile::Open(FullPathM2jW2l_root, "RECREATE"));
-        MW2j2l_rootfile->WriteObjext(&MW2j2l, "MW2j2l");
+        MW2j2l_rootfile->WriteObject(&MW2j2l, "MW2j2l");
 
 
         char FullPath2jW1l0[100];
@@ -742,7 +742,7 @@ int main(int argc, const char * argv[])
         MW2j1l_0->Draw();
         c1->SaveAs(FullPath2jW1l0);
         unique_ptr<TFile> MW2j1l_0_rootfile( TFile::Open(FullPath2jW1l0_root, "RECREATE"));
-        MW2j1l_0_rootfile->WriteObjext(&MW2j1l_0, "MW2j1l_0");
+        MW2j1l_0_rootfile->WriteObject(&MW2j1l_0, "MW2j1l_0");
 
         char FullPathMass_2jW1l1[100];
         char FullPathMass_2jW1l1_root[100];
@@ -756,7 +756,7 @@ int main(int argc, const char * argv[])
         MW2j1l_1->Draw();
         c1->SaveAs(FullPathMass_2jW1l1);
         unique_ptr<TFile> MW2j1l_1_rootfile( TFile::Open(FullPathMass_2jW1l1_root, "RECREATE"));
-        MW2j1l_1_rootfile->WriteObjext(&MW2j1l_1, "MW2j1l_1");
+        MW2j1l_1_rootfile->WriteObject(&MW2j1l_1, "MW2j1l_1");
 
         char FullPathMass_l2[100];
         char FullPathMass_l2_root[100];
@@ -780,7 +780,7 @@ int main(int argc, const char * argv[])
             c1->SaveAs(FullPathMass_l2);
         }
         unique_ptr<TFile> M2l_rootfile( TFile::Open(FullPathMass_l2_root, "RECREATE"));
-        M2l_rootfile->WriteObjext(&M2l, "MW2j2l");
+        M2l_rootfile->WriteObject(&M2l, "MW2j2l");
         
         cout << "I flipped this many electrons "<< numFlippede << endl;
         cout << "I flipped this many muons "<< numFlippedmu << endl; 
