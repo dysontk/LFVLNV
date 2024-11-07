@@ -276,17 +276,7 @@ int main(int argc, const char * argv[])
         cout << argv[i]<< endl;
     }
 
-    // ExRootTreeReader *treeReader = new ExRootTreeReader(&chain);
-    // Long64_t NumEntries = treeReader->GetEntries();
-    // cout << "There are "<< NumEntries <<" Entries." <<endl;
-    // TClonesArray *branchJet = treeReader->UseBranch("Jet"); 
-    // TClonesArray *branchElectron = treeReader->UseBranch("Electron");
-    // TClonesArray *branchMuon;
-    // if (hasMu) branchMuon = treeReader->UseBranch("Muon");
-    // TClonesArray *branchMET;
-    // if (hasMET) branchMET = treeReader->UseBranch("MET");
-
-    TTreeReader *treeReader = new TTreeReader(&chain);
+    ExRootTreeReader *treeReader = new ExRootTreeReader(&chain);
     Long64_t NumEntries = treeReader->GetEntries();
     cout << "There are "<< NumEntries <<" Entries." <<endl;
     TClonesArray *branchJet = treeReader->UseBranch("Jet"); 
@@ -295,6 +285,16 @@ int main(int argc, const char * argv[])
     if (hasMu) branchMuon = treeReader->UseBranch("Muon");
     TClonesArray *branchMET;
     if (hasMET) branchMET = treeReader->UseBranch("MET");
+
+    // TTreeReader *treeReader = new TTreeReader(&chain);
+    // Long64_t NumEntries = treeReader->GetEntries();
+    // cout << "There are "<< NumEntries <<" Entries." <<endl;
+    // TClonesArray *branchJet = treeReader->UseBranch("Jet"); 
+    // TClonesArray *branchElectron = treeReader->UseBranch("Electron");
+    // TClonesArray *branchMuon;
+    // if (hasMu) branchMuon = treeReader->UseBranch("Muon");
+    // TClonesArray *branchMET;
+    // if (hasMET) branchMET = treeReader->UseBranch("MET");
 
 
 
@@ -725,6 +725,8 @@ int main(int argc, const char * argv[])
         unique_ptr<TFile> MW2j_rootfile( TFile::Open(FullPathM2jW_root, "RECREATE"));
         MW2j_rootfile->WriteObject(&MW2j, "MW2j");
 
+        cout << "Done Wj" << endl;
+
         char FullPathM2jW2l[100];
         char FullPathM2jW2l_root[100];
 
@@ -739,6 +741,7 @@ int main(int argc, const char * argv[])
         unique_ptr<TFile> MW2j2l_rootfile( TFile::Open(FullPathM2jW2l_root, "RECREATE"));
         MW2j2l_rootfile->WriteObject(&MW2j2l, "MW2j2l");
 
+        cout << "Done both j both l" << endl;
 
         char FullPath2jW1l0[100];
         char FullPath2jW1l0_root[100];
@@ -755,6 +758,7 @@ int main(int argc, const char * argv[])
         unique_ptr<TFile> MW2j1l_0_rootfile( TFile::Open(FullPath2jW1l0_root, "RECREATE"));
         MW2j1l_0_rootfile->WriteObject(&MW2j1l_0, "MW2j1l_0");
 
+        cout << "Done both j leading l" << endl;
         char FullPathMass_2jW1l1[100];
         char FullPathMass_2jW1l1_root[100];
 
@@ -768,6 +772,8 @@ int main(int argc, const char * argv[])
         c1->SaveAs(FullPathMass_2jW1l1);
         unique_ptr<TFile> MW2j1l_1_rootfile( TFile::Open(FullPathMass_2jW1l1_root, "RECREATE"));
         MW2j1l_1_rootfile->WriteObject(&MW2j1l_1, "MW2j1l_1");
+
+        cout << "DOne both j subleadin l" <<endl;
 
         char FullPathMass_l2[100];
         char FullPathMass_l2_root[100];
@@ -792,7 +798,8 @@ int main(int argc, const char * argv[])
         }
         unique_ptr<TFile> M2l_rootfile( TFile::Open(FullPathMass_l2_root, "RECREATE"));
         M2l_rootfile->WriteObject(&M2l, "MW2j2l");
-        
+        cout << "Done both l" << endl;
+
         cout << "I flipped this many electrons "<< numFlippede << endl;
         cout << "I flipped this many muons "<< numFlippedmu << endl; 
 
