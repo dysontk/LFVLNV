@@ -703,7 +703,7 @@ int main(int argc, const char * argv[])
 
         strcpy(FullPathM2jW, ImagePath);
         strcat(FullPathM2jW, EventType);
-        FullPathM2jW_root = FullPathM2jW;
+        strcat(FullPathM2jW_root, FullPathM2jW);
         strcat(FullPathM2jW, "/plots/Mass_2jW.png");
         strcat(FullPathM2jW_root, "/plots/Mass_2jW.root");
         // MW2j
@@ -712,21 +712,21 @@ int main(int argc, const char * argv[])
         cout << "Made it. Gotta save it"<< endl;
         c1->SaveAs(FullPathM2jW);
         unique_ptr<TFile> MW2j_rootfile( TFile::Open(FullPathM2jW_root, "RECREATE"));
-        myfile->WriteObjext(&MW2j, "MW2j");
+        MW2j_rootfile->WriteObjext(&MW2j, "MW2j");
 
         char FullPathM2jW2l[100];
         char FullPathM2jW2l_root[100];
 
         strcpy(FullPathM2jW2l, ImagePath);
         strcat(FullPathM2jW2l, EventType);
-        FullPathM2jW2l_root = FullPathM2jW2l;
+        strcat(FullPathM2jW2l_root, FullPathM2jW2l);
         strcat(FullPathM2jW2l, "/plots/Mass_2jW2l.png");
         strcat(FullPathM2jW2l_root, "/plots/Mass_2jW2l.root");
         MW2j2l->GetXaxis()->SetTitle("GeV");
         MW2j2l->Draw();
         c1->SaveAs(FullPathM2jW2l);
         unique_ptr<TFile> MW2j2l_rootfile( TFile::Open(FullPathM2jW2l_root, "RECREATE"));
-        myfile->WriteObjext(&MW2j2l, "MW2j2l");
+        MW2j2l_rootfile->WriteObjext(&MW2j2l, "MW2j2l");
 
 
         char FullPath2jW1l0[100];
@@ -734,7 +734,7 @@ int main(int argc, const char * argv[])
 
         strcpy(FullPath2jW1l0, ImagePath);
         strcat(FullPath2jW1l0, EventType);
-        FullPath2jW1l0_root = FullPath2jW1l0;
+        strcat(FullPath2jW1l0_root, FullPath2jW1l0);
         strcat(FullPath2jW1l0, "/plots/Mass_2jW1l0.png");
         strcat(FullPath2jW1l0_root, "/plots/Mass_2jW1l0.root");
         // MW2j1l_0->SetOptStat(11111111111)
@@ -742,28 +742,28 @@ int main(int argc, const char * argv[])
         MW2j1l_0->Draw();
         c1->SaveAs(FullPath2jW1l0);
         unique_ptr<TFile> MW2j1l_0_rootfile( TFile::Open(FullPath2jW1l0_root, "RECREATE"));
-        myfile->WriteObjext(&MW2j1l_0, "MW2j1l_0");
+        MW2j1l_0_rootfile->WriteObjext(&MW2j1l_0, "MW2j1l_0");
 
         char FullPathMass_2jW1l1[100];
         char FullPathMass_2jW1l1_root[100];
 
         strcpy(FullPathMass_2jW1l1, ImagePath);
         strcat(FullPathMass_2jW1l1, EventType);
-        FullPathMass_2jW1l1_root = FullPathMass_2jW1l1
+        strcat(FullPathMass_2jW1l1_root, FullPathMass_2jW1l1);
         strcat(FullPathMass_2jW1l1, "/plots/Mass_2jW1l1.png");
         strcat(FullPathMass_2jW1l1_root, "/plots/Mass_2jW1l1.root");
         MW2j1l_1->GetXaxis()->SetTitle("GeV");
         MW2j1l_1->Draw();
         c1->SaveAs(FullPathMass_2jW1l1);
         unique_ptr<TFile> MW2j1l_1_rootfile( TFile::Open(FullPathMass_2jW1l1_root, "RECREATE"));
-        myfile->WriteObjext(&MW2j1l_1, "MW2j1l_1");
+        MW2j1l_1_rootfile->WriteObjext(&MW2j1l_1, "MW2j1l_1");
 
         char FullPathMass_l2[100];
         char FullPathMass_l2_root[100];
         
         strcpy(FullPathMass_l2, ImagePath);
         strcat(FullPathMass_l2, EventType);
-        FullPathMass_l2_root = FullPathMass_l2;
+        strcat(FullPathMass_l2_root, FullPathMass_l2);
 
         M2l->GetXaxis()->SetTitle("GeV");
         M2l->Draw();
@@ -780,7 +780,7 @@ int main(int argc, const char * argv[])
             c1->SaveAs(FullPathMass_l2);
         }
         unique_ptr<TFile> M2l_rootfile( TFile::Open(FullPathMass_l2_root, "RECREATE"));
-        myfile->WriteObjext(&M2l, "MW2j2l");
+        M2l_rootfile->WriteObjext(&M2l, "MW2j2l");
         
         cout << "I flipped this many electrons "<< numFlippede << endl;
         cout << "I flipped this many muons "<< numFlippedmu << endl; 
