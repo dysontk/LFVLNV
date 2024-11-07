@@ -16,10 +16,10 @@ def run_command(command, verbs=True):
     return output
 
 def find_files(typ):
-    return run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{typ}/Events/*/*delphes_events.root', False).replace('\n', ' ')
+    return run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{typ}/Events/*/*delphes_events.root', True).replace('\n', ' ')
 
 def single_analysis(typ):
-    from_analysis = run_command(f'/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/AnalysisAndSuch/JetFake/main {typ} '+ find_files(typ), False)
+    from_analysis = run_command(f'/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/AnalysisAndSuch/JetFake/main {typ} '+ find_files(typ), True)
 
     theNumbersProcessing = re.search(r'Cut\n+\d+\n+\d+\n+\d+\n+\d+\n+\d+\n', from_analysis).group().split('\n')[1:-1]
     print(theNumbersProcessing)
