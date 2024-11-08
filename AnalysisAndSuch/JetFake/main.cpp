@@ -702,7 +702,7 @@ int main(int argc, const char * argv[])
         cout << "Histo time"<< endl;
 
         TStyle *st1 = new TStyle("st1","my style");
-        cout << "hi"
+        cout << "hi"<< endl;
         st1->SetOptStat(111111111);
         cout << "707"<< endl;
         st1->cd();  //this becomes now the current style gStyle
