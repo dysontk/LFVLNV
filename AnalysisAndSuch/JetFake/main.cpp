@@ -270,7 +270,7 @@ int main(int argc, const char * argv[])
     const char* EventType = argv[1];
     cout << EventType<< endl;
 
-    for(int i=1; i<argc; i++)
+    for(int i=2; i<argc; i++)
     {
         chain.Add(argv[i]);
         cout << argv[i]<< endl;

@@ -120,6 +120,9 @@ class RunHandler:
                 # self.runs_gend = rn
                 print(f"There are over 10k events for {self.eventType}. \nEnding Event Generation")
                 break
+
+        if self.tot_nevents < 200_000:
+            print("I did not generate enough events. Please run again!!!!!!!!!!")
         
 
 
