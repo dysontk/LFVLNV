@@ -257,6 +257,8 @@ the cuts made, I will reference https://arxiv.org/abs/1806.10905
 Search for heavy Majorana neutrinos in same-sign dilepton channels in proton-proton collisions at √s= 13 TeV.
 Which was done by CMS collaboration. The idea of this code is to mostly replicate the analysis that they did on
 experimental data. So any reference to CMS Sections or tables etc. are references to that paper.
+EXPECTS:
+<path>/main <eventType> <file1> <file2> etc
 */
 
 
@@ -270,7 +272,29 @@ int main(int argc, const char * argv[])
     const char* EventType = argv[1];
     cout << EventType<< endl;
 
-    for(int i=1; i<argc; i++)
+    char eTypes[5][10] = {"LNVF", "WZ2j", "ZZ2j", "W3J", "ttbar"};
+
+    bool type_listed = false;
+    for(int t=0; t<5; t++)
+    {
+        if (*EventType == eType[t])
+        {
+            type_listed = true;
+        }
+    }
+
+    if (not type_listed)
+    {
+        cout << "Improper format. Please use the following format: "<< endl;
+        cout<< "<path to analysis>/main <event type> <paths to files separated by spaces>"<<endl;
+        cout << "where event types can be "
+        for (int type = 0; type<5; type++)
+        {
+            cout << eTypes[type]<< ", "<< endl;
+        }
+    }
+
+    for(int i=2; i<argc; i++)
     {
         chain.Add(argv[i]);
         cout << argv[i]<< endl;
