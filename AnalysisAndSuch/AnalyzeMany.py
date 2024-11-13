@@ -90,7 +90,7 @@ def combineHistos(eTypes):
     #               'bothLeps_Wj': 'Mass_2jW2l'
     #               'leadingLep_Wj': 'Mass_2jW1l0',
     #               'subleadingLep_Wj': 'Mass_2jW1l1',
-    #               'bothLeps': 'Mass_l2'}
+    #               'bothLeps': 'Mass_l2'} 
     stacks = {}
     for hTyp in histotypes:
         thisStack = ROOT.THStack(hTyp, histotypes[hTyp])
