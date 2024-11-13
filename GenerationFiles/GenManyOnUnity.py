@@ -208,7 +208,9 @@ if __name__ == '__main__':
     print(event_count_dict, type(event_count_dict), sep='\n')
     # runs2Basked = np.array([1 if not i else int(((200_000-i)/0.23)/60_000) for i in event_count_dict])
     runs2Basked = HowManyRuns(event_count_dict)
-    
+    for typ in runs2Basked:
+        runs2Basked[typ]=1
+    # runs2Basked = {}
     print("Runs to be asked: ", runs2Basked, sep='\n')
     print("event count: ", event_count_dict, sep='\n')
     print("run count", run_command, sep='\n')
