@@ -281,6 +281,7 @@ int main(int argc, const char * argv[])
         {
             type_listed = true;
         }
+        cout << type_listed << endl;
     }
 
     if (not type_listed)
