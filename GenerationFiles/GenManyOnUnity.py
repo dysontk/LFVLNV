@@ -209,6 +209,7 @@ if __name__ == '__main__':
     # runs2Basked = np.array([1 if not i else int(((200_000-i)/0.23)/60_000) for i in event_count_dict])
     runs2Basked = HowManyRuns(event_count_dict)
     for typ in runs2Basked:
+        print("SETTING TO ONLY 1 RUN")
         runs2Basked[typ]=1
     # runs2Basked = {}
     print("Runs to be asked: ", runs2Basked, sep='\n')
