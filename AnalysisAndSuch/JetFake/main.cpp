@@ -272,12 +272,12 @@ int main(int argc, const char * argv[])
     const char* EventType = argv[1];
     cout << EventType<< endl;
 
-    char eTypes[5][10] = {"LNVF", "WZ2j", "ZZ2j", "W3J", "ttbar"};
+    const char eTypes[5][10] = {"LNVF", "WZ2j", "ZZ2j", "W3J", "ttbar"};
 
     bool type_listed = false;
     for(int t=0; t<5; t++)
     {
-        if (*EventType == eTypes[t])
+        if (!strcmp(*EventType == eTypes[t]))
         {
             type_listed = true;
         }
