@@ -277,7 +277,7 @@ int main(int argc, const char * argv[])
     bool type_listed = false;
     for(int t=0; t<5; t++)
     {
-        if (*EventType == eType[t])
+        if (*EventType == eTypes[t])
         {
             type_listed = true;
         }
@@ -287,12 +287,12 @@ int main(int argc, const char * argv[])
     {
         cout << "Improper format. Please use the following format: "<< endl;
         cout<< "<path to analysis>/main <event type> <paths to files separated by spaces>"<<endl;
-        cout << "where event types can be "
+        cout << "where event types can be ";
         for (int type = 0; type<5; type++)
         {
             cout << eTypes[type]<< ", "<< endl;
         }
-        return 0
+        return 0;
     }
 
     for(int i=2; i<argc; i++)
