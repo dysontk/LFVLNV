@@ -292,6 +292,7 @@ int main(int argc, const char * argv[])
         {
             cout << eTypes[type]<< ", "<< endl;
         }
+        return 0
     }
 
     for(int i=2; i<argc; i++)
