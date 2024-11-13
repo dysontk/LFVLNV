@@ -277,7 +277,7 @@ int main(int argc, const char * argv[])
     bool type_listed = false;
     for(int t=0; t<5; t++)
     {
-        if (!strcmp(*EventType,eTypes[t]))
+        if (!strcmp(EventType,eTypes[t]))
         {
             type_listed = true;
         }
