@@ -750,6 +750,7 @@ int main(int argc, const char * argv[])
         cout << "Made it. Gotta save it"<< endl;
         c1->SaveAs(FullPathM2jW);
         cout << "boutta save root file" <<endl;
+        cout << FullPathM2jW_root << endl;
         unique_ptr<TFile> MW2j_rootfile( TFile::Open(FullPathM2jW_root, "RECREATE"));
         MW2j_rootfile->WriteObject(&MW2j, "MW2j");
 
