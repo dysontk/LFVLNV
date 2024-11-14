@@ -798,6 +798,7 @@ int main(int argc, const char * argv[])
         MW2j1l_1->GetXaxis()->SetTitle("GeV");
         MW2j1l_1->Draw();
         c1->SaveAs(FullPathMass_2jW1l1);
+        cout << FullPathMass_2jW1l1 << endl;
         c1->SaveAs(FullPathMass_2jW1l1_root);
 
         cout << "DOne both j subleadin l" <<endl;
