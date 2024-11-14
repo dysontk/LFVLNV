@@ -814,20 +814,19 @@ int main(int argc, const char * argv[])
 
         M2l->GetXaxis()->SetTitle("GeV");
         M2l->Draw();
-        if (not lowlepcut)
-        {
-            strcat(FullPathMass_l2, "/images/Mass_l2.png");
-            strcat(FullPathMass_l2_root, "/images/Mass_l2.root");
-            c1->SaveAs(FullPathMass_l2);
-            c1->SaveAs(FullPathMass_l2_root);
-        }
-        else
-        {
-            strcat(FullPathMass_l2, "/images/Mass_l2_above1GeV.png");
-            strcat(FullPathMass_l2_root, "/images/Mass_l2_above1GeV.root");
-            c1->SaveAs(FullPathMass_l2);
-            c1->SaveAs(FullPathMass_l2_root);
-        }
+
+        strcat(FullPathMass_l2, "/plots/Mass_l2.png");
+        strcat(FullPathMass_l2_root, "/plots/Mass_l2.root");
+        c1->SaveAs(FullPathMass_l2);
+        c1->SaveAs(FullPathMass_l2_root);
+        
+        // else
+        // {
+        //     strcat(FullPathMass_l2, "/images/Mass_l2_above1GeV.png");
+        //     strcat(FullPathMass_l2_root, "/images/Mass_l2_above1GeV.root");
+        //     c1->SaveAs(FullPathMass_l2);
+        //     c1->SaveAs(FullPathMass_l2_root);
+        // }
         
         cout << "Done both l" << endl;
 
