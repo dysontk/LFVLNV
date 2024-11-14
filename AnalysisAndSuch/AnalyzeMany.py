@@ -81,11 +81,11 @@ def combineHistos(eTypes):
                   'leadingLep_Wj': 'Mass_2jW1l0',
                   'subleadingLep_Wj': 'Mass_2jW1l1',
                   'bothLeps': 'Mass_l2'}
-    histotypes2 = {'WjPair': Mass_2jW,
-                  'bothLeps_Wj': Mass_2jW2l,
-                  'leadingLep_Wj': Mass_2jW1l0,
-                  'subleadingLep_Wj': Mass_2jW1l1,
-                  'bothLeps': Mass_l2}
+    histonames = {'WjPair': "Inv_Mass_2Jets_close_to_W",
+                  'bothLeps_Wj': "Inv_Mass_2Jets_close_to_W_2l",
+                  'leadingLep_Wj': "Inv_Mass_2Jets_close_to_W_1l_0",
+                  'subleadingLep_Wj': "Inv_Mass_2Jets_close_to_W_1l_1",
+                  'bothLeps': "Inv_Mass_2l"}
     # histoBounds = {'WjPair':,
     #               'bothLeps_Wj': 'Mass_2jW2l'
     #               'leadingLep_Wj': 'Mass_2jW1l0',
@@ -97,7 +97,7 @@ def combineHistos(eTypes):
         for typ in eTypes:
             thisPath = histoPath + typ + '/plots/' + histotypes[hTyp] + '.root'
             thisHistFile = ROOT.TFile.Open("thisPath", "READ")
-            thisHist = thisHistFile.histotypes2[hTyp]
+            thisHist = thisHistFile.Get(histonames[typ])
             thisStack.add(thisHist)
         stacks.update({hTyp:thisStack})
         canvas = ROOT.TCanvas("canvas")
