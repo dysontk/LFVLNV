@@ -751,8 +751,8 @@ int main(int argc, const char * argv[])
         c1->SaveAs(FullPathM2jW);
         cout << "boutta save root file" <<endl;
         cout << FullPathM2jW_root << endl;
-        unique_ptr<TFile> MW2j_rootfile(TFile::Open("test/plots/Mass_2jW.root", "RECREATE"));
-        MW2j_rootfile->WriteObject(&MW2j, "MW2j");
+        new TFile("test/plots/Mass_2jW.root", "RECREATE");
+        MW2j->WriteObject();
 
         cout << "Done Wj" << endl;
 
