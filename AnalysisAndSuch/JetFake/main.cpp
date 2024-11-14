@@ -737,7 +737,7 @@ int main(int argc, const char * argv[])
         const char* ImagePath = "/work/pi_mjrm_umass_edu/LNV_collider/AnalysisOutput/";
 
         char FullPathM2jW[100];
-        char FullPathM2jW_root[100];
+        char FullPathM2jW_root[200];
 
         strcpy(FullPathM2jW, ImagePath);
         strcat(FullPathM2jW, EventType);
