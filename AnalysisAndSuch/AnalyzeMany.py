@@ -3,7 +3,7 @@ import numpy as np
 import re
 import ROOT
 
-def run_command(command, verbs=True):
+def run_command(command, verbs=False):
     try:
         output = subprocess.check_output(command, shell=True, encoding='latin-1', stderr=subprocess.STDOUT)
         if verbs:
@@ -16,10 +16,10 @@ def run_command(command, verbs=True):
     return output
 
 def find_files(typ):
-    return run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{typ}/Events/*/*delphes_events.root', True).replace('\n', ' ')
+    return run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{typ}/Events/*/*delphes_events.root', False).replace('\n', ' ')
 
 def single_analysis(typ):
-    from_analysis = run_command(f'/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/AnalysisAndSuch/JetFake/main '+ typ + ' ' + find_files(typ), True)
+    from_analysis = run_command(f'/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/AnalysisAndSuch/JetFake/main '+ typ + ' ' + find_files(typ), False)
     print("FROM ANALYSIS")
     print(from_analysis)
     theNumbersProcessing = re.search(r'Cut\n+\d+\n+\d+\n+\d+\n+\d+\n+\d+\n', from_analysis).group().split('\n')[1:-1]
@@ -107,7 +107,7 @@ def combineHistos(eTypes):
     # return stacks
 
     thisType = eTypes[0]
-    thisHType = 'Wjpair'
+    thisHType = 'WjPair'
     thisStack = ROOT.THStack(thisHType, histotypes[thisHType])
     thisPath = histoPath + thisType + '/plots/' + histotypes[thisHType] + '.root'
     thisHistFile = ROOT.TFile.Open(thisPath, "READ")
@@ -117,7 +117,7 @@ def combineHistos(eTypes):
     canvas.cd()
     canvas.Print(histoPath+'/plots/'+thisHType+'.png')
 
-    return thisStack
+    return thisStack 
         # WjPair, leadingLep_Wj, subleadingLep_Wj, bothLeps
 
         
