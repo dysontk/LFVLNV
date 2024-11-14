@@ -753,7 +753,7 @@ int main(int argc, const char * argv[])
         cout << FullPathM2jW_root << endl;
         c1  ->SaveAs(FullPathM2jW_root);
         // new TFile("test/plots/Mass_2jW.root", "RECREATE");
-        MW2j->WriteObject();
+        // MW2j->WriteObject();
 
         cout << "Done Wj" << endl;
 
