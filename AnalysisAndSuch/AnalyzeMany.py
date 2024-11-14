@@ -96,7 +96,7 @@ def combineHistos(eTypes):
         thisStack = ROOT.THStack(hTyp, histotypes[hTyp])
         for typ in eTypes:
             thisPath = histoPath + typ + '/plots/' + histotypes[hTyp] + '.root'
-            thisHistFile = ROOT.TFile.Open("thisPath", "READ")
+            thisHistFile = ROOT.TFile.Open(thisPath, "READ")
             thisHist = thisHistFile.Get(histonames[typ])
             thisStack.add(thisHist)
         stacks.update({hTyp:thisStack})
