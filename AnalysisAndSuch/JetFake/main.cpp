@@ -736,8 +736,8 @@ int main(int argc, const char * argv[])
 
         const char* ImagePath = "/work/pi_mjrm_umass_edu/LNV_collider/AnalysisOutput/";
 
-        char FullPathM2jW[100];
-        string FullPathM2jW_root;
+        char FullPathM2jW[100] = "";
+        char FullPathM2jW_root[100] = "";
 
         strcpy(FullPathM2jW, ImagePath);
         strcat(FullPathM2jW, EventType);
@@ -757,8 +757,8 @@ int main(int argc, const char * argv[])
 
         cout << "Done Wj" << endl;
 
-        char FullPathM2jW2l[100];
-        string FullPathM2jW2l_root;
+        char FullPathM2jW2l[100] = "";
+        char FullPathM2jW2l_root[100] = "";
 
         strcpy(FullPathM2jW2l, ImagePath);
         strcat(FullPathM2jW2l, EventType);
@@ -772,8 +772,8 @@ int main(int argc, const char * argv[])
 
         cout << "Done both j both l" << endl;
 
-        char FullPath2jW1l0[100];
-        string FullPath2jW1l0_root;
+        char FullPath2jW1l0[100] = "";
+        char FullPath2jW1l0_root[100] = "";
 
         strcpy(FullPath2jW1l0, ImagePath);
         strcat(FullPath2jW1l0, EventType);
@@ -787,8 +787,8 @@ int main(int argc, const char * argv[])
         c1->SaveAs(FullPath2jW1l0_root);
 
         cout << "Done both j leading l" << endl;
-        char FullPathMass_2jW1l1[100];
-        string FullPathMass_2jW1l1_root;
+        char FullPathMass_2jW1l1[100] = "";
+        char FullPathMass_2jW1l1_root[100] = "";
 
         strcpy(FullPathMass_2jW1l1, ImagePath);
         strcat(FullPathMass_2jW1l1, EventType);
@@ -803,8 +803,8 @@ int main(int argc, const char * argv[])
 
         cout << "DOne both j subleadin l" <<endl;
 
-        char FullPathMass_l2[100];
-        string FullPathMass_l2_root;
+        char FullPathMass_l2[100] = "";
+        char FullPathMass_l2_root[100] = "";
         
         strcpy(FullPathMass_l2, ImagePath);
         strcat(FullPathMass_l2, EventType);
