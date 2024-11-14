@@ -91,23 +91,33 @@ def combineHistos(eTypes):
     #               'leadingLep_Wj': 'Mass_2jW1l0',
     #               'subleadingLep_Wj': 'Mass_2jW1l1',
     #               'bothLeps': 'Mass_l2'} 
-    stacks = {}
-    for hTyp in histotypes:
-        thisStack = ROOT.THStack(hTyp, histotypes[hTyp])
-        for typ in eTypes:
-            thisPath = histoPath + typ + '/plots/' + histotypes[hTyp] + '.root'
-            thisHistFile = ROOT.TFile.Open(thisPath, "READ")
-            thisHist = thisHistFile.Get(histonames[hTyp])
-            thisStack.Add(thisHist)
-        stacks.update({hTyp:thisStack})
-        canvas = ROOT.TCanvas("canvas")
-        canvas.cd()
-        canvas.Print(histoPath+'/plots/'+hTyp + '.png')
-        # canvas.Print()
-    return stacks
+    # stacks = {}
+    # for hTyp in histotypes:
+    #     thisStack = ROOT.THStack(hTyp, histotypes[hTyp])
+    #     for typ in eTypes:
+    #         thisPath = histoPath + typ + '/plots/' + histotypes[hTyp] + '.root'
+    #         thisHistFile = ROOT.TFile.Open(thisPath, "READ")
+    #         thisHist = thisHistFile.Get(histonames[hTyp])
+    #         thisStack.Add(thisHist)
+    #     stacks.update({hTyp:thisStack})
+    #     canvas = ROOT.TCanvas("canvas")
+    #     canvas.cd()
+    #     canvas.Print(histoPath+'/plots/'+hTyp + '.png')
+    #     # canvas.Print()
+    # return stacks
 
+    thisType = eTypes[0]
+    thisHType = 'Wjpair'
+    thisStack = ROOT.THStack(thisHType, histotypes[thisHType])
+    thisPath = histoPath + thisType + '/plots/' + histotypes[thisHType] + '.root'
+    thisHistFile = ROOT.TFile.Open(thisPath, "READ")
+    thisHist = thisHistFile.Get(histonames[thisHType])
+    thisStack.Add(thisHist)
+    canvas = ROOT.TCanvas("canvas")
+    canvas.cd()
+    canvas.Print(histoPath+'/plots/'+thisHType+'.png')
 
-
+    return thisStack
         # WjPair, leadingLep_Wj, subleadingLep_Wj, bothLeps
 
         
