@@ -737,7 +737,7 @@ int main(int argc, const char * argv[])
         const char* ImagePath = "/work/pi_mjrm_umass_edu/LNV_collider/AnalysisOutput/";
 
         char FullPathM2jW[100];
-        char FullPathM2jW_root[200];
+        char FullPathM2jW_root[100];
 
         strcpy(FullPathM2jW, ImagePath);
         strcat(FullPathM2jW, EventType);
@@ -750,8 +750,8 @@ int main(int argc, const char * argv[])
         cout << "Made it. Gotta save it"<< endl;
         c1->SaveAs(FullPathM2jW);
         cout << "boutta save root file" <<endl;
-        cout << FullPathM2jW_root << endl;
-        c1  ->SaveAs(FullPathM2jW_root);
+        // cout << FullPathM2jW_root << endl;
+        c1->SaveAs(FullPathM2jW_root);
         // new TFile("test/plots/Mass_2jW.root", "RECREATE");
         // MW2j->WriteObject();
 
@@ -768,8 +768,7 @@ int main(int argc, const char * argv[])
         MW2j2l->GetXaxis()->SetTitle("GeV");
         MW2j2l->Draw();
         c1->SaveAs(FullPathM2jW2l);
-        unique_ptr<TFile> MW2j2l_rootfile( TFile::Open(FullPathM2jW2l_root, "RECREATE"));
-        MW2j2l_rootfile->WriteObject(&MW2j2l, "MW2j2l");
+        c1->SaveAs(FullPathM2jW2l_root);
 
         cout << "Done both j both l" << endl;
 
@@ -785,8 +784,7 @@ int main(int argc, const char * argv[])
         MW2j1l_0->GetXaxis()->SetTitle("GeV");
         MW2j1l_0->Draw();
         c1->SaveAs(FullPath2jW1l0);
-        unique_ptr<TFile> MW2j1l_0_rootfile( TFile::Open(FullPath2jW1l0_root, "RECREATE"));
-        MW2j1l_0_rootfile->WriteObject(&MW2j1l_0, "MW2j1l_0");
+        c1->SaveAs(FullPathM2jW2l_root);
 
         cout << "Done both j leading l" << endl;
         char FullPathMass_2jW1l1[100];
@@ -800,8 +798,7 @@ int main(int argc, const char * argv[])
         MW2j1l_1->GetXaxis()->SetTitle("GeV");
         MW2j1l_1->Draw();
         c1->SaveAs(FullPathMass_2jW1l1);
-        unique_ptr<TFile> MW2j1l_1_rootfile( TFile::Open(FullPathMass_2jW1l1_root, "RECREATE"));
-        MW2j1l_1_rootfile->WriteObject(&MW2j1l_1, "MW2j1l_1");
+        c1->SaveAs(FullPathM2jW2l_root);
 
         cout << "DOne both j subleadin l" <<endl;
 
@@ -819,15 +816,16 @@ int main(int argc, const char * argv[])
             strcat(FullPathMass_l2, "/images/Mass_l2.png");
             strcat(FullPathMass_l2_root, "/images/Mass_l2.root");
             c1->SaveAs(FullPathMass_l2);
+            c1->SaveAs(FullPathM2jW2l_root);
         }
         else
         {
             strcat(FullPathMass_l2, "/images/Mass_l2_above1GeV.png");
             strcat(FullPathMass_l2_root, "/images/Mass_l2_above1GeV.root");
             c1->SaveAs(FullPathMass_l2);
+            c1->SaveAs(FullPathM2jW2l_root);
         }
-        unique_ptr<TFile> M2l_rootfile( TFile::Open(FullPathMass_l2_root, "RECREATE"));
-        M2l_rootfile->WriteObject(&M2l, "MW2j2l");
+        
         cout << "Done both l" << endl;
 
         cout << "I flipped this many electrons "<< numFlippede << endl;
