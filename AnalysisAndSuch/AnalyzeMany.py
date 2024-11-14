@@ -112,6 +112,7 @@ def combineHistos(eTypes):
     thisPath = histoPath + thisType + '/plots/' + histotypes[thisHType] + '.root'
     thisHistFile = ROOT.TFile.Open(thisPath, "READ")
     thisHist = thisHistFile.Get(histonames[thisHType])
+    print(type(thisHist))
     thisStack.Add(thisHist)
     canvas = ROOT.TCanvas("canvas")
     canvas.cd()
