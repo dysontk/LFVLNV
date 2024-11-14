@@ -784,7 +784,7 @@ int main(int argc, const char * argv[])
         MW2j1l_0->GetXaxis()->SetTitle("GeV");
         MW2j1l_0->Draw();
         c1->SaveAs(FullPath2jW1l0);
-        c1->SaveAs(FullPathM2jW2l_root);
+        c1->SaveAs(FullPath2jW1l0_root);
 
         cout << "Done both j leading l" << endl;
         char FullPathMass_2jW1l1[100];
@@ -798,7 +798,7 @@ int main(int argc, const char * argv[])
         MW2j1l_1->GetXaxis()->SetTitle("GeV");
         MW2j1l_1->Draw();
         c1->SaveAs(FullPathMass_2jW1l1);
-        c1->SaveAs(FullPathM2jW2l_root);
+        c1->SaveAs(FullPathMass_2jW1l1_root);
 
         cout << "DOne both j subleadin l" <<endl;
 
@@ -816,14 +816,14 @@ int main(int argc, const char * argv[])
             strcat(FullPathMass_l2, "/images/Mass_l2.png");
             strcat(FullPathMass_l2_root, "/images/Mass_l2.root");
             c1->SaveAs(FullPathMass_l2);
-            c1->SaveAs(FullPathM2jW2l_root);
+            c1->SaveAs(FullPathMass_l2_root);
         }
         else
         {
             strcat(FullPathMass_l2, "/images/Mass_l2_above1GeV.png");
             strcat(FullPathMass_l2_root, "/images/Mass_l2_above1GeV.root");
             c1->SaveAs(FullPathMass_l2);
-            c1->SaveAs(FullPathM2jW2l_root);
+            c1->SaveAs(FullPathMass_l2_root);
         }
         
         cout << "Done both l" << endl;
