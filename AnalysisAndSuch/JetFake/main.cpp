@@ -277,6 +277,8 @@ int main(int argc, const char * argv[])
     bool type_listed = false;
     for(int t=0; t<5; t++)
     {
+        cout << EventType << endl;
+        cout << eTypes[t] << endl;
         if (!strcmp(EventType,eTypes[t]))
         {
             type_listed = true;
