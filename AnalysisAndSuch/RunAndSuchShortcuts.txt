@@ -1,0 +1,29 @@
+./bin/mg5_aMC ~/MG5_aMC_v3_5_3/Working/GenerationFiles/WZ_proc.dat
+./bin/mg5_aMC ~/MG5_aMC_v3_5_3/Working/GenerationFiles/W3j_proc.dat
+./bin/mg5_aMC ~/MG5_aMC_v3_5_3/Working/GenerationFiles/ZZ_proc.dat
+./bin/mg5_aMC ~/MG5_aMC_v3_5_3/Working/GenerationFiles/ttbar_proc.dat
+./bin/mg5_aMC ~/MG5_aMC_v3_5_3/Working/GenerationFiles/test_proc.dat
+
+# Commands for generating the events:
+export PYTHIA8DATA="/home/dkennedy_umass_edu/LNV/MG5_aMC_v2_9_19/HEPTools/pythia8";
+/work/pi_mjrm_umass_edu/LNV_collider/Generated/LNV/bin/madevent ./Working/GenerationFiles/LNV_run.dat
+
+export PYTHIA8DATA="/home/dkennedy_umass_edu/MG5_aMC_v3_5_3/HEPTools/pythia8/share/Pythia8/xmldoc/";
+/work/pi_mjrm_umass_edu/LNV_collider/Generated/WZ2j/bin/madevent ./Working/GenerationFiles/WZ_run.dat
+
+export PYTHIA8DATA="/home/dkennedy_umass_edu/MG5_aMC_v3_5_3/HEPTools/pythia8/share/Pythia8/xmldoc/";
+/work/pi_mjrm_umass_edu/LNV_collider/Generated/W3j/bin/madevent ./Working/GenerationFiles/W3j_run.dat
+
+export PYTHIA8DATA="/home/dkennedy_umass_edu/MG5_aMC_v3_5_3/HEPTools/pythia8/share/Pythia8/xmldoc/";
+/work/pi_mjrm_umass_edu/LNV_collider/Generated/ZZ2j/bin/madevent ./Working/GenerationFiles/ZZ_run.dat
+
+export PYTHIA8DATA="/home/dkennedy_umass_edu/MG5_aMC_v3_5_3/HEPTools/pythia8/share/Pythia8/xmldoc";
+/work/pi_mjrm_umass_edu/LNV_collider/Generated/ttbar/bin/madevent ./Working/GenerationFiles/ttbar_run.dat
+
+export PYTHIA8DATA="/home/dkennedy_umass_edu/MG5_aMC_v3_5_3/HEPTools/pythia8/share/Pythia8/xmldoc/";
+/work/pi_mjrm_umass_edu/LNV_collider/Generated/eejj/bin/madevent ./Working/GenerationFiles/test_run.dat
+
+# These are all the run and process files currently* in GenerationFiles
+W3j_proc.dat  W3j_run.dat  WZ_proc.dat  WZ_run.dat  ZZ_proc.dat  ZZ_run.dat  ttbar_proc.dat  ttbar_run.dat
+
+See if I can ssh in on windows such that I can open up the .html files...
