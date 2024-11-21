@@ -87,19 +87,25 @@ def combineHistos(eTypes):
                 #   'subleadingLep_Wj': "Inv_Mass_2Jets_close_to_W_1l_1",
                 #   'bothLeps': "Inv_Mass_2l"}
 
+    histos = {}
+
+    # for htyp in histonames:
+
     for htyp in histonames:
         thisStack = ROOT.THStack(htyp, histotypes[htyp])
         canvas = ROOT.TCanvas("canvas")
         canvas.cd()
+        theseHistos = []
         for typ in eTypes:
             thisPath = histoPath + typ + '/plots/' + histotypes[htyp] + '.root'
             thisHistFile = ROOT.TFile.Open(thisPath, "READ")
-            thisHist = thisHistFile.Get(histonames[htyp])
+            theseHistos.append(thisHistFile.Get(histonames[htyp]))
+        for hist in theseHistos:
             # print(type(thisHist))
-            thisStack.Add(thisHist)
+            thisStack.Add(hist)
             print("Added ", typ, " to ", htyp)
-            thisStack.Draw()
-            canvas.Print(histoPath+'plots/'+ htyp + typ +'.png')
+            # thisStack.Draw() 
+            # canvas.Print(histoPath+'plots/'+ htyp + typ +'.png')
         thisStack.Draw()
         canvas.Print(histoPath+'plots/'+ htyp +'.png')
 
