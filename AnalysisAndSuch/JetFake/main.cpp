@@ -388,7 +388,8 @@ int main(int argc, const char * argv[])
     cut 3: Misc. -- ?
     numCutCats below counts how many events pass each cut. 
     */
-    int numCutCats[4] = {0, 0, 0, 0}; //events that pass 0: signal def, 1: preselection, 2: HMSR1, 3: Misc.
+    // int numCutCats[4] = {0, 0, 0, 0}; //events that pass 0: signal def, 1: preselection, 2: HMSR1, 3: Misc.
+    vector<int> numCutCats = {0, 0, 0, 0};
     // cout << sizeof(numCutCats)<< endl;
     // for (int i=0; i<sizeof(numCutCats)/sizeof(int); i++) cout << numCutCats[i] << ", ";
     // cout << endl;
@@ -844,28 +845,7 @@ int main(int argc, const char * argv[])
         cout << "Events by Cut"<< endl;
         cout << NumEntries << endl;
         for (int c=0; c<sizeof(numCutCats)/sizeof(int); c++) cout << numCutCats[c]<< endl;
-        // cout << "]" << endl;
-        // char FullPathMass_ll_test[100];
-
-        // strcpy(FullPathMass_ll_test, ImagePath);
-        // strcat(FullPathMass_ll_test, EventType);
-        // strcat(FullPathMass_ll_test, "/images/Mass_ll_test.png");
-        // M2lTroubleshoot->GetXaxis()->SetTitle("GeV");
-        // M2lTroubleshoot->Draw();
-        // c1->SaveAs("troubleshoot.png");
-        // strcat(FullPathMass_l2, "/images/Mass_l2.png");
-        // M2l->GetXaxis()->SetTitle("GeV");
-        // M2l->Draw();
-        // if (lowlepcut) c1->SaveAs(FullPathMass_l2);
-        // else c1->SaveAs(FullPathMass_l2);
-
-        // char FullPathMass_2jW2l[100];
-
-        // strcpy(FullPathMass_2jW2l, ImagePath);
-        // strcat(FullPathMass_2jW2l, EventType);
-        // strcat(FullPathMass_2jW2l, "/images/Mass_2jW2l.png");
-        // cout << "out of " << NumEntries << endl;
-        // for (int i=0; i < sizeof(numCutCats)/sizeof(int); i++) cout << numCutCats[i] << endl;
+        
     }
 
 }
