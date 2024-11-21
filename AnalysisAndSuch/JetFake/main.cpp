@@ -776,7 +776,7 @@ int main(int argc, const char * argv[])
         MW2j2l->Draw();
         c1->SaveAs(FullPathM2jW2l);
         // c1->SaveAs(FullPathM2jW2l_root);
-        new TFile F2(FullPathM2jW2l_root, "RECREATE");
+        TFile F2(FullPathM2jW2l_root, "RECREATE");
         MW2j2l->Write();
         F2.Close();
         cout << "Done both j both l" << endl;
@@ -794,7 +794,7 @@ int main(int argc, const char * argv[])
         MW2j1l_0->Draw();
         c1->SaveAs(FullPath2jW1l0);
         // c1->SaveAs(FullPath2jW1l0_root);
-        new TFile F3(FullPath2jW1l0_root, "RECREATE");
+        TFile F3(FullPath2jW1l0_root, "RECREATE");
         MW2j1l_0->Write();
         F3.Close();
 
@@ -812,7 +812,7 @@ int main(int argc, const char * argv[])
         c1->SaveAs(FullPathMass_2jW1l1);
         cout << FullPathMass_2jW1l1 << endl;
         // c1->SaveAs(FullPathMass_2jW1l1_root);
-        new TFile F4(FullPathMass_2jW1l1_root, "RECREATE");
+        TFile F4(FullPathMass_2jW1l1_root, "RECREATE");
         MW2j1l_1->Write();
         F4.Close();
         cout << "DOne both j subleadin l" <<endl;
@@ -831,9 +831,9 @@ int main(int argc, const char * argv[])
         strcat(FullPathMass_l2_root, "/plots/Mass_l2.root");
         c1->SaveAs(FullPathMass_l2);
         // c1->SaveAs(FullPathMass_l2_root);
-        new TFile F5(FullPathMass_l2_root, "RECREATE");
+        TFile F5(FullPathMass_l2_root, "RECREATE");
         M2l->Write();
-        TFiF5.::Close();
+        F5.Close();
         cout << "Done both l" << endl;
 
         cout << "I flipped this many electrons "<< numFlippede << endl;
