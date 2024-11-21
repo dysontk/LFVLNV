@@ -88,16 +88,16 @@ def combineHistos(eTypes):
                   'bothLeps': "Inv_Mass_2l"}
 
     thisType = 'LNVF'
-    thisHType = 'bothLeps'
+    thisHType = 'WjPair'
     thisStack = ROOT.THStack(thisHType, 'Mass_2jW')
     thisPath = histoPath + thisType + '/plots/' + 'Mass_2jW' + '.root'
     thisHistFile = ROOT.TFile.Open(thisPath, "READ")
-    thisHist = thisHistFile.Get("Inv_Mass_2l")
+    thisHist = thisHistFile.Get("Inv_Mass_2Jets_close_to_W")
     print(type(thisHist))
     thisStack.Add(thisHist)
     canvas = ROOT.TCanvas("canvas")
     canvas.cd()
-    canvas.Print(histoPath+'/plots/'+'bothLeps'+'.png')
+    canvas.Print(histoPath+'/plots/'+'WjPair'+'.png')
 
     return thisStack 
         # WjPair, leadingLep_Wj, subleadingLep_Wj, bothLeps
