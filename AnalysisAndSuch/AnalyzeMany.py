@@ -135,7 +135,7 @@ def main():
     sig_arr = get_significance(nEventsByCuts)
 
     # print(sig_arr)
-    stacks = combineHistos(list_of_data_types)
+    # stacks = combineHistos(list_of_data_types)
 
     for i in range(len(sig_arr)):
         print(f'Cut {i}: {sig_arr[i]}')
