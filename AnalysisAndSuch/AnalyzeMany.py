@@ -87,29 +87,40 @@ def combineHistos(eTypes):
                 #   'subleadingLep_Wj': "Inv_Mass_2Jets_close_to_W_1l_1",
                 #   'bothLeps': "Inv_Mass_2l"}
 
-    Stax = {}
-    for htyp in histonames:
-        Stax.update({htyp: ROOT.THStack(htyp, histotypes[htyp])})
+    ThisStack = ROOT.THStack('WjPair', 'Inv_Mass_2Jets_close_to_W')
+    theseHistos = []
+    for typ in eTypes:
+        thisPath = histoPath + typ + '/plots/' + 'Inv_Mass_2Jets_close_to_W' + '.root'
+        theseHistos.append(ROOT.TFile.Open(thisPath, 'READ').Get('Inv_Mass_2Jets_close_to_W'))
+    for hist in theseHistos:
+        ThisStack.Add(hist)
+    
+
+    # Stax = {}
+    # for htyp in histonames:
+    #     Stax.update({htyp: ROOT.THStack(htyp, histotypes[htyp])})
 
     canvas = ROOT.TCanvas("canvas")
     canvas.cd()
+    ThisStack.Draw()
+    canvas.Print(histoPath+'plots/'+ 'WjPair' +'.png')
     
-    for htyp in histonames:
-        theseHistos = []
-        for typ in eTypes:
-            thisPath = histoPath + typ + '/plots/' + histotypes[htyp] + '.root'
-            thisHistFile = ROOT.TFile.Open(thisPath, "READ")
-            theseHistos.append(thisHistFile.Get(histonames[htyp]))
-        for hist in theseHistos:
-            # print(type(thisHist))
-            Stax[htyp].Add(hist)
-            print("Added ", typ, " to ", htyp)
-            # thisStack.Draw() 
-            # canvas.Print(histoPath+'plots/'+ htyp + typ +'.png')
-        Stax[htyp].Draw()
-        canvas.Print(histoPath+'plots/'+ htyp +'.png')
+    # for htyp in histonames:
+    #     theseHistos = []
+    #     for typ in eTypes:
+    #         thisPath = histoPath + typ + '/plots/' + histotypes[htyp] + '.root'
+    #         thisHistFile = ROOT.TFile.Open(thisPath, "READ")
+    #         theseHistos.append(thisHistFile.Get(histonames[htyp]))
+    #     for hist in theseHistos:
+    #         # print(type(thisHist))
+    #         Stax[htyp].Add(hist)
+    #         print("Added ", typ, " to ", htyp)
+    #         # thisStack.Draw() 
+    #         # canvas.Print(histoPath+'plots/'+ htyp + typ +'.png')
+    #     Stax[htyp].Draw()
+    #     canvas.Print(histoPath+'plots/'+ htyp +'.png')
 
-    return Stax 
+    return ThisStack 
         # WjPair, leadingLep_Wj, subleadingLep_Wj, bothLeps
 
         
