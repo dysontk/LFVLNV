@@ -392,6 +392,7 @@ int main(int argc, const char * argv[])
     vector<int> numCutCats = {0, 0, 0, 0};
     // double cutsSize = sizeof(numCutCats)/sizeof(int);
     cout << "num cuts " << numCutCats.size() << endl;
+    for (int c=0; c<numCutCats.size(); c++) cout << numCutCats[c]<< endl;
     // cout << sizeof(numCutCats)<< endl;
     // for (int i=0; i<sizeof(numCutCats)/sizeof(int); i++) cout << numCutCats[i] << ", ";
     // cout << endl;
