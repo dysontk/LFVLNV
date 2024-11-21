@@ -96,10 +96,10 @@ def combineHistos(eTypes):
         myHisto = myFile.Get('Inv_Mass_2Jets_close_to_W')
         print(type(myFile))
         print(type(myHisto))
-        theseHistos.append(myHisto)
-    for hist in theseHistos:
-        print(hist.Class_Name())
-        ThisStack.Add(hist)
+    #     theseHistos.append(myHisto)
+    # for hist in theseHistos:
+    #     print(hist.Class_Name())
+        ThisStack.Add(myHisto)
     
 
     # Stax = {}
