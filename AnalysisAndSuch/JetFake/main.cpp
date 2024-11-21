@@ -755,7 +755,7 @@ int main(int argc, const char * argv[])
         // cout << FullPathM2jW_root << endl;
         // c1->SaveAs(FullPathM2jW_root);
         new TFile(FullPathM2jW_root, "RECREATE");
-        MW2j->WriteObject();
+        MW2j->Write();
 
         cout << "Done Wj" << endl;
 
@@ -772,7 +772,7 @@ int main(int argc, const char * argv[])
         c1->SaveAs(FullPathM2jW2l);
         // c1->SaveAs(FullPathM2jW2l_root);
         new TFile(FullPathM2jW2l_root, "RECREATE");
-        MW2j2l->WriteObject();
+        MW2j2l->Write();
 
         cout << "Done both j both l" << endl;
 
@@ -790,7 +790,7 @@ int main(int argc, const char * argv[])
         c1->SaveAs(FullPath2jW1l0);
         // c1->SaveAs(FullPath2jW1l0_root);
         new TFile(FullPath2jW1l0_root, "RECREATE");
-        MW2j1l_0->WriteObject();
+        MW2j1l_0->Write();
 
         cout << "Done both j leading l" << endl;
         char FullPathMass_2jW1l1[100] = "";
@@ -807,7 +807,7 @@ int main(int argc, const char * argv[])
         cout << FullPathMass_2jW1l1 << endl;
         // c1->SaveAs(FullPathMass_2jW1l1_root);
         new TFile(FullPathMass_2jW1l1_root, "RECREATE");
-        MW2j1l_1->WriteObject();
+        MW2j1l_1->Write();
 
         cout << "DOne both j subleadin l" <<endl;
 
@@ -826,7 +826,7 @@ int main(int argc, const char * argv[])
         c1->SaveAs(FullPathMass_l2);
         // c1->SaveAs(FullPathMass_l2_root);
         new TFile(FullPathMass_l2_root, "RECREATE");
-        M2l->WriteObject();
+        M2l->Write();
         
         // else
         // {
