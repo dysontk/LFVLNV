@@ -844,7 +844,8 @@ int main(int argc, const char * argv[])
 
         cout << "Events by Cut"<< endl;
         cout << NumEntries << endl;
-        for (int c=0; c<sizeof(numCutCats)/sizeof(int); c++) cout << numCutCats[c]<< endl;
+        double cutsSize = sizeof(numCutCats)/sizeof(int);
+        for (int c=0; c<cutsSize; c++) cout << numCutCats[c]<< endl;
         
     }
 
