@@ -89,7 +89,7 @@ def combineHistos(eTypes):
 
     Stax = {}
     for htyp in histonames:
-        Stax.update{htyp: ROOT.THStack(htyp, histotypes[htyp])}
+        Stax.update({htyp: ROOT.THStack(htyp, histotypes[htyp])})
 
     canvas = ROOT.TCanvas("canvas")
     canvas.cd()
