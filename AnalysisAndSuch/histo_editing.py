@@ -6,7 +6,7 @@ import ROOT
 
 def main():
 
-    histopath = 'Work/LNV_collider/AnalysisOutput/LNVF/plots/Mass_2jW.root'
+    histopath = '/work/pi_mjrm_umass_edu/LNV_collider/AnalysisOutput/LNVF/plots/Mass_2jW.root'
     thisHistFile = ROOT.TFile.Open(histopath, "READ")
     canvas = ROOT.TCanvas("test")
     canvas.cd()
