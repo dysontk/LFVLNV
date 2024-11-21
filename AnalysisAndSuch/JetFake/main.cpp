@@ -758,7 +758,7 @@ int main(int argc, const char * argv[])
         cout << "boutta save root file" <<endl;
         // cout << FullPathM2jW_root << endl;
         // c1->SaveAs(FullPathM2jW_root);
-        new TFile(FullPathM2jW_root, "RECREATE");
+    new TFile(FullPathM2jW_root, "RECREATE");
         MW2j->Write();
         TFile::Close();
 
@@ -776,9 +776,9 @@ int main(int argc, const char * argv[])
         MW2j2l->Draw();
         c1->SaveAs(FullPathM2jW2l);
         // c1->SaveAs(FullPathM2jW2l_root);
-        new TFile(FullPathM2jW2l_root, "RECREATE");
+        new File1 = TFile(FullPathM2jW2l_root, "RECREATE");
         MW2j2l->Write();
-        TFile::Close();
+        File1.Close();
         cout << "Done both j both l" << endl;
 
         char FullPath2jW1l0[100] = "";
