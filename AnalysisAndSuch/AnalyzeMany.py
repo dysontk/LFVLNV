@@ -93,7 +93,7 @@ def combineHistos(eTypes):
         thisPath = histoPath + typ + '/plots/' + 'Mass_2jW' + '.root'
         print("Accessing: ", thisPath)
         myHisto = ROOT.TFile.Open(thisPath, 'READ').Get('Inv_Mass_2Jets_close_to_W')
-        print(myHisto.Class_Name())
+        print(type(myHisto))
         theseHistos.append(myHisto)
     for hist in theseHistos:
         print(hist.Class_Name())
