@@ -14,7 +14,7 @@ def main():
     thisHist.SetLineColor(ROOT.kRed)
     thisHist.Draw()
     print("Printing")
-    canvas.print('Work/LNV_collider/AnalysisOutput/test_histo.png')
+    canvas.Print('Work/LNV_collider/AnalysisOutput/test_histo.png')
     
 
 if __name__ == "__main__":
