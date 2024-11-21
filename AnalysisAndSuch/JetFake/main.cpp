@@ -760,6 +760,7 @@ int main(int argc, const char * argv[])
         // c1->SaveAs(FullPathM2jW_root);
         new TFile(FullPathM2jW_root, "RECREATE");
         MW2j->Write();
+        TFile::Close();
 
         cout << "Done Wj" << endl;
 
@@ -777,7 +778,7 @@ int main(int argc, const char * argv[])
         // c1->SaveAs(FullPathM2jW2l_root);
         new TFile(FullPathM2jW2l_root, "RECREATE");
         MW2j2l->Write();
-
+        TFile::Close();
         cout << "Done both j both l" << endl;
 
         char FullPath2jW1l0[100] = "";
@@ -795,6 +796,7 @@ int main(int argc, const char * argv[])
         // c1->SaveAs(FullPath2jW1l0_root);
         new TFile(FullPath2jW1l0_root, "RECREATE");
         MW2j1l_0->Write();
+        TFile::Close();
 
         cout << "Done both j leading l" << endl;
         char FullPathMass_2jW1l1[100] = "";
@@ -812,7 +814,7 @@ int main(int argc, const char * argv[])
         // c1->SaveAs(FullPathMass_2jW1l1_root);
         new TFile(FullPathMass_2jW1l1_root, "RECREATE");
         MW2j1l_1->Write();
-
+        TFile::Close();
         cout << "DOne both j subleadin l" <<endl;
 
         char FullPathMass_l2[100] = "";
@@ -831,15 +833,7 @@ int main(int argc, const char * argv[])
         // c1->SaveAs(FullPathMass_l2_root);
         new TFile(FullPathMass_l2_root, "RECREATE");
         M2l->Write();
-        
-        // else
-        // {
-        //     strcat(FullPathMass_l2, "/images/Mass_l2_above1GeV.png");
-        //     strcat(FullPathMass_l2_root, "/images/Mass_l2_above1GeV.root");
-        //     c1->SaveAs(FullPathMass_l2);
-        //     c1->SaveAs(FullPathMass_l2_root);
-        // }
-        
+        TFile::Close();
         cout << "Done both l" << endl;
 
         cout << "I flipped this many electrons "<< numFlippede << endl;
