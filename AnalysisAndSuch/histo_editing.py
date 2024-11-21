@@ -10,7 +10,7 @@ def main():
     thisHistFile = ROOT.TFile.Open(histopath, "READ")
     canvas = ROOT.TCanvas("test")
     canvas.cd()
-    thisHist = thisHistFile.Get("Inv_Mass_2Jets_close_to_W")
+    thisHist = thisHistFile.Get("c1")
     thisHist.SetLineColor(ROOT.kRed)
     thisHist.Draw()
     print("Printing")
