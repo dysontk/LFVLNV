@@ -754,7 +754,7 @@ int main(int argc, const char * argv[])
         cout << "boutta save root file" <<endl;
         // cout << FullPathM2jW_root << endl;
         // c1->SaveAs(FullPathM2jW_root);
-        new TFile("test/plots/Mass_2jW.root", "RECREATE");
+        new TFile(FullPathM2jW_root, "RECREATE");
         MW2j->WriteObject();
 
         cout << "Done Wj" << endl;
@@ -770,7 +770,9 @@ int main(int argc, const char * argv[])
         MW2j2l->GetXaxis()->SetTitle("GeV");
         MW2j2l->Draw();
         c1->SaveAs(FullPathM2jW2l);
-        c1->SaveAs(FullPathM2jW2l_root);
+        // c1->SaveAs(FullPathM2jW2l_root);
+        new TFile(FullPathM2jW2l_root, "RECREATE");
+        MW2j2l->WriteObject();
 
         cout << "Done both j both l" << endl;
 
@@ -786,7 +788,9 @@ int main(int argc, const char * argv[])
         MW2j1l_0->GetXaxis()->SetTitle("GeV");
         MW2j1l_0->Draw();
         c1->SaveAs(FullPath2jW1l0);
-        c1->SaveAs(FullPath2jW1l0_root);
+        // c1->SaveAs(FullPath2jW1l0_root);
+        new TFile(FullPath2jW1l0_root, "RECREATE");
+        MW2j1l_0->WriteObject();
 
         cout << "Done both j leading l" << endl;
         char FullPathMass_2jW1l1[100] = "";
@@ -801,7 +805,9 @@ int main(int argc, const char * argv[])
         MW2j1l_1->Draw();
         c1->SaveAs(FullPathMass_2jW1l1);
         cout << FullPathMass_2jW1l1 << endl;
-        c1->SaveAs(FullPathMass_2jW1l1_root);
+        // c1->SaveAs(FullPathMass_2jW1l1_root);
+        new TFile(FullPathMass_2jW1l1_root, "RECREATE");
+        MW2j1l_1->WriteObject();
 
         cout << "DOne both j subleadin l" <<endl;
 
@@ -818,7 +824,9 @@ int main(int argc, const char * argv[])
         strcat(FullPathMass_l2, "/plots/Mass_l2.png");
         strcat(FullPathMass_l2_root, "/plots/Mass_l2.root");
         c1->SaveAs(FullPathMass_l2);
-        c1->SaveAs(FullPathMass_l2_root);
+        // c1->SaveAs(FullPathMass_l2_root);
+        new TFile(FullPathMass_l2_root, "RECREATE");
+        M2l->WriteObject();
         
         // else
         // {
