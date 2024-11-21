@@ -97,6 +97,7 @@ def combineHistos(eTypes):
             thisHist = thisHistFile.Get(histonames[htyp])
             # print(type(thisHist))
             thisStack.Add(thisHist)
+            print("Added ", typ, " to ", htyp)
         thisStack.Draw()
         canvas.Print(histoPath+'plots/'+ htyp +'.png')
 
