@@ -81,11 +81,11 @@ def combineHistos(eTypes):
                   'leadingLep_Wj': 'Mass_2jW1l0',
                   'subleadingLep_Wj': 'Mass_2jW1l1',
                   'bothLeps': 'Mass_l2'}
-    histonames = {'WjPair': "Inv_Mass_2Jets_close_to_W",
-                  'bothLeps_Wj': "Inv_Mass_2Jets_close_to_W_2l",
-                  'leadingLep_Wj': "Inv_Mass_2Jets_close_to_W_1l_0",
-                  'subleadingLep_Wj': "Inv_Mass_2Jets_close_to_W_1l_1",
-                  'bothLeps': "Inv_Mass_2l"}
+    histonames = {'WjPair': "Inv_Mass_2Jets_close_to_W"}
+                #   'bothLeps_Wj': "Inv_Mass_2Jets_close_to_W_2l",
+                #   'leadingLep_Wj': "Inv_Mass_2Jets_close_to_W_1l_0",
+                #   'subleadingLep_Wj': "Inv_Mass_2Jets_close_to_W_1l_1",
+                #   'bothLeps': "Inv_Mass_2l"}
 
     for htyp in histonames:
         thisStack = ROOT.THStack(htyp, histotypes[htyp])
