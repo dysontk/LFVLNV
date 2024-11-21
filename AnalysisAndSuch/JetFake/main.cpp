@@ -758,9 +758,9 @@ int main(int argc, const char * argv[])
         cout << "boutta save root file" <<endl;
         // cout << FullPathM2jW_root << endl;
         // c1->SaveAs(FullPathM2jW_root);
-    new TFile(FullPathM2jW_root, "RECREATE");
+        TFile F1(FullPathM2jW_root, "RECREATE");
         MW2j->Write();
-        TFile::Close();
+        F1.Close();
 
         cout << "Done Wj" << endl;
 
@@ -776,9 +776,9 @@ int main(int argc, const char * argv[])
         MW2j2l->Draw();
         c1->SaveAs(FullPathM2jW2l);
         // c1->SaveAs(FullPathM2jW2l_root);
-        new File1 = TFile(FullPathM2jW2l_root, "RECREATE");
+        new TFile F2(FullPathM2jW2l_root, "RECREATE");
         MW2j2l->Write();
-        File1.Close();
+        F2.Close();
         cout << "Done both j both l" << endl;
 
         char FullPath2jW1l0[100] = "";
@@ -794,9 +794,9 @@ int main(int argc, const char * argv[])
         MW2j1l_0->Draw();
         c1->SaveAs(FullPath2jW1l0);
         // c1->SaveAs(FullPath2jW1l0_root);
-        new TFile(FullPath2jW1l0_root, "RECREATE");
+        new TFile F3(FullPath2jW1l0_root, "RECREATE");
         MW2j1l_0->Write();
-        TFile::Close();
+        F3.Close();
 
         cout << "Done both j leading l" << endl;
         char FullPathMass_2jW1l1[100] = "";
@@ -812,9 +812,9 @@ int main(int argc, const char * argv[])
         c1->SaveAs(FullPathMass_2jW1l1);
         cout << FullPathMass_2jW1l1 << endl;
         // c1->SaveAs(FullPathMass_2jW1l1_root);
-        new TFile(FullPathMass_2jW1l1_root, "RECREATE");
+        new TFile F4(FullPathMass_2jW1l1_root, "RECREATE");
         MW2j1l_1->Write();
-        TFile::Close();
+        F4.Close();
         cout << "DOne both j subleadin l" <<endl;
 
         char FullPathMass_l2[100] = "";
@@ -831,9 +831,9 @@ int main(int argc, const char * argv[])
         strcat(FullPathMass_l2_root, "/plots/Mass_l2.root");
         c1->SaveAs(FullPathMass_l2);
         // c1->SaveAs(FullPathMass_l2_root);
-        new TFile(FullPathMass_l2_root, "RECREATE");
+        new TFile F5(FullPathMass_l2_root, "RECREATE");
         M2l->Write();
-        TFile::Close();
+        TFiF5.::Close();
         cout << "Done both l" << endl;
 
         cout << "I flipped this many electrons "<< numFlippede << endl;
