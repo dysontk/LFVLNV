@@ -842,9 +842,11 @@ int main(int argc, const char * argv[])
         cout << "I flipped this many electrons "<< numFlippede << endl;
         cout << "I flipped this many muons "<< numFlippedmu << endl; 
 
+        double cutsSize = sizeof(numCutCats)/sizeof(int);
+        cout << "num cuts " << cutsSize << endl;
         cout << "Events by Cut"<< endl;
         cout << NumEntries << endl;
-        double cutsSize = sizeof(numCutCats)/sizeof(int);
+
         for (int c=0; c<cutsSize; c++) cout << numCutCats[c]<< endl;
         
     }
