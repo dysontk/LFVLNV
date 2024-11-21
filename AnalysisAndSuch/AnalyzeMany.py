@@ -97,7 +97,8 @@ def combineHistos(eTypes):
     thisStack.Add(thisHist)
     canvas = ROOT.TCanvas("canvas")
     canvas.cd()
-    canvas.Print(histoPath+'/plots/'+'WjPair'+'.png')
+    thisStack.Draw()
+    canvas.Print(histoPath+'plots/'+'WjPair'+'.png')
 
     return thisStack 
         # WjPair, leadingLep_Wj, subleadingLep_Wj, bothLeps
