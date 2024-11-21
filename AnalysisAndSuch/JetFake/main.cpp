@@ -390,6 +390,8 @@ int main(int argc, const char * argv[])
     */
     // int numCutCats[4] = {0, 0, 0, 0}; //events that pass 0: signal def, 1: preselection, 2: HMSR1, 3: Misc.
     vector<int> numCutCats = {0, 0, 0, 0};
+    double cutsSize = sizeof(numCutCats)/sizeof(int);
+    cout << "num cuts " << cutsSize << endl;
     // cout << sizeof(numCutCats)<< endl;
     // for (int i=0; i<sizeof(numCutCats)/sizeof(int); i++) cout << numCutCats[i] << ", ";
     // cout << endl;
@@ -724,7 +726,8 @@ int main(int argc, const char * argv[])
             
             // TIME TO PLOT
 
-            
+            cutsSize = sizeof(numCutCats)/sizeof(int);
+            cout << "num cuts " << cutsSize << endl;
 
             // return 0;
         }
@@ -842,7 +845,7 @@ int main(int argc, const char * argv[])
         cout << "I flipped this many electrons "<< numFlippede << endl;
         cout << "I flipped this many muons "<< numFlippedmu << endl; 
 
-        double cutsSize = sizeof(numCutCats)/sizeof(int);
+        cutsSize = sizeof(numCutCats)/sizeof(int);
         cout << "num cuts " << cutsSize << endl;
         cout << "Events by Cut"<< endl;
         cout << NumEntries << endl;
