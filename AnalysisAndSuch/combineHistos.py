@@ -9,6 +9,7 @@ def combineHistos(start_dir=init_dir):
     Files = []
     for typ in eventTypes:
         print(type(typ))
+        print(type(start_dir))
         filepath = start_dir+typ+'/plots/Mass_2jW.root'
         Files.append(ROOT.TFile.Open(filepath))
     
