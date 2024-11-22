@@ -1,6 +1,6 @@
 import ROOT
 
-init_dir = '~/Work/LNV_collider/AnalysisOutput/'
+init_dir = '/work/pi_mjrm_umass_edu/LNV_collider/AnalysisOutput/'
 def combineHistos(start_dir=init_dir):
 
     File1 = ROOT.TFile.Open(start_dir+'LNVF/plots/Mass_2jW.root')
