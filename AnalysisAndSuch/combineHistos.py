@@ -14,16 +14,18 @@ def combineHistos(start_dir=init_dir):
         Files.append(ROOT.TFile.Open(filepath))
     
     LNVHisto = Files[0].Get('Inv_Mass_2Jets_close_to_W')
-    LNVHisto = Files[1].Get('Inv_Mass_2Jets_close_to_W')
-    LNVHisto = Files[2].Get('Inv_Mass_2Jets_close_to_W')
-    LNVHisto = Files[3].Get('Inv_Mass_2Jets_close_to_W')
+    ZZHisto = Files[1].Get('Inv_Mass_2Jets_close_to_W')
+    ZZHisto = Files[2].Get('Inv_Mass_2Jets_close_to_W')
+    ttbarHisto = Files[3].Get('Inv_Mass_2Jets_close_to_W')
+    W3Histo = Files[3].Get('Inv_Mass_2Jets_close_to_W')
     print("i have it")
 
 
-    Stack.Add(histos[0])
-    Stack.Add(histos[1])
-    Stack.Add(histos[2])
-    Stack.Add(histos[3])
+    Stack.Add(LNVHisto)
+    Stack.Add(ZZHisto)
+    Stack.Add(ZZHisto)
+    Stack.Add(ttbarHisto)
+    Stack.Add(W3Histo)
     print("I added them")
 
     can = ROOT.TCanvas('Canvas')
