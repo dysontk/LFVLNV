@@ -9,16 +9,13 @@ def combineHistos(eTypes, start_dir=init_dir):
     for typ in eTypes:
         histos.append(ROOT.TH1D())
     
-    for typ in eTypes:
-        File = ROOT.TFile.Open(start_dir+typ+'/plots/Mass_2jW.root')
-    # File2 = ROOT.TFile.Open(start_dir+'ZZ2j/plots/Mass_2jW.root')
+    for i in range(len(eTypes)):
 
-        histo = File.Get('Inv_Mass_2Jets_close_to_W')
+        File = ROOT.TFile.Open(start_dir+eTypes[i]+'/plots/Mass_2jW.root')
+        histos[i] = File.Get('Inv_Mass_2Jets_close_to_W')
         print("i have it")
-    # histo2 = File2.Get('Inv_Mass_2Jets_close_to_W')
 
-    # for histo in histos:
-        Stack.Add(histo)
+        Stack.Add(histos[i])
         print("I added it")
     # Stack.Add(histo2)
 
