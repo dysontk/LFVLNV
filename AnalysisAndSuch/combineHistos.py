@@ -39,12 +39,12 @@ def combineHistos(start_dir=init_dir):
     Stack.Add(W3Histo)
     print("I added them")
 
-    legend = ROOT.TLegend()
-    legend.AddEntry(LNVHisto)
-    legend.AddEntry(ZZHisto)
-    legend.AddEntry(WZHisto)
-    legend.AddEntry(ttbarHisto)
-    legend.AddEntry(W3Histo)
+    legend = ROOT.TLegend(0.7,0.7,0.9,0.9)
+    legend.AddEntry(LNVHisto, "signal", "l")
+    legend.AddEntry(ZZHisto, "Diboson: ZZ2j", 'l')
+    legend.AddEntry(WZHisto, "Diboson: WZ2j", 'l')
+    legend.AddEntry(ttbarHisto, "JetFake: ttbar", "l")
+    legend.AddEntry(W3Histo, "JetFake: W+3j", 'l')
     legend.Draw()
 
     can = ROOT.TCanvas('Canvas')
