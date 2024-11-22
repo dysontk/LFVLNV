@@ -43,6 +43,7 @@ def combineHistos(start_dir=init_dir):
     Stack.Add(ttbarHisto)
     Stack.Add(W3Histo)
     print("I added them")
+    Stack.GetXAxis().SetTitle("#Delta m_{jj} (GeV)")
 
     legend = ROOT.TLegend(0.7,0.7,0.9,0.9)
     legend.AddEntry(LNVHisto, "signal", "l")
