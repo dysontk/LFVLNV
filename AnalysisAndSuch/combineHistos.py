@@ -7,7 +7,7 @@ def combineHistos(eTypes, start_dir=init_dir):
 
     histos = {}
     for typ in eTypes:
-        File = ROOT.TFile.Open(start_dir+'LNVF/plots/Mass_2jW.root')
+        File = ROOT.TFile.Open(start_dir+typ+'/plots/Mass_2jW.root')
     # File2 = ROOT.TFile.Open(start_dir+'ZZ2j/plots/Mass_2jW.root')
 
         histo = File.Get('Inv_Mass_2Jets_close_to_W')
