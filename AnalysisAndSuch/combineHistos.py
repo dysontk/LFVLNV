@@ -26,8 +26,8 @@ def combineHistos(start_dir=init_dir):
     ttbarHisto = Files[3].Get('Inv_Mass_2Jets_close_to_W')
     ttbarHisto.SetFillColor(ROOT.kBlue)
     ttbarHisto.SetLineColor(ROOT.kBlack)
-    W3Histo = Files[3].Get('Inv_Mass_2Jets_close_to_W')
-    # W3Histo.SetFillColor(ROOT.kCyan)
+    W3Histo = Files[4].Get('Inv_Mass_2Jets_close_to_W')
+    W3Histo.SetFillColor(ROOT.kCyan)
     W3Histo.SetLineColor(ROOT.kBlack)
     print("i have it")
 
