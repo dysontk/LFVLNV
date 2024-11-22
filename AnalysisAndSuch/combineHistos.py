@@ -8,6 +8,7 @@ def combineHistos(start_dir=init_dir):
 
     Files = []
     for typ in eventTypes:
+        print(type(typ))
         Files.append(ROOT.TFile.Open(start_dir+typ+'/plots/Mass_2jW.root'))
     
     LNVHisto = Files[0].Get('Inv_Mass_2Jets_close_to_W')
