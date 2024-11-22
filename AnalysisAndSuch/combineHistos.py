@@ -16,8 +16,8 @@ def combineHistos(eTypes, start_dir=init_dir):
         print("i have it")
 
 
+        Stack.Add(histos[0])
         Stack.Add(histos[1])
-        Stack.Add(histos[2])
         print("I added them")
 
     can = ROOT.TCanvas('Canvas')
