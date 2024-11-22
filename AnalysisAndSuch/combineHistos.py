@@ -9,7 +9,7 @@ def combineHistos(eTypes, start_dir=init_dir):
         File = ROOT.TFile.Open(start_dir+'LNVF/plots/Mass_2jW.root')
     # File2 = ROOT.TFile.Open(start_dir+'ZZ2j/plots/Mass_2jW.root')
 
-        histos.append(File1.Get('Inv_Mass_2Jets_close_to_W'))
+        histos.append(File.Get('Inv_Mass_2Jets_close_to_W'))
 
     # histo2 = File2.Get('Inv_Mass_2Jets_close_to_W')
 
