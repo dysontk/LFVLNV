@@ -6,7 +6,7 @@ def combineHistos(start_dir=init_dir):
 
     eventTypes = ['LNVF', 'ZZ2j', 'WZ2j', 'ttbar', 'W3j']
     Stack = ROOT.THStack('WjPair', 'Inv_Mass_2Jets_close_to_W')
-    ROOT.gStyle.SetPalette(ROOT.kOcean)
+    # ROOT.gStyle.SetPalette(ROOT.kOcean)
     Files = []
     for typ in eventTypes:
         print(type(typ))
@@ -15,15 +15,20 @@ def combineHistos(start_dir=init_dir):
         Files.append(ROOT.TFile.Open(filepath))
     
     LNVHisto = Files[0].Get('Inv_Mass_2Jets_close_to_W')
-    # LNVHisto.SetFillColor(kRed)
-    # LNVHisto.SetLineColor(kBlack)
+    LNVHisto.SetFillColor(ROOT.kRed)
+    LNVHisto.SetLineColor(ROOT.kBlack)
     ZZHisto = Files[1].Get('Inv_Mass_2Jets_close_to_W')
-    # ZZHisto.SetFillColor(kBlue)
-    # ZZHisto.SetLineColor(kBlack)
+    ZZHisto.SetFillColor(ROOT.kGreen+1)
+    ZZHisto.SetLineColor(ROOT.kBlack)
     WZHisto = Files[2].Get('Inv_Mass_2Jets_close_to_W')
-    # WZHisto.SetFillColor()
+    WZHisto.SetFillColor(ROOT.kGreen+3)
+    WZHisto.SetLineColor(ROOT.kBlack)
     ttbarHisto = Files[3].Get('Inv_Mass_2Jets_close_to_W')
+    ttbarHisto.SetFillColor(ROOT.kBlue)
+    ttbarHisto.SetLineColor(ROOT.kBlack)
     W3Histo = Files[3].Get('Inv_Mass_2Jets_close_to_W')
+    W3Histo.SetFillColor(ROOT.kCyan)
+    W3Histo.SetLineColor(ROOT.kBlack)
     print("i have it")
 
 
