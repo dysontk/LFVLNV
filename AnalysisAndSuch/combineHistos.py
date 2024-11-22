@@ -1,11 +1,12 @@
 import ROOT
 
 init_dir = '/work/pi_mjrm_umass_edu/LNV_collider/AnalysisOutput/'
+
 def combineHistos(start_dir=init_dir):
 
     eventTypes = ['LNVF', 'ZZ2j', 'WZ2j', 'ttbar', 'W3j']
     Stack = ROOT.THStack('WjPair', 'Inv_Mass_2Jets_close_to_W')
-
+    ROOT.gStyle.SetPalette(ROOT.kOcean)
     Files = []
     for typ in eventTypes:
         print(type(typ))
@@ -14,8 +15,13 @@ def combineHistos(start_dir=init_dir):
         Files.append(ROOT.TFile.Open(filepath))
     
     LNVHisto = Files[0].Get('Inv_Mass_2Jets_close_to_W')
+    # LNVHisto.SetFillColor(kRed)
+    # LNVHisto.SetLineColor(kBlack)
     ZZHisto = Files[1].Get('Inv_Mass_2Jets_close_to_W')
-    ZZHisto = Files[2].Get('Inv_Mass_2Jets_close_to_W')
+    # ZZHisto.SetFillColor(kBlue)
+    # ZZHisto.SetLineColor(kBlack)
+    WZHisto = Files[2].Get('Inv_Mass_2Jets_close_to_W')
+    # WZHisto.SetFillColor()
     ttbarHisto = Files[3].Get('Inv_Mass_2Jets_close_to_W')
     W3Histo = Files[3].Get('Inv_Mass_2Jets_close_to_W')
     print("i have it")
@@ -23,7 +29,7 @@ def combineHistos(start_dir=init_dir):
 
     Stack.Add(LNVHisto)
     Stack.Add(ZZHisto)
-    Stack.Add(ZZHisto)
+    Stack.Add(WZHisto)
     Stack.Add(ttbarHisto)
     Stack.Add(W3Histo)
     print("I added them")
