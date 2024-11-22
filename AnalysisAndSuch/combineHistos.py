@@ -29,4 +29,4 @@ def combineHistos(eTypes, start_dir=init_dir):
 if __name__=='__main__':
     
     eventTypes = ['LNV', 'ZZ2j']
-    combineHistos()
+    combineHistos(eventTypes)
