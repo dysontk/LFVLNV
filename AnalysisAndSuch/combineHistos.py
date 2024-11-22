@@ -9,8 +9,8 @@ def combineHistos(start_dir=init_dir):
     # ROOT.gStyle.SetPalette(ROOT.kOcean)
     Files = []
     for typ in eventTypes:
-        print(type(typ))
-        print(type(init_dir))
+        # print(type(typ))
+        # print(type(init_dir))
         filepath = init_dir+typ+'/plots/Mass_2jW.root'
         Files.append(ROOT.TFile.Open(filepath))
     
@@ -27,7 +27,7 @@ def combineHistos(start_dir=init_dir):
     ttbarHisto.SetFillColor(ROOT.kBlue)
     ttbarHisto.SetLineColor(ROOT.kBlack)
     W3Histo = Files[3].Get('Inv_Mass_2Jets_close_to_W')
-    W3Histo.SetFillColor(ROOT.kCyan)
+    # W3Histo.SetFillColor(ROOT.kCyan)
     W3Histo.SetLineColor(ROOT.kBlack)
     print("i have it")
 
@@ -39,7 +39,7 @@ def combineHistos(start_dir=init_dir):
     Stack.Add(W3Histo)
     print("I added them")
 
-    legend = ROOT.TLegend(0.7, 0.75, 0.90, 0.87)
+    legend = ROOT.TLegend()
     legend.AddEntry(LNVHisto)
     legend.AddEntry(ZZHisto)
     legend.AddEntry(WZHisto)
