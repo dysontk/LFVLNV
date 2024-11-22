@@ -31,7 +31,7 @@ def combineHistos(start_dir=init_dir):
     can = ROOT.TCanvas('Canvas')
     can.cd()
     Stack.Draw()
-    can.Print(start_dir+'/plots/stackTest.png')
+    can.Print(init_dir+'/plots/stackTest.png')
 
     return Stack
 
