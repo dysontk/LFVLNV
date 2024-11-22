@@ -34,12 +34,22 @@ def combineHistos(start_dir=init_dir):
     Stack.Add(W3Histo)
     print("I added them")
 
+    legend = ROOT.TLegend(0.7, 0.75, 0.90, 0.87)
+    legend.AddEntry(LNVHisto)
+    legend.AddEntry(ZZHisto)
+    legend.AddEntry(WZHisto)
+    legend.AddEntry(ttbarHisto)
+    legend.AddEntry(W3Histo)
+    legend.Draw()
+
     can = ROOT.TCanvas('Canvas')
     can.cd()
     Stack.Draw()
-    legend = ROOT.TLegend(0.7, 0.75, 0.90, 0.87)
-    legend.Draw()
+    
     can.Print(init_dir+'/plots/stackTest.png')
+
+    Stack.SaveAs(init_dir+'/plots/stackTest.root')
+
 
     return Stack
 
