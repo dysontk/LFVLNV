@@ -1,24 +1,27 @@
 import ROOT
 
 init_dir = '/work/pi_mjrm_umass_edu/LNV_collider/AnalysisOutput/'
-def combineHistos(eTypes, start_dir=init_dir):
+def combineHistos(start_dir=init_dir):
 
+    eventTypes = ['LNVF', 'ZZ2j', 'WZ2j', 'ttbar', 'W3j']
     Stack = ROOT.THStack('WjPair', 'Inv_Mass_2Jets_close_to_W')
 
-    histos = []
-    for typ in eTypes:
-        histos.append(ROOT.TH1D())
+    Files = []
+    for typ in eventTypes:
+        Files.append(ROOT.TFile.Open(start_dir+eTypes[i]+'/plots/Mass_2jW.root'))
     
-    for i in range(len(eTypes)):
+    LNVHisto = Files[0].Get('Inv_Mass_2Jets_close_to_W')
+    LNVHisto = Files[1].Get('Inv_Mass_2Jets_close_to_W')
+    LNVHisto = Files[2].Get('Inv_Mass_2Jets_close_to_W')
+    LNVHisto = Files[3].Get('Inv_Mass_2Jets_close_to_W')
+    print("i have it")
 
-        File = ROOT.TFile.Open(start_dir+eTypes[i]+'/plots/Mass_2jW.root')
-        histos[i] = File.Get('Inv_Mass_2Jets_close_to_W')
-        print("i have it")
 
-
-        Stack.Add(histos[0])
-        Stack.Add(histos[1])
-        print("I added them")
+    Stack.Add(histos[0])
+    Stack.Add(histos[1])
+    Stack.Add(histos[2])
+    Stack.Add(histos[3])
+    print("I added them")
 
     can = ROOT.TCanvas('Canvas')
     can.cd()
@@ -30,5 +33,5 @@ def combineHistos(eTypes, start_dir=init_dir):
 
 if __name__=='__main__':
     
-    eventTypes = ['LNVF', 'ZZ2j']
+    eventTypes = ['LNVF', 'ZZ2j', 'WZ2j', 'ttbar', 'W3j']
     combineHistos(eventTypes)
