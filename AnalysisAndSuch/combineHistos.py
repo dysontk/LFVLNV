@@ -5,7 +5,10 @@ def combineHistos(eTypes, start_dir=init_dir):
 
     Stack = ROOT.THStack('WjPair', 'Inv_Mass_2Jets_close_to_W')
 
-    histos = {}
+    histos = []
+    for typ in eTypes:
+        histos.append(ROOT.TH1D())
+    
     for typ in eTypes:
         File = ROOT.TFile.Open(start_dir+typ+'/plots/Mass_2jW.root')
     # File2 = ROOT.TFile.Open(start_dir+'ZZ2j/plots/Mass_2jW.root')
