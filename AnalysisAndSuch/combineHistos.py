@@ -50,13 +50,14 @@ def combineHistos(start_dir=init_dir):
     legend.AddEntry(WZHisto, "Diboson: WZ2j", 'l')
     legend.AddEntry(ttbarHisto, "JetFake: ttbar", "l")
     legend.AddEntry(W3Histo, "JetFake: W+3j", 'l')
-    legend.Draw()
+    
 
     can = ROOT.TCanvas('Canvas')
     can.cd()
     Stack.Draw()
+    legend.Draw()
     ROOT.gPad.BuildLegend()
-    Stack.GetXaxis().SetTitle("#Delta $m_{jj}$ (GeV)")
+    Stack.GetXaxis().SetTitle("#Delta m_{jj} (GeV)")
 
     can.Print(init_dir+'/plots/stackTest.png')
 
