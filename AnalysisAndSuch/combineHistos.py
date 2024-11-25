@@ -78,6 +78,6 @@ if __name__=='__main__':
     stack.Draw()
     leg.Draw()
 
-    can.Print(init_dir+'/plots/stackTest.png', 'png')
+    # can.Print(init_dir+'/plots/stackTest.png', 'png')
 
     stack.SaveAs(init_dir+'/plots/stackTest.root')
