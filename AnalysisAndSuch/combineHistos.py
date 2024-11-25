@@ -61,7 +61,7 @@ def combineHistos(start_dir=init_dir):
 
     # can.Print(init_dir+'/plots/stackTest.png')
 
-    Stack.SaveAs(init_dir+'/plots/stackTest.root')
+    # Stack.SaveAs(init_dir+'/plots/stackTest.root')
 
 
     return legend, Stack
@@ -77,3 +77,7 @@ if __name__=='__main__':
     can.cd()
     stack.Draw()
     leg.Draw()
+
+    can.Print(init_dir+'/plots/stackTest.png')
+
+    stack.SaveAs(init_dir+'/plots/stackTest.root')
