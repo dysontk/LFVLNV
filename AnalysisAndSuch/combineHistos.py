@@ -52,22 +52,28 @@ def combineHistos(start_dir=init_dir):
     legend.AddEntry(W3Histo, "JetFake: W+3j", 'l')
     
 
-    can = ROOT.TCanvas('Canvas')
-    can.cd()
-    Stack.Draw()
-    legend.Draw()
-    ROOT.gPad.BuildLegend()
+    # can = ROOT.TCanvas('Canvas')
+    # can.cd()
+    # Stack.Draw()
+    # legend.Draw()
+    # ROOT.gPad.BuildLegend()
     Stack.GetXaxis().SetTitle("#Delta m_{jj} (GeV)")
 
-    can.Print(init_dir+'/plots/stackTest.png')
+    # can.Print(init_dir+'/plots/stackTest.png')
 
     Stack.SaveAs(init_dir+'/plots/stackTest.root')
 
 
-    return Stack
+    return legend, Stack
 
 
 if __name__=='__main__':
     
     eventTypes = ['LNVF', 'ZZ2j', 'WZ2j', 'ttbar', 'W3j']
-    combineHistos(eventTypes)
+    leg, stack = combineHistos(eventTypes)
+
+    
+    can = ROOT.TCanvas('Canvas')
+    can.cd()
+    stack.Draw()
+    leg.Draw()
