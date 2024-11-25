@@ -57,7 +57,7 @@ def combineHistos(start_dir=init_dir):
     # Stack.Draw()
     # legend.Draw()
     # ROOT.gPad.BuildLegend()
-    Stack.GetXaxis().SetTitle("#Delta m_{jj} (GeV)")
+    # Stack.GetXaxis().SetTitle("#Delta m_{jj} (GeV)")
 
     # can.Print(init_dir+'/plots/stackTest.png')
 
