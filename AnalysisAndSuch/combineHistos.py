@@ -76,7 +76,7 @@ if __name__=='__main__':
     can = ROOT.TCanvas('Canvas')
     can.cd()
     stack.Draw()
-    leg.Draw()
+    # leg.Draw()
 
     # can.Print(init_dir+'/plots/stackTest.png')
 
