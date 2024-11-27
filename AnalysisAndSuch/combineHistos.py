@@ -125,17 +125,17 @@ def combineHistos(start_dir=init_dir):
     return legend, Stack
 
 
-if __name__=='__main__':
+# if __name__=='__main__':
     
-    eventTypes = ['LNVF', 'ZZ2j', 'WZ2j', 'ttbar', 'W3j']
-    leg, stack = combineHistos(eventTypes)
+#     eventTypes = ['LNVF', 'ZZ2j', 'WZ2j', 'ttbar', 'W3j']
+#     leg, stack = combineHistos(eventTypes)
 
     
-    can = ROOT.TCanvas('Canvas')
-    can.cd()
-    stack.Draw()
-    # leg.Draw()
+#     can = ROOT.TCanvas('Canvas')
+#     can.cd()
+#     stack.Draw()
+#     # leg.Draw()
 
-    # can.Print(init_dir+'/plots/stackTest.png')
+#     # can.Print(init_dir+'/plots/stackTest.png')
 
-    stack.SaveAs(init_dir+'plots/stackTest.root')
+#     stack.SaveAs(init_dir+'plots/stackTest.root')
