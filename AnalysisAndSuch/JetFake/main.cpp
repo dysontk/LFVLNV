@@ -349,17 +349,17 @@ int main(int argc, const char * argv[])
     //                                                                  , bins, xlow, xhigh)
     // Obj. name; Vert. axis vs. Horiz. axis; images produced by this
     //Invariant mass of the pair of jets closest to W mass -- Hereonout called W jets or W jet pair
-    int scaleFactor = (EventType=="O2") ? 3: 1;
+    int scaleFactor = (EventType=="LNVF") ? 3: 1;
     // float scaleFactor2 = (EventType=="O2") ? 1.5 : 1;
     int MW2jHistoParams[3] = {100, 0, 140};
     TH1F *MW2j = new TH1F("Inv_Mass_2Jets_close_to_W", "Inv. Mass 2 Jets", MW2jHistoParams[0], MW2jHistoParams[1], MW2jHistoParams[2]);
     
     // Invariant mass of W jet pair and leading leptons (Are these necessarily going to be s.s. leptons?)
-    int MW2j2lHistoParams[3] = {30, 0, 650*scaleFactor};
+    int MW2j2lHistoParams[3] = {30, 0, 900};
     TH1F *MW2j2l = new TH1F("Inv_Mass_2Jets_close_to_W_2l", "Inv. Mass 2 Jets 2 Lep",  MW2j2lHistoParams[0]-5, MW2j2lHistoParams[1], MW2j2lHistoParams[2]);
 
     //Invariant mass of the leading leptons (Are these necessarily going to be s.s. leptons?)
-    int M2lHistoParams[3] = {70, 0, 500*scaleFactor};
+    int M2lHistoParams[3] = {70, 0, 900};
     TH1F *M2l;
     if (lowlepcut)  M2l = new TH1F("Inv_Mass_2l", "Inv. Mass 2 Lep above 1GeV",  M2lHistoParams[0], M2lHistoParams[1], M2lHistoParams[2]);
     else M2l = new TH1F("Inv_Mass_2l", "Inv. Mass 2 Lep", M2lHistoParams[0], M2lHistoParams[1], M2lHistoParams[2]);
@@ -371,7 +371,7 @@ int main(int argc, const char * argv[])
     TH1F *MW2j1l_0 = new TH1F("Inv_Mass_2Jets_close_to_W_1l_0", "Inv. Mass 2 Jets + Lep_0", MW2j1l_0HistoParams[0], MW2j1l_0HistoParams[1], MW2j1l_0HistoParams[2]);
 
     //Invariant mass of W jets and the sub-leading lepton
-    int MW2j1l_1HistoParams[3] = {20, 0, 500*scaleFactor};
+    int MW2j1l_1HistoParams[3] = {20, 0, 900};
     TH1F *MW2j1l_1  = new TH1F("Inv_Mass_2Jets_close_to_W_1l_1", "Inv. Mass 2 Jets + Lep_1", MW2j1l_1HistoParams[0], MW2j1l_1HistoParams[1], MW2j1l_1HistoParams[2]);
 
     // TH1F *M2lTroubleshoot = new TH1F("Inv_Mass_2l", "Inv. Mass 2 Lep",  70, 0, 10);
