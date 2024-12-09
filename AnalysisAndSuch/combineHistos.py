@@ -28,16 +28,16 @@ def get_histo(eventType, hisTyp):
     thisHist = thisOne.to_hist().plot(label=eventType)
     return thisHist[0]
 
-def get_data(eventType, histogramtype):
+def get_data(eventType, histogramtype, startingdir):
     print(histogramtype)
-    thisFilePath = init_dir+eventType+'/plots/'+histogramtype+'.root'
+    thisFilePath = startingdir+eventType+'/plots/'+histogramtype+'.root'
     thisOne = uproot.open(thisFilePath)[histonames2[histogramtype]]
     data = thisOne.values()
     output = {'data': data,
               'bounds': (thisOne.axis(0).low, thisOne.axis(0).high)}
     return output 
 
-def make_histos(eventTypes, histoTypes):
+def make_histos(eventTypes, histoTypes, startdir):
     
     histotitles = {'Mass_2jW': "$\Delta M_{Wjj}$",
                   'Mass_2jW2l': "$\Delta M_{Wjj+ll}$",
@@ -50,8 +50,7 @@ def make_histos(eventTypes, histoTypes):
         fig, ax = plt.subplots()
         datas = {}
         for typ in eventTypes:
-            datas.update({typ:get_data(typ, htyp)})
-
+            datas.update({typ:get_data(typ, htyp, startdir)})
 
         bottom = np.zeros(len(datas['LNVF']['data']))
         for typ in datas:
@@ -87,7 +86,7 @@ def main():
                     'Mass_2jW1l1': "Inv_Mass_2Jets_close_to_W_1l_1",
                     'Mass_l2': "Inv_Mass_2l"}
 
-    make_histos(eventTypes, histotypes)
+    make_histos(eventTypes, histotypes, init_dir)
 
 if __name__=='__main__':
     main()
