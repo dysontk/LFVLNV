@@ -2,6 +2,7 @@ import subprocess
 import numpy as np
 import re
 import ROOT
+import combineHistos
 
 def run_command(command, verbs=False):
     try:
@@ -72,62 +73,7 @@ def get_significance(cutNum):
     return BorS['LNVF']/(BorS['LNVF']+B)**(1/2)
 
 
-def combineHistos(eTypes):
 
-    histoPath = '/work/pi_mjrm_umass_edu/LNV_collider/AnalysisOutput/'
-
-    histotypes = {'WjPair':'Mass_2jW',
-                  'bothLeps_Wj': 'Mass_2jW2l',
-                  'leadingLep_Wj': 'Mass_2jW1l0',
-                  'subleadingLep_Wj': 'Mass_2jW1l1',
-                  'bothLeps': 'Mass_l2'}
-    histonames = {'WjPair': "Inv_Mass_2Jets_close_to_W"}
-                #   'bothLeps_Wj': "Inv_Mass_2Jets_close_to_W_2l",
-                #   'leadingLep_Wj': "Inv_Mass_2Jets_close_to_W_1l_0",
-                #   'subleadingLep_Wj': "Inv_Mass_2Jets_close_to_W_1l_1",
-                #   'bothLeps': "Inv_Mass_2l"}
-
-    ThisStack = ROOT.THStack('WjPair', 'Inv_Mass_2Jets_close_to_W')
-    theseHistos = []
-    for typ in eTypes:
-        thisPath = histoPath + typ + '/plots/' + 'Mass_2jW' + '.root'
-        print("Accessing: ", thisPath)
-        myFile = ROOT.TFile.Open(thisPath, 'READ')
-        myHisto = myFile.Get('Inv_Mass_2Jets_close_to_W')
-        print(type(myFile))
-        print(type(myHisto))
-    #     theseHistos.append(myHisto)
-    # for hist in theseHistos:
-    #     print(hist.Class_Name())
-        ThisStack.Add(myHisto)
-    
-
-    # Stax = {}
-    # for htyp in histonames:
-    #     Stax.update({htyp: ROOT.THStack(htyp, histotypes[htyp])})
-
-    canvas = ROOT.TCanvas("canvas")
-    canvas.cd()
-    ThisStack.Draw()
-    canvas.Print(histoPath+'plots/'+ 'WjPair' +'.png')
-    
-    # for htyp in histonames:
-    #     theseHistos = []
-    #     for typ in eTypes:
-    #         thisPath = histoPath + typ + '/plots/' + histotypes[htyp] + '.root'
-    #         thisHistFile = ROOT.TFile.Open(thisPath, "READ")
-    #         theseHistos.append(thisHistFile.Get(histonames[htyp]))
-    #     for hist in theseHistos:
-    #         # print(type(thisHist))
-    #         Stax[htyp].Add(hist)
-    #         print("Added ", typ, " to ", htyp)
-    #         # thisStack.Draw() 
-    #         # canvas.Print(histoPath+'plots/'+ htyp + typ +'.png')
-    #     Stax[htyp].Draw()
-    #     canvas.Print(histoPath+'plots/'+ htyp +'.png')
-
-    return ThisStack 
-        # WjPair, leadingLep_Wj, subleadingLep_Wj, bothLeps
 
         
 
@@ -142,7 +88,8 @@ def main():
     sig_arr = get_significance(nEventsByCuts)
 
     # print(sig_arr)
-    stacks = combineHistos(list_of_data_types)
+    # stacks = combineHistos(list_of_data_types)
+    combineHistos.main()
 
     for i in range(len(sig_arr)):
         print(f'Cut {i}: {sig_arr[i]}')
