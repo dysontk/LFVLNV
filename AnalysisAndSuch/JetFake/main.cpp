@@ -350,7 +350,7 @@ int main(int argc, const char * argv[])
     // Obj. name; Vert. axis vs. Horiz. axis; images produced by this
     //Invariant mass of the pair of jets closest to W mass -- Hereonout called W jets or W jet pair
     int scaleFactor = (EventType=="LNVF") ? 3: 1;
-    cout << "SCALE FACTOR" << scaleFactor << endl;
+    // cout << "SCALE FACTOR" << scaleFactor << endl;
     // float scaleFactor2 = (EventType=="O2") ? 1.5 : 1;
     int MW2jHistoParams[3] = {100, 0, 140};
     TH1F *MW2j = new TH1F("Inv_Mass_2Jets_close_to_W", "Inv. Mass 2 Jets", MW2jHistoParams[0], MW2jHistoParams[1], MW2jHistoParams[2]);
@@ -374,7 +374,7 @@ int main(int argc, const char * argv[])
     //Invariant mass of W jets and the sub-leading lepton
     int MW2j1l_1HistoParams[3] = {20, 0, 900};
     TH1F *MW2j1l_1  = new TH1F("Inv_Mass_2Jets_close_to_W_1l_1", "Inv. Mass 2 Jets + Lep_1", MW2j1l_1HistoParams[0], MW2j1l_1HistoParams[1], MW2j1l_1HistoParams[2]);
-
+    cout << MW2j2lHistoParams[2]<< endl;
     // TH1F *M2lTroubleshoot = new TH1F("Inv_Mass_2l", "Inv. Mass 2 Lep",  70, 0, 10);
 
 // Figure out how to best use this later based on how I do the cuts
