@@ -74,7 +74,7 @@ def make_histos(eventTypes, histoTypes, startdir):
         ax.set_title(histotitles[htyp])
         ax.set_xlabel("GeV")
         ax.legend()
-        figurepath = '/Users/dysonk/Work/LNV_collider/AnalysisOutput/'+histonames2[htyp]+'.png'
+        figurepath = '/work/pi_mjrm_umass_edu/LNV_collider/AnalysisOutput/'+histonames2[htyp]+'.png'
         # print(figurepath)
         plt.savefig(figurepath)
 
