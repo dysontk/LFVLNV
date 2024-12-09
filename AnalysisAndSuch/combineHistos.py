@@ -18,18 +18,23 @@ def rawHisto_to_datArr(startHisto):
         for n in range(int(values[v])):
             fake_data.append(mids[v])
 
-    print(fake_data)
+    # print(fake_data)
     return np.array(fake_data)
 
 def get_histo(eventType, hisTyp):
     thisFilePath = init_dir+eventType+'/plots/'+hisTyp+'.root'
-    print(thisFilePath)
+    # print(thisFilePath)
     thisOne = uproot.open(thisFilePath)[hisTyp]
     thisHist = thisOne.to_hist().plot(label=eventType)
     return thisHist[0]
 
 def get_data(eventType, histogramtype, startingdir):
-    print(histogramtype)
+    # print(histogramtype)
+    histonames2 = {'Mass_2jW': "Inv_Mass_2Jets_close_to_W",
+                    'Mass_2jW2l': "Inv_Mass_2Jets_close_to_W_2l",
+                    'Mass_2jW1l0': "Inv_Mass_2Jets_close_to_W_1l_0",
+                    'Mass_2jW1l1': "Inv_Mass_2Jets_close_to_W_1l_1",
+                    'Mass_l2': "Inv_Mass_2l"}
     thisFilePath = startingdir+eventType+'/plots/'+histogramtype+'.root'
     thisOne = uproot.open(thisFilePath)[histonames2[histogramtype]]
     data = thisOne.values()
@@ -44,6 +49,11 @@ def make_histos(eventTypes, histoTypes, startdir):
                   'Mass_2jW1l0': "$\Delta M_{Wjj+l_0}$",
                   'Mass_2jW1l1': "$\Delta M_{Wjj+l_1}$",
                   'Mass_l2': "$\Delta m_{ll}$"}
+    histonames2 = {'Mass_2jW': "Inv_Mass_2Jets_close_to_W",
+                    'Mass_2jW2l': "Inv_Mass_2Jets_close_to_W_2l",
+                    'Mass_2jW1l0': "Inv_Mass_2Jets_close_to_W_1l_0",
+                    'Mass_2jW1l1': "Inv_Mass_2Jets_close_to_W_1l_1",
+                    'Mass_l2': "Inv_Mass_2l"}
     
     for htyp in histoTypes:
         print("making: ", htyp)
@@ -65,7 +75,7 @@ def make_histos(eventTypes, histoTypes, startdir):
         ax.set_xlabel("GeV")
         ax.legend()
         figurepath = '/Users/dysonk/Work/LNV_collider/AnalysisOutput/'+histonames2[htyp]+'.png'
-        print(figurepath)
+        # print(figurepath)
         plt.savefig(figurepath)
 
 def main():
@@ -80,11 +90,7 @@ def main():
                     'subleadingLep_Wj': "Inv_Mass_2Jets_close_to_W_1l_1",
                     'bothLeps': "Inv_Mass_2l"}
     
-    histonames2 = {'Mass_2jW': "Inv_Mass_2Jets_close_to_W",
-                    'Mass_2jW2l': "Inv_Mass_2Jets_close_to_W_2l",
-                    'Mass_2jW1l0': "Inv_Mass_2Jets_close_to_W_1l_0",
-                    'Mass_2jW1l1': "Inv_Mass_2Jets_close_to_W_1l_1",
-                    'Mass_l2': "Inv_Mass_2l"}
+    
 
     make_histos(eventTypes, histotypes, init_dir)
 
