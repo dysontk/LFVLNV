@@ -350,6 +350,7 @@ int main(int argc, const char * argv[])
     // Obj. name; Vert. axis vs. Horiz. axis; images produced by this
     //Invariant mass of the pair of jets closest to W mass -- Hereonout called W jets or W jet pair
     int scaleFactor = (EventType=="LNVF") ? 3: 1;
+    cout << "SCALE FACTOR" << scaleFactor << endl;
     // float scaleFactor2 = (EventType=="O2") ? 1.5 : 1;
     int MW2jHistoParams[3] = {100, 0, 140};
     TH1F *MW2j = new TH1F("Inv_Mass_2Jets_close_to_W", "Inv. Mass 2 Jets", MW2jHistoParams[0], MW2jHistoParams[1], MW2jHistoParams[2]);
