@@ -42,7 +42,7 @@ def get_data(eventType, histogramtype, startingdir):
               'bounds': (thisOne.axis(0).low, thisOne.axis(0).high)}
     return output 
 
-def make_histos(eventTypes, histoTypes, startdir):
+def make_histos(eventTypes, histoTypes, startdir, addonDIR=''):
     
     histotitles = {'Mass_2jW': "$\Delta M_{Wjj}$",
                   'Mass_2jW2l': "$\Delta M_{Wjj+ll}$",
@@ -62,7 +62,10 @@ def make_histos(eventTypes, histoTypes, startdir):
         for typ in eventTypes:
             datas.update({typ:get_data(typ, htyp, startdir)})
 
-        bottom = np.zeros(len(datas['LNVF']['data']))
+        templateKey = list(datas.keys())[0]
+        # print(type(templateKey))
+        # print(templateKey)
+        bottom = np.zeros(len(datas[templateKey]['data']))
         for typ in datas:
             low = datas[typ]['bounds'][0]
             hi = datas[typ]['bounds'][1]
@@ -73,12 +76,29 @@ def make_histos(eventTypes, histoTypes, startdir):
             bottom += datas[typ]['data']
         ax.set_title(histotitles[htyp])
         ax.set_xlabel("GeV")
+        if addonDIR!='':
+            #this means it's just the no signal
+            bounds = {'Mass_2jW2l': [0,1100],
+                    'Mass_2jW1l0': [0,900],
+                    'Mass_2jW1l1': [0,750],
+                    'Mass_l2': [0,450]}
+            try:
+                ax.set_xlim(bounds[htyp])
+            except KeyError:
+                print("This must be the signal")
         ax.legend()
-        figurepath = '/work/pi_mjrm_umass_edu/LNV_collider/AnalysisOutput/'+histonames2[htyp]+'.png'
+        figurepath = startdir+addonDIR+histonames2[htyp]+'.png'
+        # '/work/pi_mjrm_umass_edu/LNV_collider/AnalysisOutput/'
         # print(figurepath)
         plt.savefig(figurepath)
 
-def main():
+def NoSignalHistos(hT, startdir):
+
+    make_histos(['ZZ2j', 'WZ2j', 'W3j', 'ttbar'], hT, startdir, addonDIR='NoSignal/')
+    
+
+
+def OnCluster():
     init_dir = '/work/pi_mjrm_umass_edu/LNV_collider/AnalysisOutput/'
     eventTypes = ['LNVF', 'ZZ2j', 'WZ2j', 'W3j', 'ttbar']
     # histoType = 'bothLeps'
@@ -89,10 +109,24 @@ def main():
                     'leadingLep_Wj': "Inv_Mass_2Jets_close_to_W_1l_0",
                     'subleadingLep_Wj': "Inv_Mass_2Jets_close_to_W_1l_1",
                     'bothLeps': "Inv_Mass_2l"}
+    make_histos(eventTypes, histotypes, init_dir)
+    NoSignalHistos(histotypes, init_dir)
+
     
-    
+def main():
+    init_dir = '/Users/dysonk/Work/AnalysisOutput/'
+    eventTypes = ['LNVF', 'ZZ2j', 'WZ2j', 'W3j', 'ttbar']
+    # histoType = 'bothLeps'
+
+    histotypes = ['Mass_2jW', 'Mass_2jW2l', 'Mass_2jW1l0', 'Mass_2jW1l1', 'Mass_l2']
+    histonames = {'WjPair': "Inv_Mass_2Jets_close_to_W",
+                    'bothLeps_Wj': "Inv_Mass_2Jets_close_to_W_2l",
+                    'leadingLep_Wj': "Inv_Mass_2Jets_close_to_W_1l_0",
+                    'subleadingLep_Wj': "Inv_Mass_2Jets_close_to_W_1l_1",
+                    'bothLeps': "Inv_Mass_2l"}
 
     make_histos(eventTypes, histotypes, init_dir)
+    NoSignalHistos(histotypes, init_dir)
 
 if __name__=='__main__':
     main()

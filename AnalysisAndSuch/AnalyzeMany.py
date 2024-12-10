@@ -89,7 +89,7 @@ def main():
 
     # print(sig_arr)
     # stacks = combineHistos(list_of_data_types)
-    combineHistos.main()
+    combineHistos.OnCluster()
 
     for i in range(len(sig_arr)):
         print(f'Cut {i}: {sig_arr[i]}')
