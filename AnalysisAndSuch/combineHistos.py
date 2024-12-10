@@ -85,7 +85,7 @@ def make_histos(eventTypes, histoTypes, startdir, addonDIR=''):
             try:
                 ax.set_xlim(bounds[htyp])
             except KeyError:
-                print("This must be the signal")
+                print("This must be the Wjj")
         ax.legend()
         figurepath = startdir+addonDIR+histonames2[htyp]+'.png'
         # '/work/pi_mjrm_umass_edu/LNV_collider/AnalysisOutput/'
