@@ -82,7 +82,7 @@ def make_histos(eventTypes, histoTypes, startdir, addonDIR=''):
             ticks = np.linspace(low, hi, num=bins)
             p = ax.bar(ticks, to_plot, hi/bins,
                         label=typ, bottom=bottom)
-            bottom += datas[typ]['data']
+            bottom += to_plot
         ax.set_title(histotitles[htyp])
         ax.set_xlabel("GeV")
         if addonDIR!='':
