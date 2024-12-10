@@ -55,6 +55,14 @@ def make_histos(eventTypes, histoTypes, startdir, addonDIR=''):
                     'Mass_2jW1l1': "Inv_Mass_2Jets_close_to_W_1l_1",
                     'Mass_l2': "Inv_Mass_2l"}
     
+    crossX = {'LNVF':0.0001279,
+              'WZ2j':0.09764,
+              'ZZ2j':0.005395,
+              'W3j':409.9,
+              'ttbar':22.74} #pb
+    intd_lumin = 0.139 #pb^-1
+    
+    
     for htyp in histoTypes:
         print("making: ", htyp)
         fig, ax = plt.subplots()
@@ -70,8 +78,9 @@ def make_histos(eventTypes, histoTypes, startdir, addonDIR=''):
             low = datas[typ]['bounds'][0]
             hi = datas[typ]['bounds'][1]
             bins = len(datas[typ]['data'])
+            to_plot = intd_lumin*crossX[typ]*datas[typ]['data']
             ticks = np.linspace(low, hi, num=bins)
-            p = ax.bar(ticks, datas[typ]['data'], hi/bins,
+            p = ax.bar(ticks, to_plot, hi/bins,
                         label=typ, bottom=bottom)
             bottom += datas[typ]['data']
         ax.set_title(histotitles[htyp])
