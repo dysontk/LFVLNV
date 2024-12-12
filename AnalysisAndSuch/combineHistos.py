@@ -2,6 +2,7 @@ import ROOT
 import uproot
 import matplotlib.pyplot as plt
 import numpy as np
+import read_many2
 
 def rawHisto_to_datArr(startHisto):
     values = startHisto.values()
@@ -42,6 +43,17 @@ def get_data(eventType, histogramtype, startingdir):
               'bounds': (thisOne.axis(0).low, thisOne.axis(0).high)}
     return output 
 
+def pull_init_events():
+    file_to_read = '../GenerationFiles/event_counts.txt'
+    evDict = read_many2.read_num_events(file_to_read)
+    
+    outDict = {}
+    for key in evDict:
+        outDict.update({key: evDict[key]['events']})
+    print(outDict)
+    return outDict
+
+
 def make_histos(eventTypes, histoTypes, startdir, addonDIR=''):
     
     histotitles = {'Mass_2jW': "$\Delta M_{Wjj}$",
@@ -55,12 +67,22 @@ def make_histos(eventTypes, histoTypes, startdir, addonDIR=''):
                     'Mass_2jW1l1': "Inv_Mass_2Jets_close_to_W_1l_1",
                     'Mass_l2': "Inv_Mass_2l"}
     
-    crossX = {'LNVF':0.0001279,
-              'WZ2j':0.09764,
-              'ZZ2j':0.005395,
-              'W3j':409.9,
-              'ttbar':22.74} #pb
+    crossX = {'LNVF':0.0001279, # For real stuff, what should I use for this? IG just the madgraph numbers
+              'WZ2j':42.4,
+              'ZZ2j':16.0,
+              'W3j':32.4,
+              'ttbar':208.2} #pb
     intd_lumin = 0.139 #pb^-1
+
+    branchingRatio = {'LNVF':1,
+                      'WZ2j':1, 
+                      'ZZ2j':1,
+                      'W3j':1,
+                      'ttbar':1}
+    initEvents = pull_init_events()
+    scalefactor = {}
+    for key in crossX:
+        scalefactor.update({key: crossX[key]*branchingRatio[key]*intd_lumin/initEvents[key]})
     
     
     for htyp in histoTypes:
@@ -78,7 +100,7 @@ def make_histos(eventTypes, histoTypes, startdir, addonDIR=''):
             low = datas[typ]['bounds'][0]
             hi = datas[typ]['bounds'][1]
             bins = len(datas[typ]['data'])
-            to_plot = intd_lumin*crossX[typ]*datas[typ]['data']
+            to_plot = scalefactor[typ]*datas[typ]['data']
             ticks = np.linspace(low, hi, num=bins)
             p = ax.bar(ticks, to_plot, hi/bins,
                         label=typ, bottom=bottom)
@@ -103,13 +125,13 @@ def make_histos(eventTypes, histoTypes, startdir, addonDIR=''):
 
 def NoSignalHistos(hT, startdir):
 
-    make_histos(['ZZ2j', 'WZ2j', 'W3j', 'ttbar'], hT, startdir, addonDIR='NoSignal/')
+    make_histos(['W3j', 'ttbar', 'ZZ2j', 'WZ2j'], hT, startdir, addonDIR='NoSignal/')
     
 
 
 def OnCluster():
     init_dir = '/work/pi_mjrm_umass_edu/LNV_collider/AnalysisOutput/'
-    eventTypes = ['LNVF', 'ZZ2j', 'WZ2j', 'W3j', 'ttbar']
+    eventTypes = ['LNVF', 'W3j', 'ttbar', 'ZZ2j', 'WZ2j',]
     # histoType = 'bothLeps'
 
     histotypes = ['Mass_2jW', 'Mass_2jW2l', 'Mass_2jW1l0', 'Mass_2jW1l1', 'Mass_l2']
@@ -124,7 +146,7 @@ def OnCluster():
     
 def main():
     init_dir = '/Users/dysonk/Work/AnalysisOutput/'
-    eventTypes = ['LNVF', 'ZZ2j', 'WZ2j', 'W3j', 'ttbar']
+    eventTypes = ['LNVF', 'W3j', 'ttbar', 'ZZ2j', 'WZ2j']
     # histoType = 'bothLeps'
 
     histotypes = ['Mass_2jW', 'Mass_2jW2l', 'Mass_2jW1l0', 'Mass_2jW1l1', 'Mass_l2']

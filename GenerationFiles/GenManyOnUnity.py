@@ -118,7 +118,7 @@ class RunHandler:
                 self.runs_gend += 1
             else:
                 # self.runs_gend = rn
-                print(f"There are over 10k events for {self.eventType}. \nEnding Event Generation")
+                print(f"There are over 200k events for {self.eventType}. \nEnding Event Generation")
                 break
 
         if self.tot_nevents < 200_000:
@@ -228,6 +228,7 @@ if __name__ == '__main__':
         print(config.instance_count+int(event_count_dict[config.eventType]['runs']))
 
     allAttempts = AllRunHandler(allAttemptsConfig)
+    read_many.redoCounts(eventTypes, 0)
 
     # edit this to run, check how many have gend, then repeat until 200k... no truncate how many are asked for once 200k is reached. 
         

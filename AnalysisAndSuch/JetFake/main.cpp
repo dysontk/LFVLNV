@@ -366,13 +366,13 @@ int main(int argc, const char * argv[])
     else M2l = new TH1F("Inv_Mass_2l", "Inv. Mass 2 Lep", M2lHistoParams[0], M2lHistoParams[1], M2lHistoParams[2]);
 
     //Invariant mass of W jets and leading lepton
-    int MW2j1l_0HistoParams[3] = {30, 0, 1700};
+    int MW2j1l_0HistoParams[3] = {120, 0, 1700};
     // cout << "SF: "<< scaleFactor<< endl;
     // cout << "SF2: " << scaleFactor2<< endl;
     TH1F *MW2j1l_0 = new TH1F("Inv_Mass_2Jets_close_to_W_1l_0", "Inv. Mass 2 Jets + Lep_0", MW2j1l_0HistoParams[0], MW2j1l_0HistoParams[1], MW2j1l_0HistoParams[2]);
 
     //Invariant mass of W jets and the sub-leading lepton
-    int MW2j1l_1HistoParams[3] = {30, 0, 1600};
+    int MW2j1l_1HistoParams[3] = {120, 0, 1600};
     TH1F *MW2j1l_1  = new TH1F("Inv_Mass_2Jets_close_to_W_1l_1", "Inv. Mass 2 Jets + Lep_1", MW2j1l_1HistoParams[0], MW2j1l_1HistoParams[1], MW2j1l_1HistoParams[2]);
     cout << MW2j2lHistoParams[2]<< endl;
     // TH1F *M2lTroubleshoot = new TH1F("Inv_Mass_2l", "Inv. Mass 2 Lep",  70, 0, 10);
@@ -539,42 +539,12 @@ int main(int argc, const char * argv[])
             // Signal definition
 
             //Now it is time to find the pair of jets that are close to W
-            if (all_jets.size() < 1) 
+            if (all_jets.size() <= 1) 
             {   
                 
                 // if (VERBOSE)cout << "Not enough jets"<< endl;
                 continue;
             }
-
-            // vector<PseudoJet> flipToM;
-            // vector<PseudoJet> flipToP;
-            
-
-            // for(int l=0; l<max(v_lepP.size(), v_lepM.size()); l++)
-            // {
-            //     if (l<v_lepP.size())
-            //     {
-            //         float randoP = gRandom->Uniform();
-            //         // PseudoJet this_lepP = v_lepP[l];
-            //         float rateP = ChargeFlipRate(v_lepP[l].Eta(), v_lepP[l].pt());
-            //         if (rateP > randoP)
-            //         {
-            //             cout << "I should flip this to M"<< endl;
-            //         }
-            //     }
-
-            //     if (l<v_lepM.size())
-            //     {
-            //         float randoM = gRandom->Uniform();
-            //         // PseudoJet this_lepP = v_lepP[l];
-            //         float rateM = ChargeFlipRate(v_lepM[l].Eta(), v_lepM[l].pt());
-            //         if (rateM > randoM)
-            //         {
-            //             cout << "I should flip this to P"<< endl;
-            //         }
-            //     }
-                
-            // }
             int lPairType = 0; // ee->0, eμ -> 1, μμ -> 2
             bool lPairPlus = false; // false: --, true: ++
 
