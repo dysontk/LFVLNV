@@ -75,10 +75,10 @@ def make_histos(eventTypes, histoTypes, startdir, addonDIR=''):
     intd_lumin = 0.139 #pb^-1
 
     branchingRatio = {'LNVF':1,
-                      'WZ2j':1, 
-                      'ZZ2j':1,
-                      'W3j':1,
-                      'ttbar':1}
+                      'WZ2j':(3.3645/100)*(10.67/100*2), 
+                      'ZZ2j':(3.3645/100)**2,
+                      'W3j':(10.67/100*2),
+                      'ttbar':13.35/100}
     initEvents = pull_init_events()
     scalefactor = {}
     for key in crossX:
