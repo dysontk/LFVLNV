@@ -1,6 +1,6 @@
 import sys, os, subprocess, re
 # sys.path.append(os.path.abspath('/home/dysontravis/Research/LFVLNV/GenerationFiles/'))
-import GenManyOnUnity as GMOU
+import GenManyOnUnity2 as GMOU
 import numpy as np
 
 
