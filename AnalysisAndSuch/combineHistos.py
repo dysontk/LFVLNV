@@ -82,7 +82,7 @@ def make_histos(eventTypes, histoTypes, startdir, addonDIR=''):
     initEvents = pull_init_events()
     scalefactor = {}
     for key in crossX:
-        scalefactor.update({key: crossX[key]*branchingRatio[key]*intd_lumin/initEvents[key]})
+        scalefactor.update({key: crossX[key]*branchingRatio[key]*intd_lumin/int(initEvents[key])})
     
     
     for htyp in histoTypes:
