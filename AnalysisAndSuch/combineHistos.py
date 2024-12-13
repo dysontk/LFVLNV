@@ -78,7 +78,7 @@ def make_histos(eventTypes, histoTypes, startdir, addonDIR=''):
                       'WZ2j':(3.3645/100)*(10.67/100*2), 
                       'ZZ2j':(3.3645/100)**2,
                       'W3j':(10.67/100*2),
-                      'ttbar': 1/1000#13.35/100}
+                      'ttbar': 1/1000}#13.35/100}
     initEvents = pull_init_events()
     scalefactor = {}
     for key in crossX:
