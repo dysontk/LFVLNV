@@ -44,7 +44,7 @@ def get_data(eventType, histogramtype, startingdir):
     return output 
 
 def pull_init_events():
-    file_to_read = open('../GenerationFiles/event_counts.txt')
+    file_to_read = open('~/LNV/MyFiles/LFVLNV/GenerationFiles/event_counts.txt')
     evDict = read_many2.read_num_events(file_to_read)
     
     outDict = {}
