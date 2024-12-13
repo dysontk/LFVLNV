@@ -2,7 +2,7 @@ import subprocess
 import re
 from dataclasses import dataclass, asdict
 import time
-import read_many
+import read_many2
 import numpy as np
 import math
 VERBOSE = True
