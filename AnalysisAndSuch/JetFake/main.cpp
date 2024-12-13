@@ -352,7 +352,7 @@ int main(int argc, const char * argv[])
     int scaleFactor = (EventType=="LNVF") ? 3: 1;
     // cout << "SCALE FACTOR" << scaleFactor << endl;
     // float scaleFactor2 = (EventType=="O2") ? 1.5 : 1;
-    int MW2jHistoParams[3] = {100, 0, 140};
+    int MW2jHistoParams[3] = {50, 0, 140};
     TH1F *MW2j = new TH1F("Inv_Mass_2Jets_close_to_W", "Inv. Mass 2 Jets", MW2jHistoParams[0], MW2jHistoParams[1], MW2jHistoParams[2]);
     
     // Invariant mass of W jet pair and leading leptons (Are these necessarily going to be s.s. leptons?)
