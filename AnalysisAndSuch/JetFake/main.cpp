@@ -307,7 +307,7 @@ int main(int argc, const char * argv[])
     fstream numsignalish;
     // string eventTypeString = string(EventType);
     char sig_count_file_path = strcat(strcat("~/LNV/MyFiles/LFVLNV/AnalysisAndSuch/dilep_dijet_count_", EventType),".txt");
-    numsignalish.open(sig_count_file_path);
+    numsignalish.open(string(sig_count_file_path));
 
     ExRootTreeReader *treeReader = new ExRootTreeReader(&chain);
     Long64_t NumEntries = treeReader->GetEntries();
