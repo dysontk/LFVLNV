@@ -68,17 +68,17 @@ def make_histos(eventTypes, histoTypes, startdir, addonDIR=''):
                     'Mass_l2': "Inv_Mass_2l"}
     
     crossX = {'LNVF':0.0001279, # For real stuff, what should I use for this? IG just the madgraph numbers
-              'WZ2j':42.4,
-              'ZZ2j':16.0,
-              'W3j':32.4,
-              'ttbar':208.2} #pb
+              'WZ2j':55.2,
+              'ZZ2j':16.8,
+              'W3j':50.0,
+              'ttbar':888} #pb
     intd_lumin = 0.139 #pb^-1
 
     branchingRatio = {'LNVF':1,
-                      'WZ2j':(3.3645/100)*(10.67/100*2), 
-                      'ZZ2j':(3.3645/100)**2,
-                      'W3j':(10.67/100*2),
-                      'ttbar': 1/1000}#13.35/100}
+                      'WZ2j':21.34/100*6.729/100, 
+                      'ZZ2j':(6.729/100)**2,
+                      'W3j':21.34/100,
+                      'ttbar': 26.7/100}#13.35/100}
     initEvents = pull_init_events()
     scalefactor = {}
     for key in crossX:
