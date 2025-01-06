@@ -80,7 +80,13 @@ def get_significance(cutNum):
 
 
 def main():
-    list_of_data_types = ['LNVF' , 'WZ2j', 'ZZ2j', 'W3j', 'ttbar']
+    list_of_data_types = [
+        # 'LNVF',
+        'WZ2j',
+        'ZZ2j',
+        'W3j',
+        # 'ttbar'
+        ]
 
     
     nEventsByCuts = multi_analysis(list_of_data_types)
