@@ -129,9 +129,9 @@ def NoSignalHistos(hT, startdir):
     
 
 
-def OnCluster():
+def OnCluster(eventTypes):
     init_dir = '/work/pi_mjrm_umass_edu/LNV_collider/AnalysisOutput/'
-    eventTypes = ['LNVF', 'W3j', 'ttbar', 'ZZ2j', 'WZ2j',]
+    # eventTypes = ['LNVF', 'W3j', 'ttbar', 'ZZ2j', 'WZ2j',]
     # histoType = 'bothLeps'
 
     histotypes = ['Mass_2jW', 'Mass_2jW2l', 'Mass_2jW1l0', 'Mass_2jW1l1', 'Mass_l2']
