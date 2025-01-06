@@ -123,9 +123,9 @@ def make_histos(eventTypes, histoTypes, startdir, addonDIR=''):
         # print(figurepath)
         plt.savefig(figurepath)
 
-def NoSignalHistos(hT, startdir):
+def NoSignalHistos(eventTypes, hT, startdir):
 
-    make_histos(['W3j', 'ttbar', 'ZZ2j', 'WZ2j'], hT, startdir, addonDIR='NoSignal/')
+    make_histos(eventTypes, hT, startdir, addonDIR='NoSignal/')
     
 
 
@@ -141,7 +141,7 @@ def OnCluster(eventTypes):
                     'subleadingLep_Wj': "Inv_Mass_2Jets_close_to_W_1l_1",
                     'bothLeps': "Inv_Mass_2l"}
     make_histos(eventTypes, histotypes, init_dir)
-    NoSignalHistos(histotypes, init_dir)
+    NoSignalHistos(eventTypes, histotypes, init_dir)
 
     
 def main():
