@@ -91,7 +91,7 @@ def main():
     
     nEventsByCuts = multi_analysis(list_of_data_types)
 
-    sig_arr = get_significance(nEventsByCuts)
+    # sig_arr = get_significance(nEventsByCuts)
 
     # print(sig_arr)
     # stacks = combineHistos(list_of_data_types)
