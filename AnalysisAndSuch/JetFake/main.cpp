@@ -304,11 +304,6 @@ int main(int argc, const char * argv[])
         cout << argv[i]<< endl;
     }
 
-    fstream numsignalish;
-    // string eventTypeString = string(EventType);
-    char sig_count_file_path = strcat(strcat("~/LNV/MyFiles/LFVLNV/AnalysisAndSuch/dilep_dijet_count_", EventType),".txt");
-    numsignalish.open(string(sig_count_file_path));
-
     ExRootTreeReader *treeReader = new ExRootTreeReader(&chain);
     Long64_t NumEntries = treeReader->GetEntries();
     cout << "There are "<< NumEntries <<" Entries." <<endl;
@@ -818,7 +813,7 @@ int main(int argc, const char * argv[])
         cout << "Events by Cut"<< endl;
         cout << NumEntries << endl;
         for (int c=0; c<numCutCats.size(); c++) cout << numCutCats[c]<< endl;
-        numsignalish << numCutCats[0]<< endl;
+        
     }
 
 }
