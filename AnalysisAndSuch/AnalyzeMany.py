@@ -91,14 +91,23 @@ def main():
     
     nEventsByCuts = multi_analysis(list_of_data_types)
 
-    # sig_arr = get_significance(nEventsByCuts)
+    sig_arr = 0
+    
+    has_sig = False
+    for typ in list_of_data_types:
+        if typ == 'LNVF':
+            has_sig = True
+    if has_sig:
+        sig_arr= get_significance(nEventsByCuts)
 
     # print(sig_arr)
     # stacks = combineHistos(list_of_data_types)
     combineHistos.OnCluster()
-
-    for i in range(len(sig_arr)):
-        print(f'Cut {i}: {sig_arr[i]}')
+    
+    if has_sig:
+        sig_arr= get_significance(nEventsByCuts)
+        for i in range(len(sig_arr)):
+            print(f'Cut {i}: {sig_arr[i]}')
 
     
 
