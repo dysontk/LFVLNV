@@ -102,7 +102,7 @@ def main():
 
     # print(sig_arr)
     # stacks = combineHistos(list_of_data_types)
-    combineHistos.OnCluster()
+    combineHistos.OnCluster(list_of_data_types)
     
     if has_sig:
         sig_arr= get_significance(nEventsByCuts)
