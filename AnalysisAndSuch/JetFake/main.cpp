@@ -122,7 +122,7 @@ Bool Below_DeltaR_Diff(vector<PseudoJet> par1, vector<PseudoJet> par2, double de
     return false;
 }
 
-Bool PreselectionCuts(vector<PseudoJet> leptons) // This function intakes the vector of all charged leptons already sorted by pt
+Bool PreselectionCuts(vector<PseudoJet> leptons, vector<int> &removalCounts) // This function intakes the vector of all charged leptons already sorted by pt
 { //This function returns true if the event should be kept. This function returns false if the event should be rejected.
     // shouldKeep=true;
     //First cut: remove high P_t 3rd leptons
@@ -132,13 +132,22 @@ Bool PreselectionCuts(vector<PseudoJet> leptons) // This function intakes the ve
         {
             // shouldKeep=false;
             return false;
+            *removalCounts[0]++;
         }
     }
     //Second cut: remove if leading lep pair has low inv. mass
-    else if((leptons[0]+leptons[1]).m()<10) return false;
+    else if((leptons[0]+leptons[1]).m()<10)
+    {
+        return false;
+        *removalCounts[1]++;
+    } 
 
     //Third cut: is inv. mass of leading leptons near M_Z?
-    else if (abs((leptons[0]+leptons[1]).m() - 91.2) < 20) return false;
+    else if (abs((leptons[0]+leptons[1]).m() - 91.2) < 20)
+    {
+        return false;
+        *removalCounts[2]++;
+    }
 
     return true;
 
@@ -391,6 +400,7 @@ int main(int argc, const char * argv[])
     */
     // int numCutCats[4] = {0, 0, 0, 0}; //events that pass 0: signal def, 1: preselection, 2: HMSR1, 3: Misc.
     vector<int> numCutCats = {0, 0, 0, 0};
+    vector<int> deepCuts = {0, 0, 0, 0, 0, 0, 0, 0, 0}; // events that get removed by each cut. 1a-b, 2a-b, 3a-b
     // double cutsSize = sizeof(numCutCats)/sizeof(int);
     cout << "num cuts " << numCutCats.size() << endl;
     for (int c=0; c<numCutCats.size(); c++) cout << numCutCats[c]<< endl;
@@ -565,7 +575,7 @@ int main(int argc, const char * argv[])
             //All events that made it here should have s.s. dilepton pair and 2+ jets
             // Preselection Criteria: CMS Sec 5.1
 
-            if (!PreselectionCuts(v_lep)) continue; // Preselection returns false if the event should be rejected.
+            if (!PreselectionCuts(v_lep, &deepCuts)) continue; // Preselection returns false if the event should be rejected.
             numCutCats[1]++;
             
             // High Mass SR 1-------------------------------------------------------------------------------------------------------------------------
