@@ -366,7 +366,7 @@ int main(int argc, const char * argv[])
     else M2l = new TH1F("Inv_Mass_2l", "Inv. Mass 2 Lep", M2lHistoParams[0], M2lHistoParams[1], M2lHistoParams[2]);
 
     //Invariant mass of W jets and leading lepton
-    int MW2j1l_0HistoParams[3] = {120, 0, 1700};
+    int MW2j1l_0HistoParams[3] = {90, 0, 1700};
     // cout << "SF: "<< scaleFactor<< endl;
     // cout << "SF2: " << scaleFactor2<< endl;
     TH1F *MW2j1l_0 = new TH1F("Inv_Mass_2Jets_close_to_W_1l_0", "Inv. Mass 2 Jets + Lep_0", MW2j1l_0HistoParams[0], MW2j1l_0HistoParams[1], MW2j1l_0HistoParams[2]);
