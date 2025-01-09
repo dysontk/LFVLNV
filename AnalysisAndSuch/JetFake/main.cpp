@@ -837,9 +837,12 @@ int main(int argc, const char * argv[])
         cout << "I flipped this many electrons "<< numFlippede << endl;
         cout << "I flipped this many muons "<< numFlippedmu << endl; 
 
-        cout << "Events by Cut"<< endl;
+        cout << "Events by Cut Group"<< endl;
         cout << NumEntries << endl;
         for (int c=0; c<numCutCats.size(); c++) cout << numCutCats[c]<< endl;
+
+        cout << "Events removed by Cut" << endl;
+        for (int r=0; r<deepCuts.size(); r++) cout << deepCuts[r] << endl;
         
     }
 
