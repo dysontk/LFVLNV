@@ -131,21 +131,21 @@ Bool PreselectionCuts(vector<PseudoJet> leptons, int *removalCounts) // This fun
         if (leptons[2].pt() > 10) 
         {
             // shouldKeep=false;
-            (*removalCounts)++; // this increments the element corresponding to the passed address
+            (*removalCounts)++; // this increments the element corresponding to the passed address -- Cut 1a
             return false;
         }
     }
     //Second cut: remove if leading lep pair has low inv. mass
     else if((leptons[0]+leptons[1]).m()<10)
     {
-        (*(removalCounts+1))++; // This increments the element corresponding to the one after the passed address
+        (*(removalCounts+1))++; // This increments the element corresponding to the one after the passed address -- Cut 1b
         return false;
     } 
 
     //Third cut: is inv. mass of leading leptons near M_Z?
     else if (abs((leptons[0]+leptons[1]).m() - 91.2) < 20)
     {
-        (*(removalCounts+2))++; // same but the one after the the one after the one passed
+        (*(removalCounts+2))++; // same but the one after the the one after the one passed -- Cut 1c
         return false;
     }
 
@@ -193,7 +193,7 @@ Bool HMSR1Cuts(vector<PseudoJet> leptons, vector<PseudoJet> Jets, vector<PseudoJ
             int htsum = 0;
             if (Jets[0].pt()<=25) 
             {
-                (*removalCounts)++; // this increments the element corresponding to the passed address
+                (*removalCounts)++; // this increments the element corresponding to the passed address  -- Cut 2a
                 return false;
             }
             // cout << "Here"<< endl;
@@ -214,7 +214,7 @@ Bool HMSR1Cuts(vector<PseudoJet> leptons, vector<PseudoJet> Jets, vector<PseudoJ
                 // cout << v_MET.size()<< endl;
                 if (pow(MET[0].pt(),2)/htsum > 15)
                 {
-                    (*(removalCounts+1))++; // this increments the element corresponding to the passed address
+                    (*(removalCounts+1))++; // this increments the element corresponding to the passed address  -- Cut 2b
                     return false;
                 }
             }
@@ -251,7 +251,7 @@ Bool HMSR1Cuts(vector<PseudoJet> leptons, vector<PseudoJet> Jets, vector<PseudoJ
             if (M_Wj < 30 || M_Wj > 150) 
             {
                 return false;
-                (*(removalCounts+2))++; // this increments the element corresponding to the passed address
+                (*(removalCounts+2))++; // this increments the element corresponding to the passed address   -- Cut 2c
             }
             else return true;
 }
@@ -653,7 +653,7 @@ int main(int argc, const char * argv[])
             bool rejectDeltaR = false;
             if (Below_DeltaR_Diff(v_lep, all_jets, 0.4) || (Below_DeltaR_Same(v_lep, 0.4)) || (Below_DeltaR_Same(all_jets, 0.4)))
             {
-                deepCuts[6]++;
+                deepCuts[6]++; // Cut 3a
                 continue;
             }
 
@@ -661,7 +661,7 @@ int main(int argc, const char * argv[])
             //Not sure why we are doing it.
             if(!b_jets.size())
             {
-                deepCuts[7]++;
+                deepCuts[7]++; // Cut 3b
                 continue;
             }
 
@@ -701,7 +701,7 @@ int main(int argc, const char * argv[])
            int trailingThresh[3] = {15, 10, 10};
            if ((v_lep[0].pt() < leadingThresh[lPairType] || v_lep[1].pt() < trailingThresh[lPairType]))
            {
-                deepCuts[8]++;
+                deepCuts[8]++; //Cut 3c
                 continue;
            }
            numCutCats[3]++;
