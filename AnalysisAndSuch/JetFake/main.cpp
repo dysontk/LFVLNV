@@ -122,7 +122,7 @@ Bool Below_DeltaR_Diff(vector<PseudoJet> par1, vector<PseudoJet> par2, double de
     return false;
 }
 
-Bool PreselectionCuts(vector<PseudoJet> leptons, vector<int> &removalCounts) // This function intakes the vector of all charged leptons already sorted by pt
+Bool PreselectionCuts(vector<PseudoJet> leptons, int *removalCounts) // This function intakes the vector of all charged leptons already sorted by pt
 { //This function returns true if the event should be kept. This function returns false if the event should be rejected.
     // shouldKeep=true;
     //First cut: remove high P_t 3rd leptons
@@ -131,22 +131,22 @@ Bool PreselectionCuts(vector<PseudoJet> leptons, vector<int> &removalCounts) // 
         if (leptons[2].pt() > 10) 
         {
             // shouldKeep=false;
+            (*removalCounts)++; // this increments the element corresponding to the passed address
             return false;
-            *removalCounts[0]++;
         }
     }
     //Second cut: remove if leading lep pair has low inv. mass
     else if((leptons[0]+leptons[1]).m()<10)
     {
+        (*(removalCounts+1))++; // This increments the element corresponding to the one after the passed address
         return false;
-        *removalCounts[1]++;
     } 
 
     //Third cut: is inv. mass of leading leptons near M_Z?
     else if (abs((leptons[0]+leptons[1]).m() - 91.2) < 20)
     {
+        (*(removalCounts+2))++; // same but the one after the the one after the one passed
         return false;
-        *removalCounts[2]++;
     }
 
     return true;
@@ -183,7 +183,7 @@ vector<PseudoJet> WPairing(vector<PseudoJet> Jets, double LowDiff=1000)
     return W_pair;
 }
 
-Bool HMSR1Cuts(vector<PseudoJet> leptons, vector<PseudoJet> Jets, vector<PseudoJet> MET, bool has_MET)
+Bool HMSR1Cuts(vector<PseudoJet> leptons, vector<PseudoJet> Jets, vector<PseudoJet> MET, bool has_MET. int* removalCounts)
 {
     // The proceeding three cuts are the definition of High Mass Signal Region 1 (HM SR1)
             // CMS Table 1
@@ -193,6 +193,7 @@ Bool HMSR1Cuts(vector<PseudoJet> leptons, vector<PseudoJet> Jets, vector<PseudoJ
             int htsum = 0;
             if (Jets[0].pt()<=25) 
             {
+                (*removalCounts)++; // this increments the element corresponding to the passed address
                 return false;
             }
             // cout << "Here"<< endl;
@@ -211,7 +212,11 @@ Bool HMSR1Cuts(vector<PseudoJet> leptons, vector<PseudoJet> Jets, vector<PseudoJ
             if (has_MET)
             {
                 // cout << v_MET.size()<< endl;
-                if (pow(MET[0].pt(),2)/htsum > 15) return false;
+                if (pow(MET[0].pt(),2)/htsum > 15)
+                {
+                    (*(removalCounts+1))++; // this increments the element corresponding to the passed address
+                    return false;
+                }
             }
             // For the next part, I need to find Δm_Wj which is the inv mass of
             // the pair of jets with inv mass closes to M_W
@@ -246,6 +251,7 @@ Bool HMSR1Cuts(vector<PseudoJet> leptons, vector<PseudoJet> Jets, vector<PseudoJ
             if (M_Wj < 30 || M_Wj > 150) 
             {
                 return false;
+                (*(removalCounts+2))++; // this increments the element corresponding to the passed address
             }
             else return true;
 }
@@ -575,13 +581,13 @@ int main(int argc, const char * argv[])
             //All events that made it here should have s.s. dilepton pair and 2+ jets
             // Preselection Criteria: CMS Sec 5.1
 
-            if (!PreselectionCuts(v_lep, &deepCuts)) continue; // Preselection returns false if the event should be rejected.
+            if (!PreselectionCuts(v_lep, &deepCuts[0])) continue; // Preselection returns false if the event should be rejected.
             numCutCats[1]++;
             
             // High Mass SR 1-------------------------------------------------------------------------------------------------------------------------
             // // The proceeding three cuts are the definition of High Mass Signal Region 1 (HM SR1)
             // // CMS Table 1
-            if (!HMSR1Cuts(v_lep, all_jets, v_MET, hasMET)) continue;
+            if (!HMSR1Cuts(v_lep, all_jets, v_MET, hasMET, &deepCuts[3])) continue;
             w_jet_pairs = WPairing(all_jets);
             // // Each jet must be above 25 GeV pt
             // int numJet2 = all_jets.size();
@@ -644,14 +650,21 @@ int main(int argc, const char * argv[])
             // First, we want angularly well separated events
             // ΔR information from CMS Sec. 4.1 & 4.2
             // Uncommented these for trouble shooting. They should come back
-
-            if (Below_DeltaR_Diff(v_lep, all_jets, 0.4)) continue;
-            if (Below_DeltaR_Same(v_lep, 0.4)) continue;
-            if (Below_DeltaR_Same(all_jets, 0.4)) continue;
+            bool rejectDeltaR = false;
+            if (Below_DeltaR_Diff(v_lep, all_jets, 0.4) || (Below_DeltaR_Same(v_lep, 0.4)) || (Below_DeltaR_Same(all_jets, 0.4)))
+            {
+                deepCuts[6]++;
+                continue;
+            }
 
             //Now we remove all the B_tagged events (This doesn't seem to come from CMS paper)
             //Not sure why we are doing it.
-            if(!b_jets.size()) continue;
+            if(!b_jets.size())
+            {
+                deepCuts[7]++;
+                continue;
+            }
+
             /*
                 Now We do a bit of a funky thing
                 For now, we are not simulating any μ events. However according to CMS Sec 5 (paragraph 1)
@@ -686,7 +699,11 @@ int main(int argc, const char * argv[])
         //    CMS Section 5 paragraph 1. This seems to be simulating something about the detector
            int leadingThresh[3] = {25, 25, 20}; // GeV; corresponds to lPairType 0,1,2 indices
            int trailingThresh[3] = {15, 10, 10};
-           if ((v_lep[0].pt() < leadingThresh[lPairType] || v_lep[1].pt() < trailingThresh[lPairType])) continue;
+           if ((v_lep[0].pt() < leadingThresh[lPairType] || v_lep[1].pt() < trailingThresh[lPairType]))
+           {
+                deepCuts[8]++;
+                continue;
+           }
            numCutCats[3]++;
 
             
