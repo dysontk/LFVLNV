@@ -183,7 +183,7 @@ vector<PseudoJet> WPairing(vector<PseudoJet> Jets, double LowDiff=1000)
     return W_pair;
 }
 
-Bool HMSR1Cuts(vector<PseudoJet> leptons, vector<PseudoJet> Jets, vector<PseudoJet> MET, bool has_MET. int* removalCounts)
+Bool HMSR1Cuts(vector<PseudoJet> leptons, vector<PseudoJet> Jets, vector<PseudoJet> MET, bool has_MET, int *removalCounts)
 {
     // The proceeding three cuts are the definition of High Mass Signal Region 1 (HM SR1)
             // CMS Table 1
