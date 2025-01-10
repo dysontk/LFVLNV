@@ -184,15 +184,77 @@ class AllRunHandler:
             evnt.print_info()
 
 def HowManyRuns(event_count_dic):
-    typeEfficiency = {'LNVF': 0.23,
-                  'ttbar': 0.23,
-                  'W3j': 0.23,
-                  'WZ2j': 0.23,
-                  'ZZ2j': 0.23}
+    typeEfficiency = {'LNVF': 0.30, # these numbers come from the ratio of generated events to events asked for
+                  'ttbar': 0.17,
+                  'W3j': 0.24,
+                  'WZ2j': 0.30,
+                  'ZZ2j': 0.30}
     # print(event_count_dic)
     runs2Basked = {typ: math.ceil((200_000-int(event_count_dic[typ]['events']))/(typeEfficiency[typ] * 60_000)) for typ in event_count_dic}
     runs2Basked = {typ: 0 if runs2Basked[typ] < 0 else runs2Basked[typ] for typ in runs2Basked}
     return runs2Basked
+
+def gen_til_200k(eventTypes):
+
+    event_count_dict = read_many.redoCounts(eventTypes, 0)
+    runs2Basked = HowManyRuns(event_count_dict)
+    print("Runs to be asked: ", runs2Basked, sep='\n')
+    print("event count: ", event_count_dict, sep='\n')
+    print("run count", run_command, sep='\n')
+    allOfEm = []
+    for typ in event_count_dict:
+        print(typ, " events")
+        bulkAttempts = 0
+        while event_count_dict[typ]['events'] < 200_000:
+            if bulkAttempts > 0:
+                print("I generated this many events:", event_count_dict[typ])
+                print("That was not enough to reach 200k, so I'll try again")
+            thisConfig = RunConfig(typ, runs2Basked[typ], event_count_dict[typ]['events'])
+            print(f'{thisConfig.eventType}: {thisConfig.instance_count}: {thisConfig.prev_nEvents}')
+            print(f'{thisConfig.eventType} has {event_count_dict[thisConfig.eventType]["runs"]} and will end up with ')
+            print(thisConfig.instance_count+int(event_count_dict[thisConfig.eventType]['runs']))
+
+            thisBulkAttempt = AllRunHandler([thisConfig])
+            newCount = read_many.redoCounts(eventTypes, 0)
+            if newCount[typ]['events'] <= event_count_dict[typ]['events']:
+                print("For some reason events did not generate I think: ", typ, event_count_dict[typ]['events'])
+                return 0
+            else:
+                event_count_dict[typ].update(newCount[typ])
+            allOfEm.append(thisBulkAttempt)
+            bulkAttempts += 1
+        print(f"I finished generating {event_count_dict[typ]['events']} {typ} events over {event_count_dict[typ]['runs']} runs.")
+        print("on to...")
+    print("Nothing. On to nothing because I'm done")
+    print(event_count_dict)
+    return allOfEm
+
+            
+            
+    # # print("hi")
+    # print(event_count_dict, type(event_count_dict), sep='\n')
+    # # runs2Basked = np.array([1 if not i else int(((200_000-i)/0.23)/60_000) for i in event_count_dict])
+    # runs2Basked = HowManyRuns(event_count_dict)
+    # # for typ in runs2Basked:
+    # #     print("SETTING TO ONLY 1 RUN")
+    # #     runs2Basked[typ]=1
+    # # runs2Basked = {}
+    # print("Runs to be asked: ", runs2Basked, sep='\n')
+    # print("event count: ", event_count_dict, sep='\n')
+    # print("run count", run_command, sep='\n')
+
+    # allAttemptsConfig = []
+    # for typ in eventTypes:
+    #     allAttemptsConfig.append(RunConfig(typ, runs2Basked[typ], event_count_dict[typ]['events']))
+
+    # for config in allAttemptsConfig:
+    #     # print(f'{config.eventType}')
+    #     print(f'{config.eventType}: {config.instance_count}: {config.prev_nEvents}')
+    #     print(f'{config.eventType} has {event_count_dict[config.eventType]["runs"]} and will end up with ')
+    #     print(config.instance_count+int(event_count_dict[config.eventType]['runs']))
+
+    # allAttempts = AllRunHandler(allAttemptsConfig)
+    # event_count_dict = read_many.redoCounts(eventTypes, 0)
 
 if __name__ == '__main__':
 
@@ -202,33 +264,34 @@ if __name__ == '__main__':
                   'WZ2j', 
                   'ZZ2j'
                   ]
-    print("Hi")
-    event_count_dict = read_many.redoCounts(eventTypes, 0)
-    print("hi")
-    print(event_count_dict, type(event_count_dict), sep='\n')
-    # runs2Basked = np.array([1 if not i else int(((200_000-i)/0.23)/60_000) for i in event_count_dict])
-    runs2Basked = HowManyRuns(event_count_dict)
-    # for typ in runs2Basked:
-    #     print("SETTING TO ONLY 1 RUN")
-    #     runs2Basked[typ]=1
-    # runs2Basked = {}
-    print("Runs to be asked: ", runs2Basked, sep='\n')
-    print("event count: ", event_count_dict, sep='\n')
-    print("run count", run_command, sep='\n')
-    allAttemptsConfig = []
-    for typ in eventTypes:
-        allAttemptsConfig.append(RunConfig(typ, runs2Basked[typ], event_count_dict[typ]['events']))
-        # print(eventTypes[j], ": ", runs2Basked[j])
-    # print(allAttemptsConfig)
+    allAttempts = gen_til_200k(eventTypes)
+    # print("Hi")
+    # event_count_dict = read_many.redoCounts(eventTypes, 0)
+    # # print("hi")
+    # print(event_count_dict, type(event_count_dict), sep='\n')
+    # # runs2Basked = np.array([1 if not i else int(((200_000-i)/0.23)/60_000) for i in event_count_dict])
+    # runs2Basked = HowManyRuns(event_count_dict)
+    # # for typ in runs2Basked:
+    # #     print("SETTING TO ONLY 1 RUN")
+    # #     runs2Basked[typ]=1
+    # # runs2Basked = {}
+    # print("Runs to be asked: ", runs2Basked, sep='\n')
+    # print("event count: ", event_count_dict, sep='\n')
+    # print("run count", run_command, sep='\n')
+    # allAttemptsConfig = []
+    # for typ in eventTypes:
+    #     allAttemptsConfig.append(RunConfig(typ, runs2Basked[typ], event_count_dict[typ]['events']))
+    #     # print(eventTypes[j], ": ", runs2Basked[j])
+    # # print(allAttemptsConfig)
 
-    for config in allAttemptsConfig:
-        # print(f'{config.eventType}')
-        print(f'{config.eventType}: {config.instance_count}: {config.prev_nEvents}')
-        print(f'{config.eventType} has {event_count_dict[config.eventType]["runs"]} and will end up with ')
-        print(config.instance_count+int(event_count_dict[config.eventType]['runs']))
+    # for config in allAttemptsConfig:
+    #     # print(f'{config.eventType}')
+    #     print(f'{config.eventType}: {config.instance_count}: {config.prev_nEvents}')
+    #     print(f'{config.eventType} has {event_count_dict[config.eventType]["runs"]} and will end up with ')
+    #     print(config.instance_count+int(event_count_dict[config.eventType]['runs']))
 
-    allAttempts = AllRunHandler(allAttemptsConfig)
-    read_many.redoCounts(eventTypes, 0)
+    # allAttempts = AllRunHandler(allAttemptsConfig)
+    # read_many.redoCounts(eventTypes, 0)
 
     # edit this to run, check how many have gend, then repeat until 200k... no truncate how many are asked for once 200k is reached. 
         
