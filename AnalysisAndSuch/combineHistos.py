@@ -67,6 +67,11 @@ def make_histos(eventTypes, histoTypes, startdir, addonDIR=''):
                     'Mass_2jW1l1': "Inv_Mass_2Jets_close_to_W_1l_1",
                     'Mass_l2': "Inv_Mass_2l"}
     
+    colors = {'LNVF':'red',
+              'WZ2j':'darkgreen',
+              'ZZ2j':'limegreen',
+              'W3j':'blue',
+              'ttbar':'navy'} 
     crossX = {'LNVF':0.0001279, # For real stuff, what should I use for this? IG just the madgraph numbers
               'WZ2j':55.2,
               'ZZ2j':16.8,
@@ -104,7 +109,7 @@ def make_histos(eventTypes, histoTypes, startdir, addonDIR=''):
             to_plot = scalefactor[typ]*datas[typ]['data']
             ticks = np.linspace(low, hi, num=bins)
             p = ax.bar(ticks, to_plot, hi/bins,
-                        label=typ, bottom=bottom)
+                        label=typ, bottom=bottom, color=colors[typ])
             bottom += to_plot
         ax.set_title(histotitles[htyp])
         ax.set_xlabel("GeV")
