@@ -82,7 +82,8 @@ def make_histos(eventTypes, histoTypes, startdir, addonDIR=''):
     initEvents = pull_init_events()
     scalefactor = {}
     for key in crossX:
-        scalefactor.update({key: crossX[key]*branchingRatio[key]*intd_lumin/int(initEvents[key])})
+        # scalefactor.update({key: crossX[key]*branchingRatio[key]*intd_lumin/int(initEvents[key])})
+        scalefactor.update({key:1})
     
     
     for htyp in histoTypes:
@@ -124,8 +125,13 @@ def make_histos(eventTypes, histoTypes, startdir, addonDIR=''):
         plt.savefig(figurepath)
 
 def NoSignalHistos(eventTypes, hT, startdir):
-
-    make_histos(eventTypes, hT, startdir, addonDIR='NoSignal/')
+    sigRemoved = eventTypes
+    try:
+        sigRemoved.remove('LNVF')
+    except ValueError:
+        print("LNVF is not present to begin with")
+    finally:
+        make_histos(eventTypes, hT, startdir, addonDIR='NoSignal/')
     
 
 
