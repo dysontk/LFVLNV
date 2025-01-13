@@ -131,12 +131,22 @@ def make_histos(eventTypes, histoTypes, startdir, addonDIR=''):
 
 def NoSignalHistos(eventTypes, hT, startdir):
     sigRemoved = eventTypes
+    evTypeGroups = {'Diboson':['WZ2j', 'ZZ2j'],
+                    'JetFake':['W3j','ttbar']}
     try:
         sigRemoved.remove('LNVF')
     except ValueError:
         print("LNVF is not present to begin with")
     finally:
         make_histos(eventTypes, hT, startdir, addonDIR='NoSignal/')
+
+        for group in evTypeGroups:
+            thesetypes = []
+            for tp in eventTypes:
+                for tpp in evTypeGroups[group]:
+                    if tp == tpp:
+                        thesetypes.append(tp)
+            make_histos(thesetypes, hT, startdir, addonDIR=group+'/')
     
 
 
