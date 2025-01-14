@@ -153,9 +153,7 @@ def make_histos(eventTypes, histoTypes, startdir, addonDIR='', comp=''):
             for ctyp in comptypes:
                 if ctyp==htyp:
                     shouldComp=True
-                if not shouldComp:
-                    continue
-            # if shouldComp:
+            if shouldComp:
                 print("Comparing for ", htyp, ", ", comp)
                 compMasses, compCounts = compPlot(ax, comp, htyp)
                 colordict = {'CMS':'mediumpurple',
