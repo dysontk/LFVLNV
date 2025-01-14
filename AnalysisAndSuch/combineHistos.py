@@ -167,7 +167,7 @@ def make_histos(eventTypes, histoTypes, startdir, addonDIR='', comp=''):
         ax.legend()
         figurepath = startdir+addonDIR+histonames2[htyp]+'.png'
         # '/work/pi_mjrm_umass_edu/LNV_collider/AnalysisOutput/'
-        # print(figurepath)
+        print(figurepath)
         plt.savefig(figurepath)
 
 def NoSignalHistos(eventTypes, hT, startdir):
