@@ -67,7 +67,7 @@ def compPlot(axes, whatComp, histogramType):
         thisM = []
         thiscount = []
         with open(thisFileName) as File:
-            Line_reader = csv.reader(File, delimeter=',')
+            Line_reader = csv.reader(File, delimiter=',')
             for row in Line_reader:
                 thisM.append(float(row[0]))
                 thiscount.append(float(row[1]))
