@@ -44,17 +44,39 @@ def get_data(eventType, histogramtype, startingdir):
     return output 
 
 def pull_init_events():
-    file_to_read = open('/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/event_counts.txt')
+    file_to_read = open('../GenerationFiles/event_counts.txt')
     evDict = read_many2.read_num_events(file_to_read)
     
     outDict = {}
     for key in evDict:
         outDict.update({key: evDict[key]['events']})
     print(outDict)
-    return outDict
+    return outDict\
+    
+def compPlot(axes, whatComp, histogramType):
+    shared_add = 'ComparisonPlotTables/'+whatComp+'/'
+    histoSources = ['CMS', 'Gang']
+    colorDict = {'CMS':'green',
+                 'Gang':'red'}
+    
+    masses = {}
+    counts = {}
+    for source in histoSources:
+        thisFileName = shared_add+source+histogramType+'.csv'
+        thisM = []
+        thiscount = []
+        with open(thisFileName) as File:
+            Line_reader = csv.reader(File, delimeter=',')
+            for row in Line_reader:
+                thisM.append(float(row[0]))
+                thiscount.append(float(row[1]))
+        masses.update({source:thisM})
+        counts.update({source:thiscount})
+    
+    return masses, counts
 
 
-def make_histos(eventTypes, histoTypes, startdir, addonDIR=''):
+def make_histos(eventTypes, histoTypes, startdir, addonDIR='', comp=''):
     
     histotitles = {'Mass_2jW': "$\Delta M_{Wjj}$",
                   'Mass_2jW2l': "$\Delta M_{Wjj+ll}$",
@@ -123,6 +145,24 @@ def make_histos(eventTypes, histoTypes, startdir, addonDIR=''):
                 ax.set_xlim(bounds[htyp])
             except KeyError:
                 print("This must be the Wjj")
+        if comp=='Diboson': # this means that we are comparing either Diboson or JetFake. I don't currently have the JetFake comp tables. 
+            print("COMPARISON TIME")
+            comptypes = ['Mass_2jW2l', 'Mass_2jW1l0', 'Mass_2jW1l1']
+            shouldComp = False
+            for ctyp in comptypes:
+                if ctyp==htyp:
+                    shouldComp=True
+                if not shouldComp:
+                    continue
+            # if shouldComp:
+                print("Comparing for ", htyp, ", ", comp)
+                compMasses, compCounts = compPlot(ax, comp, htyp)
+                colordict = {'CMS':'mediumpurple',
+                            'Gang':'hotpink'}
+                for source in compMasses:
+                    cp = plt.scatter(compMasses[source], compCounts[source], color=colordict[source], label=source)
+            
+            # ax.scatter(compMasses[])
         ax.legend()
         figurepath = startdir+addonDIR+histonames2[htyp]+'.png'
         # '/work/pi_mjrm_umass_edu/LNV_collider/AnalysisOutput/'
@@ -146,7 +186,7 @@ def NoSignalHistos(eventTypes, hT, startdir):
                 for tpp in evTypeGroups[group]:
                     if tp == tpp:
                         thesetypes.append(tp)
-            make_histos(thesetypes, hT, startdir, addonDIR=group+'/')
+            make_histos(thesetypes, hT, startdir, addonDIR=group+'/', comp=group)
     
 
 
@@ -178,7 +218,7 @@ def main():
                     'bothLeps': "Inv_Mass_2l"}
 
     make_histos(eventTypes, histotypes, init_dir)
-    NoSignalHistos(histotypes, init_dir)
+    NoSignalHistos(eventTypes, histotypes, init_dir)
 
 if __name__=='__main__':
     main()
