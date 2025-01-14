@@ -146,7 +146,7 @@ def make_histos(eventTypes, histoTypes, startdir, addonDIR='', comp=''):
                 ax.set_xlim(bounds[htyp])
             except KeyError:
                 print("This must be the Wjj")
-        if comp=='Diboson': # this means that we are comparing either Diboson or JetFake. I don't currently have the JetFake comp tables. 
+        if comp!='': # this means that we are comparing either Diboson or JetFake. I don't currently have the JetFake comp tables. 
             print("COMPARISON TIME")
             comptypes = ['Mass_2jW2l', 'Mass_2jW1l0', 'Mass_2jW1l1']
             shouldComp = False
