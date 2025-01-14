@@ -158,6 +158,8 @@ def make_histos(eventTypes, histoTypes, startdir, addonDIR='', comp=''):
                 compMasses, compCounts = compPlot(ax, comp, htyp)
                 colordict = {'CMS':'mediumpurple',
                             'Gang':'hotpink'}
+                if comp=='JetFake':
+                    print(compMasses)
                 for source in compMasses:
                     cp = plt.scatter(compMasses[source], compCounts[source], color=colordict[source], label=source)
             
