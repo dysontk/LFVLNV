@@ -17,7 +17,7 @@ def most_recent_run_num(eventType):
     
 # change this to use a dictionary output to make it easier to handle all togher
 
-def countEvents(eventTypes, OF=''):
+def countEvents(eventTypes, OF='', ee=False):
     # eventTypes = ['LNVF', 'ttbar', 'W3j', 'WZ2j', 'ZZ2j']
     eventCounts = {}
     print(eventTypes)
@@ -29,7 +29,7 @@ def countEvents(eventTypes, OF=''):
             continue
 
         to_print += '\n' + typ + ': '
-        files = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{typ}/Events/*/*delphes_events.root', False).split('\n')
+        files = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/'+'just_ee/'if ee else ''+'{typ}/Events/*/*delphes_events.root', False).split('\n')
 
         for ThisFile in files:
             # nEvents += GMOU.find_num_gend(ThisFile, False)
@@ -94,7 +94,7 @@ def quick_check(eventTyps, infil, verb=False):
         print(eventType_dict)
         return eventType_dict
 
-def countPrep(in_dict, outfil, verbo):
+def countPrep(in_dict, outfil, verbo, is_ee=False):
     if verbo:
         print("here")
         print(in_dict)
@@ -102,7 +102,7 @@ def countPrep(in_dict, outfil, verbo):
         if verbo:
             print(in_dict)
             print(t, ": ", "Recounting" if in_dict[t]['recount'] else "No Recount Needed")
-    newCounts = countEvents([ky if in_dict[ky]['recount'] else '' for ky in in_dict], outfil)
+    newCounts = countEvents([ky if in_dict[ky]['recount'] else '' for ky in in_dict], outfil, is_ee)
     return newCounts
 
 def WriteItAll(eventsAndInfo, outf):
@@ -141,7 +141,7 @@ def redoCounts(eT, fullcheck=0, ee=False):
         print("Will recheck all")
     infile.close()
     outfile = open(filename, 'w')    
-    newCounts = countPrep(quick_out, outfile, True)
+    newCounts = countPrep(quick_out, outfile, True, is_ee=ee)
     for typ in newCounts:
         quick_out[typ].update({'events':newCounts[typ]['events']})
         quick_out[typ].update({'runs':newCounts[typ]['runs']})
