@@ -125,7 +125,7 @@ def what_to_do_if_empty(ev_t):
         full_dict.update({typ:{'runs':0, 'events':0, 'recount':1}})
     return full_dict
 
-def redoCounts(eT, fullcheck=0, ee):
+def redoCounts(eT, fullcheck=0, ee=False):
     additional = 'ee_' if ee else ''
     filename = '/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/'+ additional + 'event_counts.txt'
     infile = open(filename, 'r')
