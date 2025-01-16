@@ -206,6 +206,7 @@ def gen_til_200k(eventTypes):
     for typ in event_count_dict:
         print(typ, " events")
         bulkAttempts = 0
+        print(event_count_dict[typ])
         while event_count_dict[typ]['events'] < 200_000:
             if bulkAttempts > 0:
                 print("I generated this many events:", event_count_dict[typ])
