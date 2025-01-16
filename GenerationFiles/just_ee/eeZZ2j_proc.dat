@@ -1,3 +1,3 @@
 generate p p > z z j, z > e+ e-, z > e+ e-
 add process p p > z z j j, z > e+ e-, z > e+ e-
-output /work/pi_mjrm_umass_edu/LNV_collider/just_ee/Generated/ZZ2j
+output /work/pi_mjrm_umass_edu/LNV_collider/Generated/just_ee/ZZ2j
