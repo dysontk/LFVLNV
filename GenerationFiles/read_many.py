@@ -7,8 +7,8 @@ import numpy as np
 def find_number_in_string(strin):
     return re.findall('\d+', strin)
 
-def most_recent_run_num(eventType):
-    runs = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{eventType}/Events/', False).split('\n')[:-1]
+def most_recent_run_num(eventType, ee=False):
+    runs = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/' + 'just_ee/' if ee else ''+'{eventType}/Events/', False).split('\n')[:-1]
     try:
         return find_number_in_string(runs[-1])[0]
     except IndexError:
@@ -37,7 +37,7 @@ def countEvents(eventTypes, OF='', ee=False):
 
         to_print += str(nEvents)
         print(f"finished counting {typ}")
-        runs = most_recent_run_num(typ)
+        runs = most_recent_run_num(typ,ee)
         print(typ + ',' + str(runs) + ',' + str(nEvents) + '\n')
         eventCounts.update({typ:{'runs':runs, 'events':nEvents, 'recount':0}})
     
@@ -57,12 +57,12 @@ def read_num_events(InFil):
     print(lineDict)
     return lineDict
 
-def create_dict(wanted, in_doc, verbs=False): #L2ish -- file_info, L1 -- from what is asked
+def create_dict(wanted, in_doc, verbs=False, is_ee=False): #L2ish -- file_info, L1 -- from what is asked
     from_doc = in_doc
     if from_doc:
         for typ in wanted:
             if list(from_doc.keys()).count(typ):
-                curr_run_max = most_recent_run_num(typ)
+                curr_run_max = most_recent_run_num(typ, ee=is_ee)
                 from_doc[typ].update({'recount':0 if curr_run_max==from_doc[typ]['runs'] else 1})
             else:
                 from_doc.update({typ:{'runs':0,'events':0,'recount':1}})
@@ -74,7 +74,7 @@ def create_dict(wanted, in_doc, verbs=False): #L2ish -- file_info, L1 -- from wh
     return from_doc
 
 
-def quick_check(eventTyps, infil, verb=False):
+def quick_check(eventTyps, infil, verb=False, ee=False):
     fullRecheck = 0
 
     file_info = read_num_events(infil)
@@ -84,7 +84,7 @@ def quick_check(eventTyps, infil, verb=False):
         fullRecheck = 1
         return 0
     else:
-        eventType_dict = create_dict(eventTyps, file_info, verb)
+        eventType_dict = create_dict(eventTyps, file_info, verb, is_ee=ee)
 
         if fullRecheck:
             for key in eventType_dict:
@@ -124,12 +124,13 @@ def what_to_do_if_empty(ev_t):
     for typ in ev_t:
         full_dict.update({typ:{'runs':0, 'events':0, 'recount':1}})
     return full_dict
-
+    
 def redoCounts(eT, fullcheck=0, ee=False):
     additional = 'ee_' if ee else ''
     filename = '/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/'+ additional + 'event_counts.txt'
     infile = open(filename, 'r')
-    quick_out = quick_check(eT, infile, verb=True)
+    print('opening ', filename)
+    quick_out = quick_check(eT, infile, verb=True, ee=ee)
     is_empty = False
     if not quick_out:
         is_empty = True
