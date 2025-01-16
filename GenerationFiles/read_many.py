@@ -143,8 +143,8 @@ def redoCounts(eT, fullcheck=0, ee=False):
     outfile = open(filename, 'w')    
     newCounts = countPrep(quick_out, outfile, True, is_ee=ee)
     for typ in newCounts:
-        quick_out[typ].update({'events':newCounts[typ]['events']})
-        quick_out[typ].update({'runs':newCounts[typ]['runs']})
+        quick_out[typ].update({'events':int(newCounts[typ]['events'])})
+        quick_out[typ].update({'runs':int(newCounts[typ]['runs'])})
     final_dict = WriteItAll(quick_out, outfile)
     outfile.close()
     return final_dict
