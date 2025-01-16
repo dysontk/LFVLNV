@@ -565,12 +565,19 @@ int main(int argc, const char * argv[])
             bool lPairPlus = false; // false: --, true: ++
 
             // First make sure that there are s.s. dilep pairs
-            if (v_lepP.size() < 2 && v_lepM.size() < 2) 
+            // Here, I'm commenting out the part asking for any s.s. pairs and writing one that only asks for electron s s pairs
+            //This is temporary. Change it later
+            // if (v_lepP.size() < 2 && v_lepM.size() < 2) 
+            // {
+            //     continue;
+            //     // if (VERBOSE) cout << "No s.s. dilepton pair"<< endl;
+            //     // else
+            // } 
+
+            if (v_eP.size() < 2 && v_eP.size() < 2)
             {
                 continue;
-                // if (VERBOSE) cout << "No s.s. dilepton pair"<< endl;
-                // else
-            } 
+            }
             // cout << "+: " << v_lepP.size() << endl;
             // cout << "-: " << v_lepM.size() << endl;
             // cout << "all: "<< v_lep.size() << endl;
