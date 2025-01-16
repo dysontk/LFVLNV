@@ -125,8 +125,10 @@ def what_to_do_if_empty(ev_t):
         full_dict.update({typ:{'runs':0, 'events':0, 'recount':1}})
     return full_dict
 
-def redoCounts(eT, fullcheck=0):
-    infile = open('/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/event_counts.txt', 'r')
+def redoCounts(eT, fullcheck=0, ee):
+    additional = 'ee_' if ee else ''
+    filename = '/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/'+ additional + 'event_counts.txt'
+    infile = open(filename, 'r')
     quick_out = quick_check(eT, infile, verb=True)
     is_empty = False
     if not quick_out:
@@ -138,7 +140,7 @@ def redoCounts(eT, fullcheck=0):
             quick_out[key]['recount'] = 1
         print("Will recheck all")
     infile.close()
-    outfile = open('/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/event_counts.txt', 'w')    
+    outfile = open(filename, 'w')    
     newCounts = countPrep(quick_out, outfile, True)
     for typ in newCounts:
         quick_out[typ].update({'events':newCounts[typ]['events']})

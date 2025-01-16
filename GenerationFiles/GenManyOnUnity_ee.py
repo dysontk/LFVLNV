@@ -195,8 +195,9 @@ def HowManyRuns(event_count_dic):
     return runs2Basked
 
 def gen_til_200k(eventTypes):
-
-    event_count_dict = read_many.redoCounts(eventTypes, 0)
+    event_count_dict = read_many.redoCounts(eventTypes, 0, ee=True)
+    # for tp in eventTypes:
+    #     event_count_dict.update({tp:{'runs':0, 'events':0}})
     runs2Basked = HowManyRuns(event_count_dict)
     print("Runs to be asked: ", runs2Basked, sep='\n')
     print("event count: ", event_count_dict, sep='\n')
@@ -215,7 +216,7 @@ def gen_til_200k(eventTypes):
             print(thisConfig.instance_count+int(event_count_dict[thisConfig.eventType]['runs']))
 
             thisBulkAttempt = AllRunHandler([thisConfig])
-            newCount = read_many.redoCounts(eventTypes, 0)
+            newCount = read_many.redoCounts(eventTypes, 0, ee=True)
             if newCount[typ]['events'] <= event_count_dict[typ]['events']:
                 print("For some reason events did not generate I think: ", typ, event_count_dict[typ]['events'])
                 return 0
@@ -258,8 +259,7 @@ def gen_til_200k(eventTypes):
 
 if __name__ == '__main__':
 
-    eventTypes = ['LNVF', 
-                  'ttbar', 
+    eventTypes = ['ttbar', 
                   'W3j', 
                   'WZ2j', 
                   'ZZ2j'
