@@ -1,0 +1,5 @@
+generate p p > t t~, (t > w+ b, w+ > j j), (t~ > w- b~, w- > e- ve~)
+add process p p > t t~, (t > w+ b, w+ > e+ ve), (t~ > w- b~, w- > j j)
+add process p p > t t~ j, (t > w+ b, w+ > j j), (t~ > w- b~, w- > e- ve~)
+add process p p > t t~ j, (t > w+ b, w+ > e+ ve), (t~ > w- b~, w- > j j)
+output /work/pi_mjrm_umass_edu/LNV_collider/Generated/just_ee/ttbar
