@@ -2,7 +2,7 @@ import subprocess
 import re
 from dataclasses import dataclass, asdict
 import time
-import read_many
+import read_many_ee
 import numpy as np
 import math
 VERBOSE = True
@@ -80,6 +80,7 @@ class Run:
         gendFileName = self.output_filename
         # print('test2')
         if gendFileName:
+            print("here: ", gendFileName)
             output = run_command(f"/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/AnalysisAndSuch/read_root_file {gendFileName}", VERBOSE)
             m = re.search(r'\d+$', output)
             return int(m.group()) if m else 0 
