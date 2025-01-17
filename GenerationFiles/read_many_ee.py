@@ -30,7 +30,7 @@ def countEvents(eventTypes, OF='', ee=False):
 
         to_print += '\n' + typ + ': '
         files = GMOU.run_command(f'ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/'+'just_ee/'if ee else ''+'{typ}/Events/*/*delphes_events.root', False).split('\n')
-
+        print("Files: ", files)
         for ThisFile in files:
             # nEvents += GMOU.find_num_gend(ThisFile, False)
             nEvents += GMOU.find_num_gend(ThisFile, True)
@@ -114,7 +114,7 @@ def WriteItAll(eventsAndInfo, outf):
             if info != 'recount':
                 to_write += str(eventsAndInfo[ev][info]) + ','
         to_write = to_write[:-1] + '\n'
-    print(to_write)
+    print("I'm writing ", to_write)
     outf.write(to_write)
 
     return eventsAndInfo
