@@ -67,7 +67,7 @@ def compPlot(axes, whatComp, histogramType):
         thisM = []
         thiscount = []
         with open(thisFileName) as File:
-            Line_reader = csv.reader(File, delimiter=',')
+            Line_reader = csv.reader(File, delimiter=' ')
             for row in Line_reader:
                 thisM.append(float(row[0]))
                 thiscount.append(float(row[1]))
@@ -79,11 +79,8 @@ def compPlot(axes, whatComp, histogramType):
 
 def make_histos(eventTypes, histoTypes, startdir, addonDIR='', comp=''):
     
-    histotitles = {'Mass_2jW': "$\Delta M_{Wjj}$",
-                  'Mass_2jW2l': "$\Delta M_{Wjj+ll}$",
-                  'Mass_2jW1l0': "$\Delta M_{Wjj+l_0}$",
-                  'Mass_2jW1l1': "$\Delta M_{Wjj+l_1}$",
-                  'Mass_l2': "$\Delta m_{ll}$"}
+    histotitles = {'Mass_2jW': r"$\Delta M_{Wjj}$",
+                   'Mass_2jW2l': r"$\Delta M_{Wjj+ll}$", 'Mass_2jW1l0': r"$\Delta M_{Wjj+l_0}$", 'Mass_2jW1l1': r"$\Delta M_{Wjj+l_1}$", 'Mass_l2': r"$\Delta m_{ll}$"}
     histonames2 = {'Mass_2jW': "Inv_Mass_2Jets_close_to_W",
                     'Mass_2jW2l': "Inv_Mass_2Jets_close_to_W_2l",
                     'Mass_2jW1l0': "Inv_Mass_2Jets_close_to_W_1l_0",

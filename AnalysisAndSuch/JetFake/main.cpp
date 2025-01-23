@@ -371,7 +371,7 @@ int main(int argc, const char * argv[])
     TH1F *MW2j = new TH1F("Inv_Mass_2Jets_close_to_W", "Inv. Mass 2 Jets", MW2jHistoParams[0], MW2jHistoParams[1], MW2jHistoParams[2]);
     
     // Invariant mass of W jet pair and leading leptons (Are these necessarily going to be s.s. leptons?)
-    int MW2j2lHistoParams[3] = {40*2, 0, 2000};
+    int MW2j2lHistoParams[3] = {int(15/(660-100)*660),0, 660}; // current bounds are to have the same range and bin sizes as Gang's data
     TH1F *MW2j2l = new TH1F("Inv_Mass_2Jets_close_to_W_2l", "Inv. Mass 2 Jets 2 Lep",  MW2j2lHistoParams[0]-5, MW2j2lHistoParams[1], MW2j2lHistoParams[2]);
 
     //Invariant mass of the leading leptons (Are these necessarily going to be s.s. leptons?)
@@ -381,13 +381,13 @@ int main(int argc, const char * argv[])
     else M2l = new TH1F("Inv_Mass_2l", "Inv. Mass 2 Lep", M2lHistoParams[0], M2lHistoParams[1], M2lHistoParams[2]);
 
     //Invariant mass of W jets and leading lepton
-    int MW2j1l_0HistoParams[3] = {90, 0, 1700};
+    int MW2j1l_0HistoParams[3] = {int(21/(480-70)*480), 0, 480};
     // cout << "SF: "<< scaleFactor<< endl;
     // cout << "SF2: " << scaleFactor2<< endl;
     TH1F *MW2j1l_0 = new TH1F("Inv_Mass_2Jets_close_to_W_1l_0", "Inv. Mass 2 Jets + Lep_0", MW2j1l_0HistoParams[0], MW2j1l_0HistoParams[1], MW2j1l_0HistoParams[2]);
 
     //Invariant mass of W jets and the sub-leading lepton
-    int MW2j1l_1HistoParams[3] = {90, 0, 1600};
+    int MW2j1l_1HistoParams[3] = {int(17/(350-30)*350), 0, 350};
     TH1F *MW2j1l_1  = new TH1F("Inv_Mass_2Jets_close_to_W_1l_1", "Inv. Mass 2 Jets + Lep_1", MW2j1l_1HistoParams[0], MW2j1l_1HistoParams[1], MW2j1l_1HistoParams[2]);
     cout << MW2j2lHistoParams[2]<< endl;
     // TH1F *M2lTroubleshoot = new TH1F("Inv_Mass_2l", "Inv. Mass 2 Lep",  70, 0, 10);
@@ -567,7 +567,7 @@ int main(int argc, const char * argv[])
             // First make sure that there are s.s. dilep pairs
             // Here, I'm commenting out the part asking for any s.s. pairs and writing one that only asks for electron s s pairs
             //This is temporary. Change it later
-            // if (v_lepP.size() < 2 && v_lepM.size() < 2) 
+            // if (v_lepP.ansize() < 2 && v_lepM.size() < 2) 
             // {
             //     continue;
             //     // if (VERBOSE) cout << "No s.s. dilepton pair"<< endl;
