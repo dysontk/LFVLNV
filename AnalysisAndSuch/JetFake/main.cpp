@@ -406,7 +406,7 @@ int main(int argc, const char * argv[])
     */
     // int numCutCats[4] = {0, 0, 0, 0}; //events that pass 0: signal def, 1: preselection, 2: HMSR1, 3: Misc.
     vector<int> numCutCats = {0, 0, 0, 0};
-    vector<int> deepCuts = {0, 0, 0, 0, 0, 0, 0, 0, 0}; // events that get removed by each cut. 1a-b, 2a-b, 3a-b
+    vector<int> deepCuts = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // events that get removed by each cut. 1a-b, 2a-b, 3a-b
     // double cutsSize = sizeof(numCutCats)/sizeof(int);
     cout << "num cuts " << numCutCats.size() << endl;
     for (int c=0; c<numCutCats.size(); c++) cout << numCutCats[c]<< endl;
@@ -557,7 +557,7 @@ int main(int argc, const char * argv[])
             //Now it is time to find the pair of jets that are close to W
             if (all_jets.size() <= 1) 
             {   
-                
+                deepCuts[0]++;
                 // if (VERBOSE)cout << "Not enough jets"<< endl;
                 continue;
             }
@@ -576,6 +576,7 @@ int main(int argc, const char * argv[])
 
             if (v_eP.size() < 2 && v_eP.size() < 2)
             {
+                deepCuts[0]++;
                 continue;
             }
             // cout << "+: " << v_lepP.size() << endl;
@@ -588,13 +589,13 @@ int main(int argc, const char * argv[])
             //All events that made it here should have s.s. dilepton pair and 2+ jets
             // Preselection Criteria: CMS Sec 5.1
 
-            if (!PreselectionCuts(v_lep, &deepCuts[0])) continue; // Preselection returns false if the event should be rejected.
+            if (!PreselectionCuts(v_lep, &deepCuts[1])) continue; // Preselection returns false if the event should be rejected.
             numCutCats[1]++;
             
             // High Mass SR 1-------------------------------------------------------------------------------------------------------------------------
             // // The proceeding three cuts are the definition of High Mass Signal Region 1 (HM SR1)
             // // CMS Table 1
-            if (!HMSR1Cuts(v_lep, all_jets, v_MET, hasMET, &deepCuts[3])) continue;
+            if (!HMSR1Cuts(v_lep, all_jets, v_MET, hasMET, &deepCuts[4])) continue;
             w_jet_pairs = WPairing(all_jets);
             // // Each jet must be above 25 GeV pt
             // int numJet2 = all_jets.size();
@@ -660,7 +661,7 @@ int main(int argc, const char * argv[])
             bool rejectDeltaR = false;
             if (Below_DeltaR_Diff(v_lep, all_jets, 0.4) || (Below_DeltaR_Same(v_lep, 0.4)) || (Below_DeltaR_Same(all_jets, 0.4)))
             {
-                deepCuts[6]++; // Cut 3a
+                deepCuts[7]++; // Cut 3a
                 continue;
             }
 
@@ -668,7 +669,7 @@ int main(int argc, const char * argv[])
             //Not sure why we are doing it.
             if(!b_jets.size())
             {
-                deepCuts[7]++; // Cut 3b
+                deepCuts[8]++; // Cut 3b
                 continue;
             }
 
@@ -708,7 +709,7 @@ int main(int argc, const char * argv[])
            int trailingThresh[3] = {15, 10, 10};
            if ((v_lep[0].pt() < leadingThresh[lPairType] || v_lep[1].pt() < trailingThresh[lPairType]))
            {
-                deepCuts[8]++; //Cut 3c
+                deepCuts[9]++; //Cut 3c
                 continue;
            }
            numCutCats[3]++;
