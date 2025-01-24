@@ -80,7 +80,7 @@ bool lowlepcut = false; //turns on and off Some sort of cut on the low energy le
 // When we use data that has MET and Muons, then we set these to true and it'll function properly 
 // Used in lines 147-149, 234-237
 bool hasMET = false;
-bool hasMu = false;
+bool hasMu = true;
 // This is used if we want to post-simulate the LFV with ratios from CMS paper (true) or just leave as single flavor (false)
 bool simLFV = false;
 
@@ -568,18 +568,18 @@ int main(int argc, const char * argv[])
             // First make sure that there are s.s. dilep pairs
             // Here, I'm commenting out the part asking for any s.s. pairs and writing one that only asks for electron s s pairs
             //This is temporary. Change it later
-            // if (v_lepP.ansize() < 2 && v_lepM.size() < 2) 
-            // {
-            //     continue;
-            //     // if (VERBOSE) cout << "No s.s. dilepton pair"<< endl;
-            //     // else
-            // } 
-
-            if (v_eP.size() < 2 && v_eP.size() < 2)
+            if (v_lepP.size() < 2 && v_lepM.size() < 2) 
             {
-                deepCuts[1]++;
                 continue;
-            }
+                // if (VERBOSE) cout << "No s.s. dilepton pair"<< endl;
+                // else
+            } 
+
+            // if (v_eP.size() < 2 && v_eP.size() < 2)
+            // {
+            //     deepCuts[1]++;
+            //     continue;
+            // }
             // cout << "+: " << v_lepP.size() << endl;
             // cout << "-: " << v_lepM.size() << endl;
             // cout << "all: "<< v_lep.size() << endl;
