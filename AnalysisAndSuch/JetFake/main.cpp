@@ -555,7 +555,7 @@ int main(int argc, const char * argv[])
             // cout << "I made it past the making of vectors"<< endl;
             // Signal definition
 
-            //Now it is time to find the pair of jets that are close to W
+            //remove events with 1 or less jets
             if (all_jets.size() <= 1) 
             {   
                 deepCuts[0]++;
@@ -566,8 +566,6 @@ int main(int argc, const char * argv[])
             bool lPairPlus = false; // false: --, true: ++
 
             // First make sure that there are s.s. dilep pairs
-            // Here, I'm commenting out the part asking for any s.s. pairs and writing one that only asks for electron s s pairs
-            //This is temporary. Change it later
             if (v_lepP.size() < 2 && v_lepM.size() < 2) 
             {
                 deepCuts[1]++;
@@ -576,7 +574,8 @@ int main(int argc, const char * argv[])
                 // if (VERBOSE) cout << "No s.s. dilepton pair"<< endl;
                 // else
             } 
-
+            // Here, I'm commenting out the part asking for any s.s. pairs and writing one that only asks for electron s s pairs
+            //This is temporary. Change it later
             // if (v_eP.size() < 2 && v_eP.size() < 2)
             // {
             //     deepCuts[1]++;
@@ -707,7 +706,7 @@ int main(int argc, const char * argv[])
                 if (rs < r1) lPairType = 0; // 0-0.18 => ee
                 else lPairType = (r2 < rs) ? 1 : 2; // 0.18-0.31 =>μμ, 0.31-1 => eμ
            }
-        //    CMS Section 5 paragraph 1. This seems to be simulating something about the detector
+        //    CMS Section 5 paragraph 1. Trigger simulation
            int leadingThresh[3] = {25, 25, 20}; // GeV; corresponds to lPairType 0,1,2 indices
            int trailingThresh[3] = {15, 10, 10};
            if ((v_lep[0].pt() < leadingThresh[lPairType] || v_lep[1].pt() < trailingThresh[lPairType]))
