@@ -570,6 +570,8 @@ int main(int argc, const char * argv[])
             //This is temporary. Change it later
             if (v_lepP.size() < 2 && v_lepM.size() < 2) 
             {
+                deepCuts[1]++;
+
                 continue;
                 // if (VERBOSE) cout << "No s.s. dilepton pair"<< endl;
                 // else
