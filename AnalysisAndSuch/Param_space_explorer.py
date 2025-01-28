@@ -40,6 +40,7 @@ def edit_params(LInf, gInf, mass_r):
     # newgeffInfo.update({'current': (newParams)})
 
     with open(paramPath, 'w') as file:
+        print('Writing new parameters')
         for s in range(len(PTW)):
             # print(type(PTW[s]))
             
@@ -67,7 +68,7 @@ def main():
                 'delta': 0.0020}
     LambdaInfo = set_start(LambdaInfo)
     geffInfo = set_start(geffInfo)
-    # print(geffInfo)
+    # print(geffInfo)ß
     mass_ratio = 1.5 #mS/mF
     grid_index = [0,0]
     while LambdaInfo['current'] <= LambdaInfo['bounds'][1]:
@@ -78,7 +79,7 @@ def main():
             # print("geff: ", geffInfo['current'])
             edit_params(LambdaInfo, geffInfo, mass_ratio)
             path_to_process_card = edit_proc(LambdaInfo, geffInfo)
-            gen_proc_command = '/home/dkennedy_umass_edu/Software/MG5_aMC_v3_5_6/bin ' + path_to_process_card
+            gen_proc_command = '/home/dkennedy_umass_edu/Software/MG5_aMC_v3_5_6/bin/mg5_aMC ' + path_to_process_card
             GM.run_command(gen_proc_command)
             # print("here is where I'd gen events")
             
