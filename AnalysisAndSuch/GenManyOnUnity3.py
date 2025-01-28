@@ -54,7 +54,7 @@ class Run:
 
     def start_process(self):
         # print(run_command(f"ls logs"))
-        logFileName = f"/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/logs/{self.eventType}/attempt_{self.run_num:02d}.log"
+        logFileName = f"/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/logs/{self.eventType}_{int(self.Lambda)}_{('{:.3f}'.format(self.geff))[2:]}/attempt_{self.run_num:02d}.log"
         self.log = open(logFileName, "w")
         print("I am about to Generate events.", "The output of the madgraph generation can be found in:", f"logs/{self.eventType}/attempt_{self.run_num:02d}.log", sep='\n')
         self.proc = subprocess.Popen(f"/work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/{self.eventType}_{int(self.Lambda)}_{('{:.3f}'.format(self.geff))[2:]}/bin/madevent /home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/{self.eventType}_run.dat", stdout=self.log, stderr=self.log, shell=True)
@@ -107,7 +107,9 @@ class RunHandler:
         begin_num = self._find_base_num()
         self.runs = []
         self.tot_nevents = int(prev_nEvents)
-        self.runs_gend = 0   
+        self.runs_gend = 0
+        self.Lambda = Lambda
+        self.geff = geff   
         
         for rn in range(self.n_runs):
             if self.tot_nevents < 200_000:
@@ -132,7 +134,7 @@ class RunHandler:
 
     def _find_base_num(self):
         # return 0
-        output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.eventType}/Events/", VERBOSE)
+        output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/{self.eventType}_{int(self.Lambda)}_{('{:.3f}'.format(self.geff))[2:]}/Events/", VERBOSE)
 
         m = re.search(r'\d+$', output)
         base_num = int(m.group()) if m else 0
