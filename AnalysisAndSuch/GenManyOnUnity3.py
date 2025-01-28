@@ -54,7 +54,9 @@ class Run:
 
     def start_process(self):
         # print(run_command(f"ls logs"))
-        logFileName = f"/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/logs/{self.eventType}_{int(self.Lambda)}_{('{:.3f}'.format(self.geff))[2:]}/attempt_{self.run_num:02d}.log"
+        logFileLoc = f"/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/logs/{self.eventType}_{int(self.Lambda)}_{('{:.3f}'.format(self.geff))[2:]}"
+        logFileName = f"{logFileLoc}/attempt_{self.run_num:02d}.log"
+        run_command(f'mkdir {logFileLoc}')
         self.log = open(logFileName, "w")
         print("I am about to Generate events.", "The output of the madgraph generation can be found in:", f"logs/{self.eventType}/attempt_{self.run_num:02d}.log", sep='\n')
         self.proc = subprocess.Popen(f"/work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/{self.eventType}_{int(self.Lambda)}_{('{:.3f}'.format(self.geff))[2:]}/bin/madevent /home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/{self.eventType}_run.dat", stdout=self.log, stderr=self.log, shell=True)
