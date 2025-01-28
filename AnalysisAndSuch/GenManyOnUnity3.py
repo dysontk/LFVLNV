@@ -104,11 +104,11 @@ class RunHandler:
         self.n_runs = instance_count
         # print(self.instance_count)
         self.eventType = eventType
+        self.params = (Lambda, geff)
         begin_num = self._find_base_num()
         self.runs = []
         self.tot_nevents = int(prev_nEvents)
         self.runs_gend = 0
-        self.params = (Lambda, geff)
         # self.geff = geff   
         
         for rn in range(self.n_runs):
