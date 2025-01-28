@@ -53,7 +53,7 @@ def edit_params(LInf, gInf, mass_r):
 
 def edit_proc(LInfo, gInfo):
     procPath = '/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/LNVF_proc.dat' if not testing else 'test.dat'
-    formatted_geff = str(gInfo['current'])[2:]
+    formatted_geff = ('{:.3f}'.gInfo['current'])[2:]
     to_write = PT.procText + '_' + str(LInfo['current']) + '_' + formatted_geff
 
     with open(procPath, 'w') as file:
@@ -61,11 +61,15 @@ def edit_proc(LInfo, gInfo):
         file.write(to_write)
     return procPath
 
+def gen_events(nEvents, thisLambda, thisgeff):
+    allAttempts = GM.AllRunHandler(GM.RunConfig('LNVF', nEvents, 0, thisLambda, thisgeff))
+
 def main():
     LambdaInfo = {'bounds':(1000, 2000), # GeV
                   'delta': 200}
     geffInfo = {'bounds':(0.17, 0.18),
                 'delta': 0.0020}
+    nEvents = 100
     LambdaInfo = set_start(LambdaInfo)
     geffInfo = set_start(geffInfo)
     # print(geffInfo)ß
@@ -81,6 +85,7 @@ def main():
             path_to_process_card = edit_proc(LambdaInfo, geffInfo)
             gen_proc_command = '/home/dkennedy_umass_edu/Software/MG5_aMC_v3_5_6/bin/mg5_aMC ' + path_to_process_card
             GM.run_command(gen_proc_command)
+            gen_events(nEvents, LambdaInfo['current'], geffInfo['current'])
             # print("here is where I'd gen events")
             
             geffInfo = incrementParam(geffInfo)
@@ -97,6 +102,6 @@ if __name__ == '__main__':
 
     ''' as it is, this file loops through the parameter space with the grid spacings defined in 'delta' within the Info dictionaries
     it writes a new .dat file with an altered output path. and writes a new parameter.py with the updated parameters. 
-    Next steps are to put in the functions to generate the processes. Test that. 
+    Processes get generated properly. 
     Then I'll need to sort out what functions to call to have it generate however many events until it stops. test it with 100 of each. (generating processes too)
     Then It should just be an increase of N, grid points, and grid size!.'''

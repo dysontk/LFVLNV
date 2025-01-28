@@ -28,16 +28,20 @@ class RunConfig:
     eventType: str
     instance_count: int
     prev_nEvents: int
+    Lambda: float
+    geff: float
 
 class Run:
 
-    def __init__(self, eventType, instance, base_file_num):
+    def __init__(self, eventType, instance, base_file_num, Lambda, geff):
         self.eventType = eventType
         self.proc = None
         self.base_file_num = base_file_num
         self.instance = instance
         self.run_num = self.instance+self.base_file_num
         self.log = None
+        self.Lambda = Lambda
+        self.geff = geff
 
         print("base num: ", self.base_file_num)
         print("run num:", self.run_num)
@@ -50,10 +54,10 @@ class Run:
 
     def start_process(self):
         # print(run_command(f"ls logs"))
-        # logFileName = 
-        self.log = open(f"/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/logs/{self.eventType}/attempt_{self.run_num:02d}.log", "w")
+        logFileName = f"/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/logs/{self.eventType}/attempt_{self.run_num:02d}.log"
+        self.log = open(logFileName, "w")
         print("I am about to Generate events.", "The output of the madgraph generation can be found in:", f"logs/{self.eventType}/attempt_{self.run_num:02d}.log", sep='\n')
-        self.proc = subprocess.Popen(f"/work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.eventType}/bin/madevent /home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/{self.eventType}_run.dat", stdout=self.log, stderr=self.log, shell=True)
+        self.proc = subprocess.Popen(f"/work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/{self.eventType}_{int(self.Lambda)}_{('{:.3f}'.(self.geff))[2:]}/bin/madevent /home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/{self.eventType}_run.dat", stdout=self.log, stderr=self.log, shell=True)
         # self.proc = "I have finidhes"
     
     @property
@@ -88,7 +92,7 @@ class Run:
 
     def print_info(self):
         if self.is_running:
-            print(f"{self.eventType} #{self.run_num} is running.")
+            print(f"{self.eventType} {self.Lambda}_{self.geff} #{self.run_num} is running.")
         else:
             # print("test1")
             print(f"{self.eventType} #{self.instance} completed with {self.generated_count} generated events")
@@ -96,7 +100,7 @@ class Run:
 
 class RunHandler:
 
-    def __init__(self, eventType, instance_count, prev_nEvents):
+    def __init__(self, eventType, instance_count, prev_nEvents, Lambda, geff):
         self.n_runs = instance_count
         # print(self.instance_count)
         self.eventType = eventType
@@ -108,7 +112,7 @@ class RunHandler:
         for rn in range(self.n_runs):
             if self.tot_nevents < 200_000:
                 
-                thisRun = Run(eventType, rn+1, begin_num)
+                thisRun = Run(eventType, rn+1, begin_num, Lambda, geff) # HWERERERERE
                 thisRun.start_process()
                 thisRun.print_info()
                 thisRun.proc.wait()
@@ -196,39 +200,39 @@ def HowManyRuns(event_count_dic):
 
 if __name__ == '__main__':
 
-    eventTypes = ['LNVF', 
-                  'ttbar', 
-                  'W3j', 
-                  'WZ2j', 
-                  'ZZ2j'
-                  ]
-    print("Hi")
-    event_count_dict = read_many.redoCounts(eventTypes, 0)
-    print("hi")
-    print(event_count_dict, type(event_count_dict), sep='\n')
-    # runs2Basked = np.array([1 if not i else int(((200_000-i)/0.23)/60_000) for i in event_count_dict])
-    runs2Basked = HowManyRuns(event_count_dict)
-    # for typ in runs2Basked:
-    #     print("SETTING TO ONLY 1 RUN")
-    #     runs2Basked[typ]=1
-    # runs2Basked = {}
-    print("Runs to be asked: ", runs2Basked, sep='\n')
-    print("event count: ", event_count_dict, sep='\n')
-    print("run count", run_command, sep='\n')
-    allAttemptsConfig = []
-    for typ in eventTypes:
-        allAttemptsConfig.append(RunConfig(typ, runs2Basked[typ], event_count_dict[typ]['events']))
-        # print(eventTypes[j], ": ", runs2Basked[j])
-    # print(allAttemptsConfig)
+    # eventTypes = ['LNVF', 
+    #               'ttbar', 
+    #               'W3j', 
+    #               'WZ2j', 
+    #               'ZZ2j'
+    #               ]
+    # print("Hi")
+    # event_count_dict = read_many.redoCounts(eventTypes, 0)
+    # print("hi")
+    # print(event_count_dict, type(event_count_dict), sep='\n')
+    # # runs2Basked = np.array([1 if not i else int(((200_000-i)/0.23)/60_000) for i in event_count_dict])
+    # runs2Basked = HowManyRuns(event_count_dict)
+    # # for typ in runs2Basked:
+    # #     print("SETTING TO ONLY 1 RUN")
+    # #     runs2Basked[typ]=1
+    # # runs2Basked = {}
+    # print("Runs to be asked: ", runs2Basked, sep='\n')
+    # print("event count: ", event_count_dict, sep='\n')
+    # print("run count", run_command, sep='\n')
+    # allAttemptsConfig = []
+    # for typ in eventTypes:
+    #     allAttemptsConfig.append(RunConfig(typ, runs2Basked[typ], event_count_dict[typ]['events'], ))
+    #     # print(eventTypes[j], ": ", runs2Basked[j])
+    # # print(allAttemptsConfig)
 
-    for config in allAttemptsConfig:
-        # print(f'{config.eventType}')
-        print(f'{config.eventType}: {config.instance_count}: {config.prev_nEvents}')
-        print(f'{config.eventType} has {event_count_dict[config.eventType]["runs"]} and will end up with ')
-        print(config.instance_count+int(event_count_dict[config.eventType]['runs']))
+    # for config in allAttemptsConfig:
+    #     # print(f'{config.eventType}')
+    #     print(f'{config.eventType}: {config.instance_count}: {config.prev_nEvents}')
+    #     print(f'{config.eventType} has {event_count_dict[config.eventType]["runs"]} and will end up with ')
+    #     print(config.instance_count+int(event_count_dict[config.eventType]['runs']))
 
-    allAttempts = AllRunHandler(allAttemptsConfig)
-    read_many.redoCounts(eventTypes, 0)
+    # allAttempts = AllRunHandler(allAttemptsConfig)
+    # read_many.redoCounts(eventTypes, 0)
 
     # edit this to run, check how many have gend, then repeat until 200k... no truncate how many are asked for once 200k is reached. 
         
