@@ -108,8 +108,8 @@ class RunHandler:
         self.runs = []
         self.tot_nevents = int(prev_nEvents)
         self.runs_gend = 0
-        self.Lambda = Lambda
-        self.geff = geff   
+        self.params = (Lambda, geff)
+        # self.geff = geff   
         
         for rn in range(self.n_runs):
             if self.tot_nevents < 200_000:
@@ -134,7 +134,7 @@ class RunHandler:
 
     def _find_base_num(self):
         # return 0
-        output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/{self.eventType}_{int(self.Lambda)}_{('{:.3f}'.format(self.geff))[2:]}/Events/", VERBOSE)
+        output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/{self.eventType}_{int(self.params[0])}_{('{:.3f}'.format(self.params[1]))[2:]}/Events/", VERBOSE)
 
         m = re.search(r'\d+$', output)
         base_num = int(m.group()) if m else 0
