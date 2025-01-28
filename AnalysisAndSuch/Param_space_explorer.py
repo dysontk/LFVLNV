@@ -53,7 +53,7 @@ def edit_params(LInf, gInf, mass_r):
 
 def edit_proc(LInfo, gInfo):
     procPath = '/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/LNVF_proc.dat' if not testing else 'test.dat'
-    formatted_geff = ('{:.3f}'.gInfo['current'])[2:]
+    formatted_geff = ('{:.3f}'.format(gInfo['current']))[2:]
     to_write = PT.procText + '_' + str(LInfo['current']) + '_' + formatted_geff
 
     with open(procPath, 'w') as file:
@@ -66,9 +66,9 @@ def gen_events(nEvents, thisLambda, thisgeff):
 
 def main():
     LambdaInfo = {'bounds':(1000, 2000), # GeV
-                  'delta': 200}
+                  'delta': 500}
     geffInfo = {'bounds':(0.17, 0.18),
-                'delta': 0.0020}
+                'delta': 0.0050}
     nEvents = 100
     LambdaInfo = set_start(LambdaInfo)
     geffInfo = set_start(geffInfo)
