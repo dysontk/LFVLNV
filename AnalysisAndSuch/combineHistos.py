@@ -40,7 +40,7 @@ def get_data(eventType, histogramtype, startingdir):
     thisFilePath = startingdir+eventType+'/plots/'+histogramtype+'.root'
     thisOne = uproot.open(thisFilePath)[histonames2[histogramtype]]
     data = thisOne.values()
-    print(data)
+    # print(data)
     output = {'data': data,
               'bounds': (thisOne.axis(0).low, thisOne.axis(0).high)}
     return output 
@@ -52,7 +52,7 @@ def pull_init_events():
     outDict = {}
     for key in evDict:
         outDict.update({key: evDict[key]['events']})
-    print(outDict)
+    # print(outDict)
     return outDict\
     
 def compPlot(axes, whatComp, histogramType):
