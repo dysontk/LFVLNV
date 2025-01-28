@@ -62,7 +62,7 @@ def edit_proc(LInfo, gInfo):
     return procPath
 
 def gen_events(nEvents, thisLambda, thisgeff):
-    allAttempts = GM.AllRunHandler(GM.RunConfig('LNVF', nEvents, 0, thisLambda, thisgeff))
+    allAttempts = GM.AllRunHandler([GM.RunConfig('LNVF', nEvents, 0, thisLambda, thisgeff)])
 
 def main():
     LambdaInfo = {'bounds':(1000, 2000), # GeV
