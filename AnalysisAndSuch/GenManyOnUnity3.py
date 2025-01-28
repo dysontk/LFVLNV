@@ -69,7 +69,7 @@ class Run:
     @property
     def output_filename(self):
         try:
-            output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/{self.eventType}/Events/run_{self.run_num:02d}/*delphes_events.root", VERBOSE)
+            output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/{self.eventType}_{int(self.Lambda)}_{('{:.3f}'.format(self.geff))[2:]}/Events/run_{self.run_num:02d}/*delphes_events.root", VERBOSE)
         except FileNotFoundError:
             print("Generation Failed")
             return 0
