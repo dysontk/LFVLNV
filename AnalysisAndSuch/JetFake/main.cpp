@@ -408,6 +408,7 @@ int main(int argc, const char * argv[])
     // int numCutCats[4] = {0, 0, 0, 0}; //events that pass 0: signal def, 1: preselection, 2: HMSR1, 3: Misc.
     vector<int> numCutCats = {0, 0, 0, 0};
     vector<int> deepCuts = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // events that get removed by each cut. 1a-b, 2a-b, 3a-b
+    vector<int> GangCutCount = {0,0,0,0,0}
     // double cutsSize = sizeof(numCutCats)/sizeof(int);
     cout << "num cuts " << numCutCats.size() << endl;
     for (int c=0; c<numCutCats.size(); c++) cout << numCutCats[c]<< endl;
@@ -556,11 +557,14 @@ int main(int argc, const char * argv[])
             // Signal definition
 
             // Gang's ordering
+            //cut 0
             if (Below_DeltaR_Diff(v_lep, all_jets, 0.4) || (Below_DeltaR_Same(v_lep, 0.4)) || (Below_DeltaR_Same(all_jets, 0.4)))
             {
                 // deepCuts[8]++; // Cut 3a
                 continue;
             }
+
+            GangCutCount[0]++;
 
             if (v_lepP.size() < 2 && v_lepM.size() < 2) 
             {
@@ -572,7 +576,6 @@ int main(int argc, const char * argv[])
             } 
             
             if ((v_lep[0]+v_lep[1]).m() < 10.0) continue;
-
 
             double r1 = 0.18;
             double r2 = 0.31;
@@ -611,6 +614,8 @@ int main(int argc, const char * argv[])
             {
                 if(v_lep[2].pt()>10) continue;
             }
+            GangCutCount[1]++;
+
 
             if (all_jets.size() <= 1) 
             {   
@@ -618,6 +623,7 @@ int main(int argc, const char * argv[])
                 // if (VERBOSE)cout << "Not enough jets"<< endl;
                 continue;
             }
+            GangCutCount[2]++;
 
             if(b_jets.size()>0)
             {
@@ -655,6 +661,8 @@ int main(int argc, const char * argv[])
                     continue;
                 }
             }
+            GangCutCount[3]++;
+
 
             w_jet_pairs = WPairing(all_jets);
 
@@ -665,6 +673,7 @@ int main(int argc, const char * argv[])
                 // return false;
                 // (*(removalCounts+2))++; // this increments the element corresponding to the passed address   -- Cut 2c
             }
+            GangCutCount[4]++;
 
             //HERE -----------------------------------------------------------
             //remove events with 1 or less jets
@@ -962,12 +971,15 @@ int main(int argc, const char * argv[])
         cout << "I flipped this many electrons "<< numFlippede << endl;
         cout << "I flipped this many muons "<< numFlippedmu << endl; 
 
-        cout << "Events by Cut Group"<< endl;
-        cout << NumEntries << endl;
-        for (int c=0; c<numCutCats.size(); c++) cout << numCutCats[c]<< endl;
+        // cout << "Events by Cut Group"<< endl;
+        // cout << NumEntries << endl;
+        // for (int c=0; c<numCutCats.size(); c++) cout << numCutCats[c]<< endl;
 
-        cout << "Events removed by Cut" << endl;
-        for (int r=0; r<deepCuts.size(); r++) cout << deepCuts[r] << endl;
+        // cout << "Events removed by Cut" << endl;
+        // for (int r=0; r<deepCuts.size(); r++) cout << deepCuts[r] << endl;
+
+        cout <<"Events remaining after each cut group" << endl;
+        for (int c=0; c<GangCutCount.size(); c++) cout << GangCutCount[c] << endl;
         
     }
 
