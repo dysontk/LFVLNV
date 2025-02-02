@@ -575,9 +575,10 @@ int main(int argc, const char * argv[])
 
 
             double r1 = 0.18;
-           double r2 = 0.31;
-           if (hasMu)
-           {
+            double r2 = 0.31;
+            int lPairType = 0;
+            if (hasMu)
+            {
                 // if (v_mu[])
                 if (abs(v_lep[0].m() - 0.511*pow(10, 3)) < 0.01) // is 0.01 a good cut off for being an electron?
                 {
@@ -589,23 +590,23 @@ int main(int argc, const char * argv[])
                     if (abs(v_lep[1].m() - 0.511*pow(10,3)) < 0.01) lPairType = 1;
                     else lPairType = 2; 
                 }
-           }
+            }
             else if (simLFV)
-           {
+            {
                 double rs = gRandom->Uniform(); // random number 0-1
                 if (rs < r1) lPairType = 0; // 0-0.18 => ee
                 else lPairType = (r2 < rs) ? 1 : 2; // 0.18-0.31 =>μμ, 0.31-1 => eμ
-           }
-        //    CMS Section 5 paragraph 1. Trigger simulation
-           int leadingThresh[3] = {25, 25, 20}; // GeV; corresponds to lPairType 0,1,2 indices
-           int trailingThresh[3] = {15, 10, 10};
-           if ((v_lep[0].pt() < leadingThresh[lPairType] || v_lep[1].pt() < trailingThresh[lPairType])) // Double check that the logical statements here match up w Gang
-           {
+            }
+            //    CMS Section 5 paragraph 1. Trigger simulation
+            int leadingThresh[3] = {25, 25, 20}; // GeV; corresponds to lPairType 0,1,2 indices
+            int trailingThresh[3] = {15, 10, 10};
+            if ((v_lep[0].pt() < leadingThresh[lPairType] || v_lep[1].pt() < trailingThresh[lPairType])) // Double check that the logical statements here match up w Gang
+            {
                 // deepCuts[10]++; //Cut 3c
                 continue;
-           }
-             // Gang only has the near Z mass cut for ee type, but not the others...?
-            
+            }
+                // Gang only has the near Z mass cut for ee type, but not the others...?
+
             if(v_lep.size()>2)
             {
                 if(v_lep[2].pt()>10) continue;
@@ -644,10 +645,10 @@ int main(int argc, const char * argv[])
                 htsum += v_lep[j].pt();
             }
             // Ratio of missing Trans. momentum^2 and total PT less than 15 GeV
-            if (has_MET)
+            if (hasMET)
             {
                 // cout << v_MET.size()<< endl;
-                if (pow(MET[0].pt(),2)/htsum > 15)
+                if (pow(v_MET[0].pt(),2)/htsum > 15)
                 {
                     // (*(removalCounts+1))++; // this increments the element corresponding to the passed address  -- Cut 2b
                     // return false;
