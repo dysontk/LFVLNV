@@ -408,7 +408,7 @@ int main(int argc, const char * argv[])
     // int numCutCats[4] = {0, 0, 0, 0}; //events that pass 0: signal def, 1: preselection, 2: HMSR1, 3: Misc.
     vector<int> numCutCats = {0, 0, 0, 0};
     vector<int> deepCuts = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // events that get removed by each cut. 1a-b, 2a-b, 3a-b
-    vector<int> GangCutCount = {0,0,0,0,0}
+    vector<int> GangCutCount = {0,0,0,0,0};
     // double cutsSize = sizeof(numCutCats)/sizeof(int);
     cout << "num cuts " << numCutCats.size() << endl;
     for (int c=0; c<numCutCats.size(); c++) cout << numCutCats[c]<< endl;
