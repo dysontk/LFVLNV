@@ -555,25 +555,137 @@ int main(int argc, const char * argv[])
             // cout << "I made it past the making of vectors"<< endl;
             // Signal definition
 
-            //remove events with 1 or less jets
-            if (all_jets.size() <= 1) 
-            {   
-                deepCuts[0]++;
-                // if (VERBOSE)cout << "Not enough jets"<< endl;
+            // Gang's ordering
+            if (Below_DeltaR_Diff(v_lep, all_jets, 0.4) || (Below_DeltaR_Same(v_lep, 0.4)) || (Below_DeltaR_Same(all_jets, 0.4)))
+            {
+                // deepCuts[8]++; // Cut 3a
                 continue;
             }
-            int lPairType = 0; // ee->0, eμ -> 1, μμ -> 2
-            bool lPairPlus = false; // false: --, true: ++
 
-            // First make sure that there are s.s. dilep pairs
             if (v_lepP.size() < 2 && v_lepM.size() < 2) 
             {
-                deepCuts[1]++;
+                // deepCuts[1]++;
 
                 continue;
                 // if (VERBOSE) cout << "No s.s. dilepton pair"<< endl;
                 // else
             } 
+            
+            if ((v_lep[0]+v_lep[1]).m() < 10.0) continue;
+
+
+            double r1 = 0.18;
+           double r2 = 0.31;
+           if (hasMu)
+           {
+                // if (v_mu[])
+                if (abs(v_lep[0].m() - 0.511*pow(10, 3)) < 0.01) // is 0.01 a good cut off for being an electron?
+                {
+                    if (abs(v_lep[1].m() - 0.511*pow(10,3)) < 0.01) lPairType = 0;
+                    else lPairType = 1;
+                }
+                else
+                {
+                    if (abs(v_lep[1].m() - 0.511*pow(10,3)) < 0.01) lPairType = 1;
+                    else lPairType = 2; 
+                }
+           }
+            else if (simLFV)
+           {
+                double rs = gRandom->Uniform(); // random number 0-1
+                if (rs < r1) lPairType = 0; // 0-0.18 => ee
+                else lPairType = (r2 < rs) ? 1 : 2; // 0.18-0.31 =>μμ, 0.31-1 => eμ
+           }
+        //    CMS Section 5 paragraph 1. Trigger simulation
+           int leadingThresh[3] = {25, 25, 20}; // GeV; corresponds to lPairType 0,1,2 indices
+           int trailingThresh[3] = {15, 10, 10};
+           if ((v_lep[0].pt() < leadingThresh[lPairType] || v_lep[1].pt() < trailingThresh[lPairType])) // Double check that the logical statements here match up w Gang
+           {
+                // deepCuts[10]++; //Cut 3c
+                continue;
+           }
+             // Gang only has the near Z mass cut for ee type, but not the others...?
+            
+            if(v_lep.size()>2)
+            {
+                if(v_lep[2].pt()>10) continue;
+            }
+
+            if (all_jets.size() <= 1) 
+            {   
+                // deepCuts[0]++;
+                // if (VERBOSE)cout << "Not enough jets"<< endl;
+                continue;
+            }
+
+            if(b_jets.size()>0)
+            {
+                // deepCuts[9]++; // Cut 3b
+                continue;
+            }
+
+
+            int htsum = 0;
+            // if (Jets[0].pt()<=25) 
+            // {
+            //     (*removalCounts)++; // this increments the element corresponding to the passed address  -- Cut 2a
+            //     return false;
+            // }
+            // cout << "Here"<< endl;
+            for (int i=0; i < all_jets.size(); i++)
+            {
+                double this_pt = all_jets[i].pt();
+                htsum += this_pt;
+                // if( this_pt < 25) continue;
+            }
+
+            for (int j=0; j < v_lep.size(); j++)
+            {
+                htsum += v_lep[j].pt();
+            }
+            // Ratio of missing Trans. momentum^2 and total PT less than 15 GeV
+            if (has_MET)
+            {
+                // cout << v_MET.size()<< endl;
+                if (pow(MET[0].pt(),2)/htsum > 15)
+                {
+                    // (*(removalCounts+1))++; // this increments the element corresponding to the passed address  -- Cut 2b
+                    // return false;
+                    continue;
+                }
+            }
+
+            w_jet_pairs = WPairing(all_jets);
+
+            double M_Wj = (w_jet_pairs[0]+w_jet_pairs[1]).m();
+            if (M_Wj < 30 || M_Wj > 150) 
+            {
+                continue;
+                // return false;
+                // (*(removalCounts+2))++; // this increments the element corresponding to the passed address   -- Cut 2c
+            }
+
+            //HERE -----------------------------------------------------------
+            //remove events with 1 or less jets
+            // if (all_jets.size() <= 1) 
+            // {   
+            //     // deepCuts[0]++;
+            //     // if (VERBOSE)cout << "Not enough jets"<< endl;
+            //     continue;
+            // }
+            // int lPairType = 0; // ee->0, eμ -> 1, μμ -> 2
+            // bool lPairPlus = false; // false: --, true: ++
+
+            // // First make sure that there are s.s. dilep pairs
+            // if (v_lepP.size() < 2 && v_lepM.size() < 2) 
+            // {
+            //     // deepCuts[1]++;
+
+            //     continue;
+            //     // if (VERBOSE) cout << "No s.s. dilepton pair"<< endl;
+            //     // else
+            // } 
+            //TO HERE ------------------------------------------------------------
             // Here, I'm commenting out the part asking for any s.s. pairs and writing one that only asks for electron s s pairs
             //This is temporary. Change it later
             // if (v_eP.size() < 2 && v_eP.size() < 2)
@@ -586,19 +698,19 @@ int main(int argc, const char * argv[])
             // cout << "all: "<< v_lep.size() << endl;
 
             // if (VERBOSE) cout << "There is an s.s. dilepton pair"<< endl;
-            numCutCats[0]++;
+            // numCutCats[0]++;
 
             //All events that made it here should have s.s. dilepton pair and 2+ jets
             // Preselection Criteria: CMS Sec 5.1
-
-            if (!PreselectionCuts(v_lep, &deepCuts[2])) continue; // Preselection returns false if the event should be rejected.
-            numCutCats[1]++;
+// Preselection -----------------------------------------------------
+            // if (!PreselectionCuts(v_lep, &deepCuts[2])) continue; // Preselection returns false if the event should be rejected.
+            // numCutCats[1]++;
             
             // High Mass SR 1-------------------------------------------------------------------------------------------------------------------------
             // // The proceeding three cuts are the definition of High Mass Signal Region 1 (HM SR1)
             // // CMS Table 1
-            if (!HMSR1Cuts(v_lep, all_jets, v_MET, hasMET, &deepCuts[5])) continue;
-            w_jet_pairs = WPairing(all_jets);
+            // if (!HMSR1Cuts(v_lep, all_jets, v_MET, hasMET, &deepCuts[5])) continue;
+            // w_jet_pairs = WPairing(all_jets);
             // // Each jet must be above 25 GeV pt
             // int numJet2 = all_jets.size();
             // // if (VERBOSE) cout << "Is the length of jet vector the same as branch size? " << (numJet2 == numJet)<< endl;
@@ -653,68 +765,70 @@ int main(int argc, const char * argv[])
             // double M_Wj = (w_jet_pairs[0]+w_jet_pairs[1]).m();
             // if (M_Wj < 30 || M_Wj > 150) continue;
 
-            numCutCats[2]++;
+            // numCutCats[2]++;
             // We have concluded the HMSR1 cuts
 
             // Here come the Miscellaneous Cuts-------------------------------------------------------------------------------------------------------------------------
             // First, we want angularly well separated events
             // ΔR information from CMS Sec. 4.1 & 4.2
             // Uncommented these for trouble shooting. They should come back
-            bool rejectDeltaR = false;
-            if (Below_DeltaR_Diff(v_lep, all_jets, 0.4) || (Below_DeltaR_Same(v_lep, 0.4)) || (Below_DeltaR_Same(all_jets, 0.4)))
-            {
-                deepCuts[8]++; // Cut 3a
-                continue;
-            }
+            // bool rejectDeltaR = false;
+            //HERE ------------------------------------------------------------------------------------------
+        //     if (Below_DeltaR_Diff(v_lep, all_jets, 0.4) || (Below_DeltaR_Same(v_lep, 0.4)) || (Below_DeltaR_Same(all_jets, 0.4)))
+        //     {
+        //         // deepCuts[8]++; // Cut 3a
+        //         continue;
+        //     }
 
-            //Now we remove all the B_tagged events (This doesn't seem to come from CMS paper)
-            //Not sure why we are doing it.
-            if(!b_jets.size())
-            {
-                deepCuts[9]++; // Cut 3b
-                continue;
-            }
+        //     //Now we remove all the B_tagged events (This doesn't seem to come from CMS paper)
+        //     //Not sure why we are doing it.
+        //     if(b_jets.size()>0)
+        //     {
+        //         // deepCuts[9]++; // Cut 3b
+        //         continue;
+        //     }
 
-            /*
-                Now We do a bit of a funky thing
-                For now, we are not simulating any μ events. However according to CMS Sec 5 (paragraph 1)
-                we want events with leptons at least loosely isolated. We use the "offline requirements".
-                These requirements are different for ee, μμ, and eμ. 
-                since we have no μ events, then we have to use ratios to split up ee events.
-                I don't yet know where these ratios came from.
-            */
+        //     /*
+        //         Now We do a bit of a funky thing
+        //         For now, we are not simulating any μ events. However according to CMS Sec 5 (paragraph 1)
+        //         we want events with leptons at least loosely isolated. We use the "offline requirements".
+        //         These requirements are different for ee, μμ, and eμ. 
+        //         since we have no μ events, then we have to use ratios to split up ee events.
+        //         I don't yet know where these ratios came from.
+        //     */
 
-           double r1 = 0.18;
-           double r2 = 0.31;
-           if (hasMu)
-           {
-                // if (v_mu[])
-                if (abs(v_lep[0].m() - 0.511*pow(10, 3)) < 0.01) // is 0.01 a good cut off for being an electron?
-                {
-                    if (abs(v_lep[1].m() - 0.511*pow(10,3)) < 0.01) lPairType = 0;
-                    else lPairType = 1;
-                }
-                else
-                {
-                    if (abs(v_lep[1].m() - 0.511*pow(10,3)) < 0.01) lPairType = 1;
-                    else lPairType = 2; 
-                }
-           }
-            else if (simLFV)
-           {
-                double rs = gRandom->Uniform(); // random number 0-1
-                if (rs < r1) lPairType = 0; // 0-0.18 => ee
-                else lPairType = (r2 < rs) ? 1 : 2; // 0.18-0.31 =>μμ, 0.31-1 => eμ
-           }
-        //    CMS Section 5 paragraph 1. Trigger simulation
-           int leadingThresh[3] = {25, 25, 20}; // GeV; corresponds to lPairType 0,1,2 indices
-           int trailingThresh[3] = {15, 10, 10};
-           if ((v_lep[0].pt() < leadingThresh[lPairType] || v_lep[1].pt() < trailingThresh[lPairType]))
-           {
-                deepCuts[10]++; //Cut 3c
-                continue;
-           }
-           numCutCats[3]++;
+        //    double r1 = 0.18;
+        //    double r2 = 0.31;
+        //    if (hasMu)
+        //    {
+        //         // if (v_mu[])
+        //         if (abs(v_lep[0].m() - 0.511*pow(10, 3)) < 0.01) // is 0.01 a good cut off for being an electron?
+        //         {
+        //             if (abs(v_lep[1].m() - 0.511*pow(10,3)) < 0.01) lPairType = 0;
+        //             else lPairType = 1;
+        //         }
+        //         else
+        //         {
+        //             if (abs(v_lep[1].m() - 0.511*pow(10,3)) < 0.01) lPairType = 1;
+        //             else lPairType = 2; 
+        //         }
+        //    }
+        //     else if (simLFV)
+        //    {
+        //         double rs = gRandom->Uniform(); // random number 0-1
+        //         if (rs < r1) lPairType = 0; // 0-0.18 => ee
+        //         else lPairType = (r2 < rs) ? 1 : 2; // 0.18-0.31 =>μμ, 0.31-1 => eμ
+        //    }
+        // //    CMS Section 5 paragraph 1. Trigger simulation
+        //    int leadingThresh[3] = {25, 25, 20}; // GeV; corresponds to lPairType 0,1,2 indices
+        //    int trailingThresh[3] = {15, 10, 10};
+        //    if ((v_lep[0].pt() < leadingThresh[lPairType] || v_lep[1].pt() < trailingThresh[lPairType]))
+        //    {
+        //         // deepCuts[10]++; //Cut 3c
+        //         continue;
+        //    }
+        //    numCutCats[3]++;
+        //TO HERE --------------------------------------------------------------------------------------------
 
             
             // w_jet_pairs.push_back(all_jets[JLowPairInd[0]]);
