@@ -126,7 +126,7 @@ def what_to_do_if_empty(ev_t):
     return full_dict
     
 def redoCounts(eT, fullcheck=0):
-    filename = '/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/' + eT + 'event_counts.txt'
+    filename = '/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/event_counts.txt'
     infile = open(filename, 'r')
     print('opening ', filename)
     quick_out = quick_check(eT, infile, verb=True)
