@@ -95,6 +95,8 @@ def main():
             
         LambdaInfo = incrementParam(LambdaInfo)
         grid_index[0] += 1
+    print("I'm finished. I'm gonna reset to the default the parameters")
+    edit_params({'current':1000}, {'current':0.176}, 1)
 
 
 if __name__ == '__main__':
