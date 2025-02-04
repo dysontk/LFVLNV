@@ -216,7 +216,7 @@ def gen_til_200k(eventTypes):
 
             thisBulkAttempt = AllRunHandler([thisConfig])
             newCount = read_many.redoCounts(eventTypes, 0)
-            if newCount[typ]['events'] <= event_count_dict[typ]['events']:
+            if int(newCount[typ]['events']) <= int(event_count_dict[typ]['events']):
                 print("For some reason events did not generate I think: ", typ, event_count_dict[typ]['events'])
                 return 0
             else:
