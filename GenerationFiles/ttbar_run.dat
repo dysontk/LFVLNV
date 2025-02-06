@@ -18,6 +18,6 @@ set ptl 20
 set etaj 2.8
 set etal 2.5
 
-/home/dkennedy_umass_edu/LNV/MG5_aMC_v3_5_4/Delphes/cards/card_JF.tcl
+/home/dkennedy_umass_edu/Software/MG5_aMC_v3_5_6/Delphes/cards/card_JF.tcl
 
 print_results
