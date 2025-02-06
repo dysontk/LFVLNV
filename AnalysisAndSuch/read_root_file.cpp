@@ -45,6 +45,9 @@ int main(int argc, char** argv) {
                 }
             }
         }
+        else{
+            cout << "Something is wrong"
+        }
     }
 
     file->Close();
