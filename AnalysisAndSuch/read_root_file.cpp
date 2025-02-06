@@ -46,7 +46,7 @@ int main(int argc, char** argv) {
             }
         }
         else{
-            cout << "Something is wrong"
+            std::cout << "Something is wrong"
         }
     }
 
