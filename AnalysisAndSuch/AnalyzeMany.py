@@ -24,7 +24,7 @@ def single_analysis(typ):
     from_analysis = run_command(f'/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/AnalysisAndSuch/JetFake/main '+ typ + ' ' + find_files(typ), False)
     print("FROM ANALYSIS")
     print(from_analysis)
-    theNumbersProcessing = re.search(r'\d+\n+\d+\n+\d+\n+\d+\n+\d+\n', from_analysis).group().split('\n')[1:-1]
+    theNumbersProcessing = re.search(r'group\n+\d+\n+\d+\n+\d+\n+\d+\n+\d+\n', from_analysis).group().split('\n')[1:-1]
     print(theNumbersProcessing)
     # theNumbersProcessing = theNumbersProcessing.remove('Cut')
     # print(theNumbersProcessing)
