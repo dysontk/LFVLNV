@@ -538,7 +538,7 @@ int main(int argc, const char * argv[]) {
    if(cntCuts.size() < cutOrder) cntCuts.push_back(0);
 
 
-   if (f_ lepP.size() < 2 && f_lepM.size() < 2) continue;
+   if (f_lepP.size() < 2 && f_lepM.size() < 2) continue;
 
    if ((f_lep[0]+f_lep[1]).m() < 10.0 ) continue;
 
