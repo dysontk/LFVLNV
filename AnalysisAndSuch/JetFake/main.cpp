@@ -70,7 +70,7 @@ using namespace TMath;
 // #include "mt2_bisect.h"
 // #include "mt2w_bisect.h"
 
-bool VERBOSE = false; // Allows for some troubleshooting or extra detail if true.
+bool VERBOSE = true; // Allows for some troubleshooting or extra detail if true.
 bool lowlepcut = false; //turns on and off Some sort of cut on the low energy lepton?????????????????????????
 
 // const char* EventType = "W3j";
@@ -434,7 +434,7 @@ int main(int argc, const char * argv[])
         // Is there a reason to use Int_t as opposed to int
         for(int entry=0; entry < NumEntries; entry++)
         {
-            // if (VERBOSE) cout<< "I am on Entry " << entry<< endl;
+            if (VERBOSE) cout<< "I am on Entry " << entry<< endl;
             all_jets.clear();
             w_jet_pairs.clear();
             v_eM.clear();
