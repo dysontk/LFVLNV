@@ -79,7 +79,7 @@ bool lowlepcut = false; //turns on and off Some sort of cut on the low energy le
 // we do not have branches for MET nor Muons. The following Bools are to account for this. 
 // When we use data that has MET and Muons, then we set these to true and it'll function properly 
 // Used in lines 147-149, 234-237
-bool hasMET = true;
+bool hasMET = false;
 bool hasMu = false;
 // This is used if we want to post-simulate the LFV with ratios from CMS paper (true) or just leave as single flavor (false)
 bool simLFV = true;
