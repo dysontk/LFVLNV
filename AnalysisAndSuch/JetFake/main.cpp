@@ -992,7 +992,7 @@ int main(int argc, const char * argv[])
         // cout << "Events removed by Cut" << endl;
         // for (int r=0; r<deepCuts.size(); r++) cout << deepCuts[r] << endl;
         cout << "events removed by each ind. cut "<< endl;
-        for(int d=0; d<deepCuts2.size(); d++) cout deepCuts2[d]<< endl;
+        for(int d=0; d<deepCuts2.size(); d++) cout << deepCuts2[d]<< endl;
         cout << endl;
 
         cout <<"Events remaining after each cut group" << endl;
