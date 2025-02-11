@@ -70,7 +70,7 @@ using namespace TMath;
 // #include "mt2_bisect.h"
 // #include "mt2w_bisect.h"
 
-bool VERBOSE = true; // Allows for some troubleshooting or extra detail if true.
+bool VERBOSE = false; // Allows for some troubleshooting or extra detail if true.
 bool lowlepcut = false; //turns on and off Some sort of cut on the low energy lepton?????????????????????????
 
 // const char* EventType = "W3j";
