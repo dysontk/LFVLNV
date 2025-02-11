@@ -545,6 +545,14 @@ int main(int argc, const char * argv[])
                 }
 
             }
+
+            for (int met=0; met< numMET; met++)
+            {
+                MissingET * METtmp = (MissingET *) branchMET->At(met);
+                tempEvent.reset((METtmp->P4()).Px(), (METtmp->P4()).Py(), (METtmp->P4()).Pz(), (METtmp->P4()).E());
+                // misset+=tmp;
+                f_MET.push_back(tempEvent);
+            }
             if (v_mu.size()>0) cout << "Muons: " << v_mu.size() << endl;
             // cout << "i'm about to sort vectors" << endl;
             sort(v_lep.begin(), v_lep.end(), sort_by_pt());
