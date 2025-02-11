@@ -567,6 +567,7 @@ int main(int argc, const char * argv[])
                 continue;
             }
             deepCuts2[1]++;
+            if (VERBOSE) cout << "past cut 1"<< endl;
 
             GangCutCount[0]++;
 
@@ -579,10 +580,12 @@ int main(int argc, const char * argv[])
                 // else
             } 
             deepCuts2[2]++;
+            if (VERBOSE) cout << "past cut 2"<< endl;
+
             
             if ((v_lep[0]+v_lep[1]).m() < 10.0) continue;
             deepCuts2[3]++;
-
+            if (VERBOSE) cout << "past cut 3"<< endl;
             double r1 = 0.18;
             double r2 = 0.31;
             int lPairType = 0;
@@ -615,6 +618,8 @@ int main(int argc, const char * argv[])
                 continue;
             }
             deepCuts2[4]++;
+            if (VERBOSE) cout << "past cut 4"<< endl;
+
                 // Gang only has the near Z mass cut for ee type, but not the others...?
 
             if(v_lep.size()>2)
@@ -624,7 +629,7 @@ int main(int argc, const char * argv[])
             }
             GangCutCount[1]++;
             deepCuts2[5]++;
-
+            if (VERBOSE) cout << "past cut 5"<< endl;
 
             if (all_jets.size() <= 1) 
             {   
@@ -634,7 +639,7 @@ int main(int argc, const char * argv[])
             }
             GangCutCount[2]++;
             deepCuts2[6]++;
-
+            if (VERBOSE) cout << "past cut 6"<< endl;
             
 
 
@@ -652,14 +657,14 @@ int main(int argc, const char * argv[])
                 // if( this_pt < 25) continue;
             }
             deepCuts2[7]++;
-
+            if (VERBOSE) cout << "past cut 7"<< endl;
             if(b_jets.size()>0)
             {
                 // deepCuts[9]++; // Cut 3b
                 continue;
             }
             deepCuts2[8]++;
-
+            if (VERBOSE) cout << "past cut 8"<< endl;
             for (int j=0; j < v_lep.size(); j++)
             {
                 htsum += v_lep[j].pt();
@@ -677,7 +682,7 @@ int main(int argc, const char * argv[])
             }
             GangCutCount[3]++;
             deepCuts2[9]++;
-
+            if (VERBOSE) cout << "past cut 9"<< endl;
 
             w_jet_pairs = WPairing(all_jets);
 
@@ -690,7 +695,7 @@ int main(int argc, const char * argv[])
             }
             GangCutCount[4]++;
             deepCuts2[10]++;
-
+            if (VERBOSE) cout << "past cut 10"<< endl;
             //HERE -----------------------------------------------------------
             //remove events with 1 or less jets
             // if (all_jets.size() <= 1) 
