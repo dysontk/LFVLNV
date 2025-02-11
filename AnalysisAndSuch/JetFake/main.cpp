@@ -487,7 +487,7 @@ int main(int argc, const char * argv[])
             //Time to collect some leptons
             //Electrons
             // cout << "Bout to make electrons"<< endl;
-            // if (VERBOSE) cout<< "numEl = " << numEl << endl;
+            if (VERBOSE) cout<< "numEl = " << numEl << endl;
             // if (numEl+numMu<2) continue;
             for(int e=0; e < numEl; e++)
             {
@@ -524,7 +524,7 @@ int main(int argc, const char * argv[])
             }
             //Muons
             // cout << "bout to make muons"<< endl;
-            // if (VERBOSE) cout<< "numMu = " << numMu << endl;
+            if (VERBOSE) cout<< "numMu = " << numMu << endl;
 
             for(int m=0; m < numMu; m++)
             {
