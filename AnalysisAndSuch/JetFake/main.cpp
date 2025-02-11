@@ -449,7 +449,7 @@ int main(int argc, const char * argv[])
             v_MET.clear();
             b_jets.clear();
 
-            cout << "cleared vectors"<< endl;
+            // cout << "cleared vectors"<< endl;
             treeReader->ReadEntry(entry);
             int numJet = branchJet->GetEntries();
             int numEl = branchElectron->GetEntries();
@@ -466,7 +466,7 @@ int main(int argc, const char * argv[])
                 v_MET.push_back(TEMP_event);
             }
             if (VERBOSE) cout << "Muons" << numMu << endl;
-            cout << "passed counting branches" << endl;
+            // cout << "passed counting branches" << endl;
             //I should diagram the rest of this out
             // I want to determine the pairs of jets that are closest to W mass
 
@@ -564,7 +564,7 @@ int main(int argc, const char * argv[])
             sort(v_muP.begin(), v_muP.end(), sort_by_pt());
             sort(v_e.begin(), v_e.end(), sort_by_pt());
             sort(v_mu.begin(), v_mu.end(), sort_by_pt());
-            cout << "I made it past the making of vectors"<< endl;
+            // cout << "I made it past the making of vectors"<< endl;
             // Signal definition
             deepCuts2[0]++;
             // Gang's ordering
