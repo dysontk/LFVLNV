@@ -513,7 +513,7 @@ int main(int argc, const char * argv[]) {
     int cutOrder = 1;
 
 // cut 0
-
+    f_every_count[0]++;
    if(cntCuts.size() < cutOrder) cntCuts.push_back(0);
 
 
@@ -528,7 +528,7 @@ int main(int argc, const char * argv[]) {
    ++cntCuts[cutOrder-1];
    cntarry[cutOrder-1] += w;
    ++cutOrder;
-  f_every_count[0]++;
+  f_every_count[1]++;
 
 
 
@@ -540,9 +540,9 @@ int main(int argc, const char * argv[]) {
 
 
    if (f_lepP.size() < 2 && f_lepM.size() < 2) continue;
-  f_every_count[1]++;
-   if ((f_lep[0]+f_lep[1]).m() < 10.0 ) continue;
   f_every_count[2]++;
+   if ((f_lep[0]+f_lep[1]).m() < 10.0 ) continue;
+  f_every_count[3]++;
 
 
 /*
@@ -608,12 +608,12 @@ int main(int argc, const char * argv[]) {
      if (f_lep[0].pt() < 25 || f_lep[1].pt() < 10) continue;
 
    }
-  f_every_count[3]++;
+  f_every_count[4]++;
    if (f_lep.size()>2) {
 
      if (f_lep[2].pt()>10) continue;
    }
-  f_every_count[4]++;
+  f_every_count[5]++;
 
 
 
@@ -627,7 +627,7 @@ int main(int argc, const char * argv[]) {
   if(cntCuts.size() < cutOrder) cntCuts.push_back(0);
 
 	if (f_all_jet.size()<2) continue;
-f_every_count[5]++;
+f_every_count[6]++;
 
 	double pt=0.0;
 	double ht=0.0;
@@ -641,7 +641,7 @@ f_every_count[5]++;
 
 
 	}
-  f_every_count[6]++;
+  f_every_count[7]++;
   ++cntCuts[cutOrder-1];
   cntarry[cutOrder-1] += w;
   ++cutOrder;
@@ -671,9 +671,9 @@ f_every_count[5]++;
   // if (f_MET[0].pt() > 80) continue; // low-mass SR1
 
   if(f_b_jet.size() > 0) continue;
-  f_every_count[7]++;
-  if (pow(f_MET[0].pt(),2)/htsum > 15.0) continue; // high-mass SR1
   f_every_count[8]++;
+  if (pow(f_MET[0].pt(),2)/htsum > 15.0) continue; // high-mass SR1
+  f_every_count[9]++;
   ++cntCuts[cutOrder-1];
   cntarry[cutOrder-1] += w;
   ++cutOrder;
@@ -779,7 +779,7 @@ f_every_count[5]++;
 
   // if ((f_w_jet[0]+f_w_jet[1]+f_lep[0]+f_lep[1]).m() > 300 ) continue; // low-mass SR1, SR2
   if ((f_w_jet[0]+f_w_jet[1]).m() < 30 || (f_w_jet[0]+f_w_jet[1]).m() > 150 ) continue; // high-mass SR1
-  f_every_count[9]++;
+  f_every_count[10]++;
 	hEgy2->Fill((f_w_jet[0]+f_w_jet[1]+f_lep[0]+f_lep[1]).m());
 
 	hEgy3->Fill((f_lep[0]+f_lep[1]).m());
