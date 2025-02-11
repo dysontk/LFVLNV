@@ -880,7 +880,7 @@ f_every_count[5]++;
     cout << "events remaining after each cut"<< endl;
     for (int i=0; i< f_every_count.size(); i++)
     {
-      cout << f_every_count[i] << ', ';
+      cout << f_every_count[i] << endl;
     }
     cout << endl;
     return 0;
