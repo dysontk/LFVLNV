@@ -877,10 +877,10 @@ f_every_count[5]++;
      histJetPT->Draw();
      cJetPt->SaveAs("JetPt.pdf");
      */
-    cout << 'events remaining after each cut'<< endl;
+    cout << "events remaining after each cut"<< endl;
     for (int i=0; i< f_every_count.size(); i++)
     {
-      cout << f_every_count[i] << ', '
+      cout << f_every_count[i] << ', ';
     }
     cout << endl;
     return 0;
