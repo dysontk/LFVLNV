@@ -612,7 +612,7 @@ int main(int argc, const char * argv[])
                 // deepCuts[3]++; //Cut 3c
                 continue;
             }
-            deepCuts[4]++;
+            deepCuts2[4]++;
                 // Gang only has the near Z mass cut for ee type, but not the others...?
 
             if(v_lep.size()>2)
