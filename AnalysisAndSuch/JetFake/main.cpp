@@ -328,8 +328,7 @@ int main(int argc, const char * argv[])
     TClonesArray *branchMuon;
     if (hasMu) branchMuon = treeReader->UseBranch("Muon");
     TClonesArray *branchMET;
-    if (hasMET) branchMET = treeReader->UseBranch("Missing
-    ET");
+    if (hasMET) branchMET = treeReader->UseBranch("MissingET");
 
     // TTreeReader *treeReader = new TTreeReader(&chain);
     // Long64_t NumEntries = treeReader->GetEntries();
@@ -688,7 +687,7 @@ int main(int argc, const char * argv[])
                 // (*(removalCounts+2))++; // this increments the element corresponding to the passed address   -- Cut 2c
             }
             GangCutCount[4]++;
-            deepCuts2[10];
+            deepCuts2[10]++;
 
             //HERE -----------------------------------------------------------
             //remove events with 1 or less jets
