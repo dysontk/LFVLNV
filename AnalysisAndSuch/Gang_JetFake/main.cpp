@@ -669,7 +669,7 @@ f_every_count[6]++;
   hEgy4->Fill(pow(f_MET[0].pt(),2)/htsum);
 
   // if (f_MET[0].pt() > 80) continue; // low-mass SR1
-
+  cout << f_MET.size() << endl;
   if(f_b_jet.size() > 0) continue;
   f_every_count[8]++;
   if (pow(f_MET[0].pt(),2)/htsum > 15.0) continue; // high-mass SR1
