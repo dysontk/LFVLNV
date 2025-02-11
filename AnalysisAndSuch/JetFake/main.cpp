@@ -529,7 +529,7 @@ int main(int argc, const char * argv[])
             {
                 Muon *mutmp = (Muon *) branchMuon->At(m);
                 tempEvent.reset((mutmp->P4()).Px(), (mutmp->P4()).Py(), (mutmp->P4()).Pz(), (mutmp->P4()).E());
-
+                cout << "DOING MUONSSSSSSSSSSS" << endl;
                 v_lep.push_back(tempEvent);
                 v_mu.push_back(tempEvent);
                 if (mutmp->Charge == 1) 
@@ -544,6 +544,7 @@ int main(int argc, const char * argv[])
                 }
 
             }
+            if (v_mu.size()>0) cout << "Muons: " << v_mu.size() << endl;
             // cout << "i'm about to sort vectors" << endl;
             sort(v_lep.begin(), v_lep.end(), sort_by_pt());
             sort(v_lepP.begin(), v_lepP.end(), sort_by_pt());
