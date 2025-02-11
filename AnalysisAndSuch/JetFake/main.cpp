@@ -672,7 +672,7 @@ int main(int argc, const char * argv[])
             // Ratio of missing Trans. momentum^2 and total PT less than 15 GeV
             if (hasMET)
             {
-                // cout << v_MET.size()<< endl;
+                cout << v_MET.size()<< endl;
                 if (pow(v_MET[0].pt(),2)/htsum > 15)
                 {
                     // (*(removalCounts+1))++; // this increments the element corresponding to the passed address  -- Cut 2b
