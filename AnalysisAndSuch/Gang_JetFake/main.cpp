@@ -334,7 +334,8 @@ int main(int argc, const char * argv[]) {
     vector<PseudoJet> f_MET, f_ePM, f_muPM, f_lepP, f_lepM;
     vector<PseudoJet> f_gamma;
     vector<PseudoJet> f_w_jet, f_bd_jet, f_nonb_jet;
-
+    vector<int> f_every_count;
+    f_every_count = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     MissingET *met;
 
     Jet *jet;
@@ -389,7 +390,7 @@ int main(int argc, const char * argv[]) {
         f_muPM.clear();
         f_lepP.clear();
         f_lepM.clear();
-
+      
         // Load selected branches with data from specified event
         treeReader->ReadEntry(entry);
 
@@ -527,7 +528,7 @@ int main(int argc, const char * argv[]) {
    ++cntCuts[cutOrder-1];
    cntarry[cutOrder-1] += w;
    ++cutOrder;
-
+  f_every_count[0]++;
 
 
 
@@ -539,9 +540,9 @@ int main(int argc, const char * argv[]) {
 
 
    if (f_lepP.size() < 2 && f_lepM.size() < 2) continue;
-
+  f_every_count[1]++;
    if ((f_lep[0]+f_lep[1]).m() < 10.0 ) continue;
-
+  f_every_count[2]++;
 
 
 /*
@@ -607,12 +608,12 @@ int main(int argc, const char * argv[]) {
      if (f_lep[0].pt() < 25 || f_lep[1].pt() < 10) continue;
 
    }
-
+  f_every_count[3]++;
    if (f_lep.size()>2) {
 
      if (f_lep[2].pt()>10) continue;
    }
-
+  f_every_count[4]++;
 
 
 
@@ -626,7 +627,7 @@ int main(int argc, const char * argv[]) {
   if(cntCuts.size() < cutOrder) cntCuts.push_back(0);
 
 	if (f_all_jet.size()<2) continue;
-
+f_every_count[5]++;
 
 	double pt=0.0;
 	double ht=0.0;
@@ -640,7 +641,7 @@ int main(int argc, const char * argv[]) {
 
 
 	}
-
+  f_every_count[6]++;
   ++cntCuts[cutOrder-1];
   cntarry[cutOrder-1] += w;
   ++cutOrder;
@@ -658,7 +659,7 @@ int main(int argc, const char * argv[]) {
    htsum += f_all_jet[i].pt();
 
   }
-
+  
   for(int i = 0; i < f_lep.size(); i++) {
 
    htsum += f_lep[i].pt();
@@ -670,9 +671,9 @@ int main(int argc, const char * argv[]) {
   // if (f_MET[0].pt() > 80) continue; // low-mass SR1
 
   if(f_b_jet.size() > 0) continue;
-
+  f_every_count[7]++;
   if (pow(f_MET[0].pt(),2)/htsum > 15.0) continue; // high-mass SR1
-
+  f_every_count[8]++;
   ++cntCuts[cutOrder-1];
   cntarry[cutOrder-1] += w;
   ++cutOrder;
@@ -778,7 +779,7 @@ int main(int argc, const char * argv[]) {
 
   // if ((f_w_jet[0]+f_w_jet[1]+f_lep[0]+f_lep[1]).m() > 300 ) continue; // low-mass SR1, SR2
   if ((f_w_jet[0]+f_w_jet[1]).m() < 30 || (f_w_jet[0]+f_w_jet[1]).m() > 150 ) continue; // high-mass SR1
-
+  f_every_count[9]++;
 	hEgy2->Fill((f_w_jet[0]+f_w_jet[1]+f_lep[0]+f_lep[1]).m());
 
 	hEgy3->Fill((f_lep[0]+f_lep[1]).m());
@@ -876,6 +877,12 @@ int main(int argc, const char * argv[]) {
      histJetPT->Draw();
      cJetPt->SaveAs("JetPt.pdf");
      */
+    cout << 'events remaining after each cut'<< endl;
+    for (int i=0; i< f_every_count.size(); i++)
+    {
+      cout << f_every_count[i] << ', '
+    }
+    cout << endl;
     return 0;
 }
 
