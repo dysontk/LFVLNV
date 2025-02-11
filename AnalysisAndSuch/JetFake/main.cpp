@@ -556,7 +556,7 @@ int main(int argc, const char * argv[])
             sort(v_muP.begin(), v_muP.end(), sort_by_pt());
             sort(v_e.begin(), v_e.end(), sort_by_pt());
             sort(v_mu.begin(), v_mu.end(), sort_by_pt());
-            // cout << "I made it past the making of vectors"<< endl;
+            cout << "I made it past the making of vectors"<< endl;
             // Signal definition
             deepCuts2[0]++;
             // Gang's ordering
