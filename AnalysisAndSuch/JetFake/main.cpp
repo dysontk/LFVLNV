@@ -79,7 +79,7 @@ bool lowlepcut = false; //turns on and off Some sort of cut on the low energy le
 // we do not have branches for MET nor Muons. The following Bools are to account for this. 
 // When we use data that has MET and Muons, then we set these to true and it'll function properly 
 // Used in lines 147-149, 234-237
-bool hasMET = false;
+bool hasMET = true;
 bool hasMu = false;
 // This is used if we want to post-simulate the LFV with ratios from CMS paper (true) or just leave as single flavor (false)
 bool simLFV = true;
@@ -408,6 +408,7 @@ int main(int argc, const char * argv[])
     // int numCutCats[4] = {0, 0, 0, 0}; //events that pass 0: signal def, 1: preselection, 2: HMSR1, 3: Misc.
     vector<int> numCutCats = {0, 0, 0, 0};
     vector<int> deepCuts = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // events that get removed by each cut. 1a-b, 2a-b, 3a-b
+    vector<int> deepCuts2 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // in Gang's order
     vector<int> GangCutCount = {0,0,0,0,0};
     // double cutsSize = sizeof(numCutCats)/sizeof(int);
     cout << "num cuts " << numCutCats.size() << endl;
@@ -555,27 +556,30 @@ int main(int argc, const char * argv[])
             sort(v_mu.begin(), v_mu.end(), sort_by_pt());
             // cout << "I made it past the making of vectors"<< endl;
             // Signal definition
-
+            deepCuts2[0]++;
             // Gang's ordering
             //cut 0
             if (Below_DeltaR_Diff(v_lep, all_jets, 0.4) || (Below_DeltaR_Same(v_lep, 0.4)) || (Below_DeltaR_Same(all_jets, 0.4)))
             {
-                // deepCuts[8]++; // Cut 3a
+                // deepCuts2[0]++; // Cut 3a
                 continue;
             }
+            deepCuts2[1]++;
 
             GangCutCount[0]++;
 
             if (v_lepP.size() < 2 && v_lepM.size() < 2) 
             {
-                // deepCuts[1]++;
+                // deepCuts2[1]++;
 
                 continue;
                 // if (VERBOSE) cout << "No s.s. dilepton pair"<< endl;
                 // else
             } 
+            deepCuts2[2]++;
             
             if ((v_lep[0]+v_lep[1]).m() < 10.0) continue;
+            deepCuts2[3]++;
 
             double r1 = 0.18;
             double r2 = 0.31;
@@ -605,16 +609,19 @@ int main(int argc, const char * argv[])
             int trailingThresh[3] = {15, 10, 10};
             if ((v_lep[0].pt() < leadingThresh[lPairType] || v_lep[1].pt() < trailingThresh[lPairType])) // Double check that the logical statements here match up w Gang
             {
-                // deepCuts[10]++; //Cut 3c
+                // deepCuts[3]++; //Cut 3c
                 continue;
             }
+            deepCuts[4]++;
                 // Gang only has the near Z mass cut for ee type, but not the others...?
 
             if(v_lep.size()>2)
             {
+                // deepCuts2[4]
                 if(v_lep[2].pt()>10) continue;
             }
             GangCutCount[1]++;
+            deepCuts2[5]++;
 
 
             if (all_jets.size() <= 1) 
@@ -624,12 +631,9 @@ int main(int argc, const char * argv[])
                 continue;
             }
             GangCutCount[2]++;
+            deepCuts2[6]++;
 
-            if(b_jets.size()>0)
-            {
-                // deepCuts[9]++; // Cut 3b
-                continue;
-            }
+            
 
 
             int htsum = 0;
@@ -645,6 +649,14 @@ int main(int argc, const char * argv[])
                 htsum += this_pt;
                 // if( this_pt < 25) continue;
             }
+            deepCuts2[7]++;
+
+            if(b_jets.size()>0)
+            {
+                // deepCuts[9]++; // Cut 3b
+                continue;
+            }
+            deepCuts2[8]++;
 
             for (int j=0; j < v_lep.size(); j++)
             {
@@ -662,6 +674,7 @@ int main(int argc, const char * argv[])
                 }
             }
             GangCutCount[3]++;
+            deepCuts2[9]++;
 
 
             w_jet_pairs = WPairing(all_jets);
@@ -674,6 +687,7 @@ int main(int argc, const char * argv[])
                 // (*(removalCounts+2))++; // this increments the element corresponding to the passed address   -- Cut 2c
             }
             GangCutCount[4]++;
+            deepCuts2[10];
 
             //HERE -----------------------------------------------------------
             //remove events with 1 or less jets
@@ -977,6 +991,9 @@ int main(int argc, const char * argv[])
 
         // cout << "Events removed by Cut" << endl;
         // for (int r=0; r<deepCuts.size(); r++) cout << deepCuts[r] << endl;
+        cout << "events removed by each ind. cut "<< endl;
+        for(int d=0; d<deepCuts2.size(); d++) cout deepCuts2[d]<< endl;
+        cout << endl;
 
         cout <<"Events remaining after each cut group" << endl;
         for (int c=0; c<GangCutCount.size(); c++) cout << GangCutCount[c] << endl;
