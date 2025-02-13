@@ -162,8 +162,9 @@ vector<PseudoJet> WPairing(vector<PseudoJet> Jets, double LowDiff=1000)
     // cout << all_jets.size()<< endl;
     for(int j1=0; j1<Jets.size(); j1++)
     {
-        for(int j2=j1; j2<Jets.size(); j2++)
+        for(int j2=0; j2<Jets.size(); j2++)
         {
+            if (j1==j2) continue;
             // cout << "Current Pair (" << j1 << "," << j2<< ")"<< endl;
             double thisDiff = abs((Jets[j1]+Jets[j2]).m()-80.4);
             // cout << "Inv M is off from W by " << thisDiff << endl;
@@ -582,7 +583,6 @@ int main(int argc, const char * argv[])
             if (v_lepP.size() < 2 && v_lepM.size() < 2) 
             {
                 // deepCuts2[1]++;
-
                 continue;
                 // if (VERBOSE) cout << "No s.s. dilepton pair"<< endl;
                 // else
@@ -652,12 +652,6 @@ int main(int argc, const char * argv[])
 
 
             int htsum = 0;
-            // if (Jets[0].pt()<=25) 
-            // {
-            //     (*removalCounts)++; // this increments the element corresponding to the passed address  -- Cut 2a
-            //     return false;
-            // }
-            // cout << "Here"<< endl;
             for (int i=0; i < all_jets.size(); i++)
             {
                 double this_pt = all_jets[i].pt();
