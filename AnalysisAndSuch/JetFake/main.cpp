@@ -55,7 +55,7 @@
 #include <time.h>
 #include <unistd.h>
 #include <iterator>
-#include<stdio.h>
+#include <stdio.h>
 #include "TRandom3.h"
 
 
@@ -81,6 +81,7 @@ bool lowlepcut = false; //turns on and off Some sort of cut on the low energy le
 // Used in lines 147-149, 234-237
 bool hasMET = true;
 bool hasMu = false;
+bool doFlip = true;
 // This is used if we want to post-simulate the LFV with ratios from CMS paper (true) or just leave as single flavor (false)
 bool simLFV = true;
 
@@ -500,7 +501,7 @@ int main(int argc, const char * argv[])
                 //Charge flip check
                 float rando = gRandom->Uniform();
                 // PseudoJet this_lepP = v_lepP[l];
-                float rate = ChargeFlipRate(etmp->Eta, etmp->PT);
+                float rate = (doFlips) ? ChargeFlipRate(etmp->Eta, etmp->PT) : 0;
                 bool shouldFlip = false;
                 if (rate > rando)
                 {
