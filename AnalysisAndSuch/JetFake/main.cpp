@@ -81,7 +81,7 @@ bool lowlepcut = false; //turns on and off Some sort of cut on the low energy le
 // Used in lines 147-149, 234-237
 bool hasMET = true;
 bool hasMu = false;
-bool doFlips = true;
+bool doFlips = false;
 // This is used if we want to post-simulate the LFV with ratios from CMS paper (true) or just leave as single flavor (false)
 bool simLFV = true;
 
