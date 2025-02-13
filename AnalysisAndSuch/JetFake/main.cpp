@@ -615,7 +615,7 @@ int main(int argc, const char * argv[])
             {
                 double rs = gRandom->Uniform(); // random number 0-1
                 if (rs < r1) lPairType = 0; // 0-0.18 => ee
-                else lPairType = (r2 < rs) ? 1 : 2; // 0.18-0.31 =>μμ, 0.31-1 => eμ
+                else lPairType = (r2 < rs) ? 2 : 1; // 0.18-0.31 =>μμ, 0.31-1 => eμ
             }
             //    CMS Section 5 paragraph 1. Trigger simulation
             int leadingThresh[3] = {25, 25, 20}; // GeV; corresponds to lPairType 0,1,2 indices
