@@ -420,20 +420,20 @@ int main(int argc, const char * argv[]) {
 
 
         // muon
-        // for(int i = 0; i < branchMuon->GetEntries(); i++){
-        //     Muon * muontmp = (Muon *) branchMuon->At(i);
-        //     // if(abs(muontmp->Eta)<6 && muontmp->PT>0) {
+        for(int i = 0; i < branchMuon->GetEntries(); i++){
+            Muon * muontmp = (Muon *) branchMuon->At(i);
+            // if(abs(muontmp->Eta)<6 && muontmp->PT>0) {
 
-        //       tmp.reset((muontmp->P4()).Px(), (muontmp->P4()).Py(), (muontmp->P4()).Pz(), (muontmp->P4()).E());
-        //       if(muontmp->Charge == 1){
-        //           f_muP.push_back(tmp);
-        //       }
-        //       else {
-        //           f_muM.push_back(tmp);
-        //       }
-        //     // }
+              tmp.reset((muontmp->P4()).Px(), (muontmp->P4()).Py(), (muontmp->P4()).Pz(), (muontmp->P4()).E());
+              if(muontmp->Charge == 1){
+                  f_muP.push_back(tmp);
+              }
+              else {
+                  f_muM.push_back(tmp);
+              }
+            // }
 
-        // }
+        }
 
 
         // Jet
