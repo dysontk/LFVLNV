@@ -474,6 +474,8 @@ int main(int argc, const char * argv[]) {
             f_MET.push_back(tmp);
         }
 
+       
+
         // cout<< branchElectron->GetEntries()<<endl;
         // cout<< branchJet->GetEntries()<<endl;
         // cout<< branchMET->GetEntries()<<endl;
@@ -493,6 +495,11 @@ int main(int argc, const char * argv[]) {
         for( int i=0; i<f_eP.size(); i++) f_lepP.push_back(f_eP[i] );
         for( int i=0; i<f_muM.size(); i++) f_lepM.push_back(f_muM[i] );
         for( int i=0; i<f_muP.size(); i++) f_lepP.push_back(f_muP[i] );
+
+        cout << "Electrons " << branchElectron->GetEntries() << " & " << f_eM.size() + f_eP.size() << endl;
+        cout << "Muons " << branchMuon->GetEntries() << " & " << f_muM.size() + f_muP.size() << endl;
+        cout << "Jets " << branchJet->GetEntries() << " & " << f_all_jet.size() << endl;
+        cout << "Leptons " << f_lep.size() << endl;
 
         std::sort(f_lep.begin(), f_lep.end(), sort_by_pt());
         std::sort(f_lepP.begin(), f_lepP.end(), sort_by_pt());

@@ -555,7 +555,12 @@ int main(int argc, const char * argv[])
                 // misset+=tmp;
                 v_MET.push_back(tempEvent);
             }
-            if (v_mu.size()>0) cout << "Muons: " << v_mu.size() << endl;
+            // if (v_mu.size()>0) cout << "Muons: " << v_mu.size() << endl;
+            cout << "Electrons " << numEl << " & " << v_e.size() << endl;
+            cout << "Muons " << numMu << " & " << v_mu.size() << endl;
+            cout << "Jets " << numJet << " & " << all_jets.size() << endl;
+            cout << "Leptons " << numEl + numMu << " & " << v_lep.size() << endl;
+            return 0
             // cout << "i'm about to sort vectors" << endl;
             sort(v_lep.begin(), v_lep.end(), sort_by_pt());
             sort(v_lepP.begin(), v_lepP.end(), sort_by_pt());
