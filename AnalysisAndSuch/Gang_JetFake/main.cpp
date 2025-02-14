@@ -500,7 +500,7 @@ int main(int argc, const char * argv[]) {
         cout << "Muons " << branchMuon->GetEntries() << " & " << f_muM.size() + f_muP.size() << endl;
         cout << "Jets " << branchJet->GetEntries() << " & " << f_all_jet.size() << endl;
         cout << "Leptons " << f_lep.size() << endl;
-        return 0;
+        continue;
 
         std::sort(f_lep.begin(), f_lep.end(), sort_by_pt());
         std::sort(f_lepP.begin(), f_lepP.end(), sort_by_pt());
