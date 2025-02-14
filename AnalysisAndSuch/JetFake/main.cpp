@@ -434,8 +434,8 @@ int main(int argc, const char * argv[])
         if(VERBOSE) cout <<"There are "<<  NumEntries << " Entries." << endl;
 
         // Is there a reason to use Int_t as opposed to int
-        // for(int entry=0; entry < NumEntries; entry++)
-        for(int entry=0; entry < NumEntries/4; entry++)
+        for(int entry=0; entry < NumEntries; entry++)
+        // for(int entry=0; entry < NumEntries/4; entry++)
         {
             if (VERBOSE) cout<< "I am on Entry " << entry<< endl;
             all_jets.clear();
@@ -591,18 +591,18 @@ int main(int argc, const char * argv[])
 
             GangCutCount[0]++;
 
-            if (entry > 53090)
-            {
-                cout << entry << endl;
-                cout << "leptons+ " << v_lepP.size() << endl;
-                cout << "leptons- " << v_lepM.size() << endl;
-                cout << "Muons+ " << v_muP.size() << endl;
-                cout << "Muons- " << v_muM.size() << endl;
-                cout << "Muons " << numMu << " & " << v_mu.size() << endl;
-                // cout << "Jets " << numJet << " & " << all_jets.size() << endl;
-                cout << "Leptons " << numEl + numMu << " & " << v_lep.size() << endl;
-                continue;
-            }
+            // if (entry > 53090)
+            // {
+            //     cout << entry << endl;
+            //     cout << "leptons+ " << v_lepP.size() << endl;
+            //     cout << "leptons- " << v_lepM.size() << endl;
+            //     cout << "Muons+ " << v_muP.size() << endl;
+            //     cout << "Muons- " << v_muM.size() << endl;
+            //     cout << "Muons " << numMu << " & " << v_mu.size() << endl;
+            //     // cout << "Jets " << numJet << " & " << all_jets.size() << endl;
+            //     cout << "Leptons " << numEl + numMu << " & " << v_lep.size() << endl;
+            //     continue;
+            // }
 
             if (v_lepP.size() < 2 && v_lepM.size() < 2) 
             {

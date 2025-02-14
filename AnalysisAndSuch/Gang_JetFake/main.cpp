@@ -369,8 +369,8 @@ int main(int argc, const char * argv[]) {
 
 
     // Loop over all events
-    // for(Int_t entry = 0; entry < numberOfEntries; ++entry)
-    for(Int_t entry = 0; entry < numberOfEntries/4; ++entry)
+    for(Int_t entry = 0; entry < numberOfEntries; ++entry)
+    // for(Int_t entry = 0; entry < numberOfEntries/4; ++entry)
     {
 
         f_all_jet.clear();
@@ -420,20 +420,20 @@ int main(int argc, const char * argv[]) {
 
 
         // muon
-        for(int i = 0; i < branchMuon->GetEntries(); i++){
-            Muon * muontmp = (Muon *) branchMuon->At(i);
-            // if(abs(muontmp->Eta)<6 && muontmp->PT>0) {
+        // for(int i = 0; i < branchMuon->GetEntries(); i++){
+        //     Muon * muontmp = (Muon *) branchMuon->At(i);
+        //     // if(abs(muontmp->Eta)<6 && muontmp->PT>0) {
 
-              tmp.reset((muontmp->P4()).Px(), (muontmp->P4()).Py(), (muontmp->P4()).Pz(), (muontmp->P4()).E());
-              if(muontmp->Charge == 1){
-                  f_muP.push_back(tmp);
-              }
-              else {
-                  f_muM.push_back(tmp);
-              }
-            // }
+        //       tmp.reset((muontmp->P4()).Px(), (muontmp->P4()).Py(), (muontmp->P4()).Pz(), (muontmp->P4()).E());
+        //       if(muontmp->Charge == 1){
+        //           f_muP.push_back(tmp);
+        //       }
+        //       else {
+        //           f_muM.push_back(tmp);
+        //       }
+        //     // }
 
-        }
+        // }
 
 
         // Jet
@@ -543,16 +543,16 @@ int main(int argc, const char * argv[]) {
 
    if(cntCuts.size() < cutOrder) cntCuts.push_back(0);
 
-  if (entry > 53090)
-  {
-    cout << entry << endl;
-    cout << "leptons+ " << f_lepP.size() << endl; 
-    cout << "leptons- " << f_lepM.size() << endl;
-    cout << "Muons+ " << f_muP.size() << endl;
-    cout << "Muons- " <<f_muM.size() << endl;
-    // cout << "Jets " << branchJet->GetEntries() << " & " << f_all_jet.size() << endl;
-    cout << "Leptons " << f_lep.size() << endl;
-  }
+  // if (entry > 53090)
+  // {
+  //   cout << entry << endl;
+  //   cout << "leptons+ " << f_lepP.size() << endl; 
+  //   cout << "leptons- " << f_lepM.size() << endl;
+  //   cout << "Muons+ " << f_muP.size() << endl;
+  //   cout << "Muons- " <<f_muM.size() << endl;
+  //   // cout << "Jets " << branchJet->GetEntries() << " & " << f_all_jet.size() << endl;
+  //   cout << "Leptons " << f_lep.size() << endl;
+  // }
 
    if (f_lepP.size() < 2 && f_lepM.size() < 2) continue;
    
