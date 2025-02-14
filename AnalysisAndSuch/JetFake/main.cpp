@@ -434,7 +434,8 @@ int main(int argc, const char * argv[])
         if(VERBOSE) cout <<"There are "<<  NumEntries << " Entries." << endl;
 
         // Is there a reason to use Int_t as opposed to int
-        for(int entry=0; entry < NumEntries; entry++)
+        // for(int entry=0; entry < NumEntries; entry++)
+        for(int entry=0; entry < NumEntries/2; entry++)
         {
             if (VERBOSE) cout<< "I am on Entry " << entry<< endl;
             all_jets.clear();
@@ -556,15 +557,15 @@ int main(int argc, const char * argv[])
                 v_MET.push_back(tempEvent);
             }
             // if (v_mu.size()>0) cout << "Muons: " << v_mu.size() << endl;
-            cout << entry << endl;
-            cout << "Electrons+ " << v_eP.size() << endl;
-            cout << "Electrons- " << v_eM.size() << endl;
-            cout << "Muons+ " << v_muP.size() << endl;
-            cout << "Muons- " << v_muM.size() << endl;
-            cout << "Muons " << numMu << " & " << v_mu.size() << endl;
-            cout << "Jets " << numJet << " & " << all_jets.size() << endl;
-            cout << "Leptons " << numEl + numMu << " & " << v_lep.size() << endl;
-            continue;
+            // cout << entry << endl;
+            // cout << "Electrons+ " << v_eP.size() << endl;
+            // cout << "Electrons- " << v_eM.size() << endl;
+            // cout << "Muons+ " << v_muP.size() << endl;
+            // cout << "Muons- " << v_muM.size() << endl;
+            // cout << "Muons " << numMu << " & " << v_mu.size() << endl;
+            // cout << "Jets " << numJet << " & " << all_jets.size() << endl;
+            // cout << "Leptons " << numEl + numMu << " & " << v_lep.size() << endl;
+            // continue;
             // cout << "i'm about to sort vectors" << endl;
             sort(v_lep.begin(), v_lep.end(), sort_by_pt());
             sort(v_lepP.begin(), v_lepP.end(), sort_by_pt());
