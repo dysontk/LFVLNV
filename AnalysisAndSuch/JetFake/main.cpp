@@ -557,10 +557,10 @@ int main(int argc, const char * argv[])
             }
             // if (v_mu.size()>0) cout << "Muons: " << v_mu.size() << endl;
             cout << entry << endl;
-            cout << "Electrons +" << v_eP.size() << endl;
-            cout << "Electrons -" << v_eM.size() << endl;
-            cout << "Muons +" << v_muP.size() << endl;
-            cout << "Muons -" << v_muM.size() << endl;
+            cout << "Electrons+ " << v_eP.size() << endl;
+            cout << "Electrons- " << v_eM.size() << endl;
+            cout << "Muons+ " << v_muP.size() << endl;
+            cout << "Muons- " << v_muM.size() << endl;
             cout << "Muons " << numMu << " & " << v_mu.size() << endl;
             cout << "Jets " << numJet << " & " << all_jets.size() << endl;
             cout << "Leptons " << numEl + numMu << " & " << v_lep.size() << endl;
@@ -597,6 +597,17 @@ int main(int argc, const char * argv[])
                 // if (VERBOSE) cout << "No s.s. dilepton pair"<< endl;
                 // else
             } 
+
+            cout << entry << endl;
+            cout << "Electrons+ " << v_eP.size() << endl;
+            cout << "Electrons- " << v_eM.size() << endl;
+            cout << "Muons+ " << v_muP.size() << endl;
+            cout << "Muons- " << v_muM.size() << endl;
+            cout << "Muons " << numMu << " & " << v_mu.size() << endl;
+            cout << "Jets " << numJet << " & " << all_jets.size() << endl;
+            cout << "Leptons " << numEl + numMu << " & " << v_lep.size() << endl;
+            continue;
+            
             deepCuts2[2]++;
             if (VERBOSE) cout << "past cut 2"<< endl;
 

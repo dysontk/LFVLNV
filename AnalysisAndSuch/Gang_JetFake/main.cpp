@@ -496,13 +496,7 @@ int main(int argc, const char * argv[]) {
         for( int i=0; i<f_muM.size(); i++) f_lepM.push_back(f_muM[i] );
         for( int i=0; i<f_muP.size(); i++) f_lepP.push_back(f_muP[i] );
 
-        cout << "Electrons+ " << f_eP.size() << endl; 
-        cout << "Electrons- " << f_eM.size() << endl;
-        cout << "Muons+ " << f_muP.size() << endl;
-        cout << "Muons- " <<f_muM.size() << endl;
-        cout << "Jets " << branchJet->GetEntries() << " & " << f_all_jet.size() << endl;
-        cout << "Leptons " << f_lep.size() << endl;
-        continue;
+        
 
         std::sort(f_lep.begin(), f_lep.end(), sort_by_pt());
         std::sort(f_lepP.begin(), f_lepP.end(), sort_by_pt());
@@ -550,6 +544,14 @@ int main(int argc, const char * argv[]) {
 
 
    if (f_lepP.size() < 2 && f_lepM.size() < 2) continue;
+   cout << entry << endl;
+  cout << "Electrons+ " << f_eP.size() << endl; 
+  cout << "Electrons- " << f_eM.size() << endl;
+  cout << "Muons+ " << f_muP.size() << endl;
+  cout << "Muons- " <<f_muM.size() << endl;
+  cout << "Jets " << branchJet->GetEntries() << " & " << f_all_jet.size() << endl;
+  cout << "Leptons " << f_lep.size() << endl;
+  continue;
   f_every_count[2]++;
    if ((f_lep[0]+f_lep[1]).m() < 10.0 ) continue;
   f_every_count[3]++;
