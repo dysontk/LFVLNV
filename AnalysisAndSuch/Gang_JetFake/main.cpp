@@ -369,8 +369,8 @@ int main(int argc, const char * argv[]) {
 
 
     // Loop over all events
-    // for(Int_t entry = 0; entry < numberOfEntries; ++entry)
-    for(Int_t entry = 0; entry < numberOfEntries/4; ++entry)
+    for(Int_t entry = 0; entry < numberOfEntries; ++entry)
+    // for(Int_t entry = 0; entry < numberOfEntries/4; ++entry)
     {
 
         f_all_jet.clear();
