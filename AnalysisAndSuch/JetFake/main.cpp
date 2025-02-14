@@ -599,15 +599,15 @@ int main(int argc, const char * argv[])
             } 
 
             cout << entry << endl;
-            cout << "Electrons+ " << v_eP.size() << endl;
-            cout << "Electrons- " << v_eM.size() << endl;
+            cout << "leptons+ " << v_lepP.size() << endl;
+            cout << "leptons- " << v_lepM.size() << endl;
             cout << "Muons+ " << v_muP.size() << endl;
             cout << "Muons- " << v_muM.size() << endl;
             cout << "Muons " << numMu << " & " << v_mu.size() << endl;
             cout << "Jets " << numJet << " & " << all_jets.size() << endl;
             cout << "Leptons " << numEl + numMu << " & " << v_lep.size() << endl;
             continue;
-            
+
             deepCuts2[2]++;
             if (VERBOSE) cout << "past cut 2"<< endl;
 

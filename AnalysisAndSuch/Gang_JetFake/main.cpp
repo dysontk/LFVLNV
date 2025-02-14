@@ -545,8 +545,8 @@ int main(int argc, const char * argv[]) {
 
    if (f_lepP.size() < 2 && f_lepM.size() < 2) continue;
    cout << entry << endl;
-  cout << "Electrons+ " << f_eP.size() << endl; 
-  cout << "Electrons- " << f_eM.size() << endl;
+  cout << "leptons+ " << f_lepP.size() << endl; 
+  cout << "leptons- " << f_lepM.size() << endl;
   cout << "Muons+ " << f_muP.size() << endl;
   cout << "Muons- " <<f_muM.size() << endl;
   cout << "Jets " << branchJet->GetEntries() << " & " << f_all_jet.size() << endl;
