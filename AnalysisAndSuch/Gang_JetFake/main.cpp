@@ -543,15 +543,19 @@ int main(int argc, const char * argv[]) {
 
    if(cntCuts.size() < cutOrder) cntCuts.push_back(0);
 
+  if (entry > 53090)
+  {
+    cout << entry << endl;
+    cout << "leptons+ " << f_lepP.size() << endl; 
+    cout << "leptons- " << f_lepM.size() << endl;
+    cout << "Muons+ " << f_muP.size() << endl;
+    cout << "Muons- " <<f_muM.size() << endl;
+    // cout << "Jets " << branchJet->GetEntries() << " & " << f_all_jet.size() << endl;
+    cout << "Leptons " << f_lep.size() << endl;
+  }
 
    if (f_lepP.size() < 2 && f_lepM.size() < 2) continue;
-   cout << entry << endl;
-  cout << "leptons+ " << f_lepP.size() << endl; 
-  cout << "leptons- " << f_lepM.size() << endl;
-  cout << "Muons+ " << f_muP.size() << endl;
-  cout << "Muons- " <<f_muM.size() << endl;
-  cout << "Jets " << branchJet->GetEntries() << " & " << f_all_jet.size() << endl;
-  cout << "Leptons " << f_lep.size() << endl;
+   
   continue;
   f_every_count[2]++;
    if ((f_lep[0]+f_lep[1]).m() < 10.0 ) continue;

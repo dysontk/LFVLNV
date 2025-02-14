@@ -591,6 +591,19 @@ int main(int argc, const char * argv[])
 
             GangCutCount[0]++;
 
+            if (entry > 53090)
+            {
+                cout << entry << endl;
+                cout << "leptons+ " << v_lepP.size() << endl;
+                cout << "leptons- " << v_lepM.size() << endl;
+                cout << "Muons+ " << v_muP.size() << endl;
+                cout << "Muons- " << v_muM.size() << endl;
+                cout << "Muons " << numMu << " & " << v_mu.size() << endl;
+                // cout << "Jets " << numJet << " & " << all_jets.size() << endl;
+                cout << "Leptons " << numEl + numMu << " & " << v_lep.size() << endl;
+                continue;
+            }
+
             if (v_lepP.size() < 2 && v_lepM.size() < 2) 
             {
                 // deepCuts2[1]++;
@@ -599,15 +612,7 @@ int main(int argc, const char * argv[])
                 // else
             } 
 
-            cout << entry << endl;
-            cout << "leptons+ " << v_lepP.size() << endl;
-            cout << "leptons- " << v_lepM.size() << endl;
-            cout << "Muons+ " << v_muP.size() << endl;
-            cout << "Muons- " << v_muM.size() << endl;
-            cout << "Muons " << numMu << " & " << v_mu.size() << endl;
-            cout << "Jets " << numJet << " & " << all_jets.size() << endl;
-            cout << "Leptons " << numEl + numMu << " & " << v_lep.size() << endl;
-            continue;
+            
 
             deepCuts2[2]++;
             if (VERBOSE) cout << "past cut 2"<< endl;
