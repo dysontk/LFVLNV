@@ -434,8 +434,8 @@ int main(int argc, const char * argv[])
         if(VERBOSE) cout <<"There are "<<  NumEntries << " Entries." << endl;
 
         // Is there a reason to use Int_t as opposed to int
-        for(int entry=0; entry < NumEntries; entry++)
-        // for(int entry=0; entry < NumEntries/4; entry++)
+        // for(int entry=0; entry < NumEntries; entry++)
+        for(int entry=0; entry < NumEntries/4; entry++)
         {
             if (VERBOSE) cout<< "I am on Entry " << entry<< endl;
             all_jets.clear();
