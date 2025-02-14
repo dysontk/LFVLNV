@@ -496,8 +496,10 @@ int main(int argc, const char * argv[]) {
         for( int i=0; i<f_muM.size(); i++) f_lepM.push_back(f_muM[i] );
         for( int i=0; i<f_muP.size(); i++) f_lepP.push_back(f_muP[i] );
 
-        cout << "Electrons " << branchElectron->GetEntries() << " & " << f_eM.size() + f_eP.size() << endl;
-        cout << "Muons " << branchMuon->GetEntries() << " & " << f_muM.size() + f_muP.size() << endl;
+        cout << "Electrons+ " << f_eP.size() << endl; 
+        cout << "Electrons- " << f_eM.size() << endl;
+        cout << "Muons+ " << f_muP.size() << endl;
+        cout << "Muons- " <<f_muM.size() << endl;
         cout << "Jets " << branchJet->GetEntries() << " & " << f_all_jet.size() << endl;
         cout << "Leptons " << f_lep.size() << endl;
         continue;
