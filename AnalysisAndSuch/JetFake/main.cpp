@@ -560,7 +560,7 @@ int main(int argc, const char * argv[])
             cout << "Muons " << numMu << " & " << v_mu.size() << endl;
             cout << "Jets " << numJet << " & " << all_jets.size() << endl;
             cout << "Leptons " << numEl + numMu << " & " << v_lep.size() << endl;
-            return 0
+            return 0;
             // cout << "i'm about to sort vectors" << endl;
             sort(v_lep.begin(), v_lep.end(), sort_by_pt());
             sort(v_lepP.begin(), v_lepP.end(), sort_by_pt());
