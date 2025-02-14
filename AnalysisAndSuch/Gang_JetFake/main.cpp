@@ -607,7 +607,7 @@ int main(int argc, const char * argv[]) {
     double r2=0.31;
 
    if (rs < r1) {
-
+    cout << "pair type: " << 0 << endl;
      if (f_lep[0].pt() < 25 || f_lep[1].pt() < 15) continue;
 
      if (abs((f_lep[0]+f_lep[1]).m() - 91.2) < 20.0) continue;
@@ -615,13 +615,13 @@ int main(int argc, const char * argv[]) {
    }
 
    else if (rs > r1 && rs < r2) {
-
+    cout << "pair type: " << 1 << endl;
      if (f_lep[0].pt() < 20 || f_lep[1].pt() < 10) continue;
 
    }
 
    else {
-
+    cout << "pair type: " << 2 << endl;
      if (f_lep[0].pt() < 25 || f_lep[1].pt() < 10) continue;
 
    }
