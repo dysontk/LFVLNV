@@ -644,7 +644,7 @@ int main(int argc, const char * argv[])
                 if (rs < r1) lPairType = 0; // 0-0.18 => ee
                 else lPairType = (r2 < rs) ? 2 : 1; // 0.18-0.31 =>μμ, 0.31-1 => eμ
             }
-            cout << "pair type: " << lPairType << endl;
+            // cout << "pair type: " << lPairType << endl;
             //    CMS Section 5 paragraph 1. Trigger simulation
             int leadingThresh[3] = {25, 25, 20}; // GeV; corresponds to lPairType 0,1,2 indices
             int trailingThresh[3] = {15, 10, 10};
