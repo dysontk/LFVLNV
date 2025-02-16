@@ -77,7 +77,9 @@ void Export_TH1F (TH1F * target_H1F, ofstream &out_file);//use &out_file, becasu
 void Export_TH1F (TH1F * target_H1F, ofstream &out_file){
     double num_entries = target_H1F->GetEntries();
     for( int i = 1; i <= target_H1F->GetNbinsX(); i++){
-        out_file<<target_H1F->GetXaxis()->GetBinCenter(i)<<" "<<(target_H1F->GetBinContent(i)/num_entries)<<endl;
+        // out_file<<target_H1F->GetXaxis()->GetBinCenter(i)<<" "<<(target_H1F->GetBinContent(i)/num_entries)<<endl;
+        out_file<<target_H1F->GetXaxis()->GetBinCenter(i)<<" "<<(target_H1F->GetBinContent(i))<<endl;
+
     }//return normalized histogram
 }
 
