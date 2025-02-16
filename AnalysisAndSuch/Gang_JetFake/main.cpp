@@ -245,12 +245,12 @@ int main(int argc, const char * argv[]) {
 
     TH1F *hEgy1 = new TH1F("","",30,75,105);
     // TH1F *hEgy2 = new TH1F("","",35,0,700); // low-mass SR1
-    TH1F *hEgy2 = new TH1F("","",15,80,680); // high-mass SR1
+    TH1F *hEgy2 = new TH1F("","",18,0,680); // high-mass SR1
     TH1F *hEgy3 = new TH1F("","",30,0,300);
     TH1F *hEgy4 = new TH1F("","",30,0,100);
     // TH1F *hEgy5 = new TH1F("","",11,40,260); //low-mass SR1
-    TH1F *hEgy5 = new TH1F("","",17,20,360); //high-mass SR1
-    TH1F *hEgy6 = new TH1F("","",21,60,480); //high-mass SR1
+    TH1F *hEgy5 = new TH1F("","",18,0,360); //high-mass SR1
+    TH1F *hEgy6 = new TH1F("","",25,0,480); //high-mass SR1
 
     TH1F *hEgy7 = new TH1F("","",94,0,800);// vs MET dist. in root using MissingET
     TH1F *hEgy8 = new TH1F("","",20,0,200);
