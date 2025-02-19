@@ -392,7 +392,7 @@ int main(int argc, const char * argv[])
     //Invariant mass of W jets and the sub-leading lepton
     int MW2j1l_1HistoParams[3] = {180, 0, 2000};
     TH1F *MW2j1l_1  = new TH1F("Inv_Mass_2Jets_close_to_W_1l_1", "Inv. Mass 2 Jets + Lep_1", MW2j1l_1HistoParams[0], MW2j1l_1HistoParams[1], MW2j1l_1HistoParams[2]);
-    cout << MW2j2lHistoParams[2]<< endl;
+    if (VERBOSE) cout << MW2j2lHistoParams[2]<< endl;
     // TH1F *M2lTroubleshoot = new TH1F("Inv_Mass_2l", "Inv. Mass 2 Lep",  70, 0, 10);
 
 // Figure out how to best use this later based on how I do the cuts
@@ -413,8 +413,11 @@ int main(int argc, const char * argv[])
     vector<int> deepCuts2 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // in Gang's order
     vector<int> GangCutCount = {0,0,0,0,0};
     // double cutsSize = sizeof(numCutCats)/sizeof(int);
-    cout << "num cuts " << numCutCats.size() << endl;
-    for (int c=0; c<numCutCats.size(); c++) cout << numCutCats[c]<< endl;
+    if (VERBOSE) 
+    {
+        cout << "num cuts " << numCutCats.size() << endl;
+        for (int c=0; c<numCutCats.size(); c++) cout << numCutCats[c]<< endl;
+    }
     // cout << sizeof(numCutCats)<< endl;
     // for (int i=0; i<sizeof(numCutCats)/sizeof(int); i++) cout << numCutCats[i] << ", ";
     // cout << endl;
@@ -917,9 +920,9 @@ int main(int argc, const char * argv[])
         cout << "Histo time"<< endl;
 
         TStyle *st1 = new TStyle("st1","my style");
-        cout << "hi"<< endl;
+        // cout << "hi"<< endl;
         st1->SetOptStat(111111111);
-        cout << "707"<< endl;
+        // cout << "707"<< endl;
         st1->cd();  //this becomes now the current style gStyle
         TCanvas *c1 = new TCanvas("c1", "ROOT Canvas", 900, 20, 540, 550);
 

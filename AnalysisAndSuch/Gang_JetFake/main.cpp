@@ -224,11 +224,11 @@ int main(int argc, const char * argv[]) {
     char *lEta1, *lEta2, *lEta3, *lEta4;
     char *lCth1, *lCth2, *lCth3, *lCth4;
     lEgy1 = strcat( strcat(lEgy1Head, label), lFileFormat);
-    lEgy2 = strcat( strcat(lEgy2Head, label), lFileFormat);
+    lEgy2 = strcat( "output/", strcat( strcat(lEgy2Head, label), lFileFormat));
     lEgy3 = strcat( strcat(lEgy3Head, label), lFileFormat);
     lEgy4 = strcat( strcat(lEgy4Head, label), lFileFormat);
-    lEgy5 = strcat( strcat(lEgy5Head, label), lFileFormat);
-    lEgy6 = strcat( strcat(lEgy6Head, label), lFileFormat);
+    lEgy5 = strcat( "output/", strcat( strcat(lEgy5Head, label), lFileFormat));
+    lEgy6 = strcat( "output/", strcat( strcat(lEgy6Head, label), lFileFormat));
     lEgy7 = strcat( strcat(lEgy7Head, label), lFileFormat);
     lEgy8 = strcat( strcat(lEgy8Head, label), lFileFormat);
     lEgy9 = strcat( strcat(lEgy9Head, label), lFileFormat);
