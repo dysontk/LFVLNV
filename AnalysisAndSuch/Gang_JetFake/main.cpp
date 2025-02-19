@@ -219,16 +219,17 @@ int main(int argc, const char * argv[]) {
     char lCth2Head[50] = "CtheP_";
     char lCth3Head[50] = "CthmuM_";
     char lCth4Head[50] = "CthmuP_";
+    char extradir[50] = "output/";
 
     char *lEgy1, *lEgy2, *lEgy3, *lEgy4, *lEgy5, *lEgy6, *lEgy7, *lEgy8, *lEgy9;
     char *lEta1, *lEta2, *lEta3, *lEta4;
     char *lCth1, *lCth2, *lCth3, *lCth4;
     lEgy1 = strcat( strcat(lEgy1Head, label), lFileFormat);
-    lEgy2 = strcat( "output/", strcat( strcat(lEgy2Head, label), lFileFormat));
+    lEgy2 = strcat( extradir, strcat( strcat(lEgy2Head, label), lFileFormat));
     lEgy3 = strcat( strcat(lEgy3Head, label), lFileFormat);
     lEgy4 = strcat( strcat(lEgy4Head, label), lFileFormat);
-    lEgy5 = strcat( "output/", strcat( strcat(lEgy5Head, label), lFileFormat));
-    lEgy6 = strcat( "output/", strcat( strcat(lEgy6Head, label), lFileFormat));
+    lEgy5 = strcat( extradir, strcat( strcat(lEgy5Head, label), lFileFormat));
+    lEgy6 = strcat( extradir, strcat( strcat(lEgy6Head, label), lFileFormat));
     lEgy7 = strcat( strcat(lEgy7Head, label), lFileFormat);
     lEgy8 = strcat( strcat(lEgy8Head, label), lFileFormat);
     lEgy9 = strcat( strcat(lEgy9Head, label), lFileFormat);
