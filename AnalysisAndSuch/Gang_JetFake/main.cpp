@@ -237,7 +237,7 @@ int main(int argc, const char * argv[]) {
     lEgy6 = strcat( extradir, strcat( strcat(lEgy6Head, label), lFileFormat));
     cout << lEgy2 << endl;
     cout << lEgy5 << endl;
-    cout <, lEgy6 << endl;
+    cout << lEgy6 << endl;
     cout << extradir << endl;
     lEgy7 = strcat( strcat(lEgy7Head, label), lFileFormat);
     lEgy8 = strcat( strcat(lEgy8Head, label), lFileFormat);
