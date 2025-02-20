@@ -260,12 +260,12 @@ int main(int argc, const char * argv[]) {
 
     TH1F *hEgy1 = new TH1F("","",30,75,105);
     // TH1F *hEgy2 = new TH1F("","",35,0,700); // low-mass SR1
-    TH1F *hEgy2 = new TH1F("","",180,0,2000); // high-mass SR1 ll Wj
+    TH1F *hEgy2 = new TH1F("","",60,0,2000); // high-mass SR1 ll Wj
     TH1F *hEgy3 = new TH1F("","",30,0,700);// ll
     TH1F *hEgy4 = new TH1F("","",30,0,100);
     // TH1F *hEgy5 = new TH1F("","",11,40,260); //low-mass SR1
-    TH1F *hEgy5 = new TH1F("","",180,0,2000); //high-mass SR1 Wj l2
-    TH1F *hEgy6 = new TH1F("","",250,0,2000); //high-mass SR1 Wj l1
+    TH1F *hEgy5 = new TH1F("","",105,0,2000); //high-mass SR1 Wj l2
+    TH1F *hEgy6 = new TH1F("","",113,0,2000); //high-mass SR1 Wj l1
 
     TH1F *hEgy7 = new TH1F("","",94,0,800);// vs MET dist. in root using MissingET
     TH1F *hEgy8 = new TH1F("","",20,0,200);
@@ -627,7 +627,7 @@ int main(int argc, const char * argv[]) {
     // cout << "pair type: " << 0 << endl;
      if (f_lep[0].pt() < 25 || f_lep[1].pt() < 15) continue;
 
-    //  if (abs((f_lep[0]+f_lep[1]).m() - 91.2) < 20.0) continue;
+     if (abs((f_lep[0]+f_lep[1]).m() - 91.2) < 20.0) continue;
 
    }
 
