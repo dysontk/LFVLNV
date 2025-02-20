@@ -625,7 +625,7 @@ int main(int argc, const char * argv[])
             deepCuts2[3]++;
             if (VERBOSE) cout << "past cut 3"<< endl;
             double r1 = 0.18;
-            double r2 = 0.31;
+            double r2 = 0.49;
             int lPairType = 0;
             if (hasMu)
             {
@@ -645,11 +645,11 @@ int main(int argc, const char * argv[])
             {
                 double rs = gRandom->Uniform(); // random number 0-1
                 if (rs < r1) lPairType = 0; // 0-0.18 => ee
-                else lPairType = (r2 < rs) ? 2 : 1; // 0.18-0.31 =>μμ, 0.31-1 => eμ
+                else lPairType = (r2 < rs) ? 1 : 2; // 0.18-0.49 =>μμ, 0.49-1 => eμ
             }
             // cout << "pair type: " << lPairType << endl;
             //    CMS Section 5 paragraph 1. Trigger simulation
-            int leadingThresh[3] = {25, 25, 20}; // GeV; corresponds to lPairType 0,1,2 indices
+            int leadingThresh[3] = {25, 20, 25}; // GeV; corresponds to lPairType 0(ee),1(μμ),2(eμ) indices
             int trailingThresh[3] = {15, 10, 10};
             if ((v_lep[0].pt() < leadingThresh[lPairType] || v_lep[1].pt() < trailingThresh[lPairType])) // Double check that the logical statements here match up w Gang
             {

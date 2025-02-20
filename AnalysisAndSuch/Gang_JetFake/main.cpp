@@ -621,7 +621,7 @@ int main(int argc, const char * argv[]) {
 
     // high-mass SR1
     double r1=0.18;
-    double r2=0.31;
+    double r2=0.49;
 
    if (rs < r1) {
     // cout << "pair type: " << 0 << endl;
