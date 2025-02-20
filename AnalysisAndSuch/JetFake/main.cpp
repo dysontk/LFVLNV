@@ -376,7 +376,7 @@ int main(int argc, const char * argv[])
     // Invariant mass of W jet pair and leading leptons (Are these necessarily going to be s.s. leptons?)
     int MW2j2lHistoParams[3] = {60,0, 2000}; // current bounds are to have the same range and bin sizes as Gang's data
     TH1F *MW2j2l = new TH1F("Inv_Mass_2Jets_close_to_W_2l", "Inv. Mass 2 Jets 2 Lep",  MW2j2lHistoParams[0]-5, MW2j2lHistoParams[1], MW2j2lHistoParams[2]);
-
+    cout << "ll jj plot bins " << MW2j2lHistoParams[0]<< endl;
     //Invariant mass of the leading leptons (Are these necessarily going to be s.s. leptons?)
     int M2lHistoParams[3] = {80, 0, 1100};
     TH1F *M2l;
