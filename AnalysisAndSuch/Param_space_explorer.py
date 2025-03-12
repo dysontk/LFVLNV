@@ -61,15 +61,15 @@ def edit_proc(LInfo, gInfo):
         file.write(to_write)
     return procPath
 
-def gen_events(nEvents, thisLambda, thisgeff):
-    allAttempts = GM.AllRunHandler([GM.RunConfig('LNVF', nEvents, 0, thisLambda, thisgeff)])
+def gen_events(nRuns, thisLambda, thisgeff):
+    allAttempts = GM.AllRunHandler([GM.RunConfig('LNVF', nRuns, 0, thisLambda, thisgeff)])
 
 def main():
     LambdaInfo = {'bounds':(1000, 2000), # GeV
                   'delta': 500}
     geffInfo = {'bounds':(0.17, 0.18),
                 'delta': 0.0050}
-    nEvents = 100
+    nRuns = 5
     LambdaInfo = set_start(LambdaInfo)
     geffInfo = set_start(geffInfo)
     # print(geffInfo)ß
@@ -85,7 +85,7 @@ def main():
             path_to_process_card = edit_proc(LambdaInfo, geffInfo)
             gen_proc_command = '/home/dkennedy_umass_edu/Software/MG5_aMC_v3_5_6/bin/mg5_aMC ' + path_to_process_card
             GM.run_command(gen_proc_command)
-            gen_events(nEvents, LambdaInfo['current'], geffInfo['current'])
+            gen_events(nRuns, LambdaInfo['current'], geffInfo['current'])
             # print("here is where I'd gen events")
             
             geffInfo = incrementParam(geffInfo)
