@@ -412,6 +412,7 @@ int main(int argc, const char * argv[])
     vector<int> deepCuts = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // events that get removed by each cut. 1a-b, 2a-b, 3a-b
     vector<int> deepCuts2 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0}; // in Gang's order
     vector<int> GangCutCount = {0,0,0,0,0};
+    int numSSdilep = 0;
     // double cutsSize = sizeof(numCutCats)/sizeof(int);
     if (VERBOSE) 
     {
@@ -582,6 +583,10 @@ int main(int argc, const char * argv[])
             // cout << "I made it past the making of vectors"<< endl;
             // Signal definition
             deepCuts2[0]++;
+            if (v_eM.size() >= 2 && v_eP.size() >= 2)
+            {
+                if (all_jets.size()>=2) numSSdilep++;
+            }
             // Gang's ordering
             //cut 0
             if (Below_DeltaR_Diff(v_lep, all_jets, 0.4) || (Below_DeltaR_Same(v_lep, 0.4)) || (Below_DeltaR_Same(all_jets, 0.4)))
@@ -1037,7 +1042,7 @@ int main(int argc, const char * argv[])
 
         cout <<"Events remaining after each cut group" << endl;
         for (int c=0; c<GangCutCount.size(); c++) cout << GangCutCount[c] << endl;
-        
+        cout << "num eejj events b4 cuts: " << numSSdilep << endl;
     }
 
 }
