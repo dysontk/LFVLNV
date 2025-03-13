@@ -583,7 +583,7 @@ int main(int argc, const char * argv[])
             // cout << "I made it past the making of vectors"<< endl;
             // Signal definition
             deepCuts2[0]++;
-            if (v_eM.size() >= 2 && v_eP.size() >= 2)
+            if (v_eM.size() >= 2 || v_eP.size() >= 2)
             {
                 if (all_jets.size()>=2) numSSdilep++;
             }
