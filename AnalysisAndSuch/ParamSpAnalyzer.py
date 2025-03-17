@@ -10,7 +10,7 @@ def clear_writeFile():
     # with open('ParamSpEff.dat') as file:
 
 def write_to_file(p1, p2, ef):
-
+    print(f'{p1} {p2} {ef}')
     with open('ParamSpEff.dat') as file:
         file.write(f'{p1} {p2} {ef}')
 
