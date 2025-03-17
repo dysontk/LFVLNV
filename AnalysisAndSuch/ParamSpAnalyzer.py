@@ -25,7 +25,7 @@ def analyzeThis(Lambda, geff):
     
     from_analysis = AM.run_command(f'/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/AnalysisAndSuch/JetFake/main LNVF '+ theseFiles, False)
 
-    eff = re.search(r'Efficiency: \n', from_analysis)
+    eff = re.search(r'Efficiency: \d', from_analysis)
 
     print(eff)
     write_to_file(Lambda, geff, eff)
