@@ -24,3 +24,5 @@ def main():
     # paramGrid = [l for l in range()]
     analyzeThis('LNVF_1000_170')
 
+if __name__=='__main__':
+    main()
