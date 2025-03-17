@@ -11,7 +11,7 @@ def clear_writeFile():
 
 def write_to_file(p1, p2, ef):
     print(f'{p1} {p2} {ef}')
-    with open('ParamSpEff.dat') as file:
+    with open('ParamSpEff.dat', 'w') as file:
         file.write(f'{p1} {p2} {ef}')
 
 def fileNameMaker(Lambda, geff):
@@ -27,7 +27,7 @@ def analyzeThis(Lambda, geff):
 
     eff = re.search(r'Efficiency: \d', from_analysis)
 
-    print(float(eff.group()[12:]))
+    # print(float(eff.group()[12:]))
     write_to_file(Lambda, geff, float(eff.group()[12:]))
     
 
