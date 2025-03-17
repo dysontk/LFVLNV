@@ -41,7 +41,7 @@ def main():
     clear_writeFile()
 
     Lcols = [l for l in range(LambdaInfo['bounds'][0], LambdaInfo['bounds'][1]+ LambdaInfo['delta'], LambdaInfo['delta'])]
-    gRows = [g for g in range(geffInfo['bounds'][0], geffInfo['bounds'][1]+ geffInfo['delta'], geffInfo['delta'])]
+    gRows = [g/100 for g in range(geffInfo['bounds'][0]*100, (geffInfo['bounds'][1]+ geffInfo['delta'])*100, geffInfo['delta']*100)]
     # analyzeThis('LNVF_1000_170')
     print(Lcols)
     print(gRows)
