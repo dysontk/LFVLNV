@@ -27,8 +27,8 @@ def analyzeThis(Lambda, geff):
 
     eff = re.search(r'Efficiency: \d', from_analysis)
 
-    print(eff)
-    write_to_file(Lambda, geff, eff)
+    print(float(eff))
+    write_to_file(Lambda, geff, float(eff))
     
 
 
