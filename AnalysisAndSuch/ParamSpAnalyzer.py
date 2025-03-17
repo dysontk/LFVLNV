@@ -9,7 +9,7 @@ def analyzeThis(FolderName):
     
     theseFiles = AM.find_files('Signal/'+FolderName)
     
-    from_analysis = AM.run_command(f'/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/AnalysisAndSuch/JetFake/main LNVF '+ theseFiles, False)
+    from_analysis = AM.run_command(f'/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/AnalysisAndSuch/JetFake/main LNVF '+ theseFiles, True)
 
     eff = re.search(r'Efficiency: \n', from_analysis)
     print(eff)
