@@ -6,7 +6,7 @@ import re
 
 
 def analyzeThis(FolderName):
-    
+    print(FolderName)
     theseFiles = AM.find_files('Signal/'+FolderName)
     
     from_analysis = AM.run_command(f'/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/AnalysisAndSuch/JetFake/main LNVF '+ theseFiles, True)
@@ -20,7 +20,7 @@ def main():
                   'delta': 500}
     geffInfo = {'bounds':(0.17, 0.18),
                 'delta': 0.0050}
-    
+    print('starting ')
     # paramGrid = [l for l in range()]
     analyzeThis('LNVF_1000_170')
 
