@@ -78,7 +78,8 @@ def main():
     if not startAtBeginning: #if it had gotten interrupted then set startAtBeginning to false and StartPt to the first value that didn't generate enough events (got interrupted)
         LambdaInfo.update({'current': StartPt[0]})
         geffInfo.update({'current': StartPt[1]})
-
+    else:
+        PSAnal.clear_writeFile()
     # print(geffInfo)ß
     mass_ratio = 1.5 #mS/mF
     grid_index = [0,0]
