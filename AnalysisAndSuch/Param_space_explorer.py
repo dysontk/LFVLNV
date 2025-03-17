@@ -67,9 +67,9 @@ def gen_events(nRuns, thisLambda, thisgeff):
 
 def main():
     LambdaInfo = {'bounds':(1000, 2000), # GeV
-                  'delta': 500}
+                  'delta': 250}
     geffInfo = {'bounds':(0.17, 0.18), 
-                'delta': 0.0050}
+                'delta': 0.0025}
     startAtBeginning = True
     StartPt = (1000, 0.17) # Change this if not starting at the beginning
     nRuns = 5
