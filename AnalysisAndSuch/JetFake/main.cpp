@@ -1044,7 +1044,7 @@ int main(int argc, const char * argv[])
         for (int c=0; c<GangCutCount.size(); c++) cout << GangCutCount[c] << endl;
         cout << "num eejj events b4 cuts: " << numSSdilep << endl;
         cout << deepCuts2[10] << endl << NumEntries << endl;
-        long efficency = float(deepCuts2[10])/NumEntries;
+        float efficency = float(deepCuts2[10])/float(NumEntries);
         cout << setprecision(7);
         cout << "Efficiency: " << efficency << endl;
     }
