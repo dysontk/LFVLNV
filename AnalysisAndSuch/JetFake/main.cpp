@@ -1046,7 +1046,7 @@ int main(int argc, const char * argv[])
         cout << deepCuts2[10] << endl << NumEntries << endl;
         long efficency = deepCuts2[10]/NumEntries;
         cout << setprecision(7);
-        cout << "Efficiency: " << efficency << endl;
+        cout << "Efficiency: " << deepCuts2[10]/10 << endl;
     }
 
 }
