@@ -1043,6 +1043,8 @@ int main(int argc, const char * argv[])
         cout <<"Events remaining after each cut group" << endl;
         for (int c=0; c<GangCutCount.size(); c++) cout << GangCutCount[c] << endl;
         cout << "num eejj events b4 cuts: " << numSSdilep << endl;
+
+        cout << "Efficiency: " << deepCuts2/NumEntries << endl;
     }
 
 }
