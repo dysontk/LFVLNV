@@ -288,20 +288,20 @@ int main(int argc, const char * argv[])
     TChain chain("Delphes");
 
     const char* EventType = argv[1];
-    cout << EventType<< endl;
+    // cout << EventType<< endl;
 
     const char eTypes[5][10] = {"LNVF", "WZ2j", "ZZ2j", "W3j", "ttbar"};
 
     bool type_listed = false;
     for(int t=0; t<5; t++)
     {
-        cout << EventType << endl;
-        cout << eTypes[t] << endl;
+        // cout << EventType << endl;
+        // cout << eTypes[t] << endl;
         if (!strcmp(EventType,eTypes[t]))
         {
             type_listed = true;
         }
-        cout << type_listed << endl;
+        // cout << type_listed << endl;
     }
 
     if (not type_listed)
@@ -1044,7 +1044,7 @@ int main(int argc, const char * argv[])
         for (int c=0; c<GangCutCount.size(); c++) cout << GangCutCount[c] << endl;
         cout << "num eejj events b4 cuts: " << numSSdilep << endl;
         cout << deepCuts2[10] << endl << NumEntries << endl;
-        float efficency = deepCuts2[10]/NumEntries;
+        double_t efficency = deepCuts2[10]/NumEntries;
         cout << "Efficiency: " << efficency << endl;
     }
 
