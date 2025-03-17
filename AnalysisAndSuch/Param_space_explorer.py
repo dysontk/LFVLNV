@@ -1,6 +1,7 @@
 import AnalyzeMany as AM
 import GenManyOnUnity3 as GM
 import parameters_text as PT
+import ParamSpAnalyzer as PSAnal
 testing = False
 # def gen_new_proc():
 #     GM.run_command('')
@@ -67,11 +68,17 @@ def gen_events(nRuns, thisLambda, thisgeff):
 def main():
     LambdaInfo = {'bounds':(1000, 2000), # GeV
                   'delta': 500}
-    geffInfo = {'bounds':(0.17, 0.18),
+    geffInfo = {'bounds':(0.17, 0.18), 
                 'delta': 0.0050}
+    startAtBeginning = True
+    StartPt = (1000, 0.17) # Change this if not starting at the beginning
     nRuns = 5
     LambdaInfo = set_start(LambdaInfo)
     geffInfo = set_start(geffInfo)
+    if not startAtBeginning: #if it had gotten interrupted then set startAtBeginning to false and StartPt to the first value that didn't generate enough events (got interrupted)
+        LambdaInfo.update({'current': StartPt[0]})
+        geffInfo.update({'current': StartPt[1]})
+
     # print(geffInfo)ß
     mass_ratio = 1.5 #mS/mF
     grid_index = [0,0]
@@ -87,7 +94,7 @@ def main():
             GM.run_command(gen_proc_command)
             gen_events(nRuns, LambdaInfo['current'], geffInfo['current'])
             # print("here is where I'd gen events")
-            
+            PSAnal.analyzeThis(LambdaInfo['current'], geffInfo['current'])
             geffInfo = incrementParam(geffInfo)
             # print("geff: ", geffInfo['current'])
 
