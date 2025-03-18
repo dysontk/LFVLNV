@@ -74,8 +74,8 @@ def main():
                   'delta': 500}
     geffInfo = {'bounds':(0.1, 1.1), 
                 'delta': 0.2}
-    print(f'Running a grid from Λ = {LambdaInfo["bounds"][0]} to Λ = {LambdaInfo["bounds"][1]}\n with step size δΛ = {LambdaInfo['delta']}')
-    print(f'Running a grid from g_eff = {geffInfo["bounds"][0]} to g_eff = {geffInfo["bounds"][1]}\n with step size δg_eff = {geffInfo['delta']}')
+    print(f'Running a grid from Λ = {LambdaInfo["bounds"][0]} to Λ = {LambdaInfo["bounds"][1]}\n with step size δΛ = {LambdaInfo["delta"]}')
+    print(f'Running a grid from g_eff = {geffInfo["bounds"][0]} to g_eff = {geffInfo["bounds"][1]}\n with step size δg_eff = {geffInfo["delta"]}')
     print(f"That's a grid of size {(LambdaInfo['bounds'][1]-LambdaInfo['bounds'][0])/LambdaInfo['delta'] * (geffInfo['bounds'][1]-geffInfo['bounds'][0])/geffInfo['delta']}")
     startAtBeginning = True
     StartPt = (1000, 0.17) # Change this if not starting at the beginning
