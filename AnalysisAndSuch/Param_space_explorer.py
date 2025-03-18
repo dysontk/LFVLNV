@@ -66,10 +66,17 @@ def gen_events(nRuns, thisLambda, thisgeff):
     allAttempts = GM.AllRunHandler([GM.RunConfig('LNVF', nRuns, 0, thisLambda, thisgeff)])
 
 def main():
-    LambdaInfo = {'bounds':(1000, 2000), # GeV
-                  'delta': 250}
-    geffInfo = {'bounds':(0.17, 0.18), 
-                'delta': 0.0025}
+    DeleteAllPrevRuns = True
+    if DeleteAllPrevRuns:
+        print('I am deleting the previous runs in the parameter space')
+        AM.run_command('rm -vr /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/*')
+    LambdaInfo = {'bounds':(1000, 5e3), # GeV
+                  'delta': 500}
+    geffInfo = {'bounds':(0.1, 1.1), 
+                'delta': 0.2}
+    print(f'Running a grid from Λ = {LambdaInfo["bounds"][0]} to Λ = {LambdaInfo["bounds"][1]}\n with step size δΛ = {LambdaInfo['delta']}')
+    print(f'Running a grid from g_eff = {geffInfo["bounds"][0]} to g_eff = {geffInfo["bounds"][1]}\n with step size δg_eff = {geffInfo['delta']}')
+    print(f"That's a grid of size {(LambdaInfo['bounds'][1]-LambdaInfo['bounds'][0])/LambdaInfo['delta'] * (geffInfo['bounds'][1]-geffInfo['bounds'][0])/geffInfo['delta']}")
     startAtBeginning = True
     StartPt = (1000, 0.17) # Change this if not starting at the beginning
     nRuns = 5
