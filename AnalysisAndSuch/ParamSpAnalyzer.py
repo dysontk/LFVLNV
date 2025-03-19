@@ -24,12 +24,13 @@ def analyzeThis(Lambda, geff):
     theseFiles = AM.find_files('Signal/'+FolderName)
     
     from_analysis = AM.run_command(f'/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/AnalysisAndSuch/JetFake/main LNVF '+ theseFiles, False)
-    print(type(from_analysis))
-    eff = re.search('\d+\.+\d\d\d\d\d', from_analysis)
-    print(from_analysis[-100:])
-    print(eff.group())
+    eff = from_analysis.split('\n')[-1][12:]
+    # print(type(from_analysis))
+    # eff = re.search('\d+\.+\d\d\d\d\d', from_analysis)
+    # print(from_analysis[-100:])
+    # print(eff.group())
     # print(float(eff.group()[12:]))
-    write_to_file(Lambda, geff, float(eff.group()))
+    write_to_file(Lambda, geff, float(eff))
     
 
 
