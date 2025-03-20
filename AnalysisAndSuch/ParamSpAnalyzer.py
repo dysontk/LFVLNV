@@ -16,14 +16,14 @@ def write_to_file(p1, p2, ef):
 
 def fileNameMaker(Lambda, geff):
 
-    return f'LNVF_{Lambda}_' + '{:.3f}'.format(geff)[2:]
+    return f'LNVF_{Lambda}_' + '_'.join('{:.3f}'.format(geff).split('.'))
 
 def analyzeThis(Lambda, geff):
     FolderName = fileNameMaker(Lambda, geff)
     print(FolderName)
     theseFiles = AM.find_files('Signal/'+FolderName)
     
-    from_analysis = AM.run_command(f'/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/AnalysisAndSuch/JetFake/main LNVF '+ theseFiles, False)
+    from_analysis = AM.run_command(f'/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/AnalysisAndSuch/JetFake/main LNVF '+ theseFiles, True)
     print(from_analysis)
     eff = from_analysis.split('\n')[-2][12:]
     # print(type(from_analysis))
