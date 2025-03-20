@@ -686,7 +686,7 @@ int main(int argc, const char * argv[])
             deepCuts2[6]++;
             if (VERBOSE) cout << "past cut 6"<< endl;
             
-            eachJetsAbove25GeVPt = true
+            eachJetsAbove25GeVPt = true;
             for (int j=0; j < all_jets.size(); j++)
             {
                 if (all_jets[j].pt()<25) eachJetsAbove25GeVPt = false
