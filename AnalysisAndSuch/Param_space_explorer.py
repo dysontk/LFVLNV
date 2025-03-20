@@ -79,7 +79,7 @@ def main():
     print(f"That's a grid of size {(LambdaInfo['bounds'][1]-LambdaInfo['bounds'][0])/LambdaInfo['delta'] * (geffInfo['bounds'][1]-geffInfo['bounds'][0])/geffInfo['delta']}")
     startAtBeginning = True
     StartPt = (1000, 0.17) # Change this if not starting at the beginning
-    nRuns = 1
+    nRuns = 5
     LambdaInfo = set_start(LambdaInfo)
     geffInfo = set_start(geffInfo)
     if not startAtBeginning: #if it had gotten interrupted then set startAtBeginning to false and StartPt to the first value that didn't generate enough events (got interrupted)
