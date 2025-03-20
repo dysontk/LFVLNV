@@ -689,7 +689,7 @@ int main(int argc, const char * argv[])
             bool eachJetsAbove25GeVPt = true;
             for (int j=0; j < all_jets.size(); j++)
             {
-                if (all_jets[j].pt()<25) eachJetsAbove25GeVPt = false
+                if (all_jets[j].pt()<25) eachJetsAbove25GeVPt = false;
             }
             if (not eachJetsAbove25GeVPt) continue; // Table 1 last column. 
 
