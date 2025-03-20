@@ -687,9 +687,9 @@ int main(int argc, const char * argv[])
             if (VERBOSE) cout << "past cut 6"<< endl;
             
             eachJetsAbove25GeVPt = true
-            for (int i=0; i < all_jets.size(); i++)
+            for (int j=0; j < all_jets.size(); j++)
             {
-                if (all_jets[i].pt()<25) eachJetsAbove25GeVPt = false
+                if (all_jets[j].pt()<25) eachJetsAbove25GeVPt = false
             }
             if (not eachJetsAbove25GeVPt) continue; // Table 1 last column. 
 
