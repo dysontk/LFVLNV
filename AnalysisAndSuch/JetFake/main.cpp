@@ -661,6 +661,7 @@ int main(int argc, const char * argv[])
                 // deepCuts[3]++; //Cut 3c
                 continue;
             }
+            if (lPairType==0 && abs((v_lep[0]+v_lep[1]).m()-91.2)<20.0) continue; // if its ee and close to z boson mass, remove it
             deepCuts2[4]++;
             if (VERBOSE) cout << "past cut 4"<< endl;
 
@@ -685,7 +686,12 @@ int main(int argc, const char * argv[])
             deepCuts2[6]++;
             if (VERBOSE) cout << "past cut 6"<< endl;
             
-
+            eachJetsAbove25GeVPt = true
+            for (int i=0; i < all_jets.size(); i++)
+            {
+                if (all_jets[i].pt()<25) eachJetsAbove25GeVPt = false
+            }
+            if (not eachJetsAbove25GeVPt) continue; // Table 1 last column. 
 
             int htsum = 0;
             for (int i=0; i < all_jets.size(); i++)
