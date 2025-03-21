@@ -82,9 +82,9 @@ def get_significance(cutNum):
 
 def main():
     list_of_data_types = [
-        'LNVF',
-        # 'ttbar',
-        # 'W3j',
+        # 'LNVF',
+        'ttbar',
+        'W3j',
         'WZ2j',
         'ZZ2j',
         ]
