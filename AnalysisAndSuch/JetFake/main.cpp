@@ -537,7 +537,7 @@ int main(int argc, const char * argv[])
             {
                 Muon *mutmp = (Muon *) branchMuon->At(m);
                 tempEvent.reset((mutmp->P4()).Px(), (mutmp->P4()).Py(), (mutmp->P4()).Pz(), (mutmp->P4()).E());
-                cout << "DOING MUONSSSSSSSSSSS" << endl;
+                // cout << "DOING MUONSSSSSSSSSSS" << endl;
                 v_lep.push_back(tempEvent);
                 v_mu.push_back(tempEvent);
                 if (mutmp->Charge == 1) 
