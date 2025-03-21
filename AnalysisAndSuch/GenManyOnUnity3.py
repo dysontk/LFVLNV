@@ -54,7 +54,7 @@ class Run:
 
     def start_process(self):
         # print(run_command(f"ls logs"))
-        logFileLoc = f"/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/logs/{self.eventType}_{int(self.Lambda)}_{('{:.3f}'.format(self.geff))[2:]}"
+        logFileLoc = f"/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/logs/{self.eventType}_{int(self.Lambda)}_{'_'.join('{:.3f}'.format(self.geff).split('.'))}"
         logFileName = f"{logFileLoc}/attempt_{self.run_num:02d}.log"
         run_command(f'mkdir {logFileLoc}')
         self.log = open(logFileName, "w")
