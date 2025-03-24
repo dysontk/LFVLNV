@@ -65,6 +65,21 @@ def edit_proc(LInfo, gInfo):
 def gen_events(nRuns, thisLambda, thisgeff):
     allAttempts = GM.AllRunHandler([GM.RunConfig('LNVF', nRuns, 0, thisLambda, thisgeff)])
 
+def checkExistingRuns(thisLambda, thisgeff):
+    FolderName = PSAnal.fileNameMaker(thisLambda, thisgeff)
+    ParamPointList = AM.run_command('ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/').split()
+    doesProcExist = False
+    n_runs = 0
+    for paramPoint in ParamPointList:
+        if paramPoint==FolderName:
+            doesProcExist = True
+    if doesProcExist:
+        EventsFileNames = AM.run_command('ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/'+FolderName+'/Events/*delphes_events.root').split()
+        for eFile in EventsFileNames:
+            n_runs += 1 if (GM.find_num_gend(eFile) > 2800) else 0
+    return n_runs
+
+
 def main():
     DeleteAllPrevRuns = True
     if DeleteAllPrevRuns:
@@ -97,10 +112,13 @@ def main():
         while geffInfo['current'] <= geffInfo['bounds'][1]:
             # print("geff: ", geffInfo['current'])
             edit_params(LambdaInfo, geffInfo, mass_ratio)
+            existingRuns = checkExistingRuns(LambdaInfo['current'], geffInfo['current'])
             path_to_process_card = edit_proc(LambdaInfo, geffInfo)
-            gen_proc_command = '/home/dkennedy_umass_edu/Software/MG5_aMC_v3_5_6/bin/mg5_aMC ' + path_to_process_card
-            GM.run_command(gen_proc_command)
-            gen_events(nRuns, LambdaInfo['current'], geffInfo['current'])
+            if not existingRuns:
+                gen_proc_command = '/home/dkennedy_umass_edu/Software/MG5_aMC_v3_5_6/bin/mg5_aMC ' + path_to_process_card
+                GM.run_command(gen_proc_command)
+            howManyRuns = nRuns - existingRuns
+            gen_events(howManyRuns, LambdaInfo['current'], geffInfo['current'])
             # print("here is where I'd gen events")
             PSAnal.analyzeThis(LambdaInfo['current'], geffInfo['current'])
             geffInfo = incrementParam(geffInfo)
