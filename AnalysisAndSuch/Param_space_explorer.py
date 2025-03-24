@@ -71,9 +71,9 @@ def main():
         print('I am deleting the previous runs in the parameter space')
         AM.run_command('rm -vr /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/*')
     LambdaInfo = {'bounds':(1000, 5e3), # GeV
-                  'delta': 500}
+                  'delta': 500/4}
     geffInfo = {'bounds':(0.1, 1.1), 
-                'delta': 0.2}
+                'delta': 0.2/4}
     print(f'Running a grid from Λ = {LambdaInfo["bounds"][0]} to Λ = {LambdaInfo["bounds"][1]}\n with step size δΛ = {LambdaInfo["delta"]}')
     print(f'Running a grid from g_eff = {geffInfo["bounds"][0]} to g_eff = {geffInfo["bounds"][1]}\n with step size δg_eff = {geffInfo["delta"]}')
     print(f"That's a grid of size {(LambdaInfo['bounds'][1]+LambdaInfo['delta']-LambdaInfo['bounds'][0])/LambdaInfo['delta'] * (geffInfo['bounds'][1]+geffInfo['delta']-geffInfo['bounds'][0])/geffInfo['delta']}")
