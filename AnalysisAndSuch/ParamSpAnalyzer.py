@@ -36,10 +36,10 @@ def analyzeThis(Lambda, geff):
 
 
 def main():
-    LambdaInfo = {'bounds':(1000, 2000), # GeV
+    LambdaInfo = {'bounds':(1000, 5e3), # GeV
                   'delta': 500}
-    geffInfo = {'bounds':(0.17, 0.18),
-                'delta': 0.0050}
+    geffInfo = {'bounds':(0.1, 1.1), 
+                'delta': 0.2}
     print('starting ')
     clear_writeFile()
     print(geffInfo['bounds'][0]*1000, (geffInfo['bounds'][1]+ geffInfo['delta'])*1000, geffInfo['delta']*1000, sep='\n')
