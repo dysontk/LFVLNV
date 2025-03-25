@@ -93,8 +93,17 @@ def checkExistingFolders(Linf, ginf, VERB):
         for g in geffs:
             foldersToBeMade.append(PSAnal.fileNameMaker(l, g))
     ExistingFolders = AM.run_command('ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal').split()
-    print("pre-existing folders ", ExistingFolders)
-    print("Folders I want to make ", foldersToBeMade)
+    if VERB:
+        print("pre-existing folders ", ExistingFolders)
+        print("Folders I want to make ", foldersToBeMade)
+    for pre in ExistingFolders:
+        willBeAsked = False
+        for new in foldersToBeMade:
+            if pre == new:
+                willBeAsked = True
+                break
+        if not willBeAsked:
+            print('I want to delete this one ', pre)
 
 def main():
     DeleteAllPrevRuns = False
