@@ -2,6 +2,7 @@ import AnalyzeMany as AM
 import GenManyOnUnity3 as GM
 import parameters_text as PT
 import ParamSpAnalyzer as PSAnal
+import numpy as np
 testing = False
 # def gen_new_proc():
 #     GM.run_command('')
@@ -55,7 +56,7 @@ def edit_params(LInf, gInf, mass_r):
 def edit_proc(LInfo, gInfo):
     procPath = '/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/LNVF_proc.dat' if not testing else 'test.dat'
     formatted_geff = '_'.join('{:.3f}'.format(gInfo['current']).split('.'))
-    to_write = PT.procText + '_' + str(LInfo['current']) + '_' + formatted_geff
+    to_write = PT.procText + '_' + str(int(LInfo['current'])) + '_' + formatted_geff
 
     with open(procPath, 'w') as file:
         print(to_write)
@@ -79,6 +80,21 @@ def checkExistingRuns(thisLambda, thisgeff):
             n_runs += 1 if (GM.find_num_gend(eFile) > 2800) else 0
     return n_runs
 
+def checkExistingFolders(Linf, ginf, VERB):
+    
+    lambdas = np.linspace(Linf['bounds'][0], Linf['bounds'][1], Linf['delta'])
+    geffs = np.linspace(ginf['bounds'][0], ginf['bounds'][1], ginf['delta'])
+    if VERB:
+        print(lambdas)
+        print(geffs)
+
+    foldersToBeMade = []
+    for l in lambdas:
+        for g in geffs:
+            foldersToBeMade.append(PSAnal.fileNameMaker(l, g))
+    ExistingFolders = AM.run_command('ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal').split()
+    print("pre-existing folders ", ExistingFolders)
+    print("Folders I want to make")
 
 def main():
     DeleteAllPrevRuns = True
@@ -92,6 +108,9 @@ def main():
     print(f'Running a grid from Λ = {LambdaInfo["bounds"][0]} to Λ = {LambdaInfo["bounds"][1]}\n with step size δΛ = {LambdaInfo["delta"]}')
     print(f'Running a grid from g_eff = {geffInfo["bounds"][0]} to g_eff = {geffInfo["bounds"][1]}\n with step size δg_eff = {geffInfo["delta"]}')
     print(f"That's a grid of size {(LambdaInfo['bounds'][1]+LambdaInfo['delta']-LambdaInfo['bounds'][0])/LambdaInfo['delta'] * (geffInfo['bounds'][1]+geffInfo['delta']-geffInfo['bounds'][0])/geffInfo['delta']}")
+
+    checkExistingFolders(LambdaInfo, geffInfo, True)
+    return 0
     startAtBeginning = True
     StartPt = (1000, 0.17) # Change this if not starting at the beginning
     nRuns = 5
@@ -117,7 +136,10 @@ def main():
             if not existingRuns:
                 gen_proc_command = '/home/dkennedy_umass_edu/Software/MG5_aMC_v3_5_6/bin/mg5_aMC ' + path_to_process_card
                 GM.run_command(gen_proc_command)
+            else:
+                print(f"There is already a process for {LambdaInfo['current']} and {geffInfo['current']} with {existingRuns} runs")
             howManyRuns = nRuns - existingRuns
+            print(f"asking for {howManyRuns} runs")
             gen_events(howManyRuns, LambdaInfo['current'], geffInfo['current'])
             # print("here is where I'd gen events")
             PSAnal.analyzeThis(LambdaInfo['current'], geffInfo['current'])

@@ -5,6 +5,7 @@ import time
 import read_many2
 import numpy as np
 import math
+import ParamSpAnalyzer as PSAnal
 VERBOSE = True
 def run_command(command, verbs=True):
     try:
@@ -53,13 +54,16 @@ class Run:
             self.log.close()
 
     def start_process(self):
-        # print(run_command(f"ls logs"))
-        logFileLoc = f"/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/logs/{self.eventType}_{int(self.Lambda)}_{'_'.join('{:.3f}'.format(self.geff).split('.'))}"
+        logFileLoc = f"/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/logs/"
+        if self.eventType == 'LNVF':
+            logFileLoc += PSAnal.fileNameMaker(self.Lambda, self.geff)
+        else:
+            logFileLoc += f"{self.eventType}"
         logFileName = f"{logFileLoc}/attempt_{self.run_num:02d}.log"
         run_command(f'mkdir {logFileLoc}')
         self.log = open(logFileName, "w")
         print("I am about to Generate events.", "The output of the madgraph generation can be found in:", f"logs/{self.eventType}/attempt_{self.run_num:02d}.log", sep='\n')
-        self.proc = subprocess.Popen(f"/work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/{self.eventType}_{int(self.Lambda)}_{'_'.join('{:.3f}'.format(self.geff).split('.'))}/bin/madevent /home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/{self.eventType}_run.dat", stdout=self.log, stderr=self.log, shell=True)
+        self.proc = subprocess.Popen(f"/work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/" + PSAnal.fileNameMaker(self.Lambda, self.geff) + f"/bin/madevent /home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/{self.eventType}_run.dat", stdout=self.log, stderr=self.log, shell=True)
         # self.proc = "I have finidhes"
     
     @property
@@ -71,7 +75,7 @@ class Run:
     @property
     def output_filename(self):
         try:
-            output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/{self.eventType}_{int(self.Lambda)}_{'_'.join('{:.3f}'.format(self.geff).split('.'))}/Events/run_{self.run_num:02d}/*delphes_events.root", VERBOSE)
+            output = run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/" + PSAnal.fileNameMaker(self.Lambda, self.geff) +f"/Events/run_{self.run_num:02d}/*delphes_events.root", VERBOSE)
         except FileNotFoundError:
             print("Generation Failed")
             return 0

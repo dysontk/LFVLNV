@@ -16,7 +16,7 @@ def write_to_file(p1, p2, ef):
 
 def fileNameMaker(Lambda, geff):
 
-    return f'LNVF_{Lambda}_' + '_'.join('{:.3f}'.format(geff).split('.'))
+    return f'LNVF_{int(Lambda)}_' + '_'.join('{:.3f}'.format(geff).split('.'))
 
 def analyzeThis(Lambda, geff):
     FolderName = fileNameMaker(Lambda, geff)
