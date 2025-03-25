@@ -82,7 +82,7 @@ def checkExistingRuns(thisLambda, thisgeff):
 
 def checkExistingFolders(Linf, ginf, VERB):
     
-    lambdas = np.linspace(Linf['bounds'][0], Linf['bounds'][1], Linf['delta'])
+    lambdas = np.linspace(int(Linf['bounds'][0]), int(Linf['bounds'][1]), Linf['delta'])
     geffs = np.linspace(ginf['bounds'][0], ginf['bounds'][1], ginf['delta'])
     if VERB:
         print(lambdas)
@@ -94,7 +94,7 @@ def checkExistingFolders(Linf, ginf, VERB):
             foldersToBeMade.append(PSAnal.fileNameMaker(l, g))
     ExistingFolders = AM.run_command('ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal').split()
     print("pre-existing folders ", ExistingFolders)
-    print("Folders I want to make")
+    print("Folders I want to make ", foldersToBeMade)
 
 def main():
     DeleteAllPrevRuns = False
