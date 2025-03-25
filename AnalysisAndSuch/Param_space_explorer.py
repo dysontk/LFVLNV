@@ -103,7 +103,9 @@ def checkExistingFolders(Linf, ginf, VERB):
                 willBeAsked = True
                 break
         if not willBeAsked:
-            print('I want to delete this one ', pre)
+            if VERB:
+                print('I want to delete this one ', pre)
+            AM.run_command('rm -vr /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/'+pre+'/')
 
 def main():
     DeleteAllPrevRuns = False
