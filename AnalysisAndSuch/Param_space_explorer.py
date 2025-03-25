@@ -82,8 +82,8 @@ def checkExistingRuns(thisLambda, thisgeff):
 
 def checkExistingFolders(Linf, ginf, VERB):
     
-    lambdas = np.array(range(Linf['bounds'][0], Linf['bounds'][1]+Linf['delta'], Linf['delta']))
-    geffs = np.array(range(ginf['bounds'][0], ginf['bounds'][1]+ginf['delta'], ginf['delta']))
+    lambdas = np.arange(Linf['bounds'][0], Linf['bounds'][1]+Linf['delta'], Linf['delta'])
+    geffs = np.arange(ginf['bounds'][0], ginf['bounds'][1]+ginf['delta'], ginf['delta'])
     if VERB:
         print(lambdas)
         print(geffs)
