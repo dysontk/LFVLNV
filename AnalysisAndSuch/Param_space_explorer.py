@@ -69,6 +69,7 @@ def gen_events(nRuns, thisLambda, thisgeff):
 def checkExistingRuns(thisLambda, thisgeff):
     FolderName = PSAnal.fileNameMaker(thisLambda, thisgeff)
     ParamPointList = AM.run_command('ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/').split()
+    print(ParamPointList)
     doesProcExist = False
     n_runs = 0
     for paramPoint in ParamPointList:
@@ -78,6 +79,7 @@ def checkExistingRuns(thisLambda, thisgeff):
         EventsFileNames = AM.run_command('ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/'+FolderName+'/Events/*delphes_events.root').split()
         for eFile in EventsFileNames:
             n_runs += 1 if (GM.find_num_gend(eFile) > 2800) else 0
+    print("There are already ", n_runs, " runs")
     return n_runs
 
 def checkExistingFolders(Linf, ginf, VERB):
@@ -149,12 +151,12 @@ def main():
                 GM.run_command(gen_proc_command)
             else:
                 print(f"There is already a process for {LambdaInfo['current']} and {geffInfo['current']} with {existingRuns} runs")
-            howManyRuns = nRuns - existingRuns
-            print(f"asking for {howManyRuns} runs")
-            gen_events(howManyRuns, LambdaInfo['current'], geffInfo['current'])
-            # print("here is where I'd gen events")
-            PSAnal.analyzeThis(LambdaInfo['current'], geffInfo['current'])
-            geffInfo = incrementParam(geffInfo)
+            # howManyRuns = nRuns - existingRuns
+            # print(f"asking for {howManyRuns} runs")
+            # gen_events(howManyRuns, LambdaInfo['current'], geffInfo['current'])
+            # # print("here is where I'd gen events")
+            # PSAnal.analyzeThis(LambdaInfo['current'], geffInfo['current'])
+            # geffInfo = incrementParam(geffInfo)
             # print("geff: ", geffInfo['current'])
 
             grid_index[1] += 1
