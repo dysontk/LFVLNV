@@ -105,7 +105,7 @@ def checkExistingFolders(Linf, ginf, VERB):
         if not willBeAsked:
             if VERB:
                 print('I want to delete this one ', pre)
-            AM.run_command('rm -vr /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/'+pre+'/')
+            AM.run_command('rm -vr /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/'+pre+'/', True)
 
 def main():
     DeleteAllPrevRuns = False
@@ -121,7 +121,7 @@ def main():
     print(f"That's a grid of size {(LambdaInfo['bounds'][1]+LambdaInfo['delta']-LambdaInfo['bounds'][0])/LambdaInfo['delta'] * (geffInfo['bounds'][1]+geffInfo['delta']-geffInfo['bounds'][0])/geffInfo['delta']}")
 
     checkExistingFolders(LambdaInfo, geffInfo, True)
-    return 0
+    # return 0
     startAtBeginning = True
     StartPt = (1000, 0.17) # Change this if not starting at the beginning
     nRuns = 5
