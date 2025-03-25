@@ -97,7 +97,7 @@ def checkExistingFolders(Linf, ginf, VERB):
     print("Folders I want to make")
 
 def main():
-    DeleteAllPrevRuns = True
+    DeleteAllPrevRuns = False
     if DeleteAllPrevRuns:
         print('I am deleting the previous runs in the parameter space')
         AM.run_command('rm -vr /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/*')
