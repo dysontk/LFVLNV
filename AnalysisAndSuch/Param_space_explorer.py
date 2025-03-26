@@ -86,7 +86,7 @@ def checkExistingRuns(thisLambda, thisgeff, VERB):
             print(type(paramPoint))
             print(type(FolderName))
     if doesProcExist:
-        EventsFileNames = AM.run_command('ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/'+FolderName+'/Events/*delphes_events.root')
+        EventsFileNames = AM.run_command('ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/'+FolderName+'/Events/*/*delphes_events.root')
         print(EventsFileNames)
         if EventsFileNames.split()[0] != 'Something':
             EventsFileNames = EventsFileNames.split()
@@ -137,7 +137,7 @@ def main():
     print(f'Running a grid from g_eff = {geffInfo["bounds"][0]} to g_eff = {geffInfo["bounds"][1]}\n with step size δg_eff = {geffInfo["delta"]}')
     print(f"That's a grid of size {(LambdaInfo['bounds'][1]+LambdaInfo['delta']-LambdaInfo['bounds'][0])/LambdaInfo['delta'] * (geffInfo['bounds'][1]+geffInfo['delta']-geffInfo['bounds'][0])/geffInfo['delta']}")
 
-    checkExistingFolders(LambdaInfo, geffInfo, True)
+    # checkExistingFolders(LambdaInfo, geffInfo, True)
     # return 0
     startAtBeginning = True
     StartPt = (1000, 0.17) # Change this if not starting at the beginning
