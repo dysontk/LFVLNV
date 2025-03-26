@@ -171,8 +171,10 @@ def main():
                 print(f"There is already a process for {LambdaInfo['current']} and {geffInfo['current']} with {existingRuns} runs")
             howManyRuns = nRuns - existingRuns
             print(f"asking for {howManyRuns} runs")
-            if not howManyRuns:
+            if howManyRuns:
                 gen_events(howManyRuns, LambdaInfo['current'], geffInfo['current'])
+            else:
+                print("generating no events")
             # print("here is where I'd gen events")
             PSAnal.analyzeThis(LambdaInfo['current'], geffInfo['current'])
             geffInfo = incrementParam(geffInfo)
