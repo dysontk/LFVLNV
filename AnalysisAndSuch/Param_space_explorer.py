@@ -152,12 +152,12 @@ def main():
                 print(f"no existing runs for {LambdaInfo['current']}, {geffInfo['current']}")
             else:
                 print(f"There is already a process for {LambdaInfo['current']} and {geffInfo['current']} with {existingRuns} runs")
-            # howManyRuns = nRuns - existingRuns
-            # print(f"asking for {howManyRuns} runs")
+            howManyRuns = nRuns - existingRuns
+            print(f"asking for {howManyRuns} runs")
             # gen_events(howManyRuns, LambdaInfo['current'], geffInfo['current'])
-            # # print("here is where I'd gen events")
+            print("here is where I'd gen events")
             # PSAnal.analyzeThis(LambdaInfo['current'], geffInfo['current'])
-            # geffInfo = incrementParam(geffInfo)
+            geffInfo = incrementParam(geffInfo)
             # print("geff: ", geffInfo['current'])
 
             grid_index[1] += 1
