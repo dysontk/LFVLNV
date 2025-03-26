@@ -80,12 +80,14 @@ def checkExistingRuns(thisLambda, thisgeff, VERB):
             if VERB:
                 print(f"{paramPoint} and {FolderName} are the same")
             doesProcExist = True
+            break
         elif VERB:
             print(f"{paramPoint} and {FolderName} are not the same")
             print(type(paramPoint))
             print(type(FolderName))
     if doesProcExist:
         EventsFileNames = AM.run_command('ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/'+FolderName+'/Events/*delphes_events.root').split()
+        print(EventsFileNames)
         for eFile in EventsFileNames:
             n_runs += 1 if (GM.find_num_gend(eFile) > 2800) else 0
     print("There are already ", n_runs, " runs")
