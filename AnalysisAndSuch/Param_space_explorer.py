@@ -88,11 +88,13 @@ def checkExistingRuns(thisLambda, thisgeff, VERB):
     if doesProcExist:
         EventsFileNames = AM.run_command('ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/'+FolderName+'/Events/*/*delphes_events.root')
         print(EventsFileNames)
-        if EventsFileNames.split()[0] != 'Something':
+        if EventsFileNames[0] != 't':
+            print(f"There are no runs in {FolderName}")
+            return 0
+        else:
             EventsFileNames = EventsFileNames.split()
             for eFile in EventsFileNames:
                 n_runs += 1 if (GM.find_num_gend(eFile) > 2800) else 0
-        else:
             print("oopsies")
     print("There are already ", n_runs, " runs")
     return n_runs
