@@ -90,6 +90,7 @@ def checkExistingRuns(thisLambda, thisgeff, VERB):
         print(EventsFileNames)
         if EventsFileNames[0] != 't':
             print(f"There are no runs in {FolderName}")
+            print(EventsFileNames)
             return 0
         else:
             EventsFileNames = EventsFileNames.split()
