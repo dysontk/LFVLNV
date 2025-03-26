@@ -68,6 +68,7 @@ def gen_events(nRuns, thisLambda, thisgeff):
 
 def checkExistingRuns(thisLambda, thisgeff):
     FolderName = PSAnal.fileNameMaker(thisLambda, thisgeff)
+    print(f"This folder will be called {FolderName}")
     ParamPointList = AM.run_command('ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/').split()
     print(ParamPointList)
     doesProcExist = False

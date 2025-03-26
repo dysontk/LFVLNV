@@ -11,9 +11,9 @@ def run_command(command, verbs=False):
         if verbs:
             print(f"Output of command '{command}' is",  f'{output}', sep='\n')
     except subprocess.CalledProcessError:
-        output = str(f"Something when wrong when running {command}")
+        output = str(f"Something went wrong when running {command}")
         if verbs:
-            print("Error. Generation probably failed")
+            # print("Error. Generation probably failed")
             print(output)
     return output
 
