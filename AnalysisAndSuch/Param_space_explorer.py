@@ -66,16 +66,24 @@ def edit_proc(LInfo, gInfo):
 def gen_events(nRuns, thisLambda, thisgeff):
     allAttempts = GM.AllRunHandler([GM.RunConfig('LNVF', nRuns, 0, thisLambda, thisgeff)])
 
-def checkExistingRuns(thisLambda, thisgeff):
+def checkExistingRuns(thisLambda, thisgeff, VERB):
     FolderName = PSAnal.fileNameMaker(thisLambda, thisgeff)
-    print(f"This folder will be called {FolderName}")
+    if VERB:
+        print(f"This folder will be called {[FolderName]}")
     ParamPointList = AM.run_command('ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/').split()
-    print(ParamPointList)
+    if VERB:
+        print(ParamPointList)
     doesProcExist = False
     n_runs = 0
     for paramPoint in ParamPointList:
         if paramPoint==FolderName:
+            if VERB:
+                print(f"{paramPoint} and {FolderName} are the same")
             doesProcExist = True
+        elif VERB:
+            print(f"{paramPoint} and {FolderName} are not the same")
+            print(type(paramPoint))
+            print(type(FolderName))
     if doesProcExist:
         EventsFileNames = AM.run_command('ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/'+FolderName+'/Events/*delphes_events.root').split()
         for eFile in EventsFileNames:
