@@ -149,6 +149,7 @@ def main():
             if not existingRuns:
                 gen_proc_command = '/home/dkennedy_umass_edu/Software/MG5_aMC_v3_5_6/bin/mg5_aMC ' + path_to_process_card
                 # GM.run_command(gen_proc_command)
+                print(f"no existing runs for {LambdaInfo['current']}, {geffInfo['current']}")
             else:
                 print(f"There is already a process for {LambdaInfo['current']} and {geffInfo['current']} with {existingRuns} runs")
             # howManyRuns = nRuns - existingRuns
