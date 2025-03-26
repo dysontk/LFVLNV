@@ -153,7 +153,7 @@ def main():
         while geffInfo['current'] <= geffInfo['bounds'][1]:
             # print("geff: ", geffInfo['current'])
             edit_params(LambdaInfo, geffInfo, mass_ratio)
-            existingRuns = checkExistingRuns(LambdaInfo['current'], geffInfo['current'])
+            existingRuns = checkExistingRuns(LambdaInfo['current'], geffInfo['current'], True)
             path_to_process_card = edit_proc(LambdaInfo, geffInfo)
             if not existingRuns:
                 gen_proc_command = '/home/dkennedy_umass_edu/Software/MG5_aMC_v3_5_6/bin/mg5_aMC ' + path_to_process_card
