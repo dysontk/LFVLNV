@@ -242,7 +242,7 @@ def main():
                 # gen_events(howManyRuns, LambdaInfo['current'], geffInfo['current'])
             else:
                 print("generating no events")
-            PSAnal.analyzeThis(LambdaInfo['current'], geffInfo['current'])
+            # PSAnal.analyzeThis(LambdaInfo['current'], geffInfo['current'])
             geffInfo = incrementParam(geffInfo)
             # print("geff: ", geffInfo['current'])
 
