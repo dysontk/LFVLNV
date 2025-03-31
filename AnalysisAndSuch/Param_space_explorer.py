@@ -214,6 +214,7 @@ def main():
         while geffInfo['current'] <= geffInfo['bounds'][1]:
             # print("geff: ", geffInfo['current'])
             edit_params(LambdaInfo, geffInfo, mass_ratio)
+            print("Preexisting runs...")
             existingRuns = howManyPreexistingRuns(LambdaInfo['current'], geffInfo['current'], startingGenDir, True)
             print(f'there are already {existingRuns} runs')
             # path_to_process_card = edit_proc(LambdaInfo, geffInfo)
