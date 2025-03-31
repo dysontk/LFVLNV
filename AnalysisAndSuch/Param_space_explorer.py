@@ -130,7 +130,7 @@ def getPreExistingFolders(start_d, VRB):
     fromls = AM.run_command('ls ' + start_d)
     runlist = [r[5:-6] for r in fromls.split()]
     if VRB:
-        print(runlist)
+        print("List of existing proc folders: \n", runlist)
     return runlist
 
 def get_runs(sd, foldername, VRB):
@@ -164,14 +164,20 @@ def get_runs(sd, foldername, VRB):
 
 def howManyPreexistingRuns(L, g, start_dir, VRB):
     newFolderName = PSAnal.fileNameMaker(L, g)
+    if VRB:
+        print(f'This folder will be called {newFolderName}')
     preexistingFolders = getPreExistingFolders(start_dir, VRB)
     alreadyExists = False
     for folder in preexistingFolders:
         if newFolderName == folder:
+            if VRB:
+                print(f"{folder} == {newFolderName}")
             alreadyExists = True
             break
     
     if not alreadyExists:
+        if VRB:
+            print(f"This is a new folder")
         return 0
     else:
         if VRB:
