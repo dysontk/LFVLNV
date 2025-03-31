@@ -151,7 +151,7 @@ def get_runs(sd, foldername, VRB):
             if thisFile[-4:] == 'root':
                 if VRB:
                     print(f"checking runs in {thisFile}")
-                nEvents = GM.find_num_gend(sd+foldername+ run + '/delphes_events.root')
+                nEvents = GM.find_num_gend(thisFile)
                 if VRB:
                     print(nEvents)
             else:
