@@ -128,8 +128,8 @@ def checkExistingFolders(Linf, ginf, VERB):
             AM.run_command('rm -vr /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/'+pre+'/', True)
 def getPreExistingFolders(start_d, VRB):
     fromls = AM.run_command('ls ' + start_d)
-    print(fromls)
-    runlist = [r[5:-6] for r in fromls.split()]
+    # print(fromls)
+    runlist = fromls.split()
     if VRB:
         print("List of existing proc folders: \n", runlist)
     return runlist
