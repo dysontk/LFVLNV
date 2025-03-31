@@ -180,6 +180,7 @@ def howManyPreexistingRuns(L, g, start_dir, VRB):
 
 def main():
     DeleteAllPrevRuns = False
+    startingGenDir = '/work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/'
     if DeleteAllPrevRuns:
         print('I am deleting the previous runs in the parameter space')
         AM.run_command('rm -vr /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/*')
@@ -213,7 +214,7 @@ def main():
         while geffInfo['current'] <= geffInfo['bounds'][1]:
             # print("geff: ", geffInfo['current'])
             edit_params(LambdaInfo, geffInfo, mass_ratio)
-            existingRuns = howManyPreexistingRuns(LambdaInfo['current'], geffInfo['current'], True)
+            existingRuns = howManyPreexistingRuns(LambdaInfo['current'], geffInfo['current'], startingGenDir, True)
             print(f'there are already {existingRuns} runs')
             # path_to_process_card = edit_proc(LambdaInfo, geffInfo)
             # if not existingRuns:
