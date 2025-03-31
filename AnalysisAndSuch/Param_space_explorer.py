@@ -136,7 +136,7 @@ def getPreExistingFolders(start_d, VRB):
 
 def get_runs(sd, foldername, VRB):
     # n_runfolders = 0
-    runlist = [r[5:-6] for r in AM.run_command('ls ' + sd + foldername).split()]
+    runlist = AM.run_command('ls ' + sd + foldername).split()
     n_runfolders = len(runlist)
     n_runs = 0
     if not n_runfolders:
