@@ -147,11 +147,11 @@ def get_runs(sd, foldername, VRB):
         # events = []
         for run in runlist:
             nEvents = 0
-            thisFile = AM.run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/{foldername}Events/{run}/*delphes_events.root", VRB).strip()
+            thisFile = AM.run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/{foldername}Events/{run}/*delphes_events.root", verbs=VRB).strip()
             if thisFile[-4:] == 'root':
                 if VRB:
                     print(f"checking runs in {thisFile}")
-                nEvents = GM.find_num_gend(thisFile)
+                nEvents = GM.find_num_gend(thisFile, verbs=VRB)
                 if VRB:
                     print(nEvents)
             else:
@@ -229,7 +229,7 @@ def main():
             # print(f"asking for {nRuns - existingRuns}")
             path_to_process_card = edit_proc(LambdaInfo, geffInfo)
             if not existingRuns:
-                print(f"I'm going to generate a new process for {LambdaInfo['current'], {geffInfo['current']}}")
+                print(f"I'm going to generate a new process for {LambdaInfo['current']}, {geffInfo['current']}")
             #     gen_proc_command = '/home/dkennedy_umass_edu/Software/MG5_aMC_v3_5_6/bin/mg5_aMC ' + path_to_process_card
             #     GM.run_command(gen_proc_command)
             #     print(f"no existing runs for {LambdaInfo['current']}, {geffInfo['current']}")
@@ -237,12 +237,12 @@ def main():
                 print(f"There is already a process for {LambdaInfo['current']} and {geffInfo['current']} with {existingRuns} runs")
             howManyRuns = nRuns - existingRuns
             print(f"asking for {howManyRuns} runs")
-            # if howManyRuns:
-            #     gen_events(howManyRuns, LambdaInfo['current'], geffInfo['current'])
-            # else:
-            #     print("generating no events")
-            # # print("here is where I'd gen events")
-            # PSAnal.analyzeThis(LambdaInfo['current'], geffInfo['current'])
+            if howManyRuns:
+                print("here is where I'd gen events")
+                # gen_events(howManyRuns, LambdaInfo['current'], geffInfo['current'])
+            else:
+                print("generating no events")
+            PSAnal.analyzeThis(LambdaInfo['current'], geffInfo['current'])
             geffInfo = incrementParam(geffInfo)
             # print("geff: ", geffInfo['current'])
 
