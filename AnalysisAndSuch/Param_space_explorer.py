@@ -66,39 +66,39 @@ def edit_proc(LInfo, gInfo):
 def gen_events(nRuns, thisLambda, thisgeff):
     allAttempts = GM.AllRunHandler([GM.RunConfig('LNVF', nRuns, 0, thisLambda, thisgeff)])
 
-def checkExistingRuns(thisLambda, thisgeff, VERB):
-    FolderName = PSAnal.fileNameMaker(thisLambda, thisgeff)
-    if VERB:
-        print(f"This folder will be called {[FolderName]}")
-    ParamPointList = AM.run_command('ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/').split()
-    if VERB:
-        print(ParamPointList)
-    doesProcExist = False
-    n_runs = 0
-    for paramPoint in ParamPointList:
-        if paramPoint==FolderName:
-            if VERB:
-                print(f"{paramPoint} and {FolderName} are the same")
-            doesProcExist = True
-            break
-        elif VERB:
-            print(f"{paramPoint} and {FolderName} are not the same")
-            print(type(paramPoint))
-            print(type(FolderName))
-    if doesProcExist:
-        EventsFileNames = AM.run_command('ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/'+FolderName+'/Events/*/*delphes_events.root')
-        print(EventsFileNames)
-        if EventsFileNames[0] != 't':
-            print(f"There are no runs in {FolderName}")
-            print(EventsFileNames)
-            return 0
-        else:
-            EventsFileNames = EventsFileNames.split()
-            for eFile in EventsFileNames:
-                n_runs += 1 if (GM.find_num_gend(eFile) > 2800) else 0
-            print("oopsies")
-    print("There are already ", n_runs, " runs")
-    return n_runs
+# def checkExistingRuns(thisLambda, thisgeff, VERB):
+#     FolderName = PSAnal.fileNameMaker(thisLambda, thisgeff)
+#     if VERB:
+#         print(f"This folder will be called {[FolderName]}")
+#     ParamPointList = AM.run_command('ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/').split()
+#     if VERB:
+#         print(ParamPointList)
+#     doesProcExist = False
+#     n_runs = 0
+#     for paramPoint in ParamPointList:
+#         if paramPoint==FolderName:
+#             if VERB:
+#                 print(f"{paramPoint} and {FolderName} are the same")
+#             doesProcExist = True
+#             break
+#         elif VERB:
+#             print(f"{paramPoint} and {FolderName} are not the same")
+#             print(type(paramPoint))
+#             print(type(FolderName))
+#     if doesProcExist:
+#         EventsFileNames = AM.run_command('ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/'+FolderName+'/Events/*/*delphes_events.root')
+#         print(EventsFileNames)
+#         if EventsFileNames[0] != 't':
+#             print(f"There are no runs in {FolderName}")
+#             print(EventsFileNames)
+#             return 0
+#         else:
+#             EventsFileNames = EventsFileNames.split()
+#             for eFile in EventsFileNames:
+#                 n_runs += 1 if (GM.find_num_gend(eFile) > 2800) else 0
+#             print("oopsies")
+#     print("There are already ", n_runs, " runs")
+#     return n_runs
 
 def checkExistingFolders(Linf, ginf, VERB):
     
@@ -126,6 +126,57 @@ def checkExistingFolders(Linf, ginf, VERB):
             if VERB:
                 print('I want to delete this one ', pre)
             AM.run_command('rm -vr /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/'+pre+'/', True)
+def getPreExistingFolders(start_d, VRB):
+    fromls = AM.run_command('ls ' + start_d)
+    runlist = [r[5:-6] for r in fromls.split()]
+    if VRB:
+        print(runlist)
+    return runlist
+
+def get_runs(sd, foldername, VRB):
+    # n_runfolders = 0
+    runlist = [r[5:-6] for r in AM.run_command('ls ' + sd + foldername).split()]
+    n_runfolders = len(runlist)
+    n_runs = 0
+    if not n_runfolders:
+        if VRB:
+            print(f"There are no runs for this process: {foldername}")
+        return 0
+    else:
+        # events = []
+        for run in runlist:
+            nEvents = 0
+            thisFile = AM.run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF/Events/{run}/*delphes_events.root", VRB)
+            if thisFile[-18:] == 'delphes_events.root':
+                if VRB:
+                    print(f"checking runs in {thisFile}")
+                nEvents = GM.find_num_gend(sd+foldername+ run + '/delphes_events.root')
+                if VRB:
+                    print(nEvents)
+            else:
+                continue
+            # with open(sd+foldername+ run + '/delphes_events.dat', 'r') as fl:
+            #     events = fl.readlines()
+            #     events = int(events[0])
+            if nEvents>=3000:
+                n_runs += 1
+    return n_runs 
+
+def howManyPreexistingRuns(L, g, start_dir, VRB):
+    newFolderName = PSAnal.fileNameMaker(L, g)
+    preexistingFolders = getPreExistingFolders(start_dir, VRB)
+    alreadyExists = False
+    for folder in preexistingFolders:
+        if newFolderName == folder:
+            alreadyExists = True
+            break
+    
+    if not alreadyExists:
+        return 0
+    else:
+        if VRB:
+            print(f"process for {L}, {g} already exists. Finding runs ..." )
+        return get_runs(start_dir, newFolderName+'/', VRB)
 
 def main():
     DeleteAllPrevRuns = False
@@ -162,22 +213,23 @@ def main():
         while geffInfo['current'] <= geffInfo['bounds'][1]:
             # print("geff: ", geffInfo['current'])
             edit_params(LambdaInfo, geffInfo, mass_ratio)
-            existingRuns = checkExistingRuns(LambdaInfo['current'], geffInfo['current'], False)
-            path_to_process_card = edit_proc(LambdaInfo, geffInfo)
-            if not existingRuns:
-                gen_proc_command = '/home/dkennedy_umass_edu/Software/MG5_aMC_v3_5_6/bin/mg5_aMC ' + path_to_process_card
-                GM.run_command(gen_proc_command)
-                print(f"no existing runs for {LambdaInfo['current']}, {geffInfo['current']}")
-            else:
-                print(f"There is already a process for {LambdaInfo['current']} and {geffInfo['current']} with {existingRuns} runs")
-            howManyRuns = nRuns - existingRuns
-            print(f"asking for {howManyRuns} runs")
-            if howManyRuns:
-                gen_events(howManyRuns, LambdaInfo['current'], geffInfo['current'])
-            else:
-                print("generating no events")
-            # print("here is where I'd gen events")
-            PSAnal.analyzeThis(LambdaInfo['current'], geffInfo['current'])
+            existingRuns = howManyPreexistingRuns(LambdaInfo['current'], geffInfo['current'], True)
+            print(f'there are already {existingRuns} runs')
+            # path_to_process_card = edit_proc(LambdaInfo, geffInfo)
+            # if not existingRuns:
+            #     gen_proc_command = '/home/dkennedy_umass_edu/Software/MG5_aMC_v3_5_6/bin/mg5_aMC ' + path_to_process_card
+            #     GM.run_command(gen_proc_command)
+            #     print(f"no existing runs for {LambdaInfo['current']}, {geffInfo['current']}")
+            # else:
+            #     print(f"There is already a process for {LambdaInfo['current']} and {geffInfo['current']} with {existingRuns} runs")
+            # howManyRuns = nRuns - existingRuns
+            # print(f"asking for {howManyRuns} runs")
+            # if howManyRuns:
+            #     gen_events(howManyRuns, LambdaInfo['current'], geffInfo['current'])
+            # else:
+            #     print("generating no events")
+            # # print("here is where I'd gen events")
+            # PSAnal.analyzeThis(LambdaInfo['current'], geffInfo['current'])
             geffInfo = incrementParam(geffInfo)
             # print("geff: ", geffInfo['current'])
 
