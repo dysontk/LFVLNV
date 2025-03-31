@@ -53,13 +53,14 @@ def edit_params(LInf, gInf, mass_r):
     
     return newLambdaInfo, newgeffInfo
 
-def edit_proc(LInfo, gInfo):
+def edit_proc(LInfo, gInfo, VRB=False):
     procPath = '/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/GenerationFiles/LNVF_proc.dat' if not testing else 'test.dat'
     formatted_geff = '_'.join('{:.3f}'.format(gInfo['current']).split('.'))
     to_write = PT.procText + '_' + str(int(LInfo['current'])) + '_' + formatted_geff
 
     with open(procPath, 'w') as file:
-        print(to_write)
+        if VRB:
+            print(to_write)
         file.write(to_write)
     return procPath
 
