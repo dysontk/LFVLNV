@@ -224,17 +224,19 @@ def main():
             # print("geff: ", geffInfo['current'])
             edit_params(LambdaInfo, geffInfo, mass_ratio)
             print("Preexisting runs...")
-            existingRuns = howManyPreexistingRuns(LambdaInfo['current'], geffInfo['current'], startingGenDir, True)
-            print(f'there are already {existingRuns} runs')
-            # path_to_process_card = edit_proc(LambdaInfo, geffInfo)
-            # if not existingRuns:
+            existingRuns = howManyPreexistingRuns(LambdaInfo['current'], geffInfo['current'], startingGenDir, False)
+            # print(f'there are already {existingRuns} runs')
+            # print(f"asking for {nRuns - existingRuns}")
+            path_to_process_card = edit_proc(LambdaInfo, geffInfo)
+            if not existingRuns:
+                print(f"I'm going to generate a new process for {LambdaInfo['current'], {geffInfo['current']}}")
             #     gen_proc_command = '/home/dkennedy_umass_edu/Software/MG5_aMC_v3_5_6/bin/mg5_aMC ' + path_to_process_card
             #     GM.run_command(gen_proc_command)
             #     print(f"no existing runs for {LambdaInfo['current']}, {geffInfo['current']}")
-            # else:
-            #     print(f"There is already a process for {LambdaInfo['current']} and {geffInfo['current']} with {existingRuns} runs")
-            # howManyRuns = nRuns - existingRuns
-            # print(f"asking for {howManyRuns} runs")
+            else:
+                print(f"There is already a process for {LambdaInfo['current']} and {geffInfo['current']} with {existingRuns} runs")
+            howManyRuns = nRuns - existingRuns
+            print(f"asking for {howManyRuns} runs")
             # if howManyRuns:
             #     gen_events(howManyRuns, LambdaInfo['current'], geffInfo['current'])
             # else:
