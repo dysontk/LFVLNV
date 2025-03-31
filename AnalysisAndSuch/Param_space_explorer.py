@@ -147,7 +147,7 @@ def get_runs(sd, foldername, VRB):
         # events = []
         for run in runlist:
             nEvents = 0
-            thisFile = AM.run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF/Events/{run}/*delphes_events.root", VRB)
+            thisFile = AM.run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF/Events/{run}/*delphes_events.root", VRB).strip()
             if thisFile[-4:] == 'root':
                 if VRB:
                     print(f"checking runs in {thisFile}")
