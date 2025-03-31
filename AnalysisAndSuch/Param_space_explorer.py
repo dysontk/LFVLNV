@@ -148,13 +148,15 @@ def get_runs(sd, foldername, VRB):
         for run in runlist:
             nEvents = 0
             thisFile = AM.run_command(f"ls /work/pi_mjrm_umass_edu/LNV_collider/Generated/LNVF/Events/{run}/*delphes_events.root", VRB)
-            if thisFile[-18:] == 'delphes_events.root':
+            if thisFile[-4:] == 'root':
                 if VRB:
                     print(f"checking runs in {thisFile}")
                 nEvents = GM.find_num_gend(sd+foldername+ run + '/delphes_events.root')
                 if VRB:
                     print(nEvents)
             else:
+                if VRB:
+                    print(f"There is no delphes file for {run}")
                 continue
             # with open(sd+foldername+ run + '/delphes_events.dat', 'r') as fl:
             #     events = fl.readlines()
