@@ -3,7 +3,7 @@
 #SBATCH --mem=10000  # Requested Memory
 #SBATCH -p cpu  # Partition
 #SBATCH -q long #14 day time limit
-#SBATCH -timelimit=14-0 # Job time limit
+#SBATCH --timelimit=14-0 # Job time limit
 #SBATCH -o slurm-%j.out  # %j = job ID
 
 export OMP_NUM_THREADS=8
