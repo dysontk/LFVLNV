@@ -188,6 +188,40 @@ def howManyPreexistingRuns(L, g, start_dir, VRB):
             print(f"process for {L}, {g} already exists. Finding runs ..." )
         return get_runs(start_dir, newFolderName+'/', VRB)
 
+        
+def make_safe_grid():
+    LI = {'bounds':(1000, 5e3), # GeV
+                'delta': 500/2}
+    gI = {'bounds':(0.1, 1.1), 
+                'delta': 0.2/2}
+    LI = set_start(LI)
+    gI = set_start(gI)
+    outlist = []
+    while LI['current'] <= LI['bounds'][1]:
+        
+        # print("Lambda: ", LambdaInfo['current'])
+        geffInfo = set_start(gI)
+        templist = []
+        while gI['current'] <= gI['bounds'][1]:
+            outlist.append((LI['current'], gI['current']))
+            gI = incrementParam(gI)
+        # outlist.append(templist)
+        LI = incrementParam(LI)
+    return np.array(outlist)
+
+def in_safe_grid(LI, GI, s_grid):
+    in_grid = False
+    # print(s_grid)
+    for pair in s_grid:
+        # print(pair)
+        # print(np.array((LI['current'], GI['current'])))
+        # print((np.array((LI['current'], GI['current'])) == pair).all())
+        if (np.array((LI['current'], GI['current'])) == pair).all():
+            # print("hi")
+            in_grid = True
+    return in_grid
+
+
 def main():
     DeleteAllPrevRuns = False
     startingGenDir = '/work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/'
@@ -195,14 +229,15 @@ def main():
         print('I am deleting the previous runs in the parameter space')
         AM.run_command('rm -vr /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/*')
     LambdaInfo = {'bounds':(1000, 5e3), # GeV
-                  'delta': 500/2}
+                  'delta': 500/4}
     geffInfo = {'bounds':(0.1, 1.1), 
-                'delta': 0.2/2}
+                'delta': 0.2/4}
     print(f'Running a grid from Λ = {LambdaInfo["bounds"][0]} to Λ = {LambdaInfo["bounds"][1]}\n with step size δΛ = {LambdaInfo["delta"]}')
     print(f'Running a grid from g_eff = {geffInfo["bounds"][0]} to g_eff = {geffInfo["bounds"][1]}\n with step size δg_eff = {geffInfo["delta"]}')
     print(f"That's a grid of size {(LambdaInfo['bounds'][1]+LambdaInfo['delta']-LambdaInfo['bounds'][0])/LambdaInfo['delta'] * (geffInfo['bounds'][1]+geffInfo['delta']-geffInfo['bounds'][0])/geffInfo['delta']}")
 
     checkExistingFolders(LambdaInfo, geffInfo, True)
+    sgrid = make_safe_grid()
     # return 0
     startAtBeginning = True
     StartPt = (1000, 0.17) # Change this if not starting at the beginning
@@ -244,6 +279,11 @@ def main():
             else:
                 print("generating no events")
             PSAnal.analyzeThis(LambdaInfo['current'], geffInfo['current'])
+            if not in_safe_grid(LambdaInfo, geffInfo, sgrid):
+                print(f"Deleting events from {LambdaInfo['current'], geffInfo['current']}")
+                # AM.run_command(f"rm -vr /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/{PSAnal.fileNameMaker(LambdaInfo, geffInfo)}", verbs=True)
+            else:
+                print(f"Saving events from {LambdaInfo['current'], geffInfo['current']}")
             geffInfo = incrementParam(geffInfo)
             # print("geff: ", geffInfo['current'])
 
