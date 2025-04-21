@@ -227,7 +227,7 @@ def pull_existing_output():
     with open('ParamSpEff.dat', 'r') as file:
         lines = file.readlines()
         print("hi ", lines)
-        proclines = np.array([[float(line.strip().split(' ')[i]) if i<2 else int(line.strip().split(' ')[i]) for i in range(len(line.strip().split(' ')))] for line in lines])
+        # proclines = np.array([[float(line.strip().split(' ')[i]) if i<2 else int(line.strip().split(' ')[i]) for i in range(len(line.strip().split(' ')))] for line in lines])
         proclines = np.array([[float(line.strip().split(' ')[i]) for i in range(len(line.strip().split(' ')))] for line in lines])
     
     return proclines
@@ -247,6 +247,7 @@ def main():
     print(f'Running a grid from g_eff = {geffInfo["bounds"][0]} to g_eff = {geffInfo["bounds"][1]}\n with step size δg_eff = {geffInfo["delta"]}')
     print(f"That's a grid of size {(LambdaInfo['bounds'][1]+LambdaInfo['delta']-LambdaInfo['bounds'][0])/LambdaInfo['delta'] * (geffInfo['bounds'][1]+geffInfo['delta']-geffInfo['bounds'][0])/geffInfo['delta']}")
     prev_out = pull_existing_output()
+    return 0
     print("previous: \n", prev_out)
     checkExistingFolders(LambdaInfo, geffInfo, True)
     sgrid = make_safe_grid()
