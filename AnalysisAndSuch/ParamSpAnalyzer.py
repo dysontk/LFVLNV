@@ -25,7 +25,7 @@ def analyzeThis(Lambda, geff):
     
     from_analysis = AM.run_command(f'/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/AnalysisAndSuch/JetFake/main LNVF '+ theseFiles, True)
     print(from_analysis)
-    eff = from_analysis.split('\n')[-2][12:]
+    eff = from_analysis.split('\n')[-2][7:]
     # print(type(from_analysis))
     # eff = re.search('\d+\.+\d\d\d\d\d', from_analysis)
     # print(from_analysis[-100:])

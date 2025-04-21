@@ -1053,6 +1053,7 @@ int main(int argc, const char * argv[])
         float efficency = float(deepCuts2[10])/float(NumEntries);
         cout << setprecision(7);
         cout << "Efficiency: " << efficency << endl;
+        cout << "N_fin: " << GangCutCount[GangCutCount.size()-1] << endl;
     }
 
 }
