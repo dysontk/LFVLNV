@@ -303,10 +303,10 @@ def main():
                     # gen_events(howManyRuns, LambdaInfo['current'], geffInfo['current'])
                 else:
                     print("generating no events")
-                # PSAnal.analyzeThis(LambdaInfo['current'], geffInfo['current'])
+                PSAnal.analyzeThis(LambdaInfo['current'], geffInfo['current'])
                 if not in_safe_grid(LambdaInfo, geffInfo, sgrid):
                     print(f"Deleting events from {LambdaInfo['current'], geffInfo['current']}")
-                    AM.run_command(f"rm -vr /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/{PSAnal.fileNameMaker(LambdaInfo['current'], geffInfo['current'])}", verbs=True)
+                    # AM.run_command(f"rm -vr /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/{PSAnal.fileNameMaker(LambdaInfo['current'], geffInfo['current'])}", verbs=True)
                 else:
                     print(f"Saving events from {LambdaInfo['current'], geffInfo['current']}")
             geffInfo = incrementParam(geffInfo)
