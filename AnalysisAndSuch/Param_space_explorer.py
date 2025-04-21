@@ -226,7 +226,7 @@ def pull_existing_output():
     proclines = np.array([[]])
     with open('ParamSpEff.dat', 'r') as file:
         lines = file.readlines()
-        print(lines)
+        print("hi ", lines)
         proclines = np.array([[float(line.strip().split(' ')[i]) if i<2 else int(line.strip().split(' ')[i]) for i in range(len(line.strip().split(' ')))] for line in lines])
         proclines = np.array([[float(line.strip().split(' ')[i]) for i in range(len(line.strip().split(' ')))] for line in lines])
     
