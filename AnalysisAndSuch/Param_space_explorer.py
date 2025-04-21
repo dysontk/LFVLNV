@@ -221,8 +221,19 @@ def in_safe_grid(LI, GI, s_grid):
             in_grid = True
     return in_grid
 
-
+def pull_existing_output():
+    #text file stuff 
+    proclines = np.array([[]])
+    with open('ParamSpEff.dat', 'r') as file:
+        lines = file.readlines()
+        # print(lines)
+        # proclines = np.array([[float(line.strip().split(' ')[i]) if i<2 else int(line.strip().split(' ')[i]) for i in range(len(line.strip().split(' ')))] for line in lines])
+        proclines = np.array([[float(line.strip().split(' ')[i]) for i in range(len(line.strip().split(' ')))] for line in lines])
+    
+    return proclines
+        # print(proclines)
 def main():
+    overwrite_prev_output = False
     DeleteAllPrevRuns = False
     startingGenDir = '/work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/'
     if DeleteAllPrevRuns:
@@ -259,31 +270,41 @@ def main():
         while geffInfo['current'] <= geffInfo['bounds'][1]:
             # print("geff: ", geffInfo['current'])
             edit_params(LambdaInfo, geffInfo, mass_ratio)
-            print("Preexisting runs...")
-            existingRuns = howManyPreexistingRuns(LambdaInfo['current'], geffInfo['current'], startingGenDir, False)
-            # print(f'there are already {existingRuns} runs')
-            # print(f"asking for {nRuns - existingRuns}")
-            path_to_process_card = edit_proc(LambdaInfo, geffInfo)
-            if not existingRuns:
-                print(f"I'm going to generate a new process for {LambdaInfo['current']}, {geffInfo['current']}")
-                gen_proc_command = '/home/dkennedy_umass_edu/Software/MG5_aMC_v3_5_6/bin/mg5_aMC ' + path_to_process_card
-                GM.run_command(gen_proc_command)
-            #     print(f"no existing runs for {LambdaInfo['current']}, {geffInfo['current']}")
-            else:
-                print(f"There is already a process for {LambdaInfo['current']} and {geffInfo['current']} with {existingRuns} runs")
-            howManyRuns = nRuns - existingRuns
-            print(f"asking for {howManyRuns} runs")
-            if howManyRuns:
-                print("here is where I'd gen events")
-                gen_events(howManyRuns, LambdaInfo['current'], geffInfo['current'])
-            else:
-                print("generating no events")
-            PSAnal.analyzeThis(LambdaInfo['current'], geffInfo['current'])
-            if not in_safe_grid(LambdaInfo, geffInfo, sgrid):
-                print(f"Deleting events from {LambdaInfo['current'], geffInfo['current']}")
-                AM.run_command(f"rm -vr /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/{PSAnal.fileNameMaker(LambdaInfo['current'], geffInfo['current'])}", verbs=True)
-            else:
-                print(f"Saving events from {LambdaInfo['current'], geffInfo['current']}")
+            print("Checking prev output")
+            prev_out = pull_existing_output()
+            in_prev_out = False
+            if not overwrite_prev_output:
+                for line in prev_out:
+                    if line[0] == LambdaInfo['current'] and line[1]== geffInfo['current']:
+                        in_prev_out = True
+                        print(f"I already did this point {line}")
+                        PSAnal.write_to_file(line[0], line[1], line[2])
+            elif not in_prev_out:
+                print("Preexisting runs...")
+                existingRuns = howManyPreexistingRuns(LambdaInfo['current'], geffInfo['current'], startingGenDir, False)
+                # print(f'there are already {existingRuns} runs')
+                # print(f"asking for {nRuns - existingRuns}")
+                path_to_process_card = edit_proc(LambdaInfo, geffInfo)
+                if not existingRuns:
+                    print(f"I'm going to generate a new process for {LambdaInfo['current']}, {geffInfo['current']}")
+                    gen_proc_command = '/home/dkennedy_umass_edu/Software/MG5_aMC_v3_5_6/bin/mg5_aMC ' + path_to_process_card
+                    # GM.run_command(gen_proc_command)
+                #     print(f"no existing runs for {LambdaInfo['current']}, {geffInfo['current']}")
+                else:
+                    print(f"There is already a process for {LambdaInfo['current']} and {geffInfo['current']} with {existingRuns} runs")
+                howManyRuns = nRuns - existingRuns
+                print(f"asking for {howManyRuns} runs")
+                if howManyRuns:
+                    print("here is where I'd gen events")
+                    # gen_events(howManyRuns, LambdaInfo['current'], geffInfo['current'])
+                else:
+                    print("generating no events")
+                # PSAnal.analyzeThis(LambdaInfo['current'], geffInfo['current'])
+                if not in_safe_grid(LambdaInfo, geffInfo, sgrid):
+                    print(f"Deleting events from {LambdaInfo['current'], geffInfo['current']}")
+                    AM.run_command(f"rm -vr /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/{PSAnal.fileNameMaker(LambdaInfo['current'], geffInfo['current'])}", verbs=True)
+                else:
+                    print(f"Saving events from {LambdaInfo['current'], geffInfo['current']}")
             geffInfo = incrementParam(geffInfo)
             # print("geff: ", geffInfo['current'])
 

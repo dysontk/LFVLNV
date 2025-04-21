@@ -25,13 +25,13 @@ def analyzeThis(Lambda, geff):
     
     from_analysis = AM.run_command(f'/home/dkennedy_umass_edu/LNV/MyFiles/LFVLNV/AnalysisAndSuch/JetFake/main LNVF '+ theseFiles, True)
     print(from_analysis)
-    eff = from_analysis.split('\n')[-2][7:]
+    N_fin = from_analysis.split('\n')[-1][7:]
     # print(type(from_analysis))
     # eff = re.search('\d+\.+\d\d\d\d\d', from_analysis)
     # print(from_analysis[-100:])
     # print(eff.group())
     # print(float(eff.group()[12:]))
-    write_to_file(Lambda, geff, float(eff))
+    write_to_file(Lambda, geff, float(N_fin))
     
 
 
