@@ -292,18 +292,18 @@ def main():
                 if not existingRuns:
                     print(f"I'm going to generate a new process for {LambdaInfo['current']}, {geffInfo['current']}")
                     gen_proc_command = '/home/dkennedy_umass_edu/Software/MG5_aMC_v3_5_6/bin/mg5_aMC ' + path_to_process_card
-                    # GM.run_command(gen_proc_command)
-                #     print(f"no existing runs for {LambdaInfo['current']}, {geffInfo['current']}")
+                    GM.run_command(gen_proc_command)
+                    print(f"no existing runs for {LambdaInfo['current']}, {geffInfo['current']}")
                 else:
                     print(f"There is already a process for {LambdaInfo['current']} and {geffInfo['current']} with {existingRuns} runs")
                 howManyRuns = nRuns - existingRuns
                 print(f"asking for {howManyRuns} runs")
                 if howManyRuns:
                     print("here is where I'd gen events")
-                    # gen_events(howManyRuns, LambdaInfo['current'], geffInfo['current'])
+                    gen_events(howManyRuns, LambdaInfo['current'], geffInfo['current'])
                 else:
                     print("generating no events")
-                # PSAnal.analyzeThis(LambdaInfo['current'], geffInfo['current'])
+                PSAnal.analyzeThis(LambdaInfo['current'], geffInfo['current'])
                 if not in_safe_grid(LambdaInfo, geffInfo, sgrid):
                     print(f"Deleting events from {LambdaInfo['current'], geffInfo['current']}")
                     AM.run_command(f"rm -vr /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/{PSAnal.fileNameMaker(LambdaInfo['current'], geffInfo['current'])}", verbs=True)
