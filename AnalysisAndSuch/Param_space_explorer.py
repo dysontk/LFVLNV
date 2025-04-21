@@ -274,7 +274,10 @@ def main():
             prev_out = pull_existing_output()
             in_prev_out = False
             if not overwrite_prev_output:
+                print("testing....")
                 for line in prev_out:
+                    print(line[0])
+                    print(LambdaInfo['current'])
                     if line[0] == LambdaInfo['current'] and line[1]== geffInfo['current']:
                         in_prev_out = True
                         print(f"I already did this point {line}")
