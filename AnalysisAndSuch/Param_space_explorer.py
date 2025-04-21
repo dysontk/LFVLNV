@@ -272,6 +272,7 @@ def main():
             edit_params(LambdaInfo, geffInfo, mass_ratio)
             print("Checking prev output")
             prev_out = pull_existing_output()
+            print(prev_out)
             in_prev_out = False
             if not overwrite_prev_output:
                 print("testing....")
