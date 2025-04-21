@@ -248,7 +248,7 @@ def main():
     print(f"That's a grid of size {(LambdaInfo['bounds'][1]+LambdaInfo['delta']-LambdaInfo['bounds'][0])/LambdaInfo['delta'] * (geffInfo['bounds'][1]+geffInfo['delta']-geffInfo['bounds'][0])/geffInfo['delta']}")
     prev_out = pull_existing_output()
     print("previous: \n", prev_out)
-    return 0
+    # return 0
     checkExistingFolders(LambdaInfo, geffInfo, True)
     sgrid = make_safe_grid()
     # return 0
