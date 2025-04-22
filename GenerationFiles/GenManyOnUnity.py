@@ -258,11 +258,11 @@ def gen_til_200k(eventTypes):
 
 if __name__ == '__main__':
 
-    eventTypes = ['LNVF', 
+    eventTypes = [ #'LNVF', 
                   'ttbar', 
                   'W3j', 
-                  'WZ2j', 
-                  'ZZ2j'
+                #   'WZ2j', 
+                #   'ZZ2j'
                   ]
     allAttempts = gen_til_200k(eventTypes)
     # print("Hi")
