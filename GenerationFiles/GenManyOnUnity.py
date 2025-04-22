@@ -196,7 +196,7 @@ def HowManyRuns(event_count_dic):
 
 def gen_til_200k(eventTypes):
 
-    event_count_dict = read_many.redoCounts(eventTypes, 0)
+    event_count_dict = read_many.redoCounts(eventTypes, 1)
     runs2Basked = HowManyRuns(event_count_dict)
     print("Runs to be asked: ", runs2Basked, sep='\n')
     print("event count: ", event_count_dict, sep='\n')
