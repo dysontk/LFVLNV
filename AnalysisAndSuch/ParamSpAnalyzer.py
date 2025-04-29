@@ -14,11 +14,37 @@ def write_to_file(p1, p2, ef):
     with open('ParamSpEff.dat', 'a') as file:
         file.write(f'{p1} {p2} {ef}\n')
 
+
+def write_to_sigma_file(p1, p2, sg):
+    print(f'{p1} {p2} {sg}')
+    with open('crossXs.dat', 'a') as file:
+        file.write(f'{p1} {p2} {sg}\n')
+
 def fileNameMaker(Lambda, geff):
 
     return f'LNVF_{int(Lambda)}_' + '_'.join('{:.3f}'.format(geff).split('.'))
 
-def analyzeThis(Lambda, geff):
+def get_crossX_from_html(filename):
+    with open(filename, 'r') as file:
+    # print(file.read())
+        content = file.read()
+        howmanyResultLinesFound = 0
+        for i in range(len(content)):
+            # print(content[i:i+11])
+            if content[i:i+12] == 'results.html':
+                # print(content[i+16:i+25])
+                howmanyResultLinesFound+=1
+                # print('found it')
+                if howmanyResultLinesFound > 1:
+                    j, carrotIndex1, carrotIndex2 = (i+12, i+12, i+12)
+                    while content[j] != '<':
+                        if content[j] == '>':
+                            carrotIndex1 = j
+                        j+=1
+                    carrotIndex2 = j
+                    return(float(content[carrotIndex1+1:carrotIndex2]))
+
+def analyzeThis(Lambda, geff, lastcrossx):
     FolderName = fileNameMaker(Lambda, geff)
     print(FolderName)
     theseFiles = AM.find_files('Signal/'+FolderName)
@@ -32,6 +58,15 @@ def analyzeThis(Lambda, geff):
     # print(eff.group())
     # print(float(eff.group()[12:]))
     write_to_file(Lambda, geff, float(N_fin))
+    crossx = lastcrossx
+    try:
+        crossx = get_crossX_from_html(f'/work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/{FolderName}/crossx.html')
+    except:
+        print(f"DIDN'T FIND SIGMA: {Lambda} {geff}")
+        print(f"Using last known crossx {crossx}")
+    write_to_sigma_file(Lambda, geff, crossx)
+    return crossx
+
     
 
 
