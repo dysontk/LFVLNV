@@ -25,7 +25,7 @@ def fileNameMaker(Lambda, geff):
     return f'LNVF_{int(Lambda)}_' + '_'.join('{:.3f}'.format(geff).split('.'))
 
 def get_crossX_from_html(filename):
-    print(filename)
+    print("checking ", filename)
     with open(filename, 'r') as file:
     # print(file.read())
         content = file.read()
@@ -35,8 +35,9 @@ def get_crossX_from_html(filename):
             if content[i:i+12] == 'results.html':
                 print(content[i:i+30])
                 howmanyResultLinesFound+=1
-                print('found it')
+                # print('found it')
                 if howmanyResultLinesFound > 1:
+                    print('found it')
                     j, carrotIndex1, carrotIndex2 = (i+12, i+12, i+12)
                     while content[j] != '<':
                         if content[j] == '>':
