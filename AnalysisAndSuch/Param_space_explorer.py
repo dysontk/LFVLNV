@@ -232,8 +232,12 @@ def pull_existing_output():
     
     return proclines
         # print(proclines)
+
+def clear_crossx_file():
+    open('crossXs.dat', 'w').close()
+
 def main():
-    overwrite_prev_output = True
+    overwrite_prev_output = False
     DeleteAllPrevRuns = False
     startingGenDir = '/work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/'
     if DeleteAllPrevRuns:
@@ -247,6 +251,7 @@ def main():
     print(f'Running a grid from g_eff = {geffInfo["bounds"][0]} to g_eff = {geffInfo["bounds"][1]}\n with step size δg_eff = {geffInfo["delta"]}')
     print(f"That's a grid of size {(LambdaInfo['bounds'][1]+LambdaInfo['delta']-LambdaInfo['bounds'][0])/LambdaInfo['delta'] * (geffInfo['bounds'][1]+geffInfo['delta']-geffInfo['bounds'][0])/geffInfo['delta']}")
     prev_out = pull_existing_output()
+    clear_crossx_file()
     print("previous: \n", prev_out)
     # return 0
     checkExistingFolders(LambdaInfo, geffInfo, True)
