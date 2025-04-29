@@ -284,6 +284,10 @@ def main():
                         in_prev_out = True
                         print(f"I already did this point {line}")
                         PSAnal.write_to_file(line[0], line[1], line[2])
+                        FolderName = PSAnal.fileNameMaker(LambdaInfo['current'], geffInfo['current'])
+                        this_crossx = PSAnal.get_crossX_from_html(f'/work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/{FolderName}/crossx.html')
+                        PSAnal.write_to_sigma_file(line[0], line[1], this_crossx)
+                        prev_crossx = this_crossx
             if not in_prev_out:
                 print("Preexisting runs...")
                 existingRuns = howManyPreexistingRuns(LambdaInfo['current'], geffInfo['current'], startingGenDir, False)
