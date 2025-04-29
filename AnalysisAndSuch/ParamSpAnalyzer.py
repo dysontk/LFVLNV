@@ -32,9 +32,9 @@ def get_crossX_from_html(filename):
         for i in range(len(content)):
             # print(content[i:i+11])
             if content[i:i+12] == 'results.html':
-                # print(content[i+16:i+25])
+                print(content[i+16:i+25])
                 howmanyResultLinesFound+=1
-                # print('found it')
+                print('found it')
                 if howmanyResultLinesFound > 1:
                     j, carrotIndex1, carrotIndex2 = (i+12, i+12, i+12)
                     while content[j] != '<':
