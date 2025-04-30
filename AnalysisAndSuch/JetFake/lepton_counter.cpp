@@ -69,7 +69,7 @@ using namespace TMath;
 
 // #include "mt2_bisect.h"
 // #include "mt2w_bisect.h"
-
+bool VERBOSE = true;
 
 int main(int argc, const char * argv[])
 {
@@ -111,7 +111,7 @@ int main(int argc, const char * argv[])
     //                                                                  , bins, xlow, xhigh)
     // Obj. name; Vert. axis vs. Horiz. axis; images produced by this
     //Invariant mass of the pair of jets closest to W mass -- Hereonout called W jets or W jet pair
-    int scaleFactor = (EventType=="LNVF") ? 3: 1;
+    // int scaleFactor = (EventType=="LNVF") ? 3: 1;
     // cout << "SCALE FACTOR" << scaleFactor << endl;
     // float scaleFactor2 = (EventType=="O2") ? 1.5 : 1;
     int e_countingParams[3] = {6, 0, 5};
@@ -154,7 +154,7 @@ int main(int argc, const char * argv[])
            
             // cout << "cleared vectors"<< endl;
             treeReader->ReadEntry(entry);
-            int numJet = branchJet->GetEntries();
+            // int numJet = branchJet->GetEntries();
             int numEl = branchElectron->GetEntries();
             int numMu = branchMuon->GetEntries(); 
 
