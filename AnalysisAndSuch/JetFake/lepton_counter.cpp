@@ -161,7 +161,7 @@ int main(int argc, const char * argv[])
             // e_counting->Fill(numEl);
             // mu_counting->Fill(numMu);
             // lep_counting->Fill(numEl+numMu);
-            mu_counting->Fill((v_muP.size()> v_muM.size()) ? v_muP.size() : v_muM.size())
+            mu_counting->Fill((v_muP.size()> v_muM.size()) ? v_muP.size() : v_muM.size());
             
         }
         cout << "Histo time"<< endl;
@@ -181,15 +181,15 @@ int main(int argc, const char * argv[])
         strcpy(FullPathM2jW, ImagePath);
         strcat(FullPathM2jW, "/ss_muons.png");
         // MW2j
-        MW2j->GetXaxis()->SetTitle("Highest # of s.s. muons per event");
-        MW2j->Draw();
+        mu_counting->GetXaxis()->SetTitle("Highest # of s.s. muons per event");
+        mu_counting->Draw();
         cout << "Made it. Gotta save it"<< endl;
         c1->SaveAs(FullPathM2jW);
         cout << "boutta save root file" <<endl;
         // cout << FullPathM2jW_root << endl;
         // c1->SaveAs(FullPathM2jW_root);
         TFile F1(FullPathM2jW_root, "RECREATE");
-        MW2j->Write();
+        mu_counting->Write();
         F1.Close();
     }
 
