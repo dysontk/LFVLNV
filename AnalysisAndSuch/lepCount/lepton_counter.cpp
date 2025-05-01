@@ -71,7 +71,7 @@ using namespace TMath;
 // #include "mt2w_bisect.h"
 bool VERBOSE = true;
 
-int main2(int argc, const char * argv[])
+int main(int argc, const char * argv[])
 {
     
     //Pulls and arranges data as needed.
