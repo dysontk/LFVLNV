@@ -26,6 +26,8 @@ set ebeam1 7000
 set ebeam2 7000
 set nevents 10000
 set iseed 1
+PartonLevel:ISR = on
+
 
 set JetMatching:nJetMax 3
 

@@ -17,7 +17,7 @@ set ptb 20
 set ptl 20
 set etaj 2.8
 set etal 2.5
-set PartonLevel:ISR on
+PartonLevel:ISR = on
 
 
 print_results
