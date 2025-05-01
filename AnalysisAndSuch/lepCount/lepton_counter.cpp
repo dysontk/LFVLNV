@@ -63,9 +63,9 @@ using namespace std;
 using namespace TMath;
 // using namespace fastjet;
 
-#include "JetFake/observables.h"
-#include "JetFake/ran.h"
-#include "JetFake/ChargeFlip.h"
+#include "../JetFake/observables.h"
+#include "../JetFake/ran.h"
+#include "../JetFake/ChargeFlip.h"
 
 // #include "mt2_bisect.h"
 // #include "mt2w_bisect.h"
