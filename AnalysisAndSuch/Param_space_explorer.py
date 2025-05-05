@@ -232,6 +232,16 @@ def pull_existing_output():
     
     return proclines
         # print(proclines)
+def pull_existing_crossX():
+    #text file stuff 
+    proclines = np.array([[]])
+    with open('crossXs.dat', 'r') as file:
+        lines = file.readlines()
+        # print("hi ", lines)
+        # proclines = np.array([[float(line.strip().split(' ')[i]) if i<2 else int(line.strip().split(' ')[i]) for i in range(len(line.strip().split(' ')))] for line in lines])
+        proclines = np.array([[float(line.strip().split(' ')[i]) for i in range(len(line.strip().split(' ')))] for line in lines])
+    
+    return proclines
 
 def clear_crossx_file():
     open('crossXs.dat', 'w').close()
@@ -251,6 +261,7 @@ def main():
     print(f'Running a grid from g_eff = {geffInfo["bounds"][0]} to g_eff = {geffInfo["bounds"][1]}\n with step size δg_eff = {geffInfo["delta"]}')
     print(f"That's a grid of size {(LambdaInfo['bounds'][1]+LambdaInfo['delta']-LambdaInfo['bounds'][0])/LambdaInfo['delta'] * (geffInfo['bounds'][1]+geffInfo['delta']-geffInfo['bounds'][0])/geffInfo['delta']}")
     prev_out = pull_existing_output()
+    prev_crossx = pull_existing_crossX()
     clear_crossx_file()
     print("previous: \n", prev_out)
     # return 0
@@ -270,7 +281,7 @@ def main():
     # print(geffInfo)ß
     mass_ratio = 1.5 #mS/mF
     grid_index = [0,0]
-    prev_crossx = 0
+    last_crossx = 0
     while LambdaInfo['current'] <= LambdaInfo['bounds'][1]:
         
         # print("Lambda: ", LambdaInfo['current'])
@@ -280,6 +291,9 @@ def main():
             edit_params(LambdaInfo, geffInfo, mass_ratio)
             print("Checking prev output")
             in_prev_out = False
+            prev_crossx_exists = False
+            prev_N_to_write = 0
+            prev_crossx_to_write = 0
             if not overwrite_prev_output:
                 print("testing....")
                 for line in prev_out:
@@ -288,12 +302,20 @@ def main():
                     if line[0] == LambdaInfo['current'] and line[1]== geffInfo['current']:
                         in_prev_out = True
                         print(f"I already did this point {line}")
-                        PSAnal.write_to_file(line[0], line[1], line[2])
-                        FolderName = PSAnal.fileNameMaker(LambdaInfo['current'], geffInfo['current'])
-                        this_crossx = PSAnal.get_crossX_from_html(f'/work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/{FolderName}/crossx.html')
-                        PSAnal.write_to_sigma_file(line[0], line[1], this_crossx)
-                        prev_crossx = this_crossx
-            if not in_prev_out:
+                        prev_N_to_write = line
+                        # PSAnal.write_to_file(line[0], line[1], line[2])
+                        for crossline in prev_crossx:
+                            if crossline[0] == LambdaInfo['current'] and crossline[1]== geffInfo['current']:
+                                prev_crossx_exists = True
+                                # PSAnal.write_to_sigma_file(crossline[0], crossline[1], crossline[2])
+                                prev_crossx_to_write = crossline
+                                last_crossx = crossline[2]
+                            else:        
+                                FolderName = PSAnal.fileNameMaker(LambdaInfo['current'], geffInfo['current'])
+                                this_crossx = PSAnal.get_crossX_from_html(f'/work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/{FolderName}/crossx.html')
+                                PSAnal.write_to_sigma_file(line[0], line[1], this_crossx)
+                                last_crossx = this_crossx
+            if (not in_prev_out) or (not prev_crossx_exists):
                 print("Preexisting runs...")
                 existingRuns = howManyPreexistingRuns(LambdaInfo['current'], geffInfo['current'], startingGenDir, False)
                 # print(f'there are already {existingRuns} runs')
@@ -313,12 +335,16 @@ def main():
                     gen_events(howManyRuns, LambdaInfo['current'], geffInfo['current'])
                 else:
                     print("generating no events")
-                prev_crossx = PSAnal.analyzeThis(LambdaInfo['current'], geffInfo['current'], prev_crossx)
+                last_crossx = PSAnal.analyzeThis(LambdaInfo['current'], geffInfo['current'], last_crossx)
                 if not in_safe_grid(LambdaInfo, geffInfo, sgrid):
                     print(f"Deleting events from {LambdaInfo['current'], geffInfo['current']}")
                     AM.run_command(f"rm -vr /work/pi_mjrm_umass_edu/LNV_collider/Generated/Signal/{PSAnal.fileNameMaker(LambdaInfo['current'], geffInfo['current'])}", verbs=True)
                 else:
                     print(f"Saving events from {LambdaInfo['current'], geffInfo['current']}")
+            if in_prev_out:
+                PSAnal.write_to_file(prev_N_to_write[0], prev_N_to_write[1], prev_N_to_write[2])
+            if prev_crossx_exists:
+                PSAnal.write_to_sigma_file(prev_crossx_to_write[0], prev_crossx_to_write[1], prev_crossx_to_write[2])
             geffInfo = incrementParam(geffInfo)
             # print("geff: ", geffInfo['current'])
 
